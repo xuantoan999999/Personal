@@ -1,0 +1,47 @@
+<!--Start: Left Sidebar-->
+<div class="col-xs-4 col-left">
+    <!--Start: List category-->
+    <div class="vegetables">
+        <h3>{{data.parrentCategory.name}}</h3>
+        <ul class="list-menu">
+            {{#each data.categories.sub_category}}
+            {{#if this.category.status}}
+            <li class="{{#if_eq this.category.slug ../data.category.slug}}active{{/if_eq}} {{#if_eq this.category.slug ../data.category.parent_category.slug}}active{{/if_eq}}">
+                <b class="is-open"></b>
+                <a href="/danh-muc/{{../data.parrentCategory.slug}}/{{this.category.slug}}" class="{{#if_eq this.category.slug ../data.category.slug}}active{{/if_eq}}">
+                    <span>{{this.category.name}}</span>
+                    <span>({{this.product_count}})</span>
+                </a>
+                {{#if this.sub_category}}
+                <ul>
+                    {{#each this.sub_category}}
+                    {{#if this.category.status}}
+                    <li>
+                        <a href="/danh-muc/{{../../data.parrentCategory.slug}}/{{this.category.slug}}" class="{{#if_eq this.category.slug ../../data.category.slug}} active {{/if_eq}}">{{this.category.name}} <span>({{this.product_count}})</span></a>
+                    </li>
+                    {{/if}}
+                    {{/each}}
+                </ul>
+                {{/if}}
+            </li>
+            {{/if}}
+            {{/each}}
+        </ul>
+    </div>
+    <!--End: List category-->
+
+    <!--Start: List cooking-->
+    <div class="cooking">
+        <h3>Cách nấu thông dụng </h3>
+        {{#each data.tag_processing}}
+        <div class="form-group">
+            <label for="{{this._id}}" role="checkbox">
+                <input type="checkbox" id="{{this._id}}" data-ng-model="tagProcessings[{{@index}}]" data-ng-change="filterTag(); reloadPage();" value="{{index}}">{{this.name}} <i></i>
+                <span>({{this.proccesing.length}})</span>
+            </label>
+        </div>
+        {{/each}}
+    </div>
+    <!--End: List cooking-->
+</div>
+<!--End: Left Sidebar-->

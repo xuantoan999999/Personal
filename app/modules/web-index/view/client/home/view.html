@@ -1,0 +1,79 @@
+<div id="mod-home" class="module" data-module="index" data-ng-controller="homeCtrl as vmHome">
+    <div class="container">
+        {{> web/partials/home/banner_top}}
+
+        {{#each data}}
+        {{#if this.products}}
+        <div class="hot-product{{#unless @first}} show-desktop{{/unless}}">
+            <h2>{{this.detail.name}}</h2>
+            {{#if this.total}}
+            <div class="view-more show-mb">
+                <ul class="list-unstyled list-inline">
+                    <li><a href="">({{this.total}} sản phẩm)</a></li>
+                </ul>
+            </div>
+            {{/if}}
+
+            {{#if this.detail.top}}
+            <div class="view-more">
+                <ul class="list-unstyled list-inline">
+                    <li>
+                        {{#each this.detail.top}}
+                        <a href="/danh-muc/{{../this.detail.slug}}/{{this.slug}}">{{this.name}}</a>{{#unless @last}}, {{/unless}}
+                        {{/each}}
+                    </li>
+                    <li>
+                        <a href="/danh-muc/{{this.detail.slug}}" class="more" onclick="helperJsCustom.GA('send', 'event', 'Homepage', 'ClickXemThem{{capitalize this.detail.slug}}','');">Xem thêm ></a>
+                    </li>
+                </ul>
+            </div>
+            {{/if}}
+
+            <div class="list-product">
+                <div class="row">
+                    {{#each this.products}}
+                    <div class="col-xs-4">
+                        <div class="proc">
+                            <div class="image b-lazy bg-img-position" {{#if this.thumb }} data-src="{{checkImgOld '/files/thumb_image/product_image/' this.thumb}}"{{/if}} data-ng-click="popDetPro('{{this.slug}}','{{this._id}}')">
+                                <img src="{{ linkAssets 'frontend/images/category-default-image.png' }}" class='img-responsive'  alt="category-default-image.png">
+                                {{#if this.promotion.status}}
+                                <span class="sale-code">
+                                    Giảm giá {{this.promotion.value}}
+                                    {{#if_eq this.promotion.type 'MN'}} Đ{{/if_eq}}
+                                    {{#if_eq this.promotion.type 'PC'}} %{{/if_eq}}
+                                </span>
+                                {{/if}}
+                            </div>
+
+                            <div class="info cursor" data-ng-click="popDetPro('{{this.slug}}','{{this._id}}')">
+                                <a class="name">{{this.name}}</a>
+                                <p class="weight">{{this.view_unit}}</p>
+                            </div>
+
+                            <div class="button">
+                                <div class="prices">
+                                    {{#if this.promotion.status}}
+                                    <span class="price-old"> {{formatCurrency this.price}} <span class="dv">đ</span></span>
+                                    <span class="price">{{discount this.promotion.type this.promotion.value this.price}} <span class="dv">đ</span></span>
+                                    {{else}}
+                                    <span class="price"> {{formatCurrency this.price}} <span class="dv">đ</span></span>
+                                    {{/if}}
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div data-product-order-btn data-ng-if="cartDone" data-product='{"id": "{{this._id}}", "price": {{this.price}} , "qty_in_stock": {{this.qty_in_stock}} }'></div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        {{/if}}
+        {{/each}}
+
+        {{> web/partials/home/banner_bottom}}
+    </div>
+</div>
+<script>
+    var pageGa = 'Homepage';
+</script>

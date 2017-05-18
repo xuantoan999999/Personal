@@ -1,0 +1,306 @@
+<div id="header" data-module="menu">
+    <div id="mod-header">
+        <div class="container">
+            <div class="col-left float-left">
+                {{#if_eq class.page "home"}}
+                <h1 id="h1-home"><a href="" class="text show-desktop">Thực phẩm an toàn cho người Việt</a></h1>
+                {{else}}
+                <a href="" class="text show-desktop">Thực phẩm an toàn cho người Việt</a>
+                {{/if_eq}}
+            </div>
+            <div class="col-right float-right">
+                <ul class="list-unstyled">
+                    <li class="show-desktop" onclick="helperJsCustom.GA('send', 'event', 'Header', 'ClickHuongDanThanhToan','');">
+                        <a href="/huong-dan-dat-hang-va-thanh-toan" rel="nofollow">
+                            <img src="{{ linkAssets 'frontend/images/icon1.svg'}}" alt="icon1.svg"> Hướng dẫn đặt hàng
+                        </a>
+                    </li>
+                    <li class="show-desktop" onclick="helperJsCustom.GA('send', 'event', 'Header', 'ClickChinhSachGiaoHang','');">
+                        <a href="/chinh-sach-giao-hang" rel="nofollow">
+                            <img src="{{ linkAssets 'frontend/images/icon2.svg'}}" alt="icon2.svg"> Chính sách giao hàng
+                        </a>
+                    </li>
+                    <li class="hotline">
+                        <a href="tel:0917180709" rel="nofollow"  onclick="helperJsCustom.GA('send', 'event', 'Header', 'ClickHotline','');">
+                            <img src="{{ linkAssets 'frontend/images/icon3.svg'}}" class="show-desktop" alt="icon3.svg">
+                            <img src="{{ linkAssets 'frontend/images/icon-phone.svg'}}" class="show-mb" alt="icon-phone.svg"> Hotline:
+                            <span>0917 18 07 09</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div id="pin-menu" data-sticky-class="is_stuck">
+        <div id="mod-header2">
+            <div class="container">
+                <div class="logo">
+                    <a href="/">
+                        <img src="{{ linkAssets 'frontend/images/logo.png'}}" class="img-responsive" alt="logo.png">
+                    </a>
+                </div>
+                <div onclick="helperJsCustom.GA('send', 'event', 'Header', 'ClickDanhMuc','');" class="pull-menu is-close">
+                    <div class="icon-pull">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <p>Danh mục</p>
+                    <div class="clearfix"></div>
+                </div>
+                {{> web/partials/search/search}}
+                <div id="mod-cart-moblie" class="card hidden">
+                    <div class="img-card" onclick="helperJsCustom.GA('send', 'event', 'Header', 'ClickAreaCart','');">
+                        <img src="{{ linkAssets 'frontend/images/card.svg'}}" alt="card.svg">
+                    </div>
+                    <div class="text">
+                        <p>
+                            <span data-ng-cloak class='icon-red' data-ng-if="Cart.total_quantity">[[Cart.total_quantity || 0]]</span>
+                            <span data-ng-cloak data-ng-if="!Cart.total_quantity">[[Cart.total_quantity || 0]]</span> sản phẩm
+                        </p>
+                        <p><span data-ng-cloak>[[(Cart.total || 0) | currency:"":0]]</span> ₫</p>
+                    </div>
+                    <div class="sl-mb">
+                        <p data-ng-cloak>[[Cart.total_quantity || 0]]</p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="sign-in-out hidden" data-ng-controller="authCtrl as vmAuth" id="sign-in-out-desk">
+                    {{#if credentials.uid}}
+                    <div class="done-sigin show">
+                        <div class="info-user" onclick="helperJsCustom.GA('send', 'event', 'Header', 'ClickAreaToShowUserMenu', '');">
+                            <div class="avatar">
+                                <img data-ng-src=[[vmAuth.urlAvatar]] class="img-responsive" alt="avatar">
+                            </div>
+                            <div class="text">
+                                <p class="user">Chào <span>[[vmAuth.name]]</span></p>
+                                <p>Tài khoản và đơn hàng </p>
+                                <b class="arrow-user"></b>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="sub-infor">
+                            <ul>
+                                <li>
+                                    <a href="/khach-hang/don-hang-cua-toi" rel="nofollow" onclick="helperJsCustom.GA('send', 'event', 'Header', 'ClickDonHangCuaToi', '');">
+                                        <img src="{{ linkAssets 'frontend/images/icon-infor1.svg'}}" alt="icon-infor1.svg"> Đơn hàng của tôi
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/khach-hang/so-tay-noi-tro" rel="nofollow" onclick="helperJsCustom.GA('send', 'event', 'Header', 'ClickSoTayNoiTro', '');">
+                                        <img src="{{ linkAssets 'frontend/images/icon-infor2.svg'}}" alt="icon-infor2.svg"> Sổ tay nội trợ
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/khach-hang/thong-tin-tai-khoan" rel="nofollow" onclick="helperJsCustom.GA('send', 'event', 'Header', 'ClickThongTinTaiKhoan', '');">
+                                        <img src="{{ linkAssets 'frontend/images/icon-infor3.svg'}}" alt="icon-infor3.svg"> Thông tin tài khoản
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" data-ng-click="vmAuth.logout()" rel="nofollow" onclick="helperJsCustom.GA('send', 'event', 'Header', 'ClickButtonLogout', '');">
+                                        <img src="{{ linkAssets 'frontend/images/icon-infor4.svg'}}" alt="icon-infor4.svg"> Thoát
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    {{else}}
+                    <div class="none-sigin">
+                        <div class="list-button">
+                            <a class="login" data-ng-click="vmAuth.showPopupLogin()" onclick="helperJsCustom.GA('send', 'event', 'Header', 'ClickButtonLogin', '');">ĐĂNG NHẬP</a>
+                            <a class="btn btn-primary" data-ng-click="vmAuth.showPopupRegister()" onclick="helperJsCustom.GA('send', 'event', 'Header', 'ClickButtonSignup', '');">Đăng ký</a>
+                        </div>
+                        <p>Giảm 10% cho đơn hàng đầu tiên</p>
+                    </div>
+                    {{/if}}
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div id="mod-menu">
+            <div class="container">
+                <div class="menu-desk">
+                    <div class="sign-in-out show-mb hidden" data-ng-controller="authCtrl as vmAuth" id="sign-in-out-mb">
+                        {{#if credentials.uid}}
+                        <div class="done-sigin ">
+                            <div class="info-user" onclick="helperJsCustom.GA('send', 'event', 'Header', 'ClickAreaToShowUserMenu', '');">
+                                <div class="avatar">
+                                    <img data-ng-src=[[vmAuth.urlAvatar]] class="img-responsive" alt="avatar">
+                                </div>
+                                <div class="text">
+                                    <p class="user">Chào <span>[[vmAuth.name]]</span></p>
+                                    <p>Tài khoản và đơn hàng</p>
+                                    <b class="arrow-user"></b>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="sub-infor">
+                                <ul>
+                                    <li>
+                                        <a href="/khach-hang/don-hang-cua-toi" rel="nofollow" onclick="helperJsCustom.GA('send', 'event', 'Header', 'ClickDonHangCuaToi', '');">
+                                            <img src="{{ linkAssets 'frontend/images/icon-infor1.svg'}}" alt="icon-infor1.svg">Đơn hàng của tôi
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/khach-hang/so-tay-noi-tro" rel="nofollow" onclick="helperJsCustom.GA('send', 'event', 'Header', 'ClickSoTayNoiTro', '');">
+                                            <img src="{{ linkAssets 'frontend/images/icon-infor2.svg'}}" alt="icon-infor2.svg">Sổ tay nội trợ
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/khach-hang/thong-tin-tai-khoan" rel="nofollow" onclick="helperJsCustom.GA('send', 'event', 'Header', 'ClickThongTinTaiKhoan', '');">
+                                            <img src="{{ linkAssets 'frontend/images/icon-infor3.svg'}}" alt="icon-infor3.svg">Thông tin tài khoản
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" data-ng-click="vmAuth.logout()" rel="nofollow" onclick="helperJsCustom.GA('send', 'event', 'Header', 'ClickButtonLogout', '');">
+                                            <img src="{{ linkAssets 'frontend/images/icon-infor4.svg'}}" alt="icon-infor4.svg">Thoát
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        {{else}}
+                        <div class="none-sigin ">
+                            <div class="list-button">
+                                <a href="" class="login" data-ng-click="vmAuth.showPopupLogin()" onclick="helperJsCustom.GA('send', 'event', 'Header', 'ClickButtonLogin', '');">ĐĂNG NHẬP</a>
+                                <a href="" class="btn btn-primary" data-ng-click="vmAuth.showPopupRegister()" onclick="helperJsCustom.GA('send', 'event', 'Header', 'ClickButtonSignup', '');">Đăng ký</a>
+                            </div>
+                            <p>Giảm 10% cho đơn hàng đầu tiên</p>
+                        </div>
+                        {{/if}}
+                    </div>
+                    <ul class="list-menu" data-ng-controller="menuCtrl as vmM">
+                        <li class="{{#if_eq active_menu 'khuyen-mai'}}active{{/if_eq}}">
+                            <b class="is-open"></b>
+                            <a href="/khuyen-mai" class="{{#if_eq active_menu 'khuyen-mai'}}active{{/if_eq}}">Khuyến mãi</a>
+                        </li>
+                        {{#each category_menu}}
+                        <li class="{{#if_eq ../active_menu this.slug}}active{{/if_eq}}">
+                            <b class="is-open"></b>
+                            <a href="/danh-muc/{{this.slug}}" class="{{#if_eq ../active_menu this.category.slug}}active{{/if_eq}}">{{this.name}}</a>
+                            {{#if this.sub_category}}
+                            <ul>
+                                {{#each this.sub_category}}
+                                <li class="{{#if_eq ../../active_sub this.slug}}active{{/if_eq}}">
+                                    <b class="is-open"></b>
+                                    <a href="/danh-muc/{{../this.slug}}/{{this.slug}}" class="{{#if_eq ../active_menu this.slug}}active{{/if_eq}}">{{this.name}} <span data-ng-if="showCount" data-ng-bind="findCategory('{{this._id}}')"></span></a>
+                                    {{#if this.sub_category}}
+                                    <ul>
+                                        {{#each this.sub_category}}
+                                        <li class="{{#if_eq ../../../active_sub this.slug}}active{{/if_eq}}">
+                                            <a href="/danh-muc/{{../../this.slug}}/{{this.slug}}" class="{{#if_eq ../active_menu this.slug}}active{{/if_eq}}">{{this.name}} <span data-ng-if="showCount" data-ng-bind="findCategory('{{this._id}}')"></span></a>
+                                        </li>
+                                        {{/each}}
+                                    </ul>
+                                    {{/if}}
+                                </li>
+                                {{/each}}
+                            </ul>
+                            {{/if}}
+                        </li>
+                        {{/each}}
+
+                        <!--<li {{#if menu.tip}} class="active" {{/if}}>
+                            <b></b>
+                            <a href="/goc-bep">Góc bếp</a>
+                        </li>
+                        -->
+                        <li {{#if menu.blog}} class="active" {{/if}}>
+                            <b></b>
+                            <a href="/goc-bep">Góc bếp</a>
+                        </li>
+                        
+
+                    </ul>
+                    <div class="info-lienhe show-mb">
+                        <ul class="list-und">
+                            <li>
+                                <b class="icon2"></b>
+                                <a href="/huong-dan-dat-hang-va-thanh-toan" onclick="helperJsCustom.GA('send', 'event', 'Header', 'ClickHuongDanThanhToan','');" rel="nofollow">Hướng dẫn đặt hàng</a>
+                            </li>
+                            <li>
+                                <b class="icon3"></b>
+                                <a href="/chinh-sach-giao-hang" onclick="helperJsCustom.GA('send', 'event', 'Header', 'ClickChinhSachGiaoHang','');" rel="nofollow">Chính sách giao hàng</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{> web/partials/search/search-mb}}
+        <div class="menu-overlay"></div>
+    </div>
+    <div data-ng-controller="orderWebCtrl as vmWebOrder" id="mod-card" class="hidden">
+        <div class="header">
+            <p>GIỎ HÀNG CỦA BẠN <span data-ng-cloak> ([[Cart.total_quantity == 0 ? 'Chưa có' : Cart.total_quantity]] sản phẩm)</span></p>
+        </div>
+        <div class="content-card">
+            <div class="list">
+                <div class="item" data-ng-repeat="(index, item) in Cart.items">
+                    <div class="img">
+                        <img src=" " data-ng-src="[[vmWebOrder.checkImgOld(vmWebOrder.imgThumbProductDir,item.product.thumb)]]" class="img-responsive" alt="product">
+                    </div>
+
+                    <div class="cont">
+                        <p class="name" data-ng-cloak>[[item.product.name]]</p>
+                        <p class="weight" data-ng-cloak>[[item.product.view_unit]]</p>
+                        <div class="prize-total">
+                            <p data-ng-cloak>
+                                [[((item.product.id_promotion == null || !item.product.id_promotion.status) ? item.product.price : (item.product.id_promotion.type == 'PC' ? (item.product.price
+                                - (item.product.price * (item.product.id_promotion.value/100))) : (item.product.price - item.product.id_promotion.value)))
+                                * item.quantity | currency:"":0]]
+                                <span>₫</span>
+                            </p>
+                        </div>
+                        <div data-ng-if="item.product.id_promotion && item.product.id_promotion.status" class="prizes">
+                            <p class="prize-old" data-ng-cloak>[[item.product.price | currency:"":0]] <span>₫</span></p>
+
+                            <p class="prize" data-ng-cloak>
+                                [[(item.product.id_promotion.type == 'PC' ? (item.product.price - (item.product.price * (item.product.id_promotion.value/100)))
+                                : (item.product.price - item.product.id_promotion.value)) | currency:"":0]] 
+                                <span>₫</span>
+                            </p>
+                        </div>
+                        <div data-ng-if="item.product.id_promotion == null || !item.product.id_promotion.status" class="prizes">
+                            <p class="prize-old opacity"> [[item.product.price | currency:"":0]] <span>₫</span></p>
+
+                            <p class="prize" data-ng-cloak>[[item.product.price | currency:"":0]] <span>₫</span></p>
+                        </div>
+
+                        <div class="so-luong">
+                            <img data-ng-class="{disabled: (item.quantity == 0)}" src="{{ linkAssets 'frontend/images/icon-giam.svg'}}" data-ng-click="vmWebOrder.setQuantity([[item.id_product]], [[item.quantity - 1]])"
+                            onclick="helperJsCustom.GA('send', 'event', 'CartDetail', 'ClickDecreaseQuantityItem','');" class="img-reponsive"
+                            alt="icon-giam.svg">
+                            <span data-ng-cloak="">[[item.quantity]]</span>
+                            <img data-ng-class="{disabled: (item.quantity >=  item.product.qty_in_stock)}" src="{{ linkAssets 'frontend/images/icon-tang.png'}}"
+                            data-ng-click="vmWebOrder.setQuantity([[item.id_product]], [[item.quantity + 1]])" onclick="helperJsCustom.GA('send', 'event', 'CartDetail', 'ClickIncreaseQuantityItem','');"
+                            class="img-responsive" alt="icon-tang.png">
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="alert">
+                <div class="cont-alert">
+                    <ul>
+                        <li data-ng-repeat="configText in TextOrderConfig">
+                            <a href="/chinh-sach-giao-hang" class="text-order" data-ng-bind="configText.description"></a>
+                        </li>
+                    </ul>
+                    <a data-ng-click="vmWebOrder.openPageCheckout()" class="btn">
+                        <span class="text">ĐẶT HÀNG NGAY</span>
+                        <span class="prize" data-ng-cloak>[[Cart.total | currency:"":0]] ₫</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div onclick="helperJsCustom.GA('send', 'event', 'CartDetail', 'ClickButtonCloseCartDetail','');" class="close-card"></div>
+    </div>
+
+    <div class="overlay-card"></div>
+</div>

@@ -1,0 +1,53 @@
+<!--Start: List product-->
+<div class="products row hidden" id="product-list">
+    {{#each data.products}}
+    <div class="col-xs-6" data-ng-show="{{@index}} < sumProductShow">
+        <div class="proc">
+            <!--Start: Image section-->
+            <div class="image lazy bg-img-position" {{#if this.thumb}} data-original="{{checkImgOld '/files/thumb_image/product_image/' this.thumb}}" {{/if}} data-ng-click="popupDetail('{{this.slug}}', '{{this._id}}')">
+                <img {{#if this.thumb}} src="{{checkImgOld '/files/thumb_image/product_image/' this.thumb}}" {{else}} src="{{ linkAssets ‘frontend/images/category-default-image.png’ }}" {{/if}} class='img-responsive opacity' alt="{{this.name}}">
+                {{#if this.promotion.status}}
+                <span class="sale-code">
+                    Giảm giá {{this.promotion.value}}
+                    {{#if_eq this.promotion.type 'MN'}} Đ{{/if_eq}}
+                    {{#if_eq this.promotion.type 'PC'}} %{{/if_eq}}
+                </span>
+                {{/if}}
+            </div>
+            <!--End: Image section-->
+
+            <!--Start: Infor Product-->
+            <div class="info">
+                <div class="text">
+                    <a class="name" data-ng-click="popupDetail('{{this.slug}}', '{{this._id}}')">{{this.name}}</a>
+                    {{#if this.view_unit}}
+                    <p class="weight">{{this.view_unit}}</p>
+                    {{/if}}
+                </div>
+            </div>
+            <!--End: Infor Product-->
+
+            <div class="button">
+                <!--Start: Price Product-->
+                <div class="prices">
+                    {{#if this.promotion.status}}
+                    <span class="price-old show-desktop">{{formatCurrency this.price}} <span class="dv">đ</span></span>
+                    <span class="price-old show-mb">{{formatCurrency this.price}} <span class="dv"></span>đ</span>
+                    <span class="price">{{discount this.promotion.type this.promotion.value this.price}} <span class="dv"></span>đ</span>
+                    {{else}}
+                    <span class="price">{{formatCurrency this.price}} <span class="dv">đ</span></span>
+                    {{/if}}
+                    <div class="clearfix"></div>
+                </div>
+                <!--Start: Price Product-->
+
+                <div data-product-order-btn data-ng-if="cartDone" data-show-image="false" data-product='{"id": "{{this._id}}", "price": {{this.price}} , "qty_in_stock": {{this.qty_in_stock}} }'></div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+<div class="button-view-more hidden"  data-ng-show="sumProductShow < products_length">
+    <a href="" class="btn" data-ng-click="showMoreProduct()" onclick="helperJsCustom.GA('send', 'event', '{{ga_category}}', 'ClickXemThemSanPham','');"><img src="{{ linkAssets 'frontend/images/icon-view-more.svg' }}" alt="Show more">Xem thêm sản phẩm</a>
+</div>
+<!--End: List product-->
