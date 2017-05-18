@@ -1,7 +1,0 @@
-<!-- =========================Coupon========================= -->
-<li ng-if="pageMethods.authSvc.isSuperAdmin() || (pageMethods.authSvc.isAdmin() && pageMethods.authSvc.hasPermission('coupon', ['view']))"  ng-class="{'active':pageData.menuType === 'coupon-group'}" class="treeview">
-    <a ui-sref="coupon-group()">
-        <i class="fa fa-gift  text-aqua"></i> <span>Coupon Group</span>
-    </a>
-</li>
-<!-- =========================END Coupon========================= -->
