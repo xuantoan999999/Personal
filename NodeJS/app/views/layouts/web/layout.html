@@ -6,18 +6,14 @@
 	{{> web/partials/header}}
 </head>
 
-<body class="{{class.body_class}}">
+<body class="theme-red">
 
-	<!-- Google Tag Manager (noscript) -->
-	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{settings.GTM}}"
-	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-	<!-- End Google Tag Manager (noscript) -->
-
-	<div id="fb-root"></div>
 	<div class="view-container hidden-style hidden-style1 hidden-script">
+		{{> web/partials/page-loader}}
+		{{> web/partials/search-bar}}
 		{{> web/partials/header_navbar}}
+		{{> web/partials/sidebar}}
 		{{{ content }}}
-		{{> web/partials/footer_sidebar}}
 	</div>
 	<!-- /container -->
 	{{> web/partials/footer}}

@@ -48,6 +48,13 @@
 	.modal-dialog {max-width: 400px;}
 </style>
 
+{{> web/partials/link/style}}
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" href="{{linkPublic 'tmp/site/styles/main.css'}}">
+
 <!-- Variable -->
 <script>
 	/* <![CDATA[ */
@@ -56,85 +63,3 @@
 	var settings = {{{json settings}}};
 	/* ]]> */
 </script>
-
-<!-- PRODUCTION -->
-{{#if_eq settings.env "production"}}
-<script type="text/javascript">
-	/* <![CDATA[ */
-	!function(e){"use strict"
-	var n=function(n,t,o){function i(e){return f.body?e():void setTimeout(function(){i(e)})}var d,r,a,l,f=e.document,s=f.createElement("link"),u=o||"all"
-	return t?d=t:(r=(f.body||f.getElementsByTagName("head")[0]).childNodes,d=r[r.length-1]),a=f.styleSheets,s.rel="stylesheet",s.href=n,s.media="only x",i(function(){d.parentNode.insertBefore(s,t?d:d.nextSibling)}),l=function(e){for(var n=s.href,t=a.length;t--;)if(a[t].href===n)return e()
-		setTimeout(function(){l(e)})},s.addEventListener&&s.addEventListener("load",function(){this.media=u}),s.onloadcssdefined=l,l(function(){s.media!==u&&(s.media=u)}),s}
-		"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this)
-		function onloadCSS(a,b){function d(){!c&&b&&(c=!0,b.call(a))}var c;a.addEventListener&&a.addEventListener("load",d),a.attachEvent&&a.attachEvent("onload",d),"isApplicationInstalled"in navigator&&"onloadcssdefined"in a&&a.onloadcssdefined(d)}
-		
-		loadCSS("{{ linkAssets 'fonts_google.css'}}?v={{settings.versionJs}}")
-		// loadCSS('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic')
-		loadCSS('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css')
-		loadCSS('https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css')
-		onloadCSS( loadCSS("{{ linkAssets 'frontend/stylesheets/app.css'}}?v={{settings.versionJs}}"), function() {
-			document.getElementsByClassName('view-container')[0].classList.remove('hidden-style');
-			console.log( "Stylesheet has loaded." );
-		});
-		onloadCSS( loadCSS("{{linkPublic 'dist/site/styles/full.min.css'}}?v={{settings.versionJs}}"), function() {
-			document.getElementsByClassName('view-container')[0].classList.remove('hidden-style1');
-			console.log( "Stylesheet has loaded1." );
-		});
-		
-		/* ]]> */
-	</script>
-	{{/if_eq}}
-	
-	<!-- DEVELOPMENT -->
-	{{#if_eq settings.env "development"}}
-	{{> web/partials/link/style}} 
-	<!-- ===============================FRONTEND BUILD=============================== -->
-	<link rel="stylesheet" href="{{ linkAssets 'frontend/stylesheets/app.css'}}?v={{settings.versionJs}}">
-	<!-- ===============================END FRONTEND BUILD=============================== -->
-
-	<link rel="stylesheet" href="{{linkPublic 'tmp/site/styles/main.css'}}">
-	{{/if_eq}}
-
-	<!-- Tracking Order sau khi đặt hàng xong -->
-	{{#if_eq nameTracking 'CheckoutSuccess'}}
-	<script>
-		/* <![CDATA[ */
-		var order = {{{json order}}};
-		if(order){
-			window.dataLayer = window.dataLayer || []
-			var tpmPro = [];
-			for (let key in order.order_detail) {
-				if (order.order_detail.hasOwnProperty(key)) {
-					tpmPro.push({
-						'sku': order.order_detail[key].product._id,
-						'name': order.order_detail[key].product.name,
-						'price': order.order_detail[key].price,
-						'quantity': order.order_detail[key].order_quantity
-					});
-				}
-			}
-			dataLayer.push({
-				'transactionId': order.id_order,
-				'transactionAffiliation': '',
-				'transactionTotal': order.total_pay,
-				'transactionTax': 0,
-				'transactionShipping': order.payment_info.info.shipping_fee,
-				'transactionProducts': tpmPro
-			})
-		}
-		/* ]]> */
-	</script>
-	{{/if_eq}}
-
-	<!-- Google Tag Manager -->
-	<script>
-		/* <![CDATA[ */
-		(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-	})(window,document,'script','dataLayer','{{settings.GTM}}');
-	/* ]]> */
-</script>
-<!-- End Google Tag Manager -->
-

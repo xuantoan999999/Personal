@@ -41,7 +41,6 @@
     "jquery_lazyload": "jquery.lazyload#^1.9.7",
     "bLazy": "blazy#^1.8.2",
     "sticky-kit": "^1.1.2",
-    "Waves": "waves#^0.7.5",
     "adminbsb-materialdesign": "^1.0.4"
   },
   "overrides": {
