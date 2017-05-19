@@ -9,20 +9,13 @@ var await = require('asyncawait/await');
 var asyncCao = require('async');
 var Promise = require('bluebird');
 
-const Product = mongoose.model('Product');
-const Category = mongoose.model('Category');
-const Tag = mongoose.model('Tag');
-const Banner = mongoose.model('Banner');
-
 module.exports = {
-    index,
+    learn,
 };
 
-function index(request, reply) {
-    const Meta = request.server.plugins['service-meta'];
-    let meta = JSON.parse(JSON.stringify(Meta.getMeta('home-page')));
-
-    return reply.view('web-index/view/client/home/view', {
-        meta
+function learn(request, reply) {
+    let view = 'web-learn-vue/view/client/vue-' + request.params.page + '/view';
+    return reply.view(view, {
+        
     }, { layout: 'web/layout' });
 };

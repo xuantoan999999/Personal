@@ -14,6 +14,7 @@ SITE
 gulp.task('site-injectJS', () => {
   /* inject Angular JS */
   var srcAngular = gulp.src([
+    './app/modules/web-*/view/client/**/bootstrap.js',
     './app/modules/web-*/view/client/**/**.js',
     ]).pipe(angularFilesort())
 
