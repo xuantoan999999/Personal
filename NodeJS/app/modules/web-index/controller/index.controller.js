@@ -13,7 +13,6 @@ const Product = mongoose.model('Product');
 const Category = mongoose.model('Category');
 const Tag = mongoose.model('Tag');
 const Banner = mongoose.model('Banner');
-const productUtil = require('./../../api-product/util/product');
 
 module.exports = {
     index,

@@ -8,23 +8,8 @@ const _ = require('lodash');
 
 
 module.exports = {
-    // login,
     resetPass
 };
-
-// function login(request, reply) {
-//     let cookieOptions = request.server.configManager.get('web.cookieOptions');
-
-//     /*Xóa token khi bị sai token*/
-//     if (request.auth.error && request.auth.error.output.payload.message == 'Invalid credentials') {
-//         return reply.view('admin-auth/view/login', null, { layout: 'admin/layout-admin-login' }).header("Authorization", '').unstate('token', cookieOptions);
-//     }
-//     if (request.auth.isAuthenticated && request.auth.credentials.scope.includes('admin')) {
-//         return reply.redirect('/');
-//     }
-
-//     reply.view('admin-auth/view/login', null, { layout: 'admin/layout-admin-login' });
-// }
 
 
 function resetPass(request, reply) {

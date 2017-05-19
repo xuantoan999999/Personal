@@ -9,9 +9,6 @@ var await = require('asyncawait/await');
 var asyncCao = require('async');
 var promise = require('bluebird');
 
-const productHelper = require('../../web-product/util/product');
-const Category = mongoose.model('Category');
-const Product = mongoose.model('Product');
 const globalWeb = global.configManager.getData();
 
 module.exports = {
@@ -20,7 +17,6 @@ module.exports = {
     getMeta: getMeta,
     handleError: handleError,
     // getPostCategories: getPostCategories,
-    getListCategories: getListCategories,
 };
 
 function getCredentials(request, reply) {
@@ -152,41 +148,3 @@ function handleError(request, reply) {
         reply.continue();
     });
 }*/
-
-function getListCategories(request, reply) {
-    let response = request.response;
-    if (response.variety === 'view') {
-        if (!_.isEmpty(response.source.context)) {
-            let promise = Category.find({ parrent_id: null, status: true })
-                .populate(autoPopulateCate('sub_category'))
-                .select('slug name').lean();
-
-            promise.then(function (categories) {
-                response.source.context.category_menu = categories;
-                reply.continue();
-            });
-        }
-    }
-    else {
-        reply.continue();
-    }
-}
-
-
-// Auto create obj populate
-function autoPopulateCate(path, count, obj) {
-    if (typeof count == 'undefined') {
-        var category_level = global.config.web.category_level;
-        var count = category_level || 5;
-        var obj = {};
-    }
-    if (count == 0) {
-        return obj;
-    }
-    return {
-        path: path,
-        populate: autoPopulateCate(path, count - 1),
-        match: { status: true },
-        select: 'slug name'
-    };
-}

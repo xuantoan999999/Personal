@@ -25,7 +25,8 @@
     "jquery_lazyload": "jquery.lazyload#^1.9.7",
     "bLazy": "blazy#^1.8.2",
     "sticky-kit": "^1.1.2",
-    "adminbsb-materialdesign": "^1.0.4"
+    "adminbsb-materialdesign": "^1.0.4",
+    "vue": "^2.3.3"
   },
   "overrides": {
     "bootstrap": {

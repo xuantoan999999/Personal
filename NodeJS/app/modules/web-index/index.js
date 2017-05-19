@@ -11,9 +11,6 @@ exports.register = function (server, options, next) {
         handler: IndexController.index,
         config: {
             pre: [
-                { method: IndexMiddleware.getTag('nổi bật'), assign: 'getHighlightsTag' },
-                { method: IndexMiddleware.getListCategory, assign: 'getListCategory' },
-                { method: IndexMiddleware.getPromotionActive, assign: 'getPromotionActive' },
             ],
             validate: {
 
