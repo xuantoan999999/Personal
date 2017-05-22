@@ -1,1 +1,2 @@
-console.log("Core");
+Vue.config.debug = true;
+Vue.config.devtools = true;

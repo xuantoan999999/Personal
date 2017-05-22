@@ -14,8 +14,13 @@ SITE
 gulp.task('site-injectJS', () => {
   /* inject Angular JS */
   var srcAngular = gulp.src([
-    './app/modules/web-*/view/client/**/bootstrap.js',
-    './app/modules/web-*/view/client/**/**.js',
+    './app/modules/web-*/view/client/**/filter.js',
+    './app/modules/web-*/view/client/**/directive.js',
+    './app/modules/web-*/view/client/**/controller.js',
+    './app/modules/web-*/view/client/**/service.js',
+    './app/modules/web-*/view/client/**/define.js',
+    './app/modules/web-*/view/client/**/config.js',
+    './app/modules/web-*/view/client/**/bootstrap.js'
     ]).pipe(angularFilesort())
 
   /*inject Global, Utils*/
