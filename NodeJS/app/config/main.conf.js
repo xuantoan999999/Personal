@@ -29,6 +29,9 @@ config.web = {
         // },
         prefixCollection: 'bz_'
     },
+    tiny_png:{
+        id: 'PjKEQ4GNhqp2SAjfyYuKlsZdKLLUshtu'
+    },
     elasticsearch: {
         ES_Sync: false,
         config: {
