@@ -51,7 +51,7 @@ gulp.task('browser-sync', ['sass', 'nodemon'], function () {
             'stylesheet/**/*.scss'],
 
         // Proxy our Hapi app
-        proxy: 'http://localhost:3000',
+        proxy: 'http://localhost:2206',
         // Use the following port for the proxied app to avoid clash
         port: 4000,
         reloadDelay: 500,

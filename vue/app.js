@@ -5,7 +5,7 @@ const Inert = require('inert');
 
 const server = new Hapi.Server();
 server.connection({
-  port: 3000
+  port: 2206
 });
 
 // Register webpack HMR, fallback to development environment
@@ -96,6 +96,7 @@ server.register([Inert], function (err) {
     method: 'GET',
     path: '/{path*}',
     handler: function (request, reply) {
+      console.log("lgsmdl gmsdlg");
       reply.file('./public/index.html');
     }
   });

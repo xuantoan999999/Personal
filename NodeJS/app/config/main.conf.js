@@ -186,11 +186,11 @@ config.web = {
         cmsprefix: '/admimhv',
         apiprefix: '/v1/api',
         app: {
-            title: 'Mua Hàng Việt - Thực phẩm an toàn cho người Việt ',
-            description: 'Mua Hàng Việt là dự án kết nối nông sản sạch dưới sự bảo trợ của Báo Thanh Niên, là nguồn cung cấp thực phẩm, rau, củ, quả hữu cơ tươi, sạch, an toàn tại Tp.HCM, ',
+            title: 'Maximus Tims ',
+            description: '',
             keywords: '',
-            og_title: 'Mua Hàng Việt - Thực phẩm an toàn cho người Việt ',
-            og_description: 'Mua Hàng Việt là dự án kết nối nông sản sạch dưới sự bảo trợ của Báo Thanh Niên, là nguồn cung cấp thực phẩm, rau, củ, quả hữu cơ tươi, sạch, an toàn tại Tp.HCM, ',
+            og_title: '',
+            og_description: '',
             og_image: 'https://www.muahangviet.com.vn/assets/Logo.png',
             og_url: '/',
             og_type: 'website'

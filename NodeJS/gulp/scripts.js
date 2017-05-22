@@ -20,6 +20,7 @@ gulp.task('site-injectJS', () => {
     './app/modules/web-*/view/client/**/service.js',
     './app/modules/web-*/view/client/**/define.js',
     './app/modules/web-*/view/client/**/config.js',
+    './app/modules/web-*/view/client/**/component.js',
     './app/modules/web-*/view/client/**/bootstrap.js'
     ]).pipe(angularFilesort())
 
