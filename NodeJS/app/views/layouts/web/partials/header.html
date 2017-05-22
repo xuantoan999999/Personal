@@ -1,0 +1,50 @@
+<meta name="title" content="{{{meta.title}}}">
+<meta name="description" content="{{{meta.desc}}}">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="fragment" content="!">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="robots" {{#if error404 }} content="noindex, nofollow" {{else}} content="index, follow" {{/if}}/>
+<meta name="keywords" content="">
+<!-- <link rel="shortcut icon" href="{{linkAssets 'favicon/site.ico/favicon.png'}}"> -->
+
+<!-- FAVICON -->
+<link rel="icon" href="{{linkAssets 'favicon/favicon.ico'}}">
+<meta name="theme-color" content="#ffffff">
+<!-- END FAVICON -->
+
+<!-- Social: Facebook / Open Graph -->
+<!-- <meta property="og:type" content="{{{meta.og_type}}}"> -->
+<meta property="og:title" content="{{{meta.og_title}}}">
+<meta property="og:url" content="{{{meta.og_url}}}">
+<meta property="og:image" content="{{meta.og_image}}">
+<meta property="og:description" content="{{{meta.og_description}}}">
+<!-- Social: Twitter -->
+<meta name="twitter:title" content="{{{meta.og_title}}}">
+<meta name="twitter:description" content="{{{meta.og_description}}}">
+<meta name="twitter:image:src" content="{{meta.og_image}}">
+<!-- Social: Google+ / Schema.org  -->
+<meta itemprop="name" content="{{{meta.og_title}}}">
+<meta itemprop="description" content="{{{meta.og_description}}}">
+
+<meta itemprop="image" content="{{meta.og_image}}"> 
+<style>
+	.hidden-style, .hidden-script, .hidden-style1{visibility: hidden;}
+	.modal-dialog {max-width: 400px;}
+</style>
+
+{{> web/partials/link/style}}
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" href="{{linkPublic 'tmp/site/styles/main.css'}}">
+
+<!-- Variable -->
+<script>
+	/* <![CDATA[ */
+	var permissions  = {{{json permissions}}};
+	var user = {{{json credentials}}};
+	var settings = {{{json settings}}};
+	/* ]]> */
+</script>
