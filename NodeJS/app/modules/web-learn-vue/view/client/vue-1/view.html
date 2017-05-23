@@ -28,6 +28,39 @@
                         </div>
                         <div class="clearfix"></div>
                     </div>
+
+                    <label>V-for and event handler</label>
+                    <div class="form-group">
+                        <ul class="list-group">
+                            <li v-for="name in names" v-text="name" class="list-group-item"></li>
+                        </ul>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" placeholder="Message text" v-model="name_add">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <button class="btn btn-primary waves-effect" @click="addName()">Add name</button>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                    <label>Bind attribute</label>
+                    <div class="form-group">
+                        <h1 :class="className">Hello World</h1>
+                        <button class="btn waves-effect" :class="{'btn-success': isLoading}" @click="toggleClass()">Toggle Class</button>
+                    </div>
+
+                    <label for="">Computed</label>
+                    <div class="form-group">
+                        <h2 v-text="new Date()"></h2>
+                    </div>
                 </div>
             </div>
         </div>
