@@ -1,0 +1,26 @@
+<% from 'web/macros/form.html' import formBlock, formHorizontal, select, selectHorizontal, textarea, textareaHorizontal %>
+<% extends 'web/layouts/layout.html' %>
+
+<% block content %>
+<div class="page-header">
+    <h1>Login</h1>
+</div>
+<div class="row" ng-controller="AuthController">
+    <div class="col-sm-6">
+        <form id="userLogin" name="loginForm" method="POST" autocomplete="off">
+            <$ formBlock("Email address", 'email', id='email', message="Vui lòng nhập thông tin") $>
+            <$ formBlock("Password", 'password', id='password', message="Vui lòng nhập thông tin") $>
+            <div class="form-group">
+                <a href="/forgot">Forgot password ? </a><br/> I am a new member ? <a href="/register">Sign up here</a>
+            </div>
+            <div class="form-group">
+                <button type="button" ng-click="login()" class="btn btn-success">Login</button>
+                <button type="button" ng-click="loginFB()" class="btn btn-success">Login with Facebook</button>
+                <button type="button" ng-click="loginGG()" class="btn btn-success">Login with Google</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<% include "web/html/web-popup/message.html" %>
+<% endblock %>

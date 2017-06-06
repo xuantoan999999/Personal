@@ -1,0 +1,15 @@
+<% extends 'web/layouts/layout.html' %>
+
+<% block content %>
+<div>
+    <h1><$ title $></h1>
+    <p><$ message $></p>
+    <p><$ data.a $></p>
+</div>
+<% endblock %>
+
+<% block jsInline %>
+    <script>
+       console.log('BZ CMS');
+    </script>
+<% endblock %>

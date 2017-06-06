@@ -1,0 +1,53 @@
+#mod-menu{
+	background-color: #000;
+	.logo,.search{
+		padding: 10px 0 10px;
+		float: left;
+	}
+	.search{
+		width: 50%;
+		padding-left: 30px;
+		input{
+			background-color: #4e4e4e;
+		}
+	}
+	ul{
+		float: right;
+		color: white;
+		font-family: "Fira  Sans";
+		font-size: 14px;
+		font-weight: 500;
+		line-height: 24px;
+	}
+	.menu-gender{
+		background-color: #181818;
+		ul{
+
+			float: none;
+			padding-left: 80px;
+			color: #999;
+			font-family: "Fira  Sans";
+			font-size: 18px;
+			font-weight: 500;
+			line-height: 24px;
+			list-style: none;
+		}
+		li
+		{
+			padding: 10px 36px 10px 0;
+			float: left;
+			a{
+				font-family: "Fira  Sans";
+				font-size: 14px;
+				font-weight: 500;
+				line-height: 24px;
+				color: #999;
+				text-decoration: none;
+				padding-bottom: 12px;
+				&:hover{
+					border-bottom:3px solid #f60;
+				}
+			}
+		}
+	}
+}

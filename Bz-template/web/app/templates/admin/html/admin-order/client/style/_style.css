@@ -1,0 +1,33 @@
+.img-preview{
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.color-verhicle{
+    color: white;
+    padding: 1px 7px;
+    border-radius: 4px;
+}
+.red{
+    color: red;
+}
+.green{
+    color: green;
+}
+.so-luong{
+    width: 12%
+}
+.ten-san-pham{
+    width: 37%;
+}
+.don-gia{
+    width: 18%;
+}
+.right{
+    text-align: right;
+}
+.total-product {
+    padding-top: 16px !important;
+}
+.link-cusor{
+    cursor: pointer;
+}

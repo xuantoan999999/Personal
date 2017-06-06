@@ -1,0 +1,889 @@
+/****************************************************************************************
+Description: CSS configs
+*****************************************************************************************/
+/* Fonts */
+/****************************************************************************************
+Description: Bootstrap variables
+*****************************************************************************************/
+/****************************************************************************************
+Description: SASS mixins
+*****************************************************************************************/
+/***********************************/
+/******************************************************************
+Base
+*******************************************************************/
+/****************************************************************************************
+Description: Base/Form
+*****************************************************************************************/
+input::-moz-focus-inner, a:focus {
+  outline: none; }
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
+
+input[type="number"],
+input[type="number"]:hover,
+input[type="number"]:focus {
+  -moz-appearance: textfield; }
+
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000; }
+
+select::-ms-expand {
+  display: none; }
+
+.form-group.error .msg-input {
+  border-color: #E13D35; }
+
+.form-group.error .messages-error {
+  display: block;
+  margin-top: 2px; }
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  height: 100%;
+  border: none;
+  box-shadow: none;
+  color: #333;
+  border-radius: 4px;
+  background-color: transparent; }
+  .form-group input:focus,
+  .form-group select:focus {
+    box-shadow: none;
+    outline: none; }
+
+.form-group select {
+  padding: 6px 12px; }
+
+.form-group label {
+  font-size: 14px;
+  color: #2f3639;
+  font-weight: 400;
+  font-style: normal; }
+
+.form-group .msg-input {
+  height: 40px;
+  position: relative;
+  border: 1px solid #d5d7d7;
+  border-radius: 4px;
+  background: #fff; }
+
+.form-group .messages-error {
+  font-size: 12px;
+  color: #E13D35;
+  font-weight: normal;
+  font-style: normal; }
+
+.form-group .msg-textarea {
+  width: 100%;
+  height: 60px;
+  background: #fff;
+  position: relative;
+  border: 1px solid #d5d7d7;
+  padding: 12px; }
+  .form-group .msg-textarea textarea {
+    font-size: 14px;
+    color: #2f3639;
+    font-weight: 400;
+    font-style: normal;
+    width: 100%;
+    height: 100%;
+    background: none;
+    resize: none;
+    outline: none;
+    border: none;
+    padding: 0px;
+    box-shadow: none; }
+
+.form-horizontal label {
+  margin: 0px;
+  display: flex;
+  align-items: center; }
+
+/******************************************************************
+Tool
+*******************************************************************/
+/****************************************************************************************
+Description: Embed fonts
+*****************************************************************************************/
+/****************************************************************************************
+Description: Common style for all page
+*****************************************************************************************/
+.hidden-scroll {
+  overflow: hidden; }
+
+.hidden-scroll-y {
+  overflow-y: hidden; }
+
+.hidden-scroll-x {
+  overflow-x: hidden; }
+
+.clearfix {
+  clear: both;
+  font-size: 0px;
+  height: 0px; }
+
+.none {
+  display: none !important; }
+
+.require, .required {
+  color: red; }
+
+.none-margin {
+  margin: 0px; }
+
+.none-padding {
+  padding: 0px; }
+
+.none-border {
+  border: none; }
+
+.none-bg, .none-background {
+  background: none; }
+
+.float-left {
+  float: left; }
+
+.float-right {
+  float: right; }
+
+.anti-alias {
+  outline: 1px solid transparent; }
+
+.bg-norepeat {
+  background-repeat: no-repeat; }
+
+.bg-fixed {
+  background-attachment: fixed; }
+
+.bg-cover {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
+
+.img-responsive {
+  width: auto\9; }
+
+.middle {
+  display: table-cell;
+  vertical-align: middle; }
+
+.input-with-msg {
+  position: relative; }
+
+/******************************************************************
+Component
+*******************************************************************/
+.messages-error {
+  position: absolute;
+  right: 0px;
+  bottom: -10px;
+  font-size: 12px; }
+  .messages-error > div {
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: #fff;
+    box-shadow: 1px 1px 3px red; }
+
+.messages-error, .messages-error-summary {
+  color: #fff;
+  display: none; }
+  .messages-error.ng-active, .messages-error-summary.ng-active {
+    display: block; }
+
+/****************************************************************************************
+Description: Radio & Checkbox
+*****************************************************************************************/
+label[role=radio] {
+  position: relative;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  cursor: pointer; }
+  label[role=radio] input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0; }
+  label[role=radio] i {
+    width: 18px;
+    height: 18px;
+    background: url(../images/form-radio-normal.svg) no-repeat center center;
+    background-size: 100%;
+    float: left;
+    border-radius: 9px; }
+  label[role=radio] span {
+    float: left;
+    margin-left: 5px;
+    line-height: 1.2; }
+  label[role=radio] input[type=radio]:checked + i {
+    background: url(../images/form-radio-active.svg) no-repeat center center;
+    background-size: 100%; }
+  label[role=radio] input[type=radio]:disabled + i {
+    background: url(../images/form-radio-disabled.svg) no-repeat center center;
+    background-size: 100%;
+    cursor: not-allowed; }
+  label[role=radio] input[type=radio]:disabled:checked + i {
+    background: url(../images/form-radio-disabled-active.svg) no-repeat center center;
+    background-size: 100%;
+    cursor: not-allowed; }
+  label[role=radio] input[type=radio]:disabled + i + span {
+    cursor: not-allowed;
+    color: #ccc; }
+
+label[role=checkbox] {
+  position: relative;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  cursor: pointer; }
+  label[role=checkbox] input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0; }
+  label[role=checkbox] i {
+    width: 18px;
+    height: 18px;
+    background: url(../images/form-checkbox-normal.svg) no-repeat center center;
+    background-size: 100%;
+    float: left; }
+  label[role=checkbox] span {
+    float: left;
+    margin-left: 5px;
+    line-height: 1.2; }
+  label[role=checkbox] input[type=checkbox]:checked + i {
+    background: url(../images/form-checkbox-active.svg) no-repeat center center;
+    background-size: 100%; }
+  label[role=checkbox] input[type=checkbox]:disabled + i {
+    background: url(../images/form-checkbox-disabled.svg) no-repeat center center;
+    background-size: 100%;
+    cursor: not-allowed; }
+  label[role=checkbox] input[type=checkbox]:disabled:checked + i {
+    background: url(../images/form-checkbox-disabled-active.svg) no-repeat center center;
+    background-size: 100%;
+    cursor: not-allowed; }
+  label[role=checkbox] input[type=checkbox]:disabled + i + span {
+    cursor: not-allowed;
+    color: #ccc; }
+
+label[role=switcher] {
+  position: relative;
+  height: 26px;
+  width: 52px;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  border-radius: 15px;
+  overflow: hidden; }
+  label[role=switcher] input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0; }
+  label[role=switcher] i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: #e6e6e6; }
+  label[role=switcher] span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 10px;
+    color: #fff;
+    font-weight: 400;
+    display: block; }
+    label[role=switcher] span:before {
+      content: 'OFF';
+      position: relative;
+      top: 6px;
+      left: 27px;
+      line-height: 1; }
+    label[role=switcher] span:after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      z-index: 1;
+      width: 22px;
+      height: 22px;
+      transition: transform 180ms ease;
+      transform: translate3d(0, 0, 0);
+      display: block;
+      background: #fff;
+      border-radius: 15px; }
+  label[role=switcher] input[type=checkbox]:checked + i {
+    background: #0275d8; }
+  label[role=switcher] input[type=checkbox]:checked + i + span:before {
+    left: 8px;
+    content: 'ON'; }
+  label[role=switcher] input[type=checkbox]:checked + i + span:after {
+    transform: translate3d(26px, 0, 0);
+    background: #fff; }
+  label[role=switcher] input[type=checkbox]:disabled + i {
+    background: #f3f3f3; }
+  label[role=switcher] input[type=checkbox]:disabled + i + span {
+    cursor: not-allowed; }
+
+/****************************************************************************************
+Description: Select
+*****************************************************************************************/
+select, select.form-control {
+  appearance: none !important;
+  -o-appearance: none !important;
+  -ms-appearance: none !important;
+  -moz-appearance: none !important;
+  -webkit-appearance: none !important;
+  background: url(../images/dropdown-arrow.png) no-repeat right center #fff;
+  background-size: 16px auto;
+  padding-right: 25px; }
+
+select[multiple] {
+  background-image: none;
+  padding: 6px; }
+
+/****************************************************************************************
+Description: Custom Scrollbar
+*****************************************************************************************/
+/***********************************/
+.mfp-bg {
+  background-color: rgba(0, 0, 0, 0.7); }
+
+.mfp-arrow-left {
+  left: -35px; }
+
+.mfp-arrow-right {
+  right: -35px; }
+
+img.mfp-img {
+  padding: 0 0 10px; }
+
+.mfp-arrow {
+  opacity: 0;
+  transition: opacity 400ms; }
+  .mfp-arrow:before, .mfp-arrow:after {
+    border: none;
+    left: auto;
+    right: auto; }
+
+.mfp-arrow-left:before {
+  background: url(../images/arrow-prev.png) no-repeat left center;
+  width: 22px;
+  height: 36px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0; }
+
+.mfp-arrow-right:before {
+  background: url(../images/arrow-next.png) no-repeat left center;
+  width: 22px;
+  height: 36px;
+  margin-left: auto;
+  margin-right: auto;
+  right: 0; }
+
+.mfp-content:hover .mfp-arrow {
+  opacity: 1; }
+
+.mfp-image-holder .mfp-close, .mfp-iframe-holder .mfp-close {
+  width: 44px;
+  right: 0;
+  line-height: 1;
+  padding-right: 10px;
+  cursor: pointer !important; }
+
+.mfp-title {
+  float: left;
+  color: #333;
+  font-weight: bold; }
+
+.mfp-counter {
+  float: right;
+  position: relative;
+  top: auto;
+  bottom: auto;
+  color: #333; }
+
+.mfp-container {
+  padding-left: 12px;
+  padding-right: 12px; }
+
+.mfp-s-loading .mfp-arrow {
+  display: none; }
+
+.bzPopup {
+  position: relative;
+  z-index: 100;
+  box-shadow: 0 0 4px #555;
+  width: auto;
+  margin: 12px auto;
+  background: #fff;
+  overflow: hidden;
+  border-radius: 2px; }
+  .bzPopup .pop-head {
+    background-color: #11c7b8;
+    padding: 10px;
+    position: relative;
+    text-align: center; }
+    .bzPopup .pop-head h3 {
+      font-size: 16px;
+      color: #fff;
+      text-transform: uppercase;
+      margin: 0;
+      padding: 5px; }
+    .bzPopup .pop-head .close-popup {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      margin-top: -10px; }
+  .bzPopup .pop-content {
+    background-color: #fff;
+    padding: 15px;
+    position: relative; }
+  .bzPopup .pop-controls {
+    text-align: right;
+    background-color: #fff;
+    padding: 0 15px 15px; }
+    .bzPopup .pop-controls .btn {
+      margin-left: 5px; }
+  .bzPopup .pop-top-controls {
+    text-align: right;
+    background-color: #fff;
+    padding: 15px 15px 0; }
+    .bzPopup .pop-top-controls .btn {
+      margin-left: 5px; }
+  .bzPopup .mfp-close {
+    color: #fff; }
+
+.bzFromTop .bzPopupAnimation {
+  opacity: 0;
+  transition: all 200ms cubic-bezier(0.31, 0.875, 0.61, 0.955);
+  transform: translate3d(0, -70px, 0); }
+
+.bzFromTop.mfp-bg {
+  opacity: 0;
+  transition: all 200ms cubic-bezier(0.2, 1, 0.3, 1); }
+
+.bzFromTop.mfp-ready .bzPopupAnimation {
+  opacity: 1;
+  transform: translate3d(0, 0, 0); }
+
+.bzFromTop.mfp-ready.mfp-bg {
+  opacity: 0.8; }
+
+.bzFromTop.mfp-removing .bzPopupAnimation {
+  opacity: 0; }
+
+.bzFromTop.mfp-removing.mfp-bg {
+  opacity: 0; }
+
+.bzZoom .bzPopupAnimation {
+  opacity: 0;
+  transition: all 300ms cubic-bezier(0.31, 0.875, 0.61, 0.955);
+  transform: scale(0.5); }
+
+.bzZoom.mfp-bg {
+  opacity: 0;
+  transition: all 300ms cubic-bezier(0.39, 0.575, 0.565, 1); }
+
+.bzZoom.mfp-ready .bzPopupAnimation {
+  opacity: 1;
+  transform: scale(1); }
+
+.bzZoom.mfp-ready.mfp-bg {
+  opacity: 0.8; }
+
+.bzZoom.mfp-removing .bzPopupAnimation {
+  transition-duration: 100ms;
+  opacity: 0; }
+
+.bzZoom.mfp-removing.mfp-bg {
+  opacity: 0; }
+
+@media only screen and (max-width: 1023px) {
+  .mfp-arrow {
+    opacity: 1; }
+  .mfp-arrow-left:before {
+    left: 72px; }
+  .mfp-arrow-right:before {
+    right: 72px; } }
+/****************************************************************************************
+Description: CSS configs
+*****************************************************************************************/
+/* Fonts */
+/****************************************************************************************
+Description: Bootstrap variables
+*****************************************************************************************/
+/****************************************************************************************
+Description: SASS mixins
+*****************************************************************************************/
+/***********************************/
+#item {
+  width: 100%; }
+/****************************************************************************************
+Description: CSS configs
+*****************************************************************************************/
+/* Fonts */
+/****************************************************************************************
+Description: Bootstrap variables
+*****************************************************************************************/
+/****************************************************************************************
+Description: SASS mixins
+*****************************************************************************************/
+/***********************************/
+/****************************************************************************************
+Description: CSS configs
+*****************************************************************************************/
+/* Fonts */
+/****************************************************************************************
+Description: Bootstrap variables
+*****************************************************************************************/
+/****************************************************************************************
+Description: SASS mixins
+*****************************************************************************************/
+/***********************************/
+#mod-menu {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  background-color: red; }
+  #mod-menu .container {
+    position: relative; }
+
+.menu-desk ul {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+.menu-desk li {
+  position: relative;
+  font-size: 13px;
+  color: bold;
+  font-style: normal;
+  float: left;
+  display: block; }
+  .menu-desk li > ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    background-color: #474d57;
+    display: none; }
+  .menu-desk li > div {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    background-color: #474d57;
+    display: none; }
+  .menu-desk li a {
+    display: block;
+    padding: 16px 18px;
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+    position: relative; }
+  .menu-desk li i {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    width: 10px;
+    height: 10px;
+    display: block;
+    margin-top: -4px; }
+  .menu-desk li b {
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    z-index: 101;
+    width: 6px;
+    height: 6px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #f00;
+    margin-left: -6px;
+    display: none; }
+  .menu-desk li li {
+    float: none; }
+    .menu-desk li li ul {
+      top: 0;
+      left: 100%; }
+    .menu-desk li li a {
+      color: #fff;
+      font-style: normal;
+      padding: 8px 18px;
+      height: auto;
+      text-transform: none;
+      text-align: left; }
+  .menu-desk li:hover, .menu-desk li.active {
+    background-color: #30343b; }
+    .menu-desk li:hover > a, .menu-desk li.active > a {
+      color: #fff; }
+    .menu-desk li:hover b, .menu-desk li.active b {
+      display: block; }
+
+.menu-desk .mega {
+  position: initial; }
+  .menu-desk .mega ul {
+    top: 0;
+    left: 100%; }
+
+.menu-desk .right ul {
+  left: auto;
+  right: 0; }
+  .menu-desk .right ul a {
+    text-align: right; }
+  .menu-desk .right ul i {
+    left: 5px;
+    right: auto; }
+  .menu-desk .right ul ul {
+    left: auto;
+    right: 100%; }
+
+.menu-desk .m-block {
+  width: 200px;
+  display: inline-block; }
+
+#mod-menu-mob {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: all 300ms ease;
+  width: 100%;
+  display: none; }
+  #mod-menu-mob .logo-mob a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 70px;
+    display: block;
+    background-color: #444; }
+  #mod-menu-mob .pull-menu {
+    position: absolute;
+    top: 8px;
+    right: 15px;
+    cursor: pointer;
+    padding: 17px; }
+    #mod-menu-mob .pull-menu span {
+      position: absolute;
+      left: 0;
+      display: block;
+      height: 4px;
+      width: 100%;
+      background-color: #fff;
+      border-radius: 5px;
+      opacity: 1;
+      transform: rotate(0deg); }
+      #mod-menu-mob .pull-menu span:nth-child(1) {
+        top: 5px; }
+      #mod-menu-mob .pull-menu span:nth-child(2), #mod-menu-mob .pull-menu span:nth-child(3) {
+        top: 15px; }
+      #mod-menu-mob .pull-menu span:nth-child(4) {
+        top: 25px; }
+    #mod-menu-mob .pull-menu.is-open span:nth-child(1) {
+      top: 15px;
+      width: 0%;
+      left: 50%; }
+    #mod-menu-mob .pull-menu.is-open span:nth-child(2) {
+      transform: rotate(45deg); }
+    #mod-menu-mob .pull-menu.is-open span:nth-child(3) {
+      transform: rotate(-45deg); }
+    #mod-menu-mob .pull-menu.is-open span:nth-child(4) {
+      top: 15px;
+      width: 0%;
+      left: 50%; }
+
+.menu-mob {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 101;
+  width: 230px;
+  height: 100%;
+  transform: translate3d(230px, 0, 0);
+  background-color: #fff;
+  overflow: hidden;
+  overflow-y: auto; }
+  .menu-mob ul {
+    padding: 0;
+    margin: 0;
+    list-style: none; }
+    .menu-mob ul li a {
+      text-decoration: none;
+      position: relative;
+      display: block;
+      padding: 0 20px;
+      margin: 30px 0; }
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  display: none; }
+
+@media only screen and (max-width: 1023px) {
+  #mod-menu {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    height: 50px;
+    background: #474d57; }
+    #mod-menu .logo {
+      float: none;
+      width: 150px;
+      margin: 0 auto; }
+    #mod-menu .container {
+      padding: 0px; }
+  #mod-menu-mob {
+    display: block; }
+  .menu-desk {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 50px;
+    right: 0px;
+    display: none;
+    background-color: #474d57;
+    padding-bottom: 100px; }
+    .menu-desk.is-open {
+      display: block;
+      width: 100%;
+      overflow-y: scroll; }
+    .menu-desk ul {
+      display: block;
+      text-align: left; }
+    .menu-desk li {
+      display: block;
+      padding: 0 15px 10px;
+      float: none; }
+      .menu-desk li li {
+        display: block;
+        padding: 0 15px; }
+      .menu-desk li a {
+        font-size: 14px;
+        padding: 5px 0; }
+      .menu-desk li > div {
+        position: relative;
+        background: transparent;
+        display: block;
+        border: none; }
+      .menu-desk li b {
+        right: 0px; }
+    .menu-desk .cont-sub-menu {
+      border: none; }
+    .menu-desk .m-block {
+      float: none;
+      width: 100%;
+      padding: 0px; }
+    .menu-desk .sub-menu {
+      border: none; } }
+/****************************************************************************************
+Description: CSS configs
+*****************************************************************************************/
+/* Fonts */
+/****************************************************************************************
+Description: Bootstrap variables
+*****************************************************************************************/
+/****************************************************************************************
+Description: SASS mixins
+*****************************************************************************************/
+/***********************************/
+#mod-footer {
+  background-color: #000;
+  padding: 35px 0; }
+  #mod-footer h5 {
+    color: #f60;
+    font-size: 18px;
+    font-family: "Fira  Sans"; }
+  #mod-footer ul {
+    list-style-type: none;
+    color: #fff;
+    padding: 0;
+    font-family: "Fira  Sans";
+    font-size: 14px;
+    font-weight: 500; }
+    #mod-footer ul li {
+      padding-top: 10px; }
+  #mod-footer .logo-gear img {
+    padding-right: 15px; }
+  #mod-footer .lienhe img {
+    padding-right: 15px; }
+/****************************************************************************************
+Description: CSS configs
+*****************************************************************************************/
+/* Fonts */
+/****************************************************************************************
+Description: Bootstrap variables
+*****************************************************************************************/
+/****************************************************************************************
+Description: SASS mixins
+*****************************************************************************************/
+/***********************************/
+#mod-menu {
+  background-color: #000; }
+  #mod-menu .logo, #mod-menu .search {
+    padding: 10px 0 10px;
+    float: left; }
+  #mod-menu .search {
+    width: 50%;
+    padding-left: 30px; }
+    #mod-menu .search input {
+      background-color: #4e4e4e; }
+  #mod-menu ul {
+    float: right;
+    color: white;
+    font-family: "Fira  Sans";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px; }
+  #mod-menu .menu-gender {
+    background-color: #181818; }
+    #mod-menu .menu-gender ul {
+      float: none;
+      padding-left: 80px;
+      color: #999;
+      font-family: "Fira  Sans";
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 24px;
+      list-style: none; }
+    #mod-menu .menu-gender li {
+      padding: 10px 36px 10px 0;
+      float: left; }
+      #mod-menu .menu-gender li a {
+        font-family: "Fira  Sans";
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 24px;
+        color: #999;
+        text-decoration: none;
+        padding-bottom: 12px; }
+        #mod-menu .menu-gender li a:hover {
+          border-bottom: 3px solid #f60; }
+
+/*# sourceMappingURL=../main.map*/

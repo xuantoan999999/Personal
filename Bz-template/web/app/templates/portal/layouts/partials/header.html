@@ -1,0 +1,13 @@
+<title>GearUp CMS</title>
+<base href="<$ portalprefix $>" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<script type="text/javascript">
+    var portalprefix = '<$ portalprefix $>';  
+    var user = <$ credentials | dump | safe $>;
+    var settings = <$ settings | dump | safe $>;
+</script>
+<% asyncEach asset in portalassets.css %>
+    <link rel="stylesheet" href="<$ asset $>" /> 
+<% endeach %>

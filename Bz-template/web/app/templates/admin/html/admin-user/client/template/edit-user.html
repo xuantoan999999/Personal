@@ -1,0 +1,176 @@
+<section data-ng-controller="UsersEditController" data-ng-init="findOne()">
+    <section class="content-header">
+        <h1>Users</h1>
+    </section>
+    <ng-loading loading-done="isLoading" />
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-info">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <a class="btn btn-primary" ng-click="update(UserForm.$valid, 'save&list')">Save & List</a> &nbsp;&nbsp;
+                            <a class="btn btn-primary" ng-click="update(UserForm.$valid, 'apply', UserForm)">Apply</a>&nbsp;&nbsp;
+                            <input type="button" value="Cancel" class="btn btn-default" ng-click="gotoList()">&nbsp;&nbsp;
+                            <input type="button" value="Delete" class="btn btn-danger" ng-click="remove(formData._id)">&nbsp;&nbsp;
+                        </div>
+                        <!-- <bz-message/> -->
+                    </div>
+                </div>
+            </div>
+            <form novalidate name="UserForm">
+                <div class="col-md-8">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Edit User</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <label class="control-label" for="name">Tên</label>
+                                        <div class="controls">
+                                            <input type="text" ng-change="changeSlug(formData.name, true)" data-ng-model="formData.name" name="name" id="name" class="form-control" placeholder="Tên" required>
+                                        </div>
+                                        <div class="error-messages message" ng-messages="UserForm.name.$error" ng-messages-multiple ng-if="submitted">
+                                            <error-message/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="email">Email</label>
+                                        <div class="controls">
+                                            <input type="email" data-ng-model="formData.email" name="email" id="email" class="form-control" placeholder="Email" required>
+                                        </div>
+                                        <div class="error-messages message" ng-messages="UserForm.email.$error" ng-messages-multiple ng-if="submitted">
+                                            <error-message/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="phone">Điện thoại</label>
+                                        <div class="controls">
+                                            <input type="phone" data-ng-model="formData.phone" name="phone" id="phone" class="form-control" placeholder="Điện thoại" required>
+                                        </div>
+                                        <div class="error-messages message" ng-messages="UserForm.phone.$error" ng-messages-multiple ng-if="submitted">
+                                            <error-message/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="address">Địa chỉ</label>
+                                        <div class="controls">
+                                            <textarea data-ng-model="formData.address" id="address" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <!-- Tỉnh thành -->
+                                    <div class="form-group">
+                                        <label class="control-label" for="ddlProvince">Tỉnh thành</label>
+                                        <select class="form-control" name="province" ng-model="formData.province" ng-options="key as value.name for (key , value) in mapVN[0]" required>
+                                            <option value=''>-- Chọn Tỉnh --</option>
+                                        </select>
+                                        <div class="error-messages message" ng-messages="UserForm.province.$error" ng-messages-multiple ng-if="submitted">
+                                            <error-message require-msg="You did not select a field" />
+                                        </div>
+                                    </div>
+                                    <!-- Quận huyện -->
+                                    <div class="form-group">
+                                        <label class="control-label" for="ddlDistrict">Quận huyện</label>
+                                        <select class="form-control" name="district" ng-model="formData.district" ng-options="key as value for (key , value) in mapVN[0][formData.province].districts" required>
+                                            <option value=''>-- Chọn Quận huyện --</option>
+                                        </select>
+                                        <div class="error-messages message" ng-messages="UserForm.district.$error" ng-messages-multiple ng-if="submitted">
+                                            <error-message require-msg="You did not select a field" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="status">Trạng thái</label>
+                                        <div class="controls">
+                                            <select data-placeholder="Select Status" class="form-control" data-ng-model="formData.status" name="status" id="status" ng-options="item.value as item.name for item in statuses" required>
+                                            </select>
+                                        </div>
+                                        <div class="error-messages message" ng-messages="UserForm.status.$error" ng-messages-multiple ng-if="submitted">
+                                            <error-message require-msg="You did not select a field" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box box-success">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label class="control-label" for="roles">Role</label>
+                                <div class="controls" render-select="render_select">
+                                    <select ui-select2 class="form-control" name="roles" data-ng-model="formData.roles" id="roles" ng-options="item.value as item.name for item in userRoles" required multiple="multiple" size="2">
+                                    </select>
+                                </div>
+                                <div class="error-messages message" ng-messages="UserForm.roles.$error" ng-messages-multiple ng-if="submitted">
+                                    <error-message require-msg="You did not select a field" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="controls">
+                                    <input id="check-agent" type="radio" name="roleMore" ng-model="formData.tmpRoleMore" value="agent"/> <label for="check-agent">Đại lý</label> &nbsp&nbsp&nbsp
+                                    <input id="check-supplier" type="radio" name="roleMore" ng-model="formData.tmpRoleMore" value="supplier"/> <label for="check-supplier">Nhà phân phối</label>
+                                </div>
+                            </div>
+                            <div data-ng-if="formData.tmpRoleMore == 'agent'" class="form-group">
+                                <div class="controls">
+                                    <label class="control-label" for="type">Loại đại lý</label>
+                                    <select data-placeholder="Chọn loại đại lý" class="form-control" data-ng-model="formData.agent.type" name="type" id="type" required >
+                                        <option value=''>-- Chọn Đại Lý --</option>
+                                        <option value="XE"> Xe</option>
+                                        <option value="PT"> Phụ tùng/Phụ kiện</option>
+                                    </select>
+                                    <div class="error-messages message" ng-messages="UserForm.type.$error" ng-messages-multiple ng-if="submitted">
+                                    <error-message/>
+                                </div>
+                                </div>
+                                <div class="controls">
+                                    <label class="control-label" for="supplier">Nhà phân phối</label>
+                                    <select data-placeholder="Chọn nhà phân phối" class="form-control" data-ng-model="formData.agent.supplier" name="supplier" id="supplier" ng-options="item._id as item.name for item in suppliers" required>
+                                        <option value=''>-- Chọn Nhà Phân Phối --</option>
+                                    </select>
+                                    <div class="error-messages message" ng-messages="UserForm.supplier.$error" ng-messages-multiple ng-if="submitted">
+                                    <error-message/>
+                                </div>
+                                </div>
+                            </div>
+                            <div data-ng-if="formData.tmpRoleMore == 'supplier'" class="form-group">
+                                <label class="control-label" for="tax">Mã số thuế</label>
+                                <div class="controls">
+                                    <input type="text" data-ng-model="formData.supplier.tax" id="tax" name="tax" class="form-control" placeholder="Mã số thuế" required>
+                                </div>
+                                <div class="error-messages message" ng-messages="UserForm.tax.$error" ng-messages-multiple ng-if="submitted">
+                                    <error-message/>
+                                </div>
+                                <label class="control-label" for="bank_number">Số tài khoản ngân hàng</label>
+                                <div class="controls">
+                                    <input type="text" data-ng-model="formData.supplier.bank_number" id="bank_number" name="bank_number" class="form-control" placeholder="Số tài khoản ngân hàng" required>
+                                </div>
+                                <div class="error-messages message" ng-messages="UserForm.bank_number.$error" ng-messages-multiple ng-if="submitted">
+                                    <error-message/>
+                                </div>
+                                <label class="control-label" for="bank_name">Tên ngân hàng</label>
+                                <div class="controls">
+                                    <input type="text" data-ng-model="formData.supplier.bank_name" id="bank_name" name="bank_name" class="form-control" placeholder="Tên ngân hàng" required>
+                                </div>
+                                <div class="error-messages message" ng-messages="UserForm.bank_name.$error" ng-messages-multiple ng-if="submitted">
+                                    <error-message/>
+                                </div>
+                                <label class="control-label" for="bank_agent">Chi nhánh ngân hàng</label>
+                                <div class="controls">
+                                    <input type="text" data-ng-model="formData.supplier.bank_agent" id="bank_agent" name="bank_agent" class="form-control" placeholder="Mã số thuế" required>
+                                </div>
+                                <div class="error-messages message" ng-messages="UserForm.bank_agent.$error" ng-messages-multiple ng-if="submitted">
+                                    <error-message/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</section>
