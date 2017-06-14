@@ -1,0 +1,28 @@
+/****************************************************************************************
+Description: Main layout
+*****************************************************************************************/
+
+html.full-frame {
+    overflow-x: hidden;
+    .view-container {
+        // perspective: 1200px;
+        // transform-style: preserve-3d;
+        width: 100%;
+    }
+}
+
+body {
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.img-responsive {
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+}
+
+.opacity {
+    opacity: 0;
+}

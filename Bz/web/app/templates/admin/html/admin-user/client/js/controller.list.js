@@ -5,7 +5,7 @@ angular.module('users').controller('UsersListController', ['$rootScope', '$scope
 
     function ($rootScope, $scope, $uibModal, $log, $stateParams, $location, Authentication, Users, Option, $sce, $timeout, localStorageService, toastr) {
 
-        if (!Authentication.user.name) {
+        if (!Authentication.isAdmin) {
             $location.path('signin');
         }
         var localStorageName = "user.filterData";
@@ -157,7 +157,7 @@ angular.module('users').controller('UsersListController', ['$rootScope', '$scope
                             user.$remove({
                                 userId: userId
                             });
-                            toastr.success("Delete user success!", "Success");
+                            toastr.success("Xóa người dùng thành công!", "Thành Công");
                             $uibModalInstance.close();
                         } else {
                             Users.moveToTrash({
@@ -165,7 +165,7 @@ angular.module('users').controller('UsersListController', ['$rootScope', '$scope
                             }, function (response) {
                                 console.log(response);
                                 if (response.status) {
-                                    toastr.success(response.message, "Success");
+                                    toastr.success(response.message, "Thành Công");
                                     $uibModalInstance.close();
                                 }
                             });
@@ -199,7 +199,7 @@ angular.module('users').controller('UsersListController', ['$rootScope', '$scope
         function removeMultiRows(isPermanent){
             $scope.isPermanent = isPermanent;
             if (angular.equals({}, $scope.rowsSelected)) {
-                toastr.warning('Choose Items before delete', "warning");
+                toastr.warning('Bạn chưa chọn items', "Chú ý");
             } else {
                 var modalInstance = $uibModal.open({
                     animation: true,
@@ -212,10 +212,10 @@ angular.module('users').controller('UsersListController', ['$rootScope', '$scope
                     controller: function ($scope, $uibModalInstance, vmUser) {
                         if(vmUser.isPermanent){
                             $scope.popTitle = 'Xóa';
-                            $scope.message = 'Bạn muốn xóa Users vĩnh viễn?';
+                            $scope.message = 'Bạn muốn xóa người dùng vĩnh viễn?';
                         }else{
                             $scope.popTitle = 'Xóa';
-                            $scope.message = 'Bạn muốn xóa Users vào sọt rác?';
+                            $scope.message = 'Bạn muốn xóa người dùng vào sọt rác?';
                         }
 
                         $scope.ok = function () {
@@ -225,7 +225,7 @@ angular.module('users').controller('UsersListController', ['$rootScope', '$scope
                             }, function (response) {
                                 if (response.status) {
                                     getListData();
-                                    toastr.success(response.message, "Success");
+                                    toastr.success(response.message, "Thành Công");
                                     $uibModalInstance.close();
                                 }
                             });
@@ -242,9 +242,9 @@ angular.module('users').controller('UsersListController', ['$rootScope', '$scope
             $scope.currentStatus = status;
 
             if (status == 1) {
-                $scope.confirmMessage = $sce.trustAsHtml("Do you want to change status from <b>Publish</b> to <b>Unpublish</b>?");
+                $scope.confirmMessage = $sce.trustAsHtml("Bạn muốn thay đổi trạng thái từ <b>Publish</b> sang <b>Unpublish</b>?");
             } else {
-                $scope.confirmMessage = $sce.trustAsHtml("Do you want to change status from <b>Unpublish</b> to <b>Publish</b>?");
+                $scope.confirmMessage = $sce.trustAsHtml("Bạn muốn thay đổi trạng thái từ <b>Unpublish</b> sang <b>Publish</b>?");
             }
 
             var modalInstance = $uibModal.open({
@@ -269,7 +269,7 @@ angular.module('users').controller('UsersListController', ['$rootScope', '$scope
                         }, function (response) {
                             if (response.status) {
                                 getListData();
-                                toastr.success(response.message, "Success");
+                                toastr.success(response.message, "Thành Công");
                                 $uibModalInstance.close();
                             }
                         });
@@ -281,7 +281,7 @@ angular.module('users').controller('UsersListController', ['$rootScope', '$scope
         function changeStatusMultiRows(status) {
             $scope.status = $scope.status;
             if (angular.equals({}, $scope.rowsSelected)) {
-                toastr.warning('Choose Items before change status', "Warning");
+                toastr.warning('Bạn chưa chọn items ', "Chú ý");
                 $('.modal').modal('hide');
             } else {
                 var modalInstance = $uibModal.open({
@@ -307,7 +307,7 @@ angular.module('users').controller('UsersListController', ['$rootScope', '$scope
                                     vmUser.rowsSelected = {};
                                     vmUser.selectAll = false;
                                     // Set Notice
-                                    toastr.success(response.message, "Success");
+                                    toastr.success(response.message, "Thành Công");
                                 }
                             });
                             $uibModalInstance.close();
@@ -331,13 +331,13 @@ angular.module('users').controller('UsersListController', ['$rootScope', '$scope
                                 $scope.users.splice(i, 1);
                             }
                         }
-                        toastr.success("Put user back success!", "Success");
+                        toastr.success("Phục hồi người dùng thành công!", "Thành Công");
                         $scope.submitted = false;
                     } else {
-                        toastr.error(resp.message, "ERROR");
+                        toastr.error(resp.message, "Lỗi");
                     }
                 }, function (errorResponse) {
-                    toastr.error(errorResponse.data.message, "ERROR");
+                    toastr.error(errorResponse.data.message, "Lỗi");
                 });
             });
         };

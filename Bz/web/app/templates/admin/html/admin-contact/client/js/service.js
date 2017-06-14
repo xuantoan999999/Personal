@@ -11,7 +11,10 @@ angular.module('contacts').factory('Contacts', ['$resource',
             },
             query: {
                 isArray: false
-            }
+            },
+            remove: {
+                method:'DELETE'
+            },
         });
     }
-]);
+    ]);

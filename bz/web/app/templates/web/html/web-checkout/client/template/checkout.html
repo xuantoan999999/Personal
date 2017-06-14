@@ -1,0 +1,304 @@
+<% extends 'web/layouts/layout.html' %>
+    <% block content %>
+        <div id="mod-check-step" data-ng-controller="checkoutCtrl as vmCheckout" data-ng-init="vmCheckout.initData()">
+            <div class="container">
+                <div class="row row-rela">
+                    <div class="col-lg-8 col-12 col-left">
+                        <div class="step-1">
+                            <div class="row">
+                                <div class="col-1 col-stt">
+                                    <img src="assets/images/icon-stt1.png" alt="">
+                                </div>
+                                <div class="col-10 col-tt">
+                                    <h1>Thông Tin Liên Hệ</h1>
+                                    <div class="edit" data-ng-click="vmCheckout.editInfoStep(1)" data-ng-show="vmCheckout.STEP._1.status === 'DONE'">
+                                        <a href=""><img src="./assets/images/icon-edit.png"> Thay đổi</a>
+                                    </div>
+                                    <div class="step1" data-ng-show="vmCheckout.STEP._1.status === 'SHOW-FORM'">
+                                        <label>Chúng tôi cần số điện thoại và email để gửi cho bạn thông tin đơn hàng khi có cập nhật</label>
+                                        <form id="contactForm" class="row form-st1" name="contactForm">
+                                            <div class="form-group col-md-6 col-12">
+                                                <label for="name">Họ và tên</label>
+                                                <div class="msg-input">
+                                                    <input type="text" class="form-control" id="name" ng-model="vmCheckout.formData.customer_info.name" name="name" placeholder="Họ và tên"
+                                                        required>
+                                                    <div class="messages-error">
+                                                        <div>
+                                                            Bạn chưa nhập họ tên
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-6 col-12">
+                                                <label for="phone">Số điện thoại</label>
+                                                <div class="msg-input">
+                                                    <input type="text" class="form-control" id="phone" ng-model="vmCheckout.formData.customer_info.phone" phone="phone" placeholder="Số điện thoại"
+                                                        required>
+                                                    <div class="messages-error">
+                                                        <div>
+                                                            Bạn chưa nhập họ tên
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-6 col-12">
+                                                <label for="email">Email</label>
+                                                <div class="msg-input">
+                                                    <input type="text" class="form-control" id="email" ng-model="vmCheckout.formData.customer_info.email" email="email" placeholder="Email"
+                                                        required>
+                                                    <div class="messages-error">
+                                                        <div>
+                                                            Email sai định dạng
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 submit-step1">
+                                                <a data-ng-click="vmCheckout.doneStep1(contactForm.$valid)" class="submit">Tiếp Tục</a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="step1-1" data-ng-show="vmCheckout.STEP._1.status === 'DONE'">
+                                        <form id="infoContact" class="row" name="infoContact">
+                                            <div class="col-4">
+                                                <span>Họ và tên<br></span>
+                                                <span data-ng-bind="vmCheckout.formData.customer_info.name"></span>
+                                            </div>
+                                            <div class="col-4">
+                                                <span>Số điện thoại<br></span>
+                                                <span data-ng-bind="vmCheckout.formData.customer_info.phone"></span>
+                                            </div>
+                                            <div class="col-4">
+                                                <span>Email<br></span>
+                                                <span data-ng-bind="vmCheckout.formData.customer_info.email"></span>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-2 bck-gray">
+                            <div class="row step2">
+                                <div class="col-1 col-stt">
+                                    <img src="assets/images/icon-stt2.png" alt="">
+                                </div>
+                                <div class="col-10 col-tt">
+                                    <h1>Địa Điểm Giao Hàng</h1>
+                                    <div class="edit" data-ng-click="vmCheckout.editInfoStep(2)" data-ng-show="vmCheckout.STEP._2.status === 'DONE'">
+                                        <a href=""><img src="./assets/images/icon-edit.png"> Thay đổi</a>
+                                    </div>
+                                    <div class="step2-1" data-ng-show="vmCheckout.STEP._2.status === 'SHOW-FORM'">
+                                        <label>Xe của bạn sẽ được giao đến đại lý GearUp gần nhất nơi bạn sinh sống.</label>
+                                        <form id="shipingForm" class="row form-st2" name="shipingForm">
+                                            <div class="col-6">
+                                                <div class="form-group ">
+                                                    <label for="op-city">Tỉnh/Thành phố</label>
+                                                    <div class="msg-input">
+                                                        <select class="selectbox form-control" id="op-city" ng-change="vmCheckout.filterAgent('province')" ng-model="vmCheckout.formData.shipping_info.province"
+                                                            ng-options="key as value.name for (key , value) in vmCheckout.mapVN[0]"
+                                                            name="op-city" required>
+                                                                <option>Chọn tỉnh/thành phố</option>
+                                                        </select>
+                                                        <div class="messages-error">
+                                                            <div>
+                                                                Bạn chưa chọn tinhr tp
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group ">
+                                                    <label for="op-quan">Quận/Huyện</label>
+                                                    <div class="msg-input">
+                                                        <select class="selectbox form-control" ng-change="vmCheckout.filterAgent('district')" id="op-quan" ng-model="vmCheckout.formData.shipping_info.district"
+                                                            name="op-quan" required ng-options="key as value for (key , value) in vmCheckout.mapVN[0][vmCheckout.formData.shipping_info.province].districts">
+                                                                    <option>Chọn quận huyện</option>
+                                                            </select>
+                                                        <div class="messages-error">
+                                                            <div>
+                                                                Bạn chưa chọn quận
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <label ng-if="vmCheckout.formData.shipping_info.province ==''">Chọn địa chỉ để hiển thị danh sách đại lý</label>
+                                                <label ng-if="vmCheckout.formData.shipping_info.province !='' && vmCheckout.listAgent.length == 0">
+                                                    {{vmCheckout.mapVN[0][vmCheckout.formData.shipping_info.province].districts[vmCheckout.formData.shipping_info.district]}} 
+                                                    {{vmCheckout.mapVN[0][vmCheckout.formData.shipping_info.province].name}} chưa có đại lý. Vui lòng chọn địa chỉ khác</label>
+                                                <label ng-if="vmCheckout.listAgent.length > 0">Chọn đại lý nhận xe</label>
+                                                <div class="info-branch">
+                                                    <div class="table-branch">
+
+                                                        <div class="branch" ng-repeat="agent in vmCheckout.listAgent">
+                                                            <label role="radio" for="{{agent._id}}">
+                                                                <input role="radio" id="{{agent._id}}" ng-model="vmCheckout.formData.shipping_info.agent" ng-change="vmCheckout.onChangeAgent()" value="{{agent._id}}" type="radio" name="{{agent._id}}">
+                                                                <i></i>
+                                                                <span>
+                                                                    {{agent.name}} 
+                                                                    • {{agent.address}}, {{vmCheckout.mapVN[0][agent.province].districts[agent.district]}} 
+                                                                    • ĐT: {{agent.phone}}</span>
+			        										</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="submit-step2">
+                                                        <a href="" class="submit" data-ng-click="vmCheckout.doneStep2(shipingForm.$valid)">Tiếp Tục</a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="step2-2" data-ng-show="vmCheckout.STEP._2.status === 'DONE'">
+                                        <form id="infoShiping" class="row" name="infoShiping">
+                                            <div class="col-12">
+                                                <span>Nhân xe tại<br></span>
+                                                <span>{{vmCheckout.formData.shipping_info.name}}  
+                                                    • {{vmCheckout.formData.shipping_info.address}}, {{vmCheckout.mapVN[0][vmCheckout.formData.shipping_info.province].districts[vmCheckout.formData.shipping_info.district]}}  
+                                                    •  ĐT: {{vmCheckout.formData.shipping_info.phone}}</span>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-3 bck-gray">
+                            <div class="row step3">
+                                <div class="col-1 col-stt">
+                                    <img src="assets/images/icon-stt3.png" alt="">
+                                </div>
+                                <div class="col-10 col-tt">
+                                    <h1>Thanh Toán</h1>
+                                    <div class="step3-1" data-ng-show="vmCheckout.STEP._3.status === 'SHOW-FORM'">
+                                        <label for="">
+                                            Xin hãy chọn phương thức thanh toán
+                                        </label>
+                                        <div class="gen-buy form-st3">
+                                            <a href=""><span>Chuyển khoản ngân hàng</span></a>
+                                            <a href=""><span>Thanh toán online</span></a>
+                                        </div>
+                                        <div class="num-ac">
+                                            <label>Vui lòng chuyển số tiền cần thanh toán vào một trong những tài khoản sau</label>
+                                            <div class="info-ac">
+                                                <div class="ac">
+                                                    <span><b>VIETCOMBANK  •  Chi nhánh Kỳ Đồng -  Hồ Chí Minh</b><br></span>
+                                                    <span>Chủ tài khoản: Nguyễn Văn A<br></span>
+                                                    <span>Số tài khoản: 046 1234 678 901</span>
+                                                </div>
+                                                <div class="ac">
+                                                    <span><b>ACB  •  Chi nhánh Bình Hoà 2, Hồ Chí Minh</b><br></span>
+                                                    <span>Chủ tài khoản: Nguyễn Văn A<br></span>
+                                                    <span>Số tài khoản: 176 012 345</span>
+                                                </div>
+                                                <div class="ac">
+                                                    <span><b>SACOMBANK  •  Chi nhánh Huỳnh Văn Bánh, Hồ Chí Minh</b><br></span>
+                                                    <span>Chủ tài khoản: Nguyễn Văn A<br></span>
+                                                    <span>Số tài khoản: 0600 1234 6789</span>
+                                                </div>
+                                            </div>
+                                            <div class="submit">
+                                                <a href="" class="submit">ĐỒNG Ý</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="step3-2" data-ng-show="vmCheckout.STEP._3.status === 'SHOW-FORM'">
+                                        <label for="">Vui lòng chọn hình thức thanh toán online</label>
+                                        <div class="choose-1">
+                                            <label role="radio" for="opt5">
+                                                <input role="radio" id="opt5" type="radio" name="group2">
+                                                <i></i>
+                                                <span><a href="" style="background: url('../assets/images/icon-ncolor.png') center center no-repeat;" class="img"><img src="assets/images/icon-ncolor.png" class="opacity" alt=""></a>Thẻ tín dụng / Ghi nợ</span>
+                                            </label>
+                                        </div>
+                                        <div class="choose-2">
+                                            <label role="radio" for="opt6">
+										<input role="radio" id="opt6" type="radio" name="group2">
+										<i></i>
+										<span><a href="" style="background: url('../assets/images/icon-ncolor2.png') center center no-repeat;" class="img"><img src="assets/images/icon-ncolor.png" class="opacity" alt=""></a>Thẻ ATM Nội Địa / Internet Banking</span>
+										<div class="sup sup-hide">
+											<label for="">
+												Để thực hiện việc thanh toán, bắt buộc thẻ ATM của bạn đã có đăng ký sử dụng dịch vụ Internet Banking.
+											</label>
+                                            <label for="">
+                                                <div class="form-group">
+                                                    <label for="bank"></label>
+                                            <div class="msg-input">
+                                                <select class="selectbox form-control" id="bank" ng-model="bank" name="bank" required>
+                                                        <option>Chọn ngân hàng của bạn</option>
+                                                        <option>Chọn ngân hàng của bạn</option>
+                                                    </select>
+                                                <div class="messages-error">
+                                                    <div>Chọn ngân hàng của bạn</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </label>
+                                    </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-12 col-right">
+                <div class="giftcode" data-ng-if="vmCheckout.Coupon.formStatus === 'LOCK'">
+                    <label for="">Có mã khuyến mãi</label>
+                    <a ng-click="vmCheckout.showFormAddCoupon()">Nhập mã</a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="input-group add-giftcode" data-ng-if="vmCheckout.Coupon.formStatus === 'SHOW_INPUT'">
+                    <input type="text" data-ng-model="vmCheckout.Coupon.code" data-ng-change="vmCheckout.onEnterCoupon()" class="form-control">
+                    <span class="input-group-btn">
+						<button class="btn btn-secondary" data-ng-disabled="vmCheckout.Coupon.code ==''" data-ng-click="vmCheckout.checkCoupon()" type="button">Kiểm tra</button>
+					</span>
+                </div>
+                <div class="done-giftcode" data-ng-if="vmCheckout.Coupon.formStatus === 'HASCOUPON'">
+                    <label class="label1" for="">AB56DEQ <a data-ng-click="vmCheckout.showFormAddCoupon()">(Nhập lại mã)</a></label>
+                    <label class="label2">Giảm 30%</label>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="order-detail">
+                    <div class="price">
+                        <label class="label1" for="">Tổng tiền</label>
+                        <label class="label2"><span>đ</span> {{vmCheckout.Verhicle.price_user | currency:"":0}}</label>
+                        <div class="clearfix"></div>
+                        <label class="sale" data-ng-if="vmCheckout.Verhicle.sale">↓ <span>đ</span>
+                        {{vmCheckout.Verhicle.sale | currency:"":0}}
+                        </label>
+                    </div>
+                    <div class="note">
+                        <label for="">(*) Số tiền trên không bao gồm phí vận chuyển. Phí vận chuyển sẽ tính khi nhận hàng</label>
+                    </div>
+                    <div class="tt-pre">
+                        <div class="pre">
+                            <label class="label1">Trả trước(đặt cọc)</label>
+                            <label class="label2" for=""> <span>đ</span> {{vmCheckout.formData.total_deposit | currency:"":0}}</label>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="recieve">
+                            <label class="label1" for="">Trả lúc nhận hàng</label>
+                            <label class="label2"><span>đ</span> {{vmCheckout.formData.total_extant | currency:"":0}}</label>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="submit-buy" data-ng-disabled="!vmCheckout.ALLOW_SUBMIT_ORDER" ng-click="vmCheckout.submitOrder()">
+                        <a>ĐẶT MUA</a>
+                    </div>
+                </div>
+                <div class="picture">
+                    <img src="assets/images/pic-moto.png" class="img-responsive" alt="">
+                    <label for=""><b ng-bind="vmCheckout.Verhicle.name"></b></label>
+                </div>
+            </div>
+        </div>
+
+        </div>
+        </div>
+        </div>
+        <% endblock %>

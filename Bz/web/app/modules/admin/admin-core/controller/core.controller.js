@@ -35,7 +35,7 @@ function createGuestToken(request, reply) {
         var configManager = request.server.configManager;
         let cookieOptions = configManager.get('web.cookieOptions');
         let cmsName = configManager.get('web.name');
-        let cookieKey = cmsName + "-token";
+        let cookieKeyAdmin = cmsName + "-admin-token";
 
         let credentials = request.auth.credentials;
         let authToken = request.auth.token;
@@ -52,7 +52,7 @@ function createGuestToken(request, reply) {
             const secret = configManager.get('web.jwt.secret');
             redisClient.set(session.id, JSON.stringify(session));
             var token = JWT.sign(session, secret);
-            reply().state(cookieKey, token, cookieOptions);
+            reply().state(cookieKeyAdmin, token, cookieOptions);
         }
     }
 
@@ -83,8 +83,9 @@ function handleError(request, reply) {
         return reply.continue();
     }
     let config = request.server.configManager;
-    let loginUrl = config.get('web.error.user.login');
+    let loginUrl = config.get('web.error.admin.login');
     let notFoundUrl = config.get('web.error.notfound.url');
+    let cmsprefix = config.get('web.context.cmsprefix');
 
     const error = response;
     const statusCode = error.output.statusCode;

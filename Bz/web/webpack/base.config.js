@@ -1,13 +1,14 @@
 // @flow
 const Glob = require('glob');
+const path = require('path');
 const Webpack = require('webpack');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ExtLibs = require('./variables.js');
-const NodemonBrowsersyncPlugin = require('nodemon-browsersync-webpack-plugin');
 const configManager = require('kea-config');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+var WebpackBuildNotifierPlugin = require('webpack-build-notifier');
 
 configManager.setup('./app/config');
 const ROOT_PATH = process.cwd();
@@ -15,7 +16,8 @@ const ROOT_PATH = process.cwd();
 const PATHS = {
     src: ROOT_PATH,
     assets: ROOT_PATH + '/public/assets/',
-    build: ROOT_PATH + '/public/assets/dist',
+    dist: ROOT_PATH + '/public/assets/dist',
+    build: ROOT_PATH + '/public/assets/build',
     lib: ROOT_PATH + '/public/assets/lib/',
     layout: ROOT_PATH + '/app/templates/web/layouts/',
     module: ROOT_PATH + '/app/templates/web/html/',
@@ -40,7 +42,7 @@ let Entries = {
     main: mainResource
 };
 
-module.exports = function () {
+module.exports = function(env) {
     return {
         target: ExtLibs.target,
         entry: Entries,
@@ -48,7 +50,7 @@ module.exports = function () {
             extensions: ['.json', '.js', '.jsx', '.ts', '.tsx', '.css', '.scss']
         },
         output: {
-            path: PATHS.build,
+            path: env.env == "dev" ? PATHS.dist : PATHS.build,
             publicPath: '',
             filename: 'scripts/[name].js',
             chunkFilename: '[name].js',
@@ -61,12 +63,11 @@ module.exports = function () {
             Provide(),
             AsyncDeferWebpack(),
             CopyWebpack(),
-            // BrowserSync()
-            // NodemonBrowsersync(),
+            BrowserSync(),
+            WebpackNotifier(),
         ],
         module: {
-            rules: [
-                {
+            rules: [{
                     test: /\.(js|jsx)$/,
                     use: 'babel-loader',
                     exclude: /node_modules/
@@ -88,26 +89,25 @@ module.exports = function () {
                     test: /\.scss$/,
                     use: extractStyle.extract({
                         fallback: 'style-loader',
-                        use: [
-                            {
-                                loader: 'css-loader?url=false'
-                            }, {
-                                loader: 'sass-loader',
-                                options: {
-                                    includePaths: ['node_modules']
-                                }
-                            }, {
-                                loader: 'sass-resources-loader',
-                                options: {
-                                    resources: [
-                                        PATHS.module + 'core/client/css/tools/variables.scss',
-                                        PATHS.module + 'core/client/css/tools/mixins.scss'
-                                    ]
-                                },
+                        use: [{
+                            loader: 'css-loader?url=false'
+                        }, {
+                            loader: 'sass-loader',
+                            options: {
+                                includePaths: ['node_modules']
+                            }
+                        }, {
+                            loader: 'sass-resources-loader',
+                            options: {
+                                resources: [
+                                    PATHS.module + 'core/client/css/config/_variables.scss',
+                                    PATHS.module + 'core/client/css/tools/_mixins.scss'
+                                ]
                             },
-                        ]
+                        }, ]
                     })
-                }]
+                }
+            ]
         },
         externals: ExtLibs.externals
     };
@@ -145,38 +145,24 @@ function Provide() {
 }
 
 function CopyWebpack() {
-    return new CopyWebpackPlugin([
-        {
-            from: 'public/assets/images', to: 'images'
+    return new CopyWebpackPlugin([{
+            from: 'public/assets/images',
+            to: 'images'
         },
         {
-            from: 'public/assets/fonts', to: 'fonts'
+            from: 'public/assets/fonts',
+            to: 'fonts'
         }
     ]);
 }
 
-// function NodemonBrowsersync() {
-//     return new NodemonBrowsersyncPlugin({
-//             script: 'app.js',
-//             ext: 'js html json',
-//             delay: 5,
-//             ignore: [
-//                 'public/',
-//                 'var/',
-//                 'node_modules/',
-//                 'app/templates/*/html/core/client/**'
-//             ],
-//             stdout: true,
-//             readable: false
-//         },
-//         {
-//             proxy: "http://localhost:9006",
-//             files: ["app/**/*.*"],
-//             browser: "google chrome",
-//             port: 3090
-//         }
-//     );
-// }
+function WebpackNotifier() {
+    return new WebpackBuildNotifierPlugin({
+        title: configManager.get('web.name'),
+        logo: path.resolve("./img/favicon.png"),
+        suppressSuccess: true
+    })
+}
 
 function BrowserSync() {
     return new BrowserSyncPlugin({

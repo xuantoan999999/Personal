@@ -15,7 +15,8 @@ module.exports = {
     createGuestToken,
     getPostCategories,
     getMeta,
-    handleError
+    handleError,
+    getListCategories
 }
 
 function env(request, reply) {
@@ -67,7 +68,6 @@ function createGuestToken(request, reply) {
         let authToken = request.auth.token;
         let cmsName = configManager.get('web.name');
         let cookieKey = cmsName + "-token";
-
         if (!authToken) {
             let auth = request.server.plugins['api-user'].auth;
             let session = auth.createSession({});
@@ -96,6 +96,21 @@ function getPostCategories(request, reply) {
     });
 }
 
+function getListCategories(request, reply) {
+    let response = request.response;
+    if (response.variety === 'view') {
+        let promise = Category.find({ type: 'model', status: 1 })
+        .select('name slug image').lean();
+        promise.then(function (resp) {
+            response.source.context.category_menu = resp;
+            reply.continue();
+        });
+    }
+    else {
+        reply.continue();
+    }
+}
+
 function getMeta(request, reply) {
     let response = request.response;
     if (response.variety === 'view') {
@@ -114,8 +129,11 @@ function getMeta(request, reply) {
 }
 
 function handleError(request, reply) {
-
+    var configManager = request.server.configManager;
+    let cmsName = configManager.get('web.name');
+    let cookieKey = cmsName + "-token";
     const response = request.response;
+    
     if (!response.isBoom) {
         return reply.continue();
     }
@@ -132,7 +150,16 @@ function handleError(request, reply) {
     } else if (statusCode === 403) {
         request.log(['error', 'permission'], 'You have not permission to access this page');
         return reply.redirect(loginUrl);
-    } else {
+    } 
+    else if (statusCode === 401) {
+        request.log([
+            'error', 'Unauthorized'
+            ], 'Invalid credentials');
+
+        reply().unstate(cookieKey);
+        return reply().continue();
+    } 
+    else {
         return reply.continue();
     }
 };

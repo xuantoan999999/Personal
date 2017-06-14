@@ -1,6 +1,14 @@
 angular.module('Core')
     .service("Socket", Socket)
-    .service("PubSub", PubSub);
+    .service("PubSub", PubSub)
+    .service("Cart", Cart)
+    .constant('KEY_LOCAL_STORAGE', {
+        key_id_verhicle: 'id_verhicle',
+        key_info_checkout: 'info_checkout',
+        key_shipping_info: 'info_shiping'
+    });
+
+// set key to save info local verhice
 
 function Socket($http, $cookies, $window) {
     var cookieKey = window.cmsname + '-token';
@@ -77,5 +85,53 @@ function PubSub(Socket) {
             container = [];
         }
 
+    }
+}
+
+function Cart(KEY_LOCAL_STORAGE) {
+    return {
+        addProduct: addProduct,
+        removeProduct: removeProduct,
+        getCart: getCart,
+        removeCart: removeCart,
+        saveProduct: saveProduct,
+        getVerhicleId: getVerhicleId
+    };
+
+    function addProduct(product, quantity) {
+        return { msg: 'Ok' }
+    }
+
+    function removeProduct(product) {
+        return { msg: 'Ok' }
+    }
+
+    function getCart() {
+        return { msg: 'Ok' }
+    }
+
+    function removeCart() {
+        return { msg: 'Ok' }
+    }
+
+    // save product (verhicle) to local Storage
+    function saveProduct(id) {
+        var time = 30 * 24 * 60 * 60;
+        if (typeof (Storage) !== "undefined") {
+            Storage.set(KEY_LOCAL_STORAGE.key_id_verhicle, id, time);
+        } else {
+            console.error('The browser does not support Storage.');
+        }
+    }
+
+    // get product (verhicle) from local Storage
+    function getVerhicleId() {
+        if (typeof (Storage) !== "undefined") {
+            var data = Storage.get(KEY_LOCAL_STORAGE.key_id_verhicle);
+            return data;
+        } else {
+            console.error('The browser does not support Storage.');
+            return null;
+        }
     }
 }

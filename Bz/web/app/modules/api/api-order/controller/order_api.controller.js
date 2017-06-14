@@ -10,8 +10,27 @@ const _ = require('lodash');
 const ErrorHandler = require(BASE_PATH + '/app/utils/error.js');
 
 module.exports = {
+    getAgents,
     filterAgent,
 };
+
+function getAgents(request, reply) {
+    let options = {};
+    options.status = 1;
+
+    User.find(options, 'name phone address email province district').lean().exec().then(function (data) {
+        return reply({
+            success: true,
+            data: data
+        });
+    }).catch(function (err) {
+        return reply({
+            success: false,
+            data: [],
+            message: ErrorHandler.getErrorMessage(err)
+        });
+    });
+}
 
 
 function filterAgent(request, reply) {

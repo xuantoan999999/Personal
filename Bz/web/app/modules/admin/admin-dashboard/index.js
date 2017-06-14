@@ -12,7 +12,7 @@ exports.register = function(server, options, next) {
         handler: DashboardController.index,
         config: {
             auth: {
-                strategy: 'jwt',
+                strategy: 'jwt-admin',
                 mode: 'try',
                 scope: ['guest','user', 'admin', 'agent', 'supplier']
             }

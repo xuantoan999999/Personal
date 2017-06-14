@@ -16,9 +16,12 @@ contactValidate.prototype = (function () {
         contact: {
             payload: {
                 name: Joi.string().required().description('Name'),
-                phone: Joi.string().optional().description('Phone'),
+                // phone: Joi.string().optional().description('Phone'),
                 email: Joi.string().email().required().description('Email'),
                 message: Joi.string().required().description('Message')
+            },
+            options: {
+                allowUnknown: true
             }
         },
         update: {

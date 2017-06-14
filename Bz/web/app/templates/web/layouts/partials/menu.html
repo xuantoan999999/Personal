@@ -1,35 +1,42 @@
 <!-- Desktop Menu -->
 <div id="mod-menu">
 	<div class="container">
-		<div class="menu-desk">
-			<div class="menu-top">
-				<div class="logo">
-					<img src="assets/images/logo.png" alt="">
+		<div class="content">
+			<div class="menu-desk">
+				<div class="menu-top">
+					<div class="logo">
+						<img src="assets/images/logo.png" alt="">
+					</div>
+					<form class="input-group search" name="search" id="search" method="GET" action="/tim-kiem">
+						<input type="text" class="form-control" placeholder="Tìm xe theo hãng và tên xe… " name="q" id="q" value="<$ query $>">
+					</form>
+					<ul>
+						<li class="mega"><a href="/"><span>Tin tức và khuyến mãi</span></a></li>
+						<li class="list"><a href="about"><span>Tra cứu đơn hàng</span></a></li>
+					</ul>
+					<div class="clearfix"></div>
 				</div>
-				<div class="input-group search">
-					<input type="text" class="form-control" placeholder="Tìm xe theo hãng và tên xe… ">
-				</div>
-				<ul>
-					<li class="mega"><a href="/"><span>Tin tức và khuyến mãi</span></a>
-					</li>
-					<li class="list"><a href="about"><span>Tra cứu đơn hàng</span></a>
-					</li>
-				</ul>
-				<div class="clearfix"></div>
 			</div>
 		</div>
+
 	</div>
 	<div class="menu-gender">
 		<div class="container">
-			<ul>
-				<li><a href="">NAKE</a></li>
-				<li><a href="">SPORT</a></li>
-				<li><a href="">TOURING</a></li>
-				<li><a href="">CLASSIC</a></li>
-				<li><a href="">SCOOTER</a></li>
-
-			</ul>
+			<div class="content">
+				<ul>
+					<% for category in category_menu %>
+						<li><a href="/danh-muc/<$ category.slug $>" <% if activeMenu == category.slug %>class="active"<% endif %> ><$ category.name $></a></li>
+					<% endfor %>
+					<!--<li><a href="">Nake</a></li>
+					<li><a href="">Sport</a></li>
+					<li><a href="">Scooter</a></li>
+					<li><a href="">Classis</a></li>
+					<li><a href="">Touring</a></li>
+					<li><a href="">Underbone</a></li>
+					<li><a href="">Electric</a></li>-->
+				</ul>
 				<div class="clearfix"></div>
+			</div>
 		</div>
 	</div>
 </div>

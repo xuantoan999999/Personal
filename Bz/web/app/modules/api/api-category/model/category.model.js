@@ -37,6 +37,9 @@ var CategorySchema = new Schema({
         type: Number,
         default: 1
     },
+    link: {
+        type: String
+    },
     attrs: {
         title: String,
         description: String,
@@ -60,4 +63,18 @@ CategorySchema.pre('save', function (next) {
     this.slug = this.slug.toLowerCase();
     next();
 });
+
+// Virtual Category
+CategorySchema.virtual('products', {
+    ref: 'Product',
+    localField: '_id',
+    foreignField: 'model',
+});
+
+CategorySchema.virtual('productsBrand', {
+    ref: 'Product',
+    localField: '_id',
+    foreignField: 'brand',
+});
+
 module.exports = mongoose.model('Category', CategorySchema);

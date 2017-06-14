@@ -3,7 +3,7 @@
         <h1>
             <span ng-switch="type">
                 <span ng-switch-when="brand">Nhà sản xuất</span>
-            <span ng-switch-when="model">Model</span>
+                <span ng-switch-when="model">Model</span>
             </span>
         </h1>
     </section>
@@ -17,7 +17,11 @@
                             <div class="box-body box box-primary">
                                 <div class="form-group">
                                     <input type="submit" class="btn btn-primary" value="Thêm" style="margin-right: 10px;">
-                                    <a href="" class="btn btn-default" data-ui-sref="listCategories({type: type})">Cancel</a>
+                                    <span ng-switch="type">
+                                        <span ng-switch-when="brand"><a href="" class="btn btn-default" data-ui-sref="listBrand({type: type})">Cancel</a></span>
+                                        <span ng-switch-when="model"><a href="" class="btn btn-default" data-ui-sref="listModel({type: type})">Cancel</a></span>
+                                    </span>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -70,7 +74,7 @@
                                             <a class="form-control" href="" ngf-select ngf-multiple="false" ngf-change="uploadImage($files)" data-ng-if="!data.image">
                                                     Thêm ảnh ...
                                                 </a>
-                                            <img class="image-upload" data-ng-src="{{data_tmp.image_url}}" ngf-select ngf-multiple="false" ngf-change="uploadImage($files)"
+                                            <img class="image-upload" data-ng-src="{{url + data.image}}" ngf-select ngf-multiple="false" ngf-change="uploadImage($files)"
                                                 alt="" data-ng-if="data.image">
                                             <a class="btn-remove-img" data-ng-click="removeImage(key);" href="" data-ng-if="data.image">Hủy ảnh này</a>
                                         </div>
@@ -78,6 +82,13 @@
                                             type="success"><b>[[progressPercentage]]%</b></uib-progressbar>
                                     </div>
                                     <!--End: Upload Image Section-->
+
+                                    <div class="form-group" ng-if="type == 'brand'">
+                                        <label class="control-label" for="status">Link</label>
+                                        <div class="controls">
+                                            <input type="text" data-ng-model="data.link" id="link" name="link" class="form-control" placeholder="Link">
+                                        </div>
+                                    </div>
 
                                     <div class="form-group">
                                         <label class="control-label" for="status">Trạng thái</label>
@@ -90,7 +101,6 @@
                                             <div ng-message="required">Bạn chưa chọn trạng thái.</div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>

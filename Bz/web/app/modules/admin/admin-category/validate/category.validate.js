@@ -16,7 +16,8 @@ categoryValidate.prototype = (function () {
                 status: Joi.number().required().description('Status'),
                 description: Joi.any().description('Description'),
                 attrs: Joi.any().description('Meta'),
-                image: Joi.any().description('Image')
+                image: Joi.any().description('Image'),
+                link: Joi.any().description('Link')
             }
         },
         update: {
@@ -30,6 +31,7 @@ categoryValidate.prototype = (function () {
                 description: Joi.any().description('Description'),
                 attrs: Joi.any().description('Meta'),
                 image: Joi.any().description('Image'),
+                link: Joi.any().description('Link'),
                 createdAt: Joi.date(),
                 updatedAt: Joi.date()
             },

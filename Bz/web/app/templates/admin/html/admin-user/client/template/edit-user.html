@@ -1,6 +1,6 @@
 <section data-ng-controller="UsersEditController" data-ng-init="findOne()">
     <section class="content-header">
-        <h1>Users</h1>
+        <h1>Người dùng</h1>
     </section>
     <ng-loading loading-done="isLoading" />
     <!-- Main content -->
@@ -10,10 +10,10 @@
                 <div class="box box-info">
                     <div class="box-body">
                         <div class="form-group">
-                            <a class="btn btn-primary" ng-click="update(UserForm.$valid, 'save&list')">Save & List</a> &nbsp;&nbsp;
-                            <a class="btn btn-primary" ng-click="update(UserForm.$valid, 'apply', UserForm)">Apply</a>&nbsp;&nbsp;
-                            <input type="button" value="Cancel" class="btn btn-default" ng-click="gotoList()">&nbsp;&nbsp;
-                            <input type="button" value="Delete" class="btn btn-danger" ng-click="remove(formData._id)">&nbsp;&nbsp;
+                            <a class="btn btn-primary" ng-click="update(UserForm.$valid, 'save&list')">Lưu & Danh sách</a> &nbsp;&nbsp;
+                            <a class="btn btn-primary" ng-click="update(UserForm.$valid, 'apply', UserForm)">Lưu</a>&nbsp;&nbsp;
+                            <input type="button" value="Hủy" class="btn btn-default" ng-click="gotoList()">&nbsp;&nbsp;
+                            <input type="button" value="Xóa" class="btn btn-danger" ng-click="remove(formData._id)">&nbsp;&nbsp;
                         </div>
                         <!-- <bz-message/> -->
                     </div>
@@ -23,7 +23,7 @@
                 <div class="col-md-8">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Edit User</h3>
+                            <h3 class="box-title">Cập nhật người dùng</h3>
                         </div>
                         <div class="box-body">
                             <div class="row">
@@ -68,7 +68,7 @@
                                             <option value=''>-- Chọn Tỉnh --</option>
                                         </select>
                                         <div class="error-messages message" ng-messages="UserForm.province.$error" ng-messages-multiple ng-if="submitted">
-                                            <error-message require-msg="You did not select a field" />
+                                            <error-message require-msg="Bạn chưa chọn giá trị nào." />
                                         </div>
                                     </div>
                                     <!-- Quận huyện -->
@@ -78,7 +78,7 @@
                                             <option value=''>-- Chọn Quận huyện --</option>
                                         </select>
                                         <div class="error-messages message" ng-messages="UserForm.district.$error" ng-messages-multiple ng-if="submitted">
-                                            <error-message require-msg="You did not select a field" />
+                                            <error-message require-msg="Bạn chưa chọn giá trị nào." />
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -88,7 +88,7 @@
                                             </select>
                                         </div>
                                         <div class="error-messages message" ng-messages="UserForm.status.$error" ng-messages-multiple ng-if="submitted">
-                                            <error-message require-msg="You did not select a field" />
+                                            <error-message require-msg="Bạn chưa chọn giá trị nào." />
                                         </div>
                                     </div>
                                 </div>
@@ -100,13 +100,13 @@
                     <div class="box box-success">
                         <div class="box-body">
                             <div class="form-group">
-                                <label class="control-label" for="roles">Role</label>
+                                <label class="control-label" for="roles">Vai trò</label>
                                 <div class="controls" render-select="render_select">
                                     <select ui-select2 class="form-control" name="roles" data-ng-model="formData.roles" id="roles" ng-options="item.value as item.name for item in userRoles" required multiple="multiple" size="2">
                                     </select>
                                 </div>
                                 <div class="error-messages message" ng-messages="UserForm.roles.$error" ng-messages-multiple ng-if="submitted">
-                                    <error-message require-msg="You did not select a field" />
+                                    <error-message require-msg="Bạn chưa chọn giá trị nào." />
                                 </div>
                             </div>
                             <div class="form-group">

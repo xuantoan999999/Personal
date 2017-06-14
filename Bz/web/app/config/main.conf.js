@@ -2,6 +2,8 @@
 
 let config = {};
 const Pack = require(global.BASE_PATH + '/package');
+const frontend = require('./general/frontend.js');
+const backend = require('./general/backend.js');
 
 config.web = {
     name: Pack.name,
@@ -22,13 +24,7 @@ config.web = {
         numberVisiblePages: 10,
         itemsPerPage: 20
     },
-    db: {
-        uri: 'mongodb://localhost/db_gearup',
-        options: {
-            user: '',
-            pass: ''
-        }
-    },
+    db: backend.db,
     htmlCompress: false,
     isUseRedis: true,
     isUseVersionResource: true,
@@ -140,60 +136,26 @@ config.web = {
         },
         user: {
             login: '/login' // Login URL
+        },
+        admin: {
+            login: '/GadminU/signin' // Login URL
+        },
+        portal: {
+            login: '/portal/signin' // Login URL
         }
     },
 
-    context: {
-        cmsprefix: '/GadminU',
-        portalprefix: '/portal',
-        app: {
-            title: 'GearUp',
-            description: 'This is description bz cms',
-            keywords: ''
-        },
-        settings: {
-            services: {
-                userApi: 'http://localhost:9001/v1',
-                apiUrl: 'http://localhost:9001/v1/api',
-                contactApi: 'http://localhost:9001/v1',
-                socketApi: 'http://localhost:9001/v1',
-                uploadApi: 'http://localhost:9001/v1',
-                webUrl: 'http://localhost:9006'
-            }
-        }
-    },
-    onepay: {
-        general: {
-            'Title': 'VPC+3-Party',
-            //Version module cổng thanh toán, cố định và mặc định là “2”
-            'vpc_Version': '2',
-            //Chức năng thanh toán,
-            'vpc_Command': 'pay',
-            //Ngôn ngữ hiển thị trên website. 
-            'vpc_Locale': 'vn',
-        },
-        domestic: {
-            config: {
-                'secret': 'A3EFDFABA8653DF2342E8DAC29B51AF0',
-                'vpcUrl': 'https://mtf.onepay.vn/onecomm-pay/vpc.op?',
-                //Cặp tài khoản của mỗi đơn vị do
-                'vpc_AccessCode': 'D67342C2',
-                //Cặp tài khoản của mỗi đơn vị do
-                'vpc_Merchant': 'ONEPAY',
-            }
-        },
-        internal: {
-            config: {
-                secret: '6D0870CDE5F24F34F3915FB0045120DB',
-                vpcUrl: 'https://mtf.onepay.vn/vpcpay/vpcpay.op?',
-                //Cặp tài khoản của mỗi đơn vị do
-                'vpc_AccessCode': '6BEB2546',
-                //Cặp tài khoản của mỗi đơn vị do
-                'vpc_Merchant': 'TESTONEPAY',
-            }
-        }
-    }
+    context: backend.context,
 
+    facebook: backend.facebook,
+    twitter: backend.twitter,
+    google: backend.google,
+
+    assets: frontend.assets,
+    adminassets: backend.adminassets,
+    portalassets: backend.portalassets,
+
+    onepay: backend.onepay,
 };
 
 module.exports = config;

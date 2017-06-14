@@ -50,17 +50,10 @@ var BannerSchema = new Schema({
         trim: true,
         enum: ['home', 'right']
     },
-    created: {
-        type: Date,
-        default: Date.now
-    },
-    modified: {
-        type: Date
-    },
     user: {
         type: Schema.ObjectId,
         ref: 'User'
     }
-});
+}, { collection: 'banners', timestamps: true });
 
 module.exports = mongoose.model('Banner', BannerSchema);

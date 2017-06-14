@@ -1,67 +1,102 @@
 'use strict';
 
 // Contacts controller
-angular.module('contacts').controller('ContactsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Contacts',
-    function($scope, $stateParams, $location, Authentication, Contacts) {
+angular.module('contacts').controller('ContactsController', 
+    ['$scope','$state', '$stateParams', '$location', '$timeout', 'Authentication', 'Contacts', 'toastr', '$uibModal',
+    function($scope, $state, $stateParams, $location, $timeout,  Authentication, Contacts,toastr,$uibModal) {
         $scope.authentication = Authentication;
+
         if (!Authentication.user.name) {
             $location.path('signin');
         }
+
+        function showLoading() {
+            $scope.isLoading = true;
+        }
+
+        function hideLoading() {
+            $timeout(function () {
+                $scope.isLoading = false;
+            }, 300);
+        }
+
         $scope.gotoList = function() {
             $location.path('contacts');
         }
 
         // Create new Contact
-        $scope.create = function() {
+        $scope.create = function(isValid) {
+            $scope.submitted = true;
+            if(!isValid) return;
+
             // Create new Contact object
             var contact = new Contacts({
                 name: this.name,
                 email: this.email,
-                phone: this.phone,
-                address: this.address,
-                messages: this.messages
+                message: this.message
             });
 
             // Redirect after save
             contact.$save(function(response) {
-                $location.path('contacts/' + response._id);
-
-                // Clear form fields
-                $scope.name = '';
+                toastr.success("Tạo liên hệ thành công!", "Thành công");
+                $scope.gotoList();
             }, function(errorResponse) {
-                $scope.error = errorResponse.data.message;
+                console.log('ERROR',errorResponse.data.message);
+                toastr.error("Tạo liên hệ Lỗi!", "Lỗi");
             });
         };
 
         // Remove existing Contact
-        $scope.remove = function(contact) {
-            if (contact) {
-                contact.$remove();
-
-                for (var i in $scope.contacts) {
-                    if ($scope.contacts[i] === contact) {
-                        $scope.contacts.splice(i, 1);
+        $scope.remove = function(id) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: '/templates/admin-core/popupMessage.html',
+                resolve: {
+                    vmContact: function () {
+                        return $scope;
+                    },
+                    id: function () {
+                        return id;
+                    }
+                },
+                controller: function ($scope, $uibModalInstance, vmContact, id) {
+                    $scope.popTitle = 'Xác nhận xoá'
+                    $scope.message = 'Bạn chắc chắn xoá Liên hệ?';
+                    $scope.ok = function () {
+                        if (id) {
+                            Contacts.remove({contactId: id}, function(){
+                                toastr.success("Xóa liên hệ thành công!", "Thành công");
+                                $uibModalInstance.close();
+                                $state.reload();
+                            },function(errorResponse){
+                                console.log('ERROR',errorResponse.data.message);
+                                toastr.error("Xóa liên hệ Lỗi!", "Lỗi");
+                                $uibModalInstance.close();
+                            });
+                        } else {
+                            toastr.error("Không có ID cần xóa!", "Lỗi");
+                            $uibModalInstance.close();
+                        }
                     }
                 }
-            } else {
-                $scope.contact.$remove(function() {
-                    //$location.path('contacts');
-                    $scope.gotoList();
-                });
-            }
+            });
         };
 
         // Update existing Contact
-        $scope.update = function() {
+        $scope.update = function(isValid) {
+            $scope.submitted = true;
+            if(!isValid) return;
+
             var contact = $scope.contact;
             delete contact.__v;
-            delete contact.created;
+            delete contact.createdAt;
             contact.$update(function() {
-                //$location.path('contacts/' + contact._id);
+                toastr.success("Cập nhật liên hệ thành công!", "Thành công");
                 $scope.gotoList();
 
             }, function(errorResponse) {
-                $scope.error = errorResponse.data.message;
+                console.log('ERROR',errorResponse.data.message);
+                toastr.error("Tạo liên hệ Lỗi!", "Lỗi");
             });
         };
 
@@ -83,16 +118,19 @@ angular.module('contacts').controller('ContactsController', ['$scope', '$statePa
         };
 
         function getListData() {
+            showLoading();
             var options = {
                 page: $scope.currentPage,
                 keyword: $scope.query,
             };
 
             Contacts.query(options, function(data) {
+                console.log('test',data);
                 $scope.contacts = data.items;
                 $scope.totalItems = data.totalItems;
                 $scope.itemsPerPage = data.itemsPerPage;
                 $scope.numberVisiblePages = data.numberVisiblePages;
+                hideLoading();
             });
         }
 
@@ -111,4 +149,4 @@ angular.module('contacts').controller('ContactsController', ['$scope', '$statePa
             getListData();
         };
     }
-]);
+    ]);

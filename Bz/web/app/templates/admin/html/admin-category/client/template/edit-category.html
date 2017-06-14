@@ -1,102 +1,138 @@
 <section data-ng-controller="CategoriesEditController" id="mod-category" ng-init="findOne()">
     <section class="content-header">
-        <h1>Categories</h1>
+        <h1>
+            <span ng-switch="type">
+                <span ng-switch-when="brand">Nhà sản xuất</span>
+                <span ng-switch-when="model">Model</span>
+            </span>
+        </h1>
     </section>
     <!-- Main content -->
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Edit Category</h3>
-                    </div>
+                <div class="row">
                     <form data-ng-submit="submit(formEdit)" novalidate id="formEdit" name="formEdit">
-                        <div class="box-body">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label class="control-label" for="name">Name</label>
-                                        <div class="controls">
-                                            <input type="text" data-ng-model="data.name" id="name" name="name" class="form-control" placeholder="Name" ng-change="changeToSlug()" required>
-                                        </div>
-                                        <div class="error-messages message" ng-messages="formEdit.name.$error" ng-messages-multiple ng-if="formEdit.$submitted">
-                                            <div ng-message="required">Bạn chưa nhập tên xe.</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label class="control-label" for="slug">Slug</label>
-                                        <div class="controls">
-                                            <input type="text" data-ng-model="data.slug" id="slug" name="slug" class="form-control" placeholder="Slug" required>
-                                        </div>
-                                        <div class="error-messages message" ng-messages="formEdit.slug.$error" ng-messages-multiple ng-if="formEdit.$submitted">
-                                            <div ng-message="required">Slug không được bỏ trống.</div>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="description">Description</label>
-                                <div class="controls">
-                                    <textarea rows="4" cols="" data-ng-model="data.description" name="description" placeholder="Description" class="form-control"></textarea>
-                                </div>
-                            </div>
-
-                            <!--Start: Upload Image Section-->
-                            <div class="form-group">
-                                <label>Hình ảnh</label>
-                                <div class="image-upload-section">
-                                    <a class="form-control" href="" ngf-select ngf-multiple="false" ngf-change="uploadImage($files)" data-ng-if="!data.image">
-                                        Thêm ảnh ...
-                                    </a>
-                                    <img class="image-upload" data-ng-src="{{data_tmp.image_url}}" ngf-select ngf-multiple="false" ngf-change="uploadImage($files)" alt="" data-ng-if="data.image">
-                                    <a class="btn-remove-img" data-ng-click="removeImage(key);" href="" data-ng-if="data.image">Hủy ảnh này</a>
-                                </div>
-                                <uib-progressbar ng-if="progressPercentage" style="max-width: 500px; height: 50px;" animate="true" value="progressPercentage"
-                                    type="success"><b>[[progressPercentage]]%</b></uib-progressbar>
-                            </div>
-                            <!--End: Upload Image Section-->
-
-                            <div class="form-group">
-                                <label class="control-label" for="status">Status</label>
-                                <div class="controls">
-                                    <select class="form-control" ng-init="data.status = 1" data-ng-model="data.status" id="status" name="status" ng-options="item.value as item.name for item in statuses" required>
-                                    </select>
-                                </div>
-                                <div class="error-messages message" ng-messages="formEdit.status.$error" ng-messages-multiple ng-if="formEdit.$submitted">
-                                    <div ng-message="required">Bạn chưa chọn trạng thái.</div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label" for="meta_title">Meta title</label>
-                                <div class="controls">
-                                    <input type="text" data-ng-model="data.attrs.title" id="meta_title" name="meta_title" class="form-control" placeholder="Meta title">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label" for="meta_description">Meta description</label>
-                                <div class="controls">
-                                    <textarea rows="4" cols="" data-ng-model="data.attrs.description" id="meta_description" name="meta_description" placeholder="Meta description" class="form-control"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label" for="meta_keyword">Meta keyword</label>
-                                <div class="controls">
-                                    <input type="text" data-ng-model="data.attrs.keyword" id="meta_keyword" name="meta_keyword" class="form-control" placeholder="Meta keyword">
+                        <div class="col-md-12">
+                            <div class="box-body box box-primary">
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary" value="Sửa" style="margin-right: 10px;">
+                                    <span ng-switch="type">
+                                        <span ng-switch-when="brand"><a href="" class="btn btn-default" data-ui-sref="listBrand({type: type})">Cancel</a></span>
+                                        <span ng-switch-when="model"><a href="" class="btn btn-default" data-ui-sref="listModel({type: type})">Cancel</a></span>
+                                    </span>
                                 </div>
                             </div>
                         </div>
-                        <div class="box-footer">
-                            <div class="form-group">
-                                <input type="submit" class="btn btn-primary">
-                                <input type="button" value="Cancel" class="btn btn-default" ng-click="gotoList()">
+
+                        <div class="col-md-8">
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <h3 class="box-title">
+                                        <span ng-switch="type">
+                                            <span ng-switch-when="brand">Sửa nhà sản xuất</span>
+                                        <span ng-switch-when="model">Sửa model</span>
+                                        </span>
+                                    </h3>
+                                </div>
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label class="control-label" for="name">Name</label>
+                                                <div class="controls">
+                                                    <input type="text" data-ng-model="data.name" id="name" name="name" class="form-control" placeholder="Name" ng-change="changeToSlug()"
+                                                        required>
+                                                </div>
+                                                <div class="error-messages message" ng-messages="formEdit.name.$error" ng-messages-multiple ng-if="formEdit.$submitted">
+                                                    <div ng-message="required">Bạn chưa nhập tên xe.</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="control-label" for="slug">Slug</label>
+                                                <div class="controls">
+                                                    <input type="text" data-ng-model="data.slug" id="slug" name="slug" class="form-control" placeholder="Slug" required>
+                                                </div>
+                                                <div class="error-messages message" ng-messages="formEdit.slug.$error" ng-messages-multiple ng-if="formEdit.$submitted">
+                                                    <div ng-message="required">Slug không được bỏ trống.</div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="description">Description</label>
+                                        <div class="controls">
+                                            <textarea rows="4" cols="" data-ng-model="data.description" name="description" placeholder="Description" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <!--Start: Upload Image Section-->
+                                    <div class="form-group">
+                                        <label>Hình ảnh</label>
+                                        <div class="image-upload-section">
+                                            <a class="form-control" href="" ngf-select ngf-multiple="false" ngf-change="uploadImage($files)" data-ng-if="!data.image">
+                                                Thêm ảnh ...
+                                            </a>
+                                            <img class="image-upload" data-ng-src="{{data_tmp.image_url}}" ngf-select ngf-multiple="false" ngf-change="uploadImage($files)"
+                                                alt="" data-ng-if="data.image">
+                                            <a class="btn-remove-img" data-ng-click="removeImage(key);" href="" data-ng-if="data.image">Hủy ảnh này</a>
+                                        </div>
+                                        <uib-progressbar ng-if="progressPercentage" style="max-width: 500px; height: 50px;" animate="true" value="progressPercentage"
+                                            type="success"><b>[[progressPercentage]]%</b></uib-progressbar>
+                                    </div>
+                                    <!--End: Upload Image Section-->
+
+                                    <div class="form-group" ng-if="type == 'brand'">
+                                        <label class="control-label" for="status">Link</label>
+                                        <div class="controls">
+                                            <input type="text" data-ng-model="data.link" id="link" name="link" class="form-control" placeholder="Link">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label" for="status">Status</label>
+                                        <div class="controls">
+                                            <select class="form-control" ng-init="data.status = 1" data-ng-model="data.status" id="status" name="status" ng-options="item.value as item.name for item in statuses"
+                                                required>
+                                            </select>
+                                        </div>
+                                        <div class="error-messages message" ng-messages="formEdit.status.$error" ng-messages-multiple ng-if="formEdit.$submitted">
+                                            <div ng-message="required">Bạn chưa chọn trạng thái.</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="alert alert-danger alert-dismissable" data-ng-show="error">
-                                <h4><i class="icon fa fa-ban"></i> Error!</h4>
-                                <div data-ng-bind="error"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="box box-info">
+                                <div class="box-header">
+                                    <h3 class="box-title">Thông tin meta</h3>
+                                </div>
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label class="control-label" for="meta_title">Meta title</label>
+                                        <div class="controls">
+                                            <input type="text" data-ng-model="data.attrs.title" id="meta_title" name="meta_title" class="form-control" placeholder="Meta title">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label" for="meta_description">Meta description</label>
+                                        <div class="controls">
+                                            <textarea rows="4" cols="" data-ng-model="data.attrs.description" id="meta_description" name="meta_description" placeholder="Meta description"
+                                                class="form-control"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label" for="meta_keyword">Meta keyword</label>
+                                        <div class="controls">
+                                            <input type="text" data-ng-model="data.attrs.keyword" id="meta_keyword" name="meta_keyword" class="form-control" placeholder="Meta keyword">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -104,4 +140,5 @@
             </div>
         </div>
     </section>
+
 </section>

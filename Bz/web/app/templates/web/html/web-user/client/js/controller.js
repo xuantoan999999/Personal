@@ -13,6 +13,9 @@ function AuthController($scope, $filter, AuthService, $cookies) {
     $scope.reset = reset;
     $scope.forgot = forgot;
 
+    console.log(1111111111)
+    alert(22222)
+
     function register() {
         if ($scope.registerForm.$valid) {
             var data = {

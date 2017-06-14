@@ -4,6 +4,7 @@ module.exports = {
         $: "jquery",
         jQuery: "jquery",
         "windows.jQuery": "jquery",
+        "windows.$": "jquery",
         Tether: 'tether',
         io: 'socket.io-client',
     }

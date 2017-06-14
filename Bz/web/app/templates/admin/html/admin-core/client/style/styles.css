@@ -246,25 +246,30 @@ label {
 }
 
 /*Style Select 2*/
-.select2-container{
-    width: 100% !important;
+.ui-select-container .btn-default:hover,.ui-select-container .btn-default:active,.ui-select-container .btn-default.hover,.ui-select-container .btn-default{
+    background: white;
+}
+.ui-select-container .btn{
+    border-radius: 0;
+    border-color: #d2d6de;
+}
+.ui-select-container .btn-default-focus{
+    border-color: #3c8dbc;
+    box-shadow: none;
+    outline: none;
 }
 .select2-container--default .select2-selection--multiple, .select2-container--default .select2-selection--single{
     border-color: #d2d6de;
     border-radius: 0;
 }
-.select2-container--default.select2-container--focus .select2-selection--multiple{
-    border-color: #3c8dbc;
+
+div.jsoneditor-tree{
+    overflow : visible;
 }
-.select2-container .select2-selection--multiple, .select2-container .select2-selection--single{
-    min-height: 34px;
+div.jsoneditor-menu{
+    background-color: #3c8dbc;
+    border-bottom: 1px solid #3c8dbc;
 }
-.select2-container--default .select2-selection--multiple .select2-selection__choice{
-    color: #333;
-}
-.select2-container--default .select2-selection--single .select2-selection__arrow{
-    top: 4px;
-}
-.select2-container .select2-selection--single .select2-selection__rendered{
-    padding-left: 3px;
+div.jsoneditor{
+    border: 1px solid #3c8dbc;
 }

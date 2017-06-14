@@ -32,11 +32,11 @@ exports.register = function (server, options, next) {
         handler: PageController.support
     });
 
-    server.route({
-        method: 'GET',
-        path: '/error404',
-        handler: PageController.error404
-    });
+    // server.route({
+    //     method: 'GET',
+    //     path: '/error404',
+    //     handler: PageController.error404
+    // });
 
     server.route({
         method: 'GET',

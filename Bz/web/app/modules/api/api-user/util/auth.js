@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
     JWT = require('jsonwebtoken'),
     aguid = require('aguid'),
     _ = require('lodash'),
-    bcrypt = Promise.promisifyAll(require('bcrypt'));
+    bcrypt = Promise.promisifyAll(require('bcryptjs'));
 
 const Session = require(BASE_PATH + '/app/modules/api/api-session/model/session.model');
 

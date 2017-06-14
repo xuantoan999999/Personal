@@ -7,7 +7,7 @@
     <div class="row" ng-controller="ContactController">
         <div class="col-sm-6">
             <form id="contactForm" name="contactForm" method="POST" action="/api/contact">
-                <$ formBlock("Name", 'text', 'Name', id='name', message="Vui lòng nhập thông tin") $>
+                <$ select("Name", 'text') $>
                 <$ formBlock('Email', 'text', 'Email', id='email', message="Vui lòng nhập thông tin") $>
                 <$ select('Tỉnh / Thành', 'Email', id='address', message="Vui lòng nhập thông tin") $>
                 <$ textarea('Message', 'text', id='message', message="Vui lòng nhập thông tin") $>

@@ -18,7 +18,7 @@ categoryValidate.prototype = (function () {
                 attrs: Joi.any().description('Meta'),
                 age_car: Joi.string().required().description('Xe cũ/mới'),
                 model: Joi.string().required().description('Model'),
-                brand: Joi.string().required().description('Brand'),
+                brand: Joi.string().description('Brand'),
                 supplier: Joi.string().required().description('Supplier'),
                 short_description: Joi.string().description('Short description'),
                 detail_infor: Joi.string().description('Detail infor'),
@@ -35,6 +35,9 @@ categoryValidate.prototype = (function () {
                 gallery: Joi.any().description('Gallery'),
                 color: Joi.any().description('Color'),
                 nsx: Joi.date().description('Date'),
+                engine_detail: Joi.object().description('Động cơ'),
+                bone_frame_detail: Joi.object().description('Khung xương'),
+                size_detail: Joi.object().description('Kích thước'),
             }
         },
         update: {
@@ -66,6 +69,9 @@ categoryValidate.prototype = (function () {
                 detail_infor: Joi.string().description('Detail infor'),
                 gallery: Joi.any().description('Galery'),
                 color: Joi.any().description('Color'),
+                engine_detail: Joi.object().description('Động cơ'),
+                bone_frame_detail: Joi.object().description('Khung xương'),
+                size_detail: Joi.object().description('Kích thước'),
                 // banner: Joi.any().description('Banner'),
                 nsx: Joi.date().description('Date'),
                 createdAt: Joi.date(),

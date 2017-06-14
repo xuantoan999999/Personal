@@ -8,7 +8,7 @@ exports.register = function (server, options, next) {
 
 
     var Auth = require('./util/auth');
-    server.expose('auth', new Auth(server) );
+    server.expose('authPortal', new Auth(server) );
 
     // server.route({
     //     method: ['GET'],

@@ -5,7 +5,7 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
 
     function ($scope, $stateParams, $location, $window, Option, Authentication, FileUploader, Posts, Categories, $sce, Notice, $timeout, localStorageService) {
 
-        if (!Authentication.user.name) {
+        if (!Authentication.isAdmin) {
             $location.path('signin');
         }
         var localStorageName = "post.filterData";

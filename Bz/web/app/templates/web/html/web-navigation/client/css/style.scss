@@ -1,267 +1,264 @@
 #mod-menu {
-  @include position(relative, 0, null, null, 0, 100);
-  width: 100%;
-  background-color: red;
-  .container {
-    position: relative;
-  }
+    @include position(relative, 0, null, null, 0, 100);
+    width: 100%;
+    background-color: red;
+    .container {
+        position: relative;
+    }
 }
 
 .menu-desk {
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  li {
-    position: relative;
-    @include font(null, 13px, bold, null);
-    float: left;
-    display: block;
-    // 1st
-    > ul {
-      @include position(absolute, 100%, null, null, 0, 100);
-      background-color: #474d57;
-      display: none;
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
     }
-    > div {
-      @include position(absolute, 100%, null, null, 0, 100);
-      width: 100%;
-      background-color: #474d57;
-      display: none;
-    }
-    a {
-      display: block;
-      padding: 16px 18px;
-      color: #fff;
-      text-decoration: none;
-      white-space: nowrap;
-      position: relative;
-    }
-    i {
-      @include position(absolute, 50%, 5px, null, null);
-      @include sizeEx(10px);
-      display: block;
-      margin-top: -4px;
-    }
-    b {
-      @include position(absolute, null, null, -6px, 50%, 101);
-      @include sizeEx(6px);
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-      border-top: 6px solid #f00;
-      margin-left: -6px;
-      display: none;
-    }
-
     li {
-      float: none;
-      ul {
-        top: 0;
-        left: 100%;
-      }
-      a {
-        @include font(null, null, #fff, null);
-        padding: 8px 18px;
-        height: auto;
-        text-transform: none;
-        text-align: left;
-      }
-    }
-    &:hover,
-    &.active {
-      background-color: darken(#474d57, 10%);
-      > a {
-        color: #fff;
-      }
-      b {
+        position: relative;
+        @include font(null, 13px, bold, null);
+        float: left;
         display: block;
-      }
+        // 1st
+        >ul {
+            @include position(absolute, 100%, null, null, 0, 100);
+            background-color: #474d57;
+            display: none;
+        }
+        >div {
+            @include position(absolute, 100%, null, null, 0, 100);
+            width: 100%;
+            background-color: #474d57;
+            display: none;
+        }
+        a {
+            display: block;
+            padding: 16px 18px;
+            color: #fff;
+            text-decoration: none;
+            white-space: nowrap;
+            position: relative;
+        }
+        i {
+            @include position(absolute, 50%, 5px, null, null);
+            @include sizeEx(10px);
+            display: block;
+            margin-top: -4px;
+        }
+        b {
+            @include position(absolute, null, null, -6px, 50%, 101);
+            @include sizeEx(6px);
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid #f00;
+            margin-left: -6px;
+            display: none;
+        }
+        li {
+            float: none;
+            ul {
+                top: 0;
+                left: 100%;
+            }
+            a {
+                @include font(null, null, #fff, null);
+                padding: 8px 18px;
+                height: auto;
+                text-transform: none;
+                text-align: left;
+            }
+        }
+        &:hover,
+        &.active {
+            background-color: darken(#474d57, 10%);
+            >a {
+                color: #fff;
+            }
+            b {
+                display: block;
+            }
+        }
     }
-  }
-  .mega {
-    position: initial;
-    ul {
-      top: 0;
-      left: 100%;
+    .mega {
+        position: initial;
+        ul {
+            top: 0;
+            left: 100%;
+        }
     }
-  }
-  .list {
-  }
-  .right {
-    ul {
-      left: auto;
-      right: 0;
-      a {
-        text-align: right;
-      }
-      i {
-        left: 5px;
-        right: auto;
-      }
-      ul {
-        left: auto;
-        right: 100%;
-      }
+    .list {}
+    .right {
+        ul {
+            left: auto;
+            right: 0;
+            a {
+                text-align: right;
+            }
+            i {
+                left: 5px;
+                right: auto;
+            }
+            ul {
+                left: auto;
+                right: 100%;
+            }
+        }
     }
-  }
-  // MEGA content
-  .m-block {
-    width: 200px;
-    display: inline-block;
-  }
+    // MEGA content
+    .m-block {
+        width: 200px;
+        display: inline-block;
+    }
 }
 
 #mod-menu-mob {
-  @include position(absolute, 0, null, null, 0, 1000);
-  transition: all 300ms ease;
-  width: 100%;
-  display: none;
-  .logo-mob {
-    a {
-      @include position(absolute, 0, null, null, 0);
-      @include sizeEx(70px);
-      display: block;
-      background-color: #444;
+    @include position(absolute, 0, null, null, 0, 1000);
+    transition: all 300ms ease;
+    width: 100%;
+    display: none;
+    .logo-mob {
+        a {
+            @include position(absolute, 0, null, null, 0);
+            @include sizeEx(70px);
+            display: block;
+            background-color: #444;
+        }
     }
-  }
-  .pull-menu {
-    @include position(absolute, 8px, 15px, null, null);
-    cursor: pointer;
-    padding: 17px;
-    span {
-      @include position(absolute, null, null, null, 0);
-      display: block;
-      height: 4px;
-      width: 100%;
-      background-color: #fff;
-      border-radius: 5px;
-      opacity: 1;
-      transform: rotate(0deg);
-      &:nth-child(1) {
-        top: 5px;
-      }
-      &:nth-child(2),
-      &:nth-child(3) {
-        top: 15px;
-      }
-      &:nth-child(4) {
-        top: 25px;
-      }
+    .pull-menu {
+        @include position(absolute, 8px, 15px, null, null);
+        cursor: pointer;
+        padding: 17px;
+        span {
+            @include position(absolute, null, null, null, 0);
+            display: block;
+            height: 4px;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 5px;
+            opacity: 1;
+            transform: rotate(0deg);
+            &:nth-child(1) {
+                top: 5px;
+            }
+            &:nth-child(2),
+            &:nth-child(3) {
+                top: 15px;
+            }
+            &:nth-child(4) {
+                top: 25px;
+            }
+        }
+        &.is-open span:nth-child(1) {
+            top: 15px;
+            width: 0%;
+            left: 50%;
+        }
+        &.is-open span:nth-child(2) {
+            transform: rotate(45deg);
+        }
+        &.is-open span:nth-child(3) {
+            transform: rotate(-45deg);
+        }
+        &.is-open span:nth-child(4) {
+            top: 15px;
+            width: 0%;
+            left: 50%;
+        }
     }
-    &.is-open span:nth-child(1) {
-      top: 15px;
-      width: 0%;
-      left: 50%;
-    }
-    &.is-open span:nth-child(2) {
-      transform: rotate(45deg);
-    }
-    &.is-open span:nth-child(3) {
-      transform: rotate(-45deg);
-    }
-    &.is-open span:nth-child(4) {
-      top: 15px;
-      width: 0%;
-      left: 50%;
-    }
-  }
 }
 
 .menu-mob {
-  @include position(fixed, 0, 0, null, null, 101);
-  @include sizeEx(230px, 100%);
-  transform: translate3d(230px, 0, 0);
-  background-color: #fff;
-  overflow: hidden;
-  overflow-y: auto;
-  ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    li {
-      a {
-        text-decoration: none;
-        position: relative;
-        display: block;
-        padding: 0 20px;
-        margin: 30px 0;
-      }
+    @include position(fixed, 0, 0, null, null, 101);
+    @include sizeEx(230px, 100%);
+    transform: translate3d(230px, 0, 0);
+    background-color: #fff;
+    overflow: hidden;
+    overflow-y: auto;
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        li {
+            a {
+                text-decoration: none;
+                position: relative;
+                display: block;
+                padding: 0 20px;
+                margin: 30px 0;
+            }
+        }
     }
-  }
 }
 
 .menu-overlay {
-  @include position(fixed, 0, null, null, 0, 100);
-  @include sizeEx(100%);
-  display: none;
+    @include position(fixed, 0, null, null, 0, 100);
+    @include sizeEx(100%);
+    display: none;
 }
 
 @media only screen and (max-width: 1023px) {
-  #mod-menu {
-    @include position(fixed, 0px, 0px);
-    height: 50px;
-    background: #474d57;
-    .logo {
-      float: none;
-      width: 150px;
-      margin: 0 auto;
+    #mod-menu {
+        @include position(fixed, 0px, 0px);
+        height: 50px;
+        background: #474d57;
+        .logo {
+            float: none;
+            width: 150px;
+            margin: 0 auto;
+        }
+        .container {
+            padding: 0px;
+        }
     }
-    .container {
-      padding: 0px;
-    }
-  }
-  #mod-menu-mob {
-    display: block;
-  }
-  .menu-desk {
-    @include sizeEx(100%);
-    @include position(fixed, 50px, 0px);
-    display: none;
-    background-color: #474d57;
-    padding-bottom: 100px;
-    &.is-open {
-      display: block;
-      width: 100%;
-      overflow-y: scroll;
-    }
-    ul {
-      display: block;
-      text-align: left;
-    }
-    li {
-      display: block;
-      padding: 0 15px 10px;
-      float: none;
-      li {
+    #mod-menu-mob {
         display: block;
-        padding: 0 15px;
-      }
-      a {
-        font-size: 14px;
-        padding: 5px 0;
-      }
-      > div {
-        position: relative;
-        background: transparent;
-        display: block;
-        border: none;
-      }
-      b {
-        right: 0px;
-      }
     }
-    .cont-sub-menu {
-      border: none;
+    .menu-desk {
+        @include sizeEx(100%);
+        @include position(fixed, 50px, 0px);
+        display: none;
+        background-color: #474d57;
+        padding-bottom: 100px;
+        &.is-open {
+            display: block;
+            width: 100%;
+            overflow-y: scroll;
+        }
+        ul {
+            display: block;
+            text-align: left;
+        }
+        li {
+            display: block;
+            padding: 0 15px 10px;
+            float: none;
+            li {
+                display: block;
+                padding: 0 15px;
+            }
+            a {
+                font-size: 14px;
+                padding: 5px 0;
+            }
+            >div {
+                position: relative;
+                background: transparent;
+                display: block;
+                border: none;
+            }
+            b {
+                right: 0px;
+            }
+        }
+        .cont-sub-menu {
+            border: none;
+        }
+        .m-block {
+            float: none;
+            width: 100%;
+            padding: 0px;
+        }
+        .sub-menu {
+            border: none;
+        }
     }
-    .m-block {
-      float: none;
-      width: 100%;
-      padding: 0px;
-    }
-    .sub-menu {
-      border: none;
-    }
-  }
-
 }

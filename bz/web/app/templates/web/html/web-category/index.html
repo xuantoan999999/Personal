@@ -1,0 +1,41 @@
+<% extends 'web/layouts/layout.html' %>
+<% block content %>
+<div id="mod-product-list" data-ng-controller="categoryCtrl as vmCategory" data-ng-init="vmCategory.init()">
+    <!--<div class="banner" style="background: url('files/category/<$ data.image $>') center center no-repeat; background-size: cover">-->
+    <div class="banner" style="background: url('../assets/images/banner-pro-list.png') center center no-repeat; background-size: cover">
+        <img src="assets/images/banner-pro-list.png" class="opacity">
+    </div>
+    <div class="menu-logo">
+        <div class="container">
+            <div class="r-logo">
+                <a href="/danh-muc/<$ data.slug $>" class="all">TẤT CẢ</a>
+                <% for brand in listBrand %>
+                <a href="/danh-muc/<$ data.slug $>?b=<$ brand._id $>">
+                    <img src="files/category/<$ brand.image $>" alt="" class="icon-logo<% if brand._id == activeFilter %> active<% endif %>">
+                </a>
+                <% endfor %>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="ct-moto row">
+            <% for product in data.products %>
+                <div class="moto col-md-6 col-12" style="background: url('files/product/<$ product.thumb.url $>') center center no-repeat; background-size: contain;" data-ng-show="<$ loop.index0 $> < vmCategory.showProduct ">
+                    <p>
+                        <strong><$ product.brand.name $></strong> <$ product.name $><br>
+                        đ <$ product.price_user | currency(',') $>
+                    </p>
+                    <a href="/san-pham/<$ product.slug $>" class="chitiet">CHI TIẾT</a>
+                    <img src="assets/images/moto-1.png" class="opacity">
+                </div>
+            <% endfor %>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="view-more none" id="show-more" ng-click="vmCategory.showMore()" data-ng-show="vmCategory.showProduct <= <$ data.products.length $>">
+            <a href="">XEM THÊM</a>
+        </div>
+    </div>
+</div>
+<% endblock %>

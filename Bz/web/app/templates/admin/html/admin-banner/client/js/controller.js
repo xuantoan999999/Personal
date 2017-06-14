@@ -5,7 +5,7 @@ angular.module('banners').controller('BannersController', ['$scope', '$statePara
     function($scope, $stateParams, $location, $window, Authentication, Banners, Option, FileUploader, Categories) {
 
         $scope.authentication = Authentication;
-        if (!Authentication.user.name) {
+        if (!Authentication.isAdmin) {
             $location.path('signin');
         }
         $scope.uploadApi = $window.settings.services.uploadApi;

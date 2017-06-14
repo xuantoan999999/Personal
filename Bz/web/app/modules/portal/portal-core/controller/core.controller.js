@@ -83,15 +83,16 @@ function handleError(request, reply) {
         return reply.continue();
     }
     let config = request.server.configManager;
-    let loginUrl = config.get('web.error.user.login');
+    let loginUrl = config.get('web.error.portal.login');
     let notFoundUrl = config.get('web.error.notfound.url');
+    let portalprefix = config.get('web.context.portalprefix');
 
     const error = response;
     const statusCode = error.output.statusCode;
 
     if (statusCode === 404) {
         request.log(['error', 'notfound'], 'Resources is not be found');
-        return reply.redirect(config.get('web.context.portalprefix')+notFoundUrl);
+        return reply.redirect(notFoundUrl);
     } else if (statusCode === 403 || statusCode === 401) {
         request.log(['error', 'permission'], 'You have not permission to access this page');
         return reply.redirect(loginUrl);

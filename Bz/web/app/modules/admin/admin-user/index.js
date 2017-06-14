@@ -12,6 +12,10 @@ exports.register = function(server, options, next) {
         path: '/user',
         handler: UserController.getAll,
         config: {
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
+            },
             pre: [
             { method: UserMid.getOptions, assign: 'options' }
             ]
@@ -23,6 +27,10 @@ exports.register = function(server, options, next) {
         path: '/user/{id}',
         handler: UserController.edit,
         config: {
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
+            },
             pre: [
             { method: UserMid.getById, assign: 'user' }
             ]
@@ -33,6 +41,12 @@ exports.register = function(server, options, next) {
         method: ['GET'],
         path: '/user/change-status/{id}/{status}',
         handler: UserController.changeStatus,
+        config: {
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
+            }
+        }
     });
 
     server.route({
@@ -40,6 +54,10 @@ exports.register = function(server, options, next) {
         path: '/user/{id}',
         handler: UserController.remove,
         config: {
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
+            },
             pre: [
             { method: UserMid.getById, assign: 'user' }
             ]
@@ -51,6 +69,10 @@ exports.register = function(server, options, next) {
         path: '/user',
         handler: UserController.save,
         config: {
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
+            },
             pre: [
             { method: UserMid.getUserByEmail, assign: 'userByEmail' }
             ],
@@ -63,6 +85,10 @@ exports.register = function(server, options, next) {
         path: '/user/{id}',
         handler: UserController.update,
         config: {
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
+            },
             pre: [
             { method: UserMid.getById, assign: 'user' }
             ],
@@ -75,6 +101,10 @@ exports.register = function(server, options, next) {
         path: '/user/moveToTrash',
         handler: UserController.moveToTrash,
         config: {
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
+            },
             pre: [
             { method: UserMid.getById, assign: 'user' }
             ]
@@ -86,6 +116,10 @@ exports.register = function(server, options, next) {
         path: '/user/changeStatus',
         handler: UserController.changeStatus,
         config: {
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
+            },
             pre: [
             { method: UserMid.getById, assign: 'user' }
             ]
@@ -97,6 +131,10 @@ exports.register = function(server, options, next) {
         path: '/user/changeStatusMultiRows',
         handler: UserController.changeStatusMultiRows,
         config: {
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
+            },
             pre: [
             { method: UserMid.getRowsSelect, assign: 'currentSelect' },
             ]
@@ -108,6 +146,10 @@ exports.register = function(server, options, next) {
         path: '/user/deleteMultiRows',
         handler: UserController.deleteMultiRows,
         config: {
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
+            },
             pre: [
             { method: UserMid.getRowsSelect, assign: 'currentSelect' },
             ]

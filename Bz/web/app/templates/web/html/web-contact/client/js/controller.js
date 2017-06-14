@@ -2,6 +2,7 @@ angular.module('Contact')
     .controller("ContactController", ContactController)
 
 function ContactController($scope, $filter, ContactService) {
+    alert(2222)
     $scope.submit = function() {        
         if ($scope.contactForm.$valid) {
             var data = { name: this.name, email: this.email, message: this.message }

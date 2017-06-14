@@ -1,30 +1,46 @@
-#mod-footer{
-	background-color: #000;
-	padding: 35px 0;
-	h5{
-		color:#f60;
-		font-size: 18px;
-		font-family: "Fira  Sans";
-	}
-	ul{
-		list-style-type: none;
-		color:#fff;
-		padding: 0;
-		font-family: "Fira  Sans";
+#mod-footer {
+    background-color: #181818;
+    padding: 35px 0;
+    .row-rela{
+     margin:0;
+    }
+    h5 {
+        @include font($fontR, 18px, #f60, 500);
+    }
+    .share-icon {
+        float: left;
+        padding-right: 10px;
+        text-align: center;
+        a {
+            color: #fff;
+        }
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+        @include font($fontR, 14px, #fff, 500);
+        /*font-family: "Fira  Sans";
 		font-size: 14px;
-		font-weight: 500;
-		li{
-			padding-top: 10px;
-		}
-	}
-	.logo-gear{
-		img{
-			padding-right: 15px;
-		}
-	}
-	.lienhe{
-		img{
-			padding-right: 15px;
-		}
-	}
+		font-weight: 500;*/
+        li {
+            padding-top: 10px;
+        }
+    }
+    .logo-gear {
+        img {
+            padding-right: 15px;
+        }
+    }
+    .lienhe {
+        img {
+            padding-right: 15px;
+        }
+    }
 }
+
+
+/*@media only screen and(max-width: 768px){
+	.menu-gender{
+		display: none;
+	}
+}*/

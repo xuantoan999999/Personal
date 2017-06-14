@@ -11,6 +11,12 @@ exports.register = function(server, options, next) {
         method: 'GET',
         path: '/contact',
         handler: ContactController.getAll,
+        config: {
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
+            }
+        }
     });
 
     server.route({
@@ -18,6 +24,10 @@ exports.register = function(server, options, next) {
         path: '/contact/{id}',
         handler: ContactController.edit,
         config: {
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
+            },
             pre: [
             { method: ContactMid.getById, assign: 'contact' }
             ]
@@ -29,6 +39,10 @@ exports.register = function(server, options, next) {
         path: '/contact/{id}',
         handler: ContactController.remove,
         config: {
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
+            },
             pre: [
             { method: ContactMid.getById, assign: 'contact' }
             ]
@@ -40,6 +54,10 @@ exports.register = function(server, options, next) {
         path: '/contact',
         handler: ContactController.save,
         config: {
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
+            },
             validate: ContactVal.save,
             description: 'Created contact',
             tags: ['api'],
@@ -57,6 +75,10 @@ exports.register = function(server, options, next) {
         path: '/contact/{id}',
         handler: ContactController.update,
         config: {
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
+            },
             validate: ContactVal.update,
             pre: [
             { method: ContactMid.getById, assign: 'contact' }

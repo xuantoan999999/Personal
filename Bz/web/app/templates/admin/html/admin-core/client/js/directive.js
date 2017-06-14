@@ -1,21 +1,35 @@
 'use strict'
 
 angular
-    .module('core')
-    .directive('bzMessage', ['Notice', '$rootScope', function (Notice, $rootScope) {
-        var renderNotice = function (message, type) {
-            if (type == Notice.ERROR) {
-                return '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-exclamation-triangle"></i> Error!</h4><div>' + message + '</div></div>';
-            } else if (type == Notice.INFO) {
-                return '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-info"></i> Infomation!</h4><div>' + message + '</div></div>';
-            }
-            return '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> Success!</h4><div>' + message + '</div></div>'
-        };
+.module('core')
+// Kiểm tra mật khẩu trùng khớp
+.directive('bzValidPasswordMatch', [function() {
+    return {
+        require: 'ngModel',
+        link: function (scope, iElement, iAttrs, ngModel) {
+            var pw = $(iAttrs.bzValidPasswordMatch);
 
-        return {
-            restrict: "E",
-            template: function (elem, attr) {
-                var notice = Notice.getNotice();
+            ngModel.$parsers.push(function (value) {
+                ngModel.$setValidity('match', value !== '' && value === pw[0].value);
+                return value;
+            });
+        }
+    };
+}])               
+.directive('bzMessage', ['Notice', '$rootScope', function (Notice, $rootScope) {
+    var renderNotice = function (message, type) {
+        if (type == Notice.ERROR) {
+            return '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-exclamation-triangle"></i> Error!</h4><div>' + message + '</div></div>';
+        } else if (type == Notice.INFO) {
+            return '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-info"></i> Infomation!</h4><div>' + message + '</div></div>';
+        }
+        return '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> Success!</h4><div>' + message + '</div></div>'
+    };
+
+    return {
+        restrict: "E",
+        template: function (elem, attr) {
+            var notice = Notice.getNotice();
                 // $("html body").click(function() {
                 //     elem.empty();
                 // });
@@ -48,143 +62,143 @@ angular
         };
 
     }])
-    .directive('errorMessage', function () {
-        return {
-            restrict: 'E',
-            template: function (elem, attr) {
-                var requireMsg = attr.requireMsg || "You did not enter a field";
-                var minlengthMsg = attr.minlength ? `You should enter longer than ${attr.minlength - 1} characters` : "You should enter longer in this field";
-                var maxlengthMsg = attr.maxlength ? `You should enter shorter than ${attr.maxlength + 1} characters` : "You should enter shorter in this field";
-                return '<div ng-message="required">' + requireMsg + '</div>' +
-                    '<div ng-message="email">You did not enter a email format</div>' +
-                    '<div ng-message="pattern">You did not enter a right pattern</div>' +
-                    '<div ng-message="number">You did not enter a number</div>' +
-                    '<div ng-message="min">You should enter bigger value</div>' +
-                    '<div ng-message="max">You should enter smaller value</div>' +
-                    '<div ng-message="minlength">' + minlengthMsg + '</div>' +
-                    '<div ng-message="maxlength">' + maxlengthMsg + '</div>';
-            }
-        };
-    })
-    .directive('ngLoading', function () {
+.directive('errorMessage', function () {
+    return {
+        restrict: 'E',
+        template: function (elem, attr) {
+            var requireMsg = attr.requireMsg || "Bạn chưa nhập vào trường này";
+            var minlengthMsg = attr.minlength ? `You should enter longer than ${attr.minlength - 1} characters` : "You should enter longer in this field";
+            var maxlengthMsg = attr.maxlength ? `You should enter shorter than ${attr.maxlength + 1} characters` : "You should enter shorter in this field";
+            return '<div ng-message="required">' + requireMsg + '</div>' +
+            '<div ng-message="email">Định dạng email không đúng</div>' +
+            '<div ng-message="pattern">Không đúng định dạng</div>' +
+            '<div ng-message="number">Dữ liệu nhập phả là số</div>' +
+            '<div ng-message="min">You should enter bigger value</div>' +
+            '<div ng-message="max">You should enter smaller value</div>' +
+            '<div ng-message="minlength">' + minlengthMsg + '</div>' +
+            '<div ng-message="maxlength">' + maxlengthMsg + '</div>';
+        }
+    };
+})
+.directive('ngLoading', function () {
 
-        var loadingSpinner = '<div id="preview-area">' +
-            '<div class="mfp-bg bzFromTop mfp-ready"></div>' +
-            '<div class="sk-cube-grid">' +
-            '<div class="sk-cube sk-cube1"></div>' +
-            '<div class="sk-cube sk-cube2"></div>' +
-            '<div class="sk-cube sk-cube3"></div>' +
-            '<div class="sk-cube sk-cube4"></div>' +
-            '<div class="sk-cube sk-cube5"></div>' +
-            '<div class="sk-cube sk-cube6"></div>' +
-            '<div class="sk-cube sk-cube7"></div>' +
-            '<div class="sk-cube sk-cube8"></div>' +
-            '<div class="sk-cube sk-cube9"></div>' +
-            '</div>';
+    var loadingSpinner = '<div id="preview-area">' +
+    '<div class="mfp-bg bzFromTop mfp-ready"></div>' +
+    '<div class="sk-cube-grid">' +
+    '<div class="sk-cube sk-cube1"></div>' +
+    '<div class="sk-cube sk-cube2"></div>' +
+    '<div class="sk-cube sk-cube3"></div>' +
+    '<div class="sk-cube sk-cube4"></div>' +
+    '<div class="sk-cube sk-cube5"></div>' +
+    '<div class="sk-cube sk-cube6"></div>' +
+    '<div class="sk-cube sk-cube7"></div>' +
+    '<div class="sk-cube sk-cube8"></div>' +
+    '<div class="sk-cube sk-cube9"></div>' +
+    '</div>';
 
-        return {
-            restrict: 'AE',
-            link: function (scope, element, attrs) {
-                scope.$watch(attrs.loadingDone, function (val) {
-                    if (val) {
-                        element.html(loadingSpinner);
-                    } else {
-                        element.html('');
-                    }
-                });
-            }
-        };
-    })
-    .directive('ngPopupConfirm', function () {
-        return {
-            restrict: 'E',
-            link: function (scope, element, attrs) {
-                scope.$watch(attrs.loadingDone, function (val) {
-                    if (val) {
-                        element.html(loadingSpinner);
-                    } else {
-                        element.html('');
-                    }
-                });
-            }
-        };
-    })
-    .directive("bzPageType", function ($rootScope) {
-        var onclick = function (pageType, page, name) {
-            $rootScope.$broadcast("PAGE_CHANGE_" + name, {
-                pageType: pageType,
-                page: page
+    return {
+        restrict: 'AE',
+        link: function (scope, element, attrs) {
+            scope.$watch(attrs.loadingDone, function (val) {
+                if (val) {
+                    element.html(loadingSpinner);
+                } else {
+                    element.html('');
+                }
             });
-        };
-
-        return {
-            restrict: "A",
-            link: function (scope, elem, attr) {
-                if (!elem.hasClass('active')) {
-                    elem.on('click', function () {
-                        onclick(attr.bzPageType, attr.page, attr.name);
-                    });
+        }
+    };
+})
+.directive('ngPopupConfirm', function () {
+    return {
+        restrict: 'E',
+        link: function (scope, element, attrs) {
+            scope.$watch(attrs.loadingDone, function (val) {
+                if (val) {
+                    element.html(loadingSpinner);
+                } else {
+                    element.html('');
                 }
-            }
-        };
-    })
-    .directive("bzPageCell", function ($compile) {
-        var render = function (label, active, disabled, pageType, name) {
-            var active = active ? "active" : "";
-            var disabled = disabled ? "disabled" : "";
-            var classDisabled = disabled && !active ? "disabled" : "";
-            return '<li bz-page-type="' + pageType + '" name="' + name + '" page="' + label + '" class="' + active + ' ' + classDisabled + '" disabled="' + disabled + '"><a href="javascript:void(0);" ' + disabled + '>' + label + '</a></li>';
-        };
+            });
+        }
+    };
+})
+.directive("bzPageType", function ($rootScope) {
+    var onclick = function (pageType, page, name) {
+        $rootScope.$broadcast("PAGE_CHANGE_" + name, {
+            pageType: pageType,
+            page: page
+        });
+    };
 
-        return {
-            restrict: 'E',
-            link: function (scope, elem, attr) {
-                var {
-                    label,
-                    active,
-                    disabled,
-                    pageType,
-                    name
-                } = attr;
-                var markup = $compile(render(label, active, disabled, pageType, name))(scope);
-                elem.replaceWith(markup);
+    return {
+        restrict: "A",
+        link: function (scope, elem, attr) {
+            if (!elem.hasClass('active')) {
+                elem.on('click', function () {
+                    onclick(attr.bzPageType, attr.page, attr.name);
+                });
             }
-        };
-    })
-    .directive("bzPagination", function ($rootScope, $compile, $parse) {
-        var currentPage = 1;
-        var totalPage = 1;
-        var hadChange = false;
-        var handlePageChange = null;
-        var name = null;
-        var maxPage = 5;
+        }
+    };
+})
+.directive("bzPageCell", function ($compile) {
+    var render = function (label, active, disabled, pageType, name) {
+        var active = active ? "active" : "";
+        var disabled = disabled ? "disabled" : "";
+        var classDisabled = disabled && !active ? "disabled" : "";
+        return '<li bz-page-type="' + pageType + '" name="' + name + '" page="' + label + '" class="' + active + ' ' + classDisabled + '" disabled="' + disabled + '"><a href="javascript:void(0);" ' + disabled + '>' + label + '</a></li>';
+    };
 
-        var render = function (page, total_page, name, maxPage) {
-            return '<ul class="pagination pagination-sm pull-right">' +
-                renderPrevious(name) +
-                renderPageCell(page, total_page, name, maxPage) +
-                renderNext(name) +
-                '</ul>';
-        };
+    return {
+        restrict: 'E',
+        link: function (scope, elem, attr) {
+            var {
+                label,
+                active,
+                disabled,
+                pageType,
+                name
+            } = attr;
+            var markup = $compile(render(label, active, disabled, pageType, name))(scope);
+            elem.replaceWith(markup);
+        }
+    };
+})
+.directive("bzPagination", function ($rootScope, $compile, $parse) {
+    var currentPage = 1;
+    var totalPage = 1;
+    var hadChange = false;
+    var handlePageChange = null;
+    var name = null;
+    var maxPage = 5;
 
-        var renderPageCell = function (page, total_page, name, maxPage) {
-            var renderHtml = "";
-            var start = 1;
-            var end = total_page;
-            if (total_page > maxPage) {
-                var left = maxPage / 2;
-                var right = maxPage - (left + 1);
-                start = page - left;
-                end = page + right;
-                if (start < 1) {
-                    end += (1 - start);
-                    start += (1 - start);
-                }
-                if (end > total_page) {
-                    start -= (end - total_page);
-                    end -= (end - total_page);
-                }
+    var render = function (page, total_page, name, maxPage) {
+        return '<ul class="pagination pagination-sm pull-right">' +
+        renderPrevious(name) +
+        renderPageCell(page, total_page, name, maxPage) +
+        renderNext(name) +
+        '</ul>';
+    };
+
+    var renderPageCell = function (page, total_page, name, maxPage) {
+        var renderHtml = "";
+        var start = 1;
+        var end = total_page;
+        if (total_page > maxPage) {
+            var left = maxPage / 2;
+            var right = maxPage - (left + 1);
+            start = page - left;
+            end = page + right;
+            if (start < 1) {
+                end += (1 - start);
+                start += (1 - start);
             }
+            if (end > total_page) {
+                start -= (end - total_page);
+                end -= (end - total_page);
+            }
+        }
             // var renderCount = 0;
             for (var i = start; i <= end; i++) {
                 if (i == page) {
@@ -209,7 +223,7 @@ angular
                 var disabled = "";
             }
             return '<bz-page-cell name="' + name + '" disabled="' + disabled + '" page-type="first" label="&laquo;" />' +
-                '<bz-page-cell name="' + name + '" disabled="' + disabled + '" page-type="previous" label="&lsaquo;" />';
+            '<bz-page-cell name="' + name + '" disabled="' + disabled + '" page-type="previous" label="&lsaquo;" />';
         };
 
         var renderNext = function (name) {
@@ -219,7 +233,7 @@ angular
                 var disabled = "";
             }
             return '<bz-page-cell name="' + name + '" disabled="' + disabled + '" page-type="next" label="&rsaquo;" />' +
-                '<bz-page-cell name="' + name + '" disabled="' + disabled + '" page-type="last" label="&raquo;" />';
+            '<bz-page-cell name="' + name + '" disabled="' + disabled + '" page-type="last" label="&raquo;" />';
         };
 
         return {
@@ -261,29 +275,29 @@ angular
                     } else {
                         switch (data.pageType) {
                             case 'first':
-                                if (currentPage == 1) {
-                                    return;
-                                }
-                                handlePageChange(1)
-                                break;
+                            if (currentPage == 1) {
+                                return;
+                            }
+                            handlePageChange(1)
+                            break;
                             case 'previous':
-                                if (currentPage == 1) {
-                                    return;
-                                }
-                                handlePageChange(currentPage - 1);
-                                break;
+                            if (currentPage == 1) {
+                                return;
+                            }
+                            handlePageChange(currentPage - 1);
+                            break;
                             case 'next':
-                                if (currentPage == totalPage) {
-                                    return;
-                                }
-                                handlePageChange(currentPage + 1);
-                                break;
+                            if (currentPage == totalPage) {
+                                return;
+                            }
+                            handlePageChange(currentPage + 1);
+                            break;
                             case 'last':
-                                if (currentPage == totalPage) {
-                                    return;
-                                }
-                                handlePageChange(totalPage);
-                                break;
+                            if (currentPage == totalPage) {
+                                return;
+                            }
+                            handlePageChange(totalPage);
+                            break;
                         }
                     }
                     elem.empty();
@@ -293,25 +307,74 @@ angular
             }
         };
     })
-    .directive("atrDateTimePicker", function () {
-        return {
-            require: 'ngModel',
-            scope: {
-                atrOptions: '=atrOptions'
-            },
-            link: function (scope, element, $attrs, ngModel) {
-                /*Init date time*/
-                var options = {
-                    timePicker: false,          /* có time*/
-                    timePickerIncrement: 30,    /* khoảng phút của time*/
-                    singleDatePicker: true,     /*range*/
-                    autoUpdateInput: false,
-                    locale: {
-                        format: 'DD/MM/YYYY'
-                    }
-                };
-                options = angular.extend({}, options, scope.atrOptions);
+.directive("atrDateTimePicker", function () {
+    return {
+        require: 'ngModel',
+        scope: {
+            atrOptions: '=atrOptions'
+        },
+        link: function (scope, element, $attrs, ngModel) {
+            /*Init date time*/
+            var options = {
+                timePicker: false,          /* có time*/
+                timePickerIncrement: 30,    /* khoảng phút của time*/
+                singleDatePicker: true,     /*range*/
+                autoUpdateInput: false,
+                locale: {
+                    format: 'DD/MM/YYYY'
+                }
+            };
+            options = angular.extend({}, options, scope.atrOptions);
 
+            element.daterangepicker(options);
+            /*Khi date thay đổi*/
+            element.on('apply.daterangepicker', function (ev, picker) {
+                var value = {
+                    startDate: picker.startDate,
+                    endDate: picker.endDate,
+                };
+
+                /*khi chọn single, mutil datetime*/
+                if (!options.singleDatePicker) {
+                    picker.element.val(picker.startDate.format(picker.locale.format) + ' - ' + picker.endDate.format(picker.locale.format));
+                    return ngModel.$setViewValue(value);
+                } else {
+                    picker.element.val(picker.startDate.format(picker.locale.format));
+                    return ngModel.$setViewValue(value.startDate);
+                }
+            });
+
+            /*Render lần đầu vào page model trc khi init datetime*/
+            if (!ngModel) return;
+            ngModel.$render = function () {
+                if (ngModel.$viewValue) {
+                    var convertedDate = moment(ngModel.$viewValue).format(options.locale.format);
+                    element.val(convertedDate || '');
+                }
+            };
+        }
+    };
+})
+.directive("singleDateTimePicker", function ($timeout) {
+    return {
+        require: 'ngModel',
+        scope: {
+            atrOptions: '=atrOptions'
+        },
+        link: function (scope, element, $attrs, ngModel) {
+            /*Init date time*/
+            var options = {
+                timePicker: false,          /* có time*/
+                timePickerIncrement: 30,    /* khoảng phút của time*/
+                singleDatePicker: true,     /*range*/
+                autoUpdateInput: false,
+                locale: {
+                    format: 'DD/MM/YYYY'
+                }
+            };
+            options = angular.extend({}, options, scope.atrOptions);
+
+            $timeout(function () {
                 element.daterangepicker(options);
                 /*Khi date thay đổi*/
                 element.on('apply.daterangepicker', function (ev, picker) {
@@ -320,14 +383,8 @@ angular
                         endDate: picker.endDate,
                     };
 
-                    /*khi chọn single, mutil datetime*/
-                    if (!options.singleDatePicker) {
-                        picker.element.val(picker.startDate.format(picker.locale.format) + ' - ' + picker.endDate.format(picker.locale.format));
-                        return ngModel.$setViewValue(value);
-                    } else {
-                        picker.element.val(picker.startDate.format(picker.locale.format));
-                        return ngModel.$setViewValue(value.startDate);
-                    }
+                    picker.element.val(picker.startDate.format(picker.locale.format));
+                    return ngModel.$setViewValue(value.startDate);
                 });
 
                 /*Render lần đầu vào page model trc khi init datetime*/
@@ -338,50 +395,7 @@ angular
                         element.val(convertedDate || '');
                     }
                 };
-            }
-        };
-    })
-    .directive("singleDateTimePicker", function ($timeout) {
-        return {
-            require: 'ngModel',
-            scope: {
-                atrOptions: '=atrOptions'
-            },
-            link: function (scope, element, $attrs, ngModel) {
-                /*Init date time*/
-                var options = {
-                    timePicker: false,          /* có time*/
-                    timePickerIncrement: 30,    /* khoảng phút của time*/
-                    singleDatePicker: true,     /*range*/
-                    autoUpdateInput: false,
-                    locale: {
-                        format: 'DD/MM/YYYY'
-                    }
-                };
-                options = angular.extend({}, options, scope.atrOptions);
-
-                $timeout(function () {
-                    element.daterangepicker(options);
-                    /*Khi date thay đổi*/
-                    element.on('apply.daterangepicker', function (ev, picker) {
-                        var value = {
-                            startDate: picker.startDate,
-                            endDate: picker.endDate,
-                        };
-
-                        picker.element.val(picker.startDate.format(picker.locale.format));
-                        return ngModel.$setViewValue(value.startDate);
-                    });
-
-                    /*Render lần đầu vào page model trc khi init datetime*/
-                    if (!ngModel) return;
-                    ngModel.$render = function () {
-                        if (ngModel.$viewValue) {
-                            var convertedDate = moment(ngModel.$viewValue).format(options.locale.format);
-                            element.val(convertedDate || '');
-                        }
-                    };
-                }, 10);
-            }
-        };
-    });
+            }, 10);
+        }
+    };
+});

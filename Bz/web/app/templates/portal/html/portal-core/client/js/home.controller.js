@@ -5,13 +5,9 @@ angular.module('core').controller('HomeController', ['$scope', '$location', 'Aut
 	function($scope, $location, Authentication) {
         // This provides Authentication context.
         $scope.authentication = Authentication;
-
-        $scope.checkAuth = function() {
-        	console.log('test');
-        	if (!Authentication.isAgent()) {
-        		console.log('test1');
-        		$location.path('signin');
-        	}
+        
+        if (!(Authentication.isAgent || Authentication.isSupplier)) {
+            $location.path('signin');
         }
     }
     ]);

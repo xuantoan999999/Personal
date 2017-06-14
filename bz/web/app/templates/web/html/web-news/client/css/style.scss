@@ -1,0 +1,158 @@
+$gray: #c9c8cd;
+$white: #fff;
+$orange: #ff6600;
+$black: #222222;
+
+#mod-news {
+  font-weight: 500;
+}
+
+#mod-news-banner {
+  background-color: rgba(0, 0, 0, 0.25);
+
+  .slick-dots {
+    top: 520px;
+
+    .slick-active {
+      button:before {
+        background: #fff;
+      }
+    }
+
+    li {
+      margin: 0 10px;
+
+      button {
+        content: "";
+        border-radius: 100%;
+        width: 15px;
+        height: 15px;
+      }
+
+      button:before {
+        border-radius: 100%;
+        border: 1px solid $white;
+        content: "";
+        width: 15px;
+        height: 15px;
+        opacity: 1;
+      }
+    }
+  }
+
+  .slide-item {
+    min-height: 570px;
+    font-family: $fontR;
+
+    .title {
+      margin: 0 auto;
+      color: $white;
+      max-width: 570px;
+
+      button {
+        color: $white;
+        border: 1px solid $white;
+        background: none;
+        padding: 3px 40px;
+        margin-top: 50px;
+        transition: 0.5s;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: $white;
+        color: $black;
+        opacity: 0.5;
+      }
+    }
+  }
+}
+
+#my-carousel-indictor {
+  li {
+    font-size: 20px;
+  }
+}
+
+#mod-news-content {
+  margin: 0 0 90px;
+
+  .title {
+    font-family: $fontR;
+    margin: 35px 0 40px;
+    opacity: 0.5;
+  }
+
+  .item {
+    margin-bottom: 100px;
+
+    .image {
+      img {
+        width: 100%;
+        min-height: 250px;
+      }
+    }
+
+    .info {
+      margin-top: 35px;
+
+      .item-date {
+        p {
+          font-family: $fontR;
+          font-size: 12px;
+          opacity: 0.5;
+          margin-bottom: 10px;
+        }
+      }
+
+      .item-content {
+        width: 80%;
+        margin: 40px auto 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-height: 48px;
+
+        p {
+          font-family: $fontR;
+          font-size: 14px;
+          line-height: 16px;
+          color: $black;
+        }
+      }
+
+      .item-title {
+        width: 95%;
+        max-height: 85px;
+        text-overflow: clip;
+        overflow: hidden;
+        margin: auto;
+
+        a {
+          font-family: $fontR;
+          text-decoration: none;
+          color: $orange;
+        }
+      }
+    }
+  }
+
+  .button-view-more {
+    margin: 10px 0 0;
+
+    button {
+      font-family: $fontR;
+      color: $orange;
+      border: 1px solid $orange;
+      background-color: $white;
+      padding: 5px 40px;
+      cursor: pointer;
+      transition: 0.75s;
+      font-size: 20px;
+    }
+
+    button:hover {
+      background-color: $orange;
+      color: $white;
+    }
+  }
+}

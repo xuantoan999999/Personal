@@ -4,13 +4,19 @@ const CategoryController = require('./controller/category.controller.js');
 const CategoryMid = require('./middleware/category.middleware.js');
 const CategoryVal = require('./validate/category.validate.js');
 
-exports.register = function(server, options, next) {
+exports.register = function (server, options, next) {
     var configManager = server.configManager;
 
     server.route({
         method: 'GET',
         path: '/category',
         handler: CategoryController.getAll,
+        config: {
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
+            }
+        }
     });
 
     server.route({
@@ -19,8 +25,12 @@ exports.register = function(server, options, next) {
         handler: CategoryController.edit,
         config: {
             pre: [
-            { method: CategoryMid.getById, assign: 'category' }
-            ]
+                { method: CategoryMid.getById, assign: 'category' }
+            ],
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
+            }
         }
     });
 
@@ -30,8 +40,12 @@ exports.register = function(server, options, next) {
         handler: CategoryController.remove,
         config: {
             pre: [
-            { method: CategoryMid.getById, assign: 'category' }
-            ]
+                { method: CategoryMid.getById, assign: 'category' }
+            ],
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
+            }
         }
     });
 
@@ -45,9 +59,13 @@ exports.register = function(server, options, next) {
             tags: ['api'],
             plugins: {
                 'hapi-swagger': {
-                    responses: {'400': {'description': 'Bad Request'}},
+                    responses: { '400': { 'description': 'Bad Request' } },
                     payloadType: 'form'
                 }
+            },
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
             }
         }
     });
@@ -59,15 +77,19 @@ exports.register = function(server, options, next) {
         config: {
             validate: CategoryVal.update,
             pre: [
-            { method: CategoryMid.getById, assign: 'category' }
+                { method: CategoryMid.getById, assign: 'category' }
             ],
             description: 'Update category',
             tags: ['api'],
             plugins: {
                 'hapi-swagger': {
-                    responses: {'400': {'description': 'Bad Request'}},
+                    responses: { '400': { 'description': 'Bad Request' } },
                     payloadType: 'form'
                 }
+            },
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
             }
         }
     });

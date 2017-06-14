@@ -7,7 +7,7 @@ angular.module('auth').controller('AuthenticationController', ['$scope', '$http'
         $scope.signin = function() {
             var data = $scope.credentials;
             data.scope = 'admin';
-            $http.post($window.settings.services.userApi + '/api/user/login', data)
+            $http.post($window.settings.services.userApi + '/api/admin/login', data)
                 .then(function(response) {
                     if (response.data.token) {
                         $window.location.href = window.cmsprefix;
@@ -20,7 +20,7 @@ angular.module('auth').controller('AuthenticationController', ['$scope', '$http'
         };
 
         $scope.signout = function() {
-            $http.get($window.settings.services.userApi + '/api/user/logout')
+            $http.get($window.settings.services.userApi + '/api/admin/logout')
                 .then(function(response) {
                     $scope.authentication.user = '';
                     $window.location.href = window.cmsprefix;

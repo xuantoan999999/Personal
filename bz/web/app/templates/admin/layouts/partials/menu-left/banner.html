@@ -1,0 +1,14 @@
+<!-- =========================Users========================= -->
+<li ng-if="pageMethods.authSvc.isAdmin" ng-class="{'active':pageData.menuType === 'banner'}" class="treeview">
+    <a ui-sref="listBanners()">
+        <i class="fa fa-users text-aqua"></i> <span> Danh sách banner</span>
+    </a>
+</li>
+
+<!-- =========================Users========================= -->
+<li ng-if="pageMethods.authSvc.isAdmin" ng-class="{'active':pageData.menuType === 'banner'}" class="treeview">
+    <a ui-sref="createBanner()">
+        <i class="fa fa-circle-o text-aqua"></i> <span> Tạo banner</span>
+    </a>
+</li>
+<!-- =========================END Users========================= -->

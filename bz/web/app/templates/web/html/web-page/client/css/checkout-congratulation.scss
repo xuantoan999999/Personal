@@ -1,0 +1,29 @@
+#mod-checkout-congratulation {
+    text-align: center;
+    @include font(null, 14px, #222222);
+    padding: 20px 10px;
+    .details {
+        color: #fc4f08;
+        text-decoration: none;
+    }
+    .come-back {
+        @include font(null, 14px, #ff6600);
+        text-decoration: none;
+    }
+    .gear {
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .code {
+        font-size: 24px;
+    }
+    .address {
+        margin-top: 25px;
+    }
+    p {
+        margin-bottom: 0;
+    }
+    .text {
+        padding: 70px 0;
+    }
+}

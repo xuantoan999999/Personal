@@ -6,7 +6,7 @@ angular.module('settings').controller('SettingsController', ['$scope', '$statePa
 
         $scope.authentication = Authentication;
 
-        if (!Authentication.user.name) {
+        if (!Authentication.isAdmin) {
             $location.path('signin');
         }
         $scope.uploadApi = $window.settings.services.uploadApi;

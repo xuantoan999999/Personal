@@ -113,7 +113,16 @@ var ProductSchema = new Schema({
             trim: true
         }
     }],
-    // banner: {
+    engine_detail: {
+        type: Object,
+    },
+    bone_frame_detail: {
+        type: Object,
+    },
+    size_detail: {
+        type: Object
+    },
+    // feature: {
     //     url: {
     //         type: String,
     //         required: true,

@@ -1,0 +1,71 @@
+#mod-banner-gen {
+    background: #000;
+    padding-top: 40px;
+    .item {
+        /*width: 720px !important;*/
+        padding: 90px 50px;
+        max-width: 100%;
+        position: relative;
+        label{
+            position: absolute;
+            top:15px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            @include font($fontR,36px,#f8f8f8,500);
+        }
+        span{
+            position: absolute;
+            left: 0;
+            right: 0;
+            text-align: center;
+            @include font($fontR,18px,#f8f8f8,400);
+            a{
+                @include font($fontR,14px,#f8f8f8,400);
+            }
+        }
+    }
+    .moto {
+        background-size: cover !important;
+        /*img{
+			width: 100%;
+          }*/
+      }
+      .slick-dotted.slick-slider{
+        margin-bottom: 0;
+        position: relative;
+    }
+    .slick-slide img {
+        width: 100%;
+    }
+    .slick-dots{
+        top : -30px;
+        bottom: initial;
+        li{
+            padding: 0 45px;
+        }
+        a{
+          @include font($fontR,18px,#999,500);
+      }
+
+  }
+  .slick-next {
+    right: 110px;
+    background-image: url(../images/next.png);
+    width: 38px;
+    height: 64px;
+    &::before {
+        content: none;
+    }
+}
+.slick-prev {
+    left: 115px;
+    z-index: 2;
+    background-image: url(../images/prev.png);
+    width: 38px;
+    height: 64px;
+    &::before {
+        content: none;
+    }
+}
+}

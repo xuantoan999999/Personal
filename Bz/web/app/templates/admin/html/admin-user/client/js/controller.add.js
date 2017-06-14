@@ -5,7 +5,7 @@ angular.module('users').controller('UsersAddController', ['$rootScope', '$scope'
 
     function ($rootScope, $scope, $log, $stateParams, $location, Authentication, Users, Option, $sce, Notice, $timeout, localStorageService) {
 
-        if (!Authentication.user.name) {
+        if (!Authentication.isAdmin) {
             $location.path('signin');
         }
         $scope.isLoading = false;

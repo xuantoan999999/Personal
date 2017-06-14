@@ -1,6 +1,9 @@
 node_modules
 public/files
+public/assets/dist/
+app/config/development.conf.js
 app/config/production.conf.js
+app/config/development.conf.js
 var/*.log
 *.log
 .vscode

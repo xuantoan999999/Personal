@@ -1,0 +1,13 @@
+{
+    "delay": 5,
+    "env": {
+        "NODE_ENV": "development"
+    },
+    "ignore": [
+        "public/",
+        "var/",
+        "node_modules/",
+        "app/templates/*/html/*/client/**"
+    ],
+    "ext": "js ts json html css"
+}

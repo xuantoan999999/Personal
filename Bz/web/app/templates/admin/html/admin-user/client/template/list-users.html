@@ -1,6 +1,6 @@
 <section data-ng-controller="UsersListController" data-ng-init="find()">
     <section class="content-header">
-        <h1>Users</h1>
+        <h1>Người dùng</h1>
     </section>
     <!-- Loading -->
     <ng-loading loading-done="isLoading" />
@@ -11,11 +11,11 @@
                 <div class="box box-primary">
                     <div class="box-header">
                         <div class="pull-left">
-                            <a class="btn btn-primary" data-ui-sref="createUser">New</a> &nbsp;&nbsp;
+                            <a class="btn btn-primary" data-ui-sref="createUser">Tạo mới</a> &nbsp;&nbsp;
                             <button class="btn btn-primary" ng-click="changeStatusMultiRows(1)">Publish</button>&nbsp;&nbsp;
                             <button class="btn btn-warning" ng-click="changeStatusMultiRows(0)">UnPublish</button>&nbsp;&nbsp;
-                            <button ng-if="search.status !=2" class="btn btn-danger" data-ng-click="movetoTrashMultiRows()">Move to trash</button>
-                            <button ng-if="search.status ==2" class="btn btn-danger" ng-click="deletePermanentMultiRows()">Delete Permanent</button>
+                            <button ng-if="search.status !=2" class="btn btn-danger" data-ng-click="movetoTrashMultiRows()">Đưa vào thùng rác</button>
+                            <button ng-if="search.status ==2" class="btn btn-danger" ng-click="deletePermanentMultiRows()">Xóa vĩnh viễn</button>
                         </div>
                     </div>
                     <hr/>
@@ -27,25 +27,25 @@
                                 <div class="row">
                                     <div class="form-inline filter-layout">
                                         <div class="form-group">
-                                            <label class="control-label" for="keyword">Keyword</label>
-                                            <input type="text" name="keyword" data-ng-model="search.keyword" id="keyword" class="form-control" placeholder="Search" />
+                                            <label class="control-label" for="keyword">Từ khóa</label>
+                                            <input type="text" name="keyword" data-ng-model="search.keyword" id="keyword" class="form-control" placeholder="Tìm kiếm" />
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="roles">Role</label>
+                                            <label class="control-label" for="roles">Vai trò</label>
                                             <select ng-change="filter()" class="form-control" data-ng-model="search.role" id="role" ng-options="item.value as item.name for item in userRoles" required>
-                                                    <option value="">All role</option>
+                                                    <option value="">Tất cả</option>
                                                 </select>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="status">Status</label>
+                                            <label class="control-label" for="status">Trạng thái</label>
                                             <select ng-change="filter()" class="form-control" ng-init="status = 1" data-ng-model="search.status" id="status" ng-options="item.value as item.name for item in statuses" required>
-                                                    <option value="">All status</option>
+                                                    <option value="">Tất cả</option>
                                                 </select>
                                         </div>
                                         <hr/>
                                         <div class="form-group filter-submit">
-                                            <a class="btn btn-primary" ng-click="filter()">Filter</a> &nbsp;&nbsp;
-                                            <a class="btn btn-primary" ng-click="reset()">Reset</a>
+                                            <a class="btn btn-primary" ng-click="filter()">Lọc</a> &nbsp;&nbsp;
+                                            <a class="btn btn-primary" ng-click="reset()">Làm mới</a>
                                         </div>
                                         <hr/>
                                     </div>
@@ -53,12 +53,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <h4><b>Summary</b></h4>
-                            <p><b>Items Per Page</b>: {{itemsPerPage}}</p>
-                            <p><b>Total Page</b>: {{totalPage}}</p>
-                            <p><b>Total Items</b>: {{totalItems}}</p>
-                        </div>
+                            <!-- <div>
+                                <h4><b>Summary</b></h4>
+                                <p><b>Items Per Page</b>: {{itemsPerPage}}</p>
+                                <p><b>Total Page</b>: {{totalPage}}</p>
+                                <p><b>Total Items</b>: {{totalItems}}</p>
+                            </div> -->
                         <table id="table-list" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
@@ -66,12 +66,12 @@
                                         <input type="checkbox" ng-model="selectAll" ng-click="sellectAll()" id="selectAll" />
                                     </th>
                                     <th>ID</th>
-                                    <th>Name</th>
+                                    <th>Tên</th>
                                     <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Status</th>
-                                    <th>Roles</th>
-                                    <th>Created on</th>
+                                    <th>Số ĐT</th>
+                                    <th>Trạng thái</th>
+                                    <th>Vai trò</th>
+                                    <th>Ngày tạo</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

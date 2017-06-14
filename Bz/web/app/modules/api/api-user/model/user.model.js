@@ -4,7 +4,7 @@
  * Module dependencies.
  */
  var mongoose = require('mongoose'),
- bcrypt = require('bcrypt'),
+ bcrypt = require('bcryptjs'),
  Schema = mongoose.Schema;
 
  const SALT_LENGTH = 9;

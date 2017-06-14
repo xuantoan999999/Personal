@@ -1,0 +1,25 @@
+<li class="treeview">
+	<a href="#">
+		<i class="fa fa-cart-arrow-down"></i>
+		<span>Đơn đặt hàng</span>
+		<span class="pull-right-container">
+			<i class="fa fa-angle-left pull-right"></i>
+		</span>
+	</a>
+	<ul class="treeview-menu" style="display: none;">
+		<!-- =========================Users========================= -->
+		<li ng-if="pageMethods.authSvc.isAdmin" ng-class="{'active':pageData.menuType === 'list-order'}" class="treeview">
+			<a ui-sref="listOrders()">
+				<i class="fa fa-circle-o text-aqua"></i> <span> Danh sách đơn hàng</span>
+			</a>
+		</li>
+
+		<!-- =========================Users========================= -->
+		<li ng-if="pageMethods.authSvc.isAdmin" ng-class="{'active':pageData.menuType === 'add-order'}" class="treeview">
+			<a ui-sref="createOrder()">
+				<i class="fa fa-circle-o text-aqua"></i> <span> Nhập đơn hàng</span>
+			</a>
+		</li>
+		<!-- =========================END Users========================= -->
+	</ul>
+</li>

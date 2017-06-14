@@ -11,6 +11,8 @@ exports.register = function (server, options, next) {
     let cmsName = config.get("web.name");
 
     let cookieKey = cmsName + "-token";
+    let cookieKeyPortal = cmsName + "-portal-token";
+    let cookieKeyAdmin = cmsName + "-admin-token";
     var isUseRedis = config.get('web.isUseRedis');
 
     function validate(decoded, request, callback) {
@@ -70,7 +72,6 @@ exports.register = function (server, options, next) {
             headerKey: cookieKey
         });
 
-        let cookieKeyPortal = cmsName + "-portal-token";
         server.auth.strategy('jwt-portal', 'jwt', {
             key: config.get('web.jwt.secret'),
             validateFunc: validate,
@@ -78,6 +79,15 @@ exports.register = function (server, options, next) {
             cookieKey: cookieKeyPortal,
             urlKey: cookieKeyPortal,
             headerKey: cookieKeyPortal
+        });
+
+        server.auth.strategy('jwt-admin', 'jwt', {
+            key: config.get('web.jwt.secret'),
+            validateFunc: validate,
+            verifyOptions: { ignoreExpiration: true, algorithms: ['HS256'] },
+            cookieKey: cookieKeyAdmin,
+            urlKey: cookieKeyAdmin,
+            headerKey: cookieKeyAdmin
         });
         
         return next();

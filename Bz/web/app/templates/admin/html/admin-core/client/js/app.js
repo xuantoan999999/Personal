@@ -5,22 +5,21 @@ var ApplicationConfiguration = (function () {
     // Init module configuration options
     var applicationModuleName = 'mean';
     var applicationModuleVendorDependencies = [
-        'ngResource',
-        'ngAnimate',
-        'ui.router',
-        'ui.bootstrap',
-        'angularFileUpload',
-        'ui.select',
-        'ngSanitize',
-        'ngMessages',
-        'ui.utils.masks',
-        'ui.bootstrap.datetimepicker',
-        'ng.jsoneditor',
-        'ngFileUpload',
-        'LocalStorageModule',
-        'ui.tinymce',
-        'toastr',
-        'ui.select2',
+    'ngResource',
+    'ngAnimate',
+    'ui.router',
+    'ui.bootstrap',
+    'angularFileUpload',
+    'ui.select',
+    'ngSanitize',
+    'ngMessages',
+    'ui.utils.masks',
+    'ui.bootstrap.datetimepicker',
+    'ng.jsoneditor',
+    'ngFileUpload',
+    'LocalStorageModule',
+    'ui.tinymce',
+    'toastr',
     ];
 
     // Add a new vertical module
@@ -71,7 +70,43 @@ angular.module(ApplicationConfiguration.applicationModuleName).config(['$locatio
             }
         });
     }
-]);
+    ]);
+angular.module(ApplicationConfiguration.applicationModuleName).run(['$rootScope','$window','$document','$state','Authentication',function(
+    $rootScope,
+    $window,
+    $document,
+    $state,
+    Authentication) {
+
+    $rootScope._ = window._;
+        // Global variables
+        $rootScope.pageData = {};
+        // Global methods
+        $rootScope.pageMethods = {};
+        $rootScope.pageMethods.authSvc = Authentication;
+        $rootScope.pageMethods.redirect = redirect;
+
+        /*Sự kiện trạng thái state*/
+        $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+            $rootScope.pageData.className = toState.name;
+            if(toState.data)
+                $rootScope.pageData.menuType = toState.data.menuType;
+            else
+                $rootScope.pageData.menuType = '';
+        });
+
+        $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+            $window.scrollTop = $document[0].body.scrollTop = $document[0].documentElement.scrollTop = 0;
+
+            $rootScope.pageData.currentState = toState;
+            $rootScope.pageData.currentParams = toParams;
+        });
+
+        function redirect(state, params, notify) {
+            $state.go(state, params, notify);
+        }
+
+    }]);
 
 //Then define the init function for starting up the application
 angular.element(document).ready(function () {

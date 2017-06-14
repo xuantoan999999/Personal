@@ -4,7 +4,7 @@
 angular.module('pages').controller('PagesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pages',
     function($scope, $stateParams, $location, Authentication, Pages) {
         $scope.authentication = Authentication;
-        if (!Authentication.user.name) {
+        if (!Authentication.isAdmin) {
             $location.path('signin');
         }
         $scope.gotoList = function() {

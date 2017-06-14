@@ -54,7 +54,7 @@
                                         single-date-time-picker atr-options="dateTimePickerOpt" ng-if="!loading" required>
                                 </div>
                                 <div class="error-messages message" ng-messages="formAdd.nsx.$error" ng-messages-multiple ng-if="formAdd.$submitted">
-                                    <div ng-message="required">Bạn chưa nhập tên ngày sản xuất.</div>
+                                    <div ng-message="required">Bạn chưa nhập ngày sản xuất.</div>
                                 </div>
                             </div>
 
@@ -63,12 +63,21 @@
                                     <div class="col-sm-6">
                                         <label class="control-label" for="meta_title">Model xe</label>
                                         <div class="controls">
-                                            <select class="form-control" name="model" id="model" ng-model="data.model" ui-select2 required>
+                                            <!--<select class="form-control" name="model" id="model" ng-model="data.model" ui-select2 required>
                                                 <option value="{{item._id}}" ng-repeat="item in listModel">{{item.name}}</option>
-                                            </select>
+                                            </select>-->
+
+                                            <ui-select ng-model="dataTmp.model" ng-if="showModelSelect">
+                                                <ui-select-match>
+                                                    <span ng-bind="$select.selected.name"></span>
+                                                </ui-select-match>
+                                                <ui-select-choices repeat="item in listModel track by item._id">
+                                                    <span ng-bind="item.name"></span>
+                                                </ui-select-choices>
+                                            </ui-select>
                                         </div>
-                                        <div class="error-messages message" ng-messages="formAdd.model.$error" ng-messages-multiple ng-if="formAdd.$submitted">
-                                            <div ng-message="required">Bạn chưa chọn model xe.</div>
+                                        <div class="error-messages message" ng-if="formAdd.$submitted && !dataTmp.model">
+                                            <div>Bạn chưa chọn model xe.</div>
                                         </div>
                                     </div>
 
@@ -105,23 +114,41 @@
                                     <div class="col-sm-6">
                                         <label class="control-label" for="meta_title">Nhà sản xuất</label>
                                         <div class="controls">
-                                            <select class="form-control" name="brand" id="brand" ng-model="data.brand" ui-select2 required>
+                                            <ui-select ng-model="dataTmp.brand">
+                                                <ui-select-match>
+                                                    <span ng-bind="$select.selected.name"></span>
+                                                </ui-select-match>
+                                                <ui-select-choices repeat="item in listBrand track by item._id">
+                                                    <span ng-bind="item.name"></span>
+                                                </ui-select-choices>
+                                            </ui-select>
+
+                                            <!--<select class="form-control" name="brand" id="brand" ng-model="data.brand" ui-select2 required>
                                                 <option value="{{item._id}}" ng-repeat="item in listBrand">{{item.name}}</option>
-                                            </select>
+                                            </select>-->
                                         </div>
-                                        <div class="error-messages message" ng-messages="formAdd.brand.$error" ng-messages-multiple ng-if="formAdd.$submitted">
-                                            <div ng-message="required">Bạn chưa chọn nhà sản xuất.</div>
+                                        <div class="error-messages message" ng-if="formAdd.$submitted && !dataTmp.brand">
+                                            <div>Bạn chưa chọn nhà sản xuất.</div>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label" for="supplier">Nhà phân phối</label>
                                             <div class="controls">
-                                                <select class="form-control" name="supplier" id="supplier" ng-model="data.supplier" ui-select2 required>
+                                                <ui-select ng-model="dataTmp.supplier">
+                                                    <ui-select-match>
+                                                        <span ng-bind="$select.selected.name"></span>
+                                                    </ui-select-match>
+                                                    <ui-select-choices repeat="item in listSuplier track by item._id">
+                                                        <span ng-bind="item.name"></span>
+                                                    </ui-select-choices>
+                                                </ui-select>
+
+                                                <!--<select class="form-control" name="supplier" id="supplier" ng-model="data.supplier" ui-select2 required>
                                                     <option value="{{item._id}}" ng-repeat="item in listSuplier">{{item.name}}</option>
-                                                </select>
-                                                <div class="error-messages message" ng-messages="formAdd.supplier.$error" ng-messages-multiple ng-if="formAdd.$submitted">
-                                                    <div ng-message="required">Bạn chưa chọn nhà phân phối.</div>
+                                                </select>-->
+                                                <div class="error-messages message" ng-if="formAdd.$submitted && !dataTmp.supplier">
+                                                    <div>Bạn chưa chọn nhà phân phối.</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -252,10 +279,25 @@
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                <label class="control-label" for="engine_detail">Động cơ</label>
+                                <div ng-jsoneditor="onLoad" ng-model="data.engine_detail" options="jsonEditorOpt"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label" for="bone_frame_detail">Khung xương</label>
+                                <div ng-jsoneditor="onLoad" ng-model="data.bone_frame_detail" options="jsonEditorOpt"></div>
+                            </div>
+
+                             <div class="form-group">
+                                <label class="control-label" for="size_detail">Kích thước</label>
+                                <div ng-jsoneditor="onLoad" ng-model="data.size_detail" options="jsonEditorOpt"></div>
+                            </div>
+
                             <!--Start: Upload Image Section-->
                             <div class="form-group">
                                 <label>Màu sắc</label>
-                                <div class="table-responsive">
+                                <div class="table-responsive" style="overflow: visible;">
                                     <table class="table no-margin">
                                         <tr>
                                             <th>Tên màu</th>
@@ -266,13 +308,25 @@
                                         <tr ng-repeat="(key,item) in data.color">
                                             <td>
                                                 <p ng-show="!dataTmp.color[key].showEdit">{{item.name}}</p>
-                                                <input type="text" name="name_color_add" class="form-control" ng-model="dataTmp.color[key].name" ng-show="dataTmp.color[key].showEdit"
-                                                    required>
+                                                <input type="text" name="name_color_add" class="form-control" ng-model="dataTmp.color[key].name" ng-show="dataTmp.color[key].showEdit" required>
                                             </td>
                                             <td>
-                                                <p ng-show="!dataTmp.color[key].showEdit">{{item.value}}</p>
-                                                <input type="text" name="name_color_add" class="form-control" ng-model="dataTmp.color[key].value" ng-show="dataTmp.color[key].showEdit"
-                                                    required>
+                                                <p ng-show="!dataTmp.color[key].showEdit">
+                                                    <span class="show-color" style="background: {{item.value.value}};"></span>
+                                                    <span ng-bind="item.value.value"></span>
+                                                </p>
+                                                <div style="width: 330px;" ng-show="dataTmp.color[key].showEdit">
+                                                    <ui-select ng-model="dataTmp.color[key].value">
+                                                        <ui-select-match>
+                                                            <span class="show-color" style="background: {{$select.selected.value}};"></span>
+                                                            <span ng-bind="$select.selected.value"></span>
+                                                        </ui-select-match>
+                                                        <ui-select-choices repeat="item in listColor track by item.value">
+                                                            <span class="show-color" style="background: {{item.value}};"></span>
+                                                            <span ng-bind="item.value"></span>
+                                                        </ui-select-choices>
+                                                    </ui-select>
+                                                </div>
                                             </td>
                                             <td>
                                                 <div class="image-upload-section" ng-show="!dataTmp.color[key].showEdit">
@@ -309,8 +363,17 @@
                                                     <error-message/>
                                                 </div>
                                             </td>
-                                            <td>
-                                                <input type="text" name="value_color_add" class="form-control" ng-model="dataColorAdd.value" required>
+                                            <td style="width: 330px;">
+                                                <ui-select ng-model="dataColorAdd.value">
+                                                    <ui-select-match>
+                                                        <span class="show-color" style="background: {{$select.selected.value}};"></span>
+                                                        <span ng-bind="$select.selected.value"></span>
+                                                    </ui-select-match>
+                                                    <ui-select-choices repeat="item in listColor track by item.value">
+                                                        <span class="show-color" style="background: {{item.value}};"></span>
+                                                        <span ng-bind="item.value"></span>
+                                                    </ui-select-choices>
+                                                </ui-select>
                                                 <div class="error-messages message" ng-messages="formAdd.value_color_add.$error" ng-messages-multiple ng-if="dataColorAdd.submited">
                                                     <error-message/>
                                                 </div>
@@ -357,13 +420,13 @@
                                     <!--</div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Hình banner</label>
+                                            <label>Hình feature</label>
                                             <div class="image-upload-section">
-                                                <a class="form-control" href="" ngf-select ngf-multiple="false" ngf-change="uploadImage($files, 'banner')" data-ng-if="!data.banner.url">
-                                                    Upload banner ...
+                                                <a class="form-control" href="" ngf-select ngf-multiple="false" ngf-change="uploadImage($files, 'feature')" data-ng-if="!data.feature.url">
+                                                    Upload feature ...
                                                 </a>
-                                                <img class="image-upload" data-ng-src="{{url + data.banner.url}}" ngf-select ngf-multiple="false" ngf-change="uploadImage($files, 'banner')"
-                                                    alt="" data-ng-if="data.banner.url">
+                                                <img class="image-upload" data-ng-src="{{url + data.feature.url}}" ngf-select ngf-multiple="false" ngf-change="uploadImage($files, 'feature')"
+                                                    alt="" data-ng-if="data.feature.url">
                                             </div>
                                         </div>
                                     </div>

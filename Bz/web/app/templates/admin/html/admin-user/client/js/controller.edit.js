@@ -5,7 +5,7 @@ angular.module('users').controller('UsersEditController', ['$rootScope', '$scope
 
     function ($rootScope, $scope, $log, $stateParams, $location, Authentication, Users, Option, $sce, Notice, $timeout, localStorageService, toastr) {
 
-        if (!Authentication.user.name) {
+        if (!Authentication.isAdmin) {
             $location.path('signin');
         }
         $scope.isLoading = false;
@@ -62,7 +62,7 @@ angular.module('users').controller('UsersEditController', ['$rootScope', '$scope
                 if (response.error) {
                     toastr.error(response.message, 'Lỗi');
                 } else {
-                    toastr.success("Update user success!", 'SUCCESS');
+                    toastr.success("Cập nhật người dùng thành công!", 'Thành Công');
                     if (type == 'save&list') {
                         gotoList();
                     } else {

@@ -6,7 +6,7 @@ const Joi = require('joi');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const ErrorHandler = require(BASE_PATH + '/app/utils/error.js');
-const Bcrypt = require('bcrypt');
+const Bcrypt = require('bcryptjs');
 const pagination = require('pagination');
 const _ = require('lodash');
 const crypto = require('crypto');
@@ -70,16 +70,16 @@ function edit (request, reply) {
     if (user) {
         return reply(user);
     } else {
-        reply(Boom.notFound('User is not found'));
+        reply(Boom.notFound('Không tìm thấy người dùng'));
     }
 }
 
 function save(request, reply) {
     if (request.pre.userByEmail) {
-        return reply(Boom.badRequest('Email taken'));
+        return reply(Boom.badRequest('Email đã tồn tại'));
     }
     if (request.payload.password != request.payload.cfpassword) {
-        return reply(Boom.badRequest('Confirm new password does not match'));
+        return reply(Boom.badRequest('Xác nhận mật khẩu mới không đúng !'));
     }
     delete request.payload.cfpassword;
 
@@ -106,7 +106,7 @@ function update (request, reply) {
     if (!request.payload.password) {
         delete request.payload.password;
     } else if (request.payload.password !== request.payload.cfpassword) {
-        return reply(Boom.badRequest('Confirm new password does not match'));
+        return reply(Boom.badRequest('Xác nhận mật khẩu mới không đúng !'));
     }
     delete request.payload.cfpassword;
     user = _.assignIn(user, request.payload);
@@ -145,11 +145,11 @@ function moveToTrash (request, reply) {
         user.save().then(function () {
             return reply({
                 status: true,
-                message: 'This user has been move to trash!'
+                message: 'Người dùng đã được đưa vào sọt rác!'
             });
         })
     } else {
-        return reply(Boom.notFound('User is not found'));
+        return reply(Boom.notFound('Không tìm thấy người dùng'));
     }
 }
 
@@ -162,11 +162,11 @@ function changeStatus(request, reply) {
         user.save().then(function () {
             return reply({
                 status: true,
-                message: 'This user has been change status'
+                message: 'Người dùng đã được thay đổi trạng thái'
             });
         })
     } else {
-        return reply(Boom.notFound('User is not found'));
+        return reply(Boom.notFound('Không tìm thấy người dùng'));
     }
 }
 
@@ -188,7 +188,7 @@ function changeStatusMultiRows(request, reply) {
             })
             return reply({
                 status: 1,
-                message: 'Change status success'
+                message: 'Thay đổi trạng thái thành công'
             })
         })
         .catch(err => {
@@ -225,7 +225,7 @@ function deleteMultiRows(request, reply) {
 
             return reply({
                 status: 1,
-                message: 'Remove success'
+                message: 'Xóa thành công'
             })
         })
         .catch(err => {

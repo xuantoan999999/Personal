@@ -11,6 +11,12 @@ exports.register = function (server, options, next) {
         method: 'GET',
         path: '/product',
         handler: ProductController.getAll,
+        config: {
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
+            }
+        }
     });
 
     server.route({
@@ -20,7 +26,11 @@ exports.register = function (server, options, next) {
         config: {
             pre: [
                 { method: ProductMid.getById, assign: 'product' }
-            ]
+            ],
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
+            }
         }
     });
 
@@ -31,7 +41,11 @@ exports.register = function (server, options, next) {
         config: {
             pre: [
                 { method: ProductMid.getById, assign: 'product' }
-            ]
+            ],
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
+            }
         }
     });
 
@@ -48,6 +62,10 @@ exports.register = function (server, options, next) {
                     responses: { '400': { 'description': 'Bad Request' } },
                     payloadType: 'form'
                 }
+            },
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
             }
         }
     });
@@ -68,6 +86,10 @@ exports.register = function (server, options, next) {
                     responses: { '400': { 'description': 'Bad Request' } },
                     payloadType: 'form'
                 }
+            },
+            auth: {
+                strategy: 'jwt-admin',
+                scope: ['admin']
             }
         }
     });

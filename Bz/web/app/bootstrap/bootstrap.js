@@ -9,6 +9,7 @@ const Pack = require(global.BASE_PATH + '/package');
 const Glob = require('glob');
 const Nunjucks = require('nunjucks');
 const minify = require('html-minifier').minify;
+const filterCus = require('../utils/nunjuck/filter');
 
 module.exports = function (server) {
     const config = server.configManager;
@@ -93,6 +94,12 @@ module.exports = function (server) {
                             },
                             watch: false
                         });
+
+                        // Custom filter
+                        filterCus.listFilter.forEach(function (item) {
+                            options.compileOptions.environment.addFilter(item.name, item.func);
+                        });
+
                         return next();
                     }
                 }

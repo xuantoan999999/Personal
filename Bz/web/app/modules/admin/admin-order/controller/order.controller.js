@@ -46,7 +46,6 @@ function getAll(request, reply) {
     if (request.query.status && request.query.status.length > 0) {
         options.status = request.query.status;
     }
-    console.log(652346235, options)
 
     Order.find(options).sort('-createdAt').populate('products.product_obj shipping_info.agent_obj').paginate(page, itemsPerPage, function (err, items, total) {
         if (err) {
