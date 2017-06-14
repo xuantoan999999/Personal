@@ -118,6 +118,7 @@ module.exports = {
             'adminassets/ng-file-upload/dist/ng-file-upload.min.js',
             'adminassets/angular-toastr/dist/angular-toastr.min.js',
             'adminassets/angular-ui-select2/src/select2.js',
+            'adminassets/vue/dist/vue.min.js',
             'app/templates/admin/html/admin-core/client/js/app.js',
             'app/templates/admin/html/admin-core/client/js/config.js',
             'app/templates/admin/html/admin-core/client/js/service.js',

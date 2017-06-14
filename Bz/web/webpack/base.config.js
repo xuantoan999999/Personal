@@ -168,7 +168,6 @@ function BrowserSync() {
     return new BrowserSyncPlugin({
         proxy: "http://localhost:9006",
         files: ["app/**/*.*"],
-        browser: "google chrome",
         port: 3090
     }, {
         reload: true
