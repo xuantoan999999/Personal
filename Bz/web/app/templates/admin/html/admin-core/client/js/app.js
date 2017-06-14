@@ -9,16 +9,8 @@ var ApplicationConfiguration = (function () {
     'ngAnimate',
     'ui.router',
     'ui.bootstrap',
-    'angularFileUpload',
-    'ui.select',
     'ngSanitize',
     'ngMessages',
-    'ui.utils.masks',
-    'ui.bootstrap.datetimepicker',
-    'ng.jsoneditor',
-    'ngFileUpload',
-    'LocalStorageModule',
-    'ui.tinymce',
     'toastr',
     ];
 
@@ -41,10 +33,6 @@ var ApplicationConfiguration = (function () {
 
 //Start by defining the main module and adding the module dependencies
 angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfiguration.applicationModuleVendorDependencies);
-
-angular.module(ApplicationConfiguration.applicationModuleName).config(function (localStorageServiceProvider) {
-    localStorageServiceProvider.setPrefix(ApplicationConfiguration.applicationModuleName);
-});
 
 // Setting HTML5 Location Mode
 angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider', '$httpProvider', 'toastrConfig',
@@ -115,4 +103,5 @@ angular.element(document).ready(function () {
 
     //Then init the app
     angular.bootstrap(document, [ApplicationConfiguration.applicationModuleName]);
+    console.log("glmng");
 });

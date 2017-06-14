@@ -103,7 +103,7 @@ config.web = {
         }
     },
     {
-        port: process.env.CMS_ADMIN_PORT || 9002,
+        port: process.env.CMS_ADMIN_PORT || 2206,
         labels: ['admin'],
         routes: {
             cors: {

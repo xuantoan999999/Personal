@@ -166,9 +166,9 @@ function WebpackNotifier() {
 
 function BrowserSync() {
     return new BrowserSyncPlugin({
-        proxy: "http://localhost:9006",
+        proxy: "http://localhost:2206/tims",
         files: ["app/**/*.*"],
-        port: 3090
+        port: 2206
     }, {
         reload: true
     });
