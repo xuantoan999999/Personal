@@ -79,7 +79,6 @@ module.exports = {
         css: [
             'adminassets/admin-lte/bootstrap/css/bootstrap.min.css',
             'adminassets/font-awesome/css/font-awesome.min.css',
-            'adminassets/tether/dist/js/tether.min.js',
             'adminassets/adminbsb-materialdesign/plugins/node-waves/waves.min.css',
             'adminassets/adminbsb-materialdesign/plugins/animate-css/animate.min.css',
             'adminassets/adminbsb-materialdesign/plugins/morrisjs/morris.css',
@@ -91,6 +90,7 @@ module.exports = {
             'adminassets/vue/dist/vue.min.js',
             'adminassets/jquery/dist/jquery.min.js',
             'adminassets/moment/min/moment.min.js',
+            'adminassets/tether/dist/js/tether.min.js',
             'adminassets/bootstrap/dist/js/bootstrap.min.js',
             'adminassets/adminbsb-materialdesign/plugins/bootstrap-select/js/bootstrap-select.js',
             'adminassets/adminbsb-materialdesign/plugins/jquery-slimscroll/jquery.slimscroll.js',
