@@ -8,25 +8,16 @@
     </style>
 </head>
 
-<body class="ng-cloak skin-blue sidebar-mini">
+<body class="theme-red">
     <div class="wrapper">
         <% include "admin/layouts/partials/header-nav.html" %>
+        <% include "admin/layouts/partials/sidebar.html" %>
 
-    <aside class="main-sidebar">
-        <section class="sidebar" data-ng-controller="HeaderController">
-            <ul class="sidebar-menu">
-                <li class="header">MENU</li>
-                <% include "admin/layouts/partials/sitebar-left.html" %>
-            </ul>
-        </section>
-    </aside>
-    <div class="content-wrapper">
         <% block content %>
         <% endblock %>
+
+        <% include "admin/layouts/partials/footer.html" %>
     </div>
-    <!-- /container -->
-    <% include "admin/layouts/partials/footer.html" %>
-</div>
 </body>
 
 </html>

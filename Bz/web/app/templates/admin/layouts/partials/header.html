@@ -9,6 +9,8 @@
     var user = <$ credentials | dump | safe $>;
     var settings = <$ settings | dump | safe $>;
 </script>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 <% asyncEach asset in adminassets.css %>
     <link rel="stylesheet" href="<$ asset $>" /> 
 <% endeach %>
