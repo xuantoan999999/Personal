@@ -108,6 +108,7 @@ module.exports = {
             'adminassets/adminbsb-materialdesign/js/admin.js',
             'adminassets/adminbsb-materialdesign/js/pages/index.js',
             'adminassets/adminbsb-materialdesign/js/demo.js',
+            'app/templates/admin/html/admin-*/client/js/*.js',
         ]
     },
     portalassets: {

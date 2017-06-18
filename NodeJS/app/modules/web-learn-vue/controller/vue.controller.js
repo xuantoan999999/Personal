@@ -14,8 +14,9 @@ module.exports = {
 };
 
 function learn(request, reply) {
-    let view = 'web-learn-vue/view/client/vue-' + request.params.page + '/view';
+    let view = 'admin/html/admin-learn-vue/view/client/vue-' + request.params.i + '/view';
     return reply.view(view, {
-        
+        active_menu: 'learn-vue',
+        active_sub_menu :  'learn-vue-${}'
     }, { layout: 'web/layout' });
 };

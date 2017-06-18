@@ -1,0 +1,15 @@
+<!--Start: Vue-->
+<li <% if active_menu == 'learn-vue' %>class="active"<% endif %> >
+    <a href="javascript:void(0);" class="menu-toggle">
+        <i class="material-icons">class</i>
+        <span>Learn Vue</span>
+    </a>
+    <ul class="ml-menu">
+        <li <% if active_sub_menu == 'learn-vue-1' %>class="active"<% endif %> >
+            <a href="/tims/learn-vue/1" class="<% if active_sub_menu == 'learn-vue-1' %>toggled <% endif %>waves-effect waves-block">
+                Lesson 1
+            </a>
+        </li>
+    </ul>
+</li>
+<!--End: Vue-->
