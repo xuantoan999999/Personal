@@ -7,7 +7,7 @@ const util = require('util');
 
 const AuthController = require('./controller/auth.controller.js');
 
-exports.register = function(server, options, next) {
+exports.register = function (server, options, next) {
     var configManager = server.configManager;
 
     server.route({
@@ -18,7 +18,16 @@ exports.register = function(server, options, next) {
             auth: false
         }
     });
-    
+
+    server.route({
+        method: ['GET'],
+        path: '/login',
+        handler: AuthController.login,
+        config: {
+            auth: false
+        }
+    });
+
     next();
 };
 
