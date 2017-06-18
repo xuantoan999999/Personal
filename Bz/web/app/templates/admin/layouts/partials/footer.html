@@ -1,3 +1,7 @@
 <% asyncEach asset in  adminassets.js %>
     <script src="<$ asset $>"></script>
 <% endeach %>
+
+<script>
+    setTimeout(function () { $('#loading-wrapper').fadeOut(); }, 50);
+</script>
