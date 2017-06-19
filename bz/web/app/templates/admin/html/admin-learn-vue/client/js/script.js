@@ -6,7 +6,8 @@ var app = new Vue({
         name_add: '',
         title: 'Hover this',
         className: 'col-orange',
-        isLoading: false
+        isLoading: false,
+        time: moment().format('DD/MM/YY HH:mm:ss A')
     },
     methods: {
         alert: function (text) {
@@ -21,6 +22,8 @@ var app = new Vue({
         },
     },
     mounted() {
-        console.log("This is mounted.");
+        setInterval(function () {
+            $('#clock').text(moment().format('DD/MM/YY HH:mm:ss A'));
+        }, 1000);
     }
 })
