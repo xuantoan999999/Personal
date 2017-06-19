@@ -7,7 +7,6 @@ var app = new Vue({
         title: 'Hover this',
         className: 'col-orange',
         isLoading: false,
-        time: moment().format('DD/MM/YY HH:mm:ss A')
     },
     methods: {
         alert: function (text) {
