@@ -14,8 +14,10 @@ var app = new Vue({
             window.alert(text);
         },
         addName: function () {
-            this.names.push(this.name_add);
-            this.name_add = '';
+            if (this.name_add) {
+                this.names.push(this.name_add);
+                this.name_add = '';
+            }
         },
         toggleClass: function () {
             this.isLoading = !this.isLoading;
