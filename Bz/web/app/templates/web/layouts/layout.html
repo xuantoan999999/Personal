@@ -1,19 +1,14 @@
 <!DOCTYPE html>
-<html ng-app="GearUpApp">
+<html>
 <head>
     <% include "web/layouts/partials/header.html" %>
 </head>
-<body class="<% block bodyClass %><% endblock %>">
-    <% include "web/layouts/partials/menu.html" %>
+<body >
    
     <div class="inside">
           <% block content %>
           <% endblock %>
     </div>
-    <!-- /container -->
-    <% block jsInline %>
-    <% endblock %>
-    <% include "web/layouts/partials/footer.html" %>
     <% asyncEach asset in assets.js %>
         <script type="text/javascript" src="<$ asset $>"></script>        
    <% endeach %>

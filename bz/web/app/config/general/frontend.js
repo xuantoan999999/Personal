@@ -8,12 +8,6 @@ module.exports = {
             'jquery',
             'tether',
             'bootstrap',
-            'angular',
-            'angular-cookies',
-            'angular-resource',
-            'angular-animate',
-            'angular-toastr',
-            'angular-toastr/dist/angular-toastr.min.css',
             'socket.io-client',
             'magnific-popup',
             'slick-carousel',
@@ -21,7 +15,7 @@ module.exports = {
             'magnific-popup/dist/magnific-popup.css',
             'slick-carousel/slick/slick-theme.scss',
             'slick-carousel/slick/slick.scss',
-            'vue'
+            // 'vue'
         ],
         include: {
             css: [
