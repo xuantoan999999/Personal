@@ -90,7 +90,7 @@ config.web = {
         }
     },
     {
-        port: process.env.CMS_WEB_PORT || 9006,
+        port: process.env.CMS_WEB_PORT || 2207,
         labels: ['web'],
         routes: {
             cors: {

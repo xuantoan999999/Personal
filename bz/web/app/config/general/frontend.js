@@ -9,13 +9,13 @@ module.exports = {
             'tether',
             'bootstrap',
             'socket.io-client',
-            'magnific-popup',
-            'slick-carousel',
+            // 'magnific-popup',
+            // 'slick-carousel',
             'bootstrap/dist/css/bootstrap.css',
-            'magnific-popup/dist/magnific-popup.css',
-            'slick-carousel/slick/slick-theme.scss',
-            'slick-carousel/slick/slick.scss',
-            // 'vue'
+            // 'magnific-popup/dist/magnific-popup.css',
+            // 'slick-carousel/slick/slick-theme.scss',
+            // 'slick-carousel/slick/slick.scss',
+            'vue'
         ],
         include: {
             css: [

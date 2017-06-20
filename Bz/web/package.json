@@ -69,6 +69,7 @@
     "kue-scheduler": "^0.6.0",
     "lodash": "^4.16.6",
     "magnific-popup": "^1.1.0",
+    "material-kit": "0.0.1",
     "moment": "^2.15.1",
     "mongoosastic": "^4.0.2",
     "mongoose": "^4.5.8",
