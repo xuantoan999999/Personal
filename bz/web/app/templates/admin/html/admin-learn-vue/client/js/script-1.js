@@ -1,5 +1,5 @@
 var app = new Vue({
-    el: '#vue-basic',
+    el: '#vue-basic-1',
     data: {
         message: 'Hello World!',
         names: ['Name1', 'Name2', 'Name3', 'Name4'],
