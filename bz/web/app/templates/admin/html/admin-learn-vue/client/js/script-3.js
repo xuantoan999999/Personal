@@ -7,8 +7,6 @@ var app = new Vue({
         
     },
     mounted() {
-        setInterval(function () {
-            $('#clock').text(moment().format('DD/MM/YY HH:mm:ss A'));
-        }, 1000);
+        
     }
 })
