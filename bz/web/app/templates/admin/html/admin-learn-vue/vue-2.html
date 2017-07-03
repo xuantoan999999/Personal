@@ -10,25 +10,33 @@
             <div class="col-xs-12">
                 <div class="card">
                     <div class="body">
-                        <message title="Hello World" body="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
-                            <!--<div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">-->
-                            <!--</div>-->
-                        </message>
                         <message title="Hello" body="Lorem ipsum dolor sit amet, consectetur adipiscing elit"></message>
                         <h2>All Tasks</h2>
                         <!--v-if="task.completed"-->
-                        <ul class="list-group">
-                            <li v-for="task in tasks" v-text="task.description" class="list-group-item"></li>
-                        </ul>
+                        <task-list></task-list>
                         <h2>Incomplete Tasks</h2>
                         <ul class="list-group">
                             <li v-for="task in incompleteTasks" v-text="task.description" class="list-group-item"></li>
                         </ul>
-                        <task-list></task-list>
                     </div>
-
                     <!--<input type="checkbox" id="basic_checkbox_2" class="filled-in" checked />
                     <label for="basic_checkbox_2">Filled In</label>-->
+                </div>
+
+                <div class="card">
+                    <div class="body">
+                        <tabs>
+                            <tab name="About us"  :selected="true">
+                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+                            </tab>
+                            <tab name="About Our Culture">
+                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+                            </tab>
+                            <tab name="About Our Vision">
+                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>
+                            </tab>
+                        </tabs>
+                    </div>
                 </div>
             </div>
         </div>

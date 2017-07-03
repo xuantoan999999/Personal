@@ -37,6 +37,7 @@
     "angular-ui-select2": "0.0.5",
     "angular-ui-tinymce": "0.0.18",
     "asyncawait": "^1.0.6",
+    "axios": "^0.16.2",
     "bluebird": "^3.4.6",
     "boom": "^3.2.2",
     "bootstrap": "^4.0.0-alpha.6",

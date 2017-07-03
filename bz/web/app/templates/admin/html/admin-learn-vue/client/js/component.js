@@ -49,3 +49,23 @@ Vue.component('message', {
     //     }
     // }
 })
+
+Vue.component('tabs', {
+    template: `
+    <div>
+        <ul class="nav nav-tabs tab-nav-right" role="tablist">
+            <li role="presentation" class="active"><a href="#home" data-toggle="tab">HOME</a></li>
+            <li role="presentation"><a href="#profile" data-toggle="tab">PROFILE</a></li>
+            <li role="presentation"><a href="#messages" data-toggle="tab">MESSAGES</a></li>
+            <li role="presentation"><a href="#settings" data-toggle="tab">SETTINGS</a></li>
+        </ul>
+    </div>
+
+    <div class="tab-content">
+        <slot></slot>
+    </div>
+    `,
+    mounted() {
+        console.log(this.$children);
+    }
+})
