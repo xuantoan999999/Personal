@@ -9,9 +9,9 @@ var path = require('path');
 
 const extractStyle = new ExtractTextPlugin('style/main.css');
 const BrowserSync = new BrowserSyncPlugin({
-    proxy: "http://localhost:2006",
+    proxy: "http://localhost:2206",
     files: ["app/**/*.*", "resources/**/*.*"],
-    port: 2206
+    port: 1111
 }, {
         reload: true
     }
