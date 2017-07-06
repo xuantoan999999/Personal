@@ -17,6 +17,14 @@
 
                         <coupon @applied="onCouponApplied"></coupon>
                         <p v-if="couponApplied">Used</p>
+
+                        <progress-view inline-template>
+                            <div>
+                                <h1>JBF jasfbajsbfj asfb ajfb {{completionRate}}</h1>
+                                <button class="btn btn-primary waves-effect" @click="completionRate -= 10">Subtract</button>
+                                <button class="btn btn-primary waves-effect" @click="completionRate += 10">Add</button>
+                            </div>
+                        </progress-view>
                     </div>
                 </div>
             </div>

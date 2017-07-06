@@ -10,6 +10,12 @@ window.Event = new class {
     }
 };
 
+Vue.component('progress-view', {
+    data() {
+        return { completionRate: 50 }
+    }
+})
+
 Vue.component('coupon', {
     template: `
     <div class="form-group">
