@@ -8,10 +8,9 @@
     "develop": "webpack --env=dev --watch --progress --profile --colors",
     "build": "webpack --env=prod --progress --profile --colors",
     "serve:dev": "nodemon --watch app --watch bootstrap --watch config --watch .env -x node server.js",
-    "serve": "node server.js",
     "lint": "standard",
     "nodemon": "nodemon server.js",
-    "production": "webpack -p && npm run serve"
+    "serve": "webpack -p && node server.js"
   },
   "author": "",
   "license": "MIT",
