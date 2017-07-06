@@ -10,7 +10,8 @@
             <div class="col-xs-12">
                 <div class="card">
                     <div class="body">
-                        
+                        <coupon @applied="onCouponApplied"></coupon>
+                        <p v-if="couponApplied">Used</p>
                     </div>
                 </div>
             </div>
