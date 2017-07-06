@@ -26,6 +26,23 @@ Vue.component('coupon', {
     },
 })
 
+Vue.component('template-demo', {
+    template: `
+    <div>
+        <div id="content">
+            <h3><slot name="header"></slot></h3>
+        </div>
+        <slot>JF fjab sfjbas </slot>
+    </div>
+    `,
+    methods: {
+        onCouponApplied() {
+            // this.$emit('applied');
+            Event.fire('applied')
+        }
+    },
+})
+
 var app = new Vue({
     el: '#vue-basic-3',
     data: {
