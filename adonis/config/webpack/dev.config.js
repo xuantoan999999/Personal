@@ -1,6 +1,7 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 var path = require('path');
+const Webpack = require('webpack');
 
 // const extractStyle = new ExtractTextPlugin({
 //     filename: 'style/style.css',
@@ -48,7 +49,17 @@ module.exports = {
     },
     plugins: [
         extractStyle,
-        BrowserSync
+        BrowserSync,
+        new Webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery",
+            "windows.jQuery": "jquery",
+            "windows.$": "jquery",
+            Tether: 'tether',
+            Waves: "adminbsb-materialdesign/plugins/node-waves/waves.js",
+            io: 'socket.io-client',
+        })
+
     ],
     module: {
         rules: [{
@@ -93,12 +104,4 @@ module.exports = {
             'vue$': 'vue/dist/vue.esm.js'
         }
     },
-    externals: {
-        $: "jquery",
-        jQuery: "jquery",
-        "windows.jQuery": "jquery",
-        "windows.$": "jquery",
-        Tether: 'tether',
-        io: 'socket.io-client',
-    }
 };

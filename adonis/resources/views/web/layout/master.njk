@@ -2,19 +2,19 @@
 <html>
 
 <head>
-    {% include "web/layout/partial/header.njk" %}
+    {% include "web/layout/partial/master/header.njk" %}
 </head>
 
 <body class="theme-red">
-    {% include "web/layout/partial/loading.njk" %}
+    {% include "web/layout/partial/master/loading.njk" %}
     <div class="wrapper">
-        {% include "web/layout/partial/header-nav.njk" %}
-        {% include "web/layout/partial/sidebar.njk" %}
+        {% include "web/layout/partial/master/header-nav.njk" %}
+        {% include "web/layout/partial/master/sidebar.njk" %}
         <section class="content">
             {% block content %}{% endblock %}
         </section>
     </div>
-    {% include "web/layout/partial/footer.njk" %}
+    {% include "web/layout/partial/master/footer.njk" %}
 </body>
 
 </html>
