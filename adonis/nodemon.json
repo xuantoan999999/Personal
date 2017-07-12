@@ -8,5 +8,5 @@
         "var/",
         "node_modules/"
     ],
-    "ext": "js ts json html css njk"
+    "ext": "js ts json html css scss sass njk"
 }
