@@ -1,32 +1,14 @@
 // Library
-@import "./../../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+// @import "./../../../../node_modules/bootstrap/dist/css/bootstrap.css";
+@import "./../../../../node_modules/adminbsb-materialdesign/plugins/bootstrap/css/bootstrap.css";
 @import "./../../../../node_modules/adminbsb-materialdesign/plugins/node-waves/waves.css";
 @import "./../../../../node_modules/adminbsb-materialdesign/plugins/animate-css/animate.css";
 @import "./../../../../node_modules/adminbsb-materialdesign/plugins/morrisjs/morris.css";
+@import "./../../../../node_modules/adminbsb-materialdesign/css/style.css";
 @import "./../../../../node_modules/adminbsb-materialdesign/css/themes/all-themes.css";
 
 // Config
 @import "config/variables";
 @import "tools/mixins";
-// Base
-@import "base/base";
-@import "base/form";
-// Tool
-@import "tools/font";
-@import "tools/helpers";
-@import "tools/transition";
-@import "tools/reskin";
-// Component
-@import "component/accordion";
-@import "component/box";
-@import "component/breadcrumb";
-@import "component/editor";
-@import "component/grid";
-@import "component/loader";
-@import "component/message";
-@import "component/pagination";
-@import "component/popup";
-@import "component/tag";
-@import "component/toolbar";
 // Layout
 @import "layout/main";

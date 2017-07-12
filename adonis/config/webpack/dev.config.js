@@ -93,4 +93,12 @@ module.exports = {
             'vue$': 'vue/dist/vue.esm.js'
         }
     },
+    externals: {
+        $: "jquery",
+        jQuery: "jquery",
+        "windows.jQuery": "jquery",
+        "windows.$": "jquery",
+        Tether: 'tether',
+        io: 'socket.io-client',
+    }
 };
