@@ -9,6 +9,7 @@ class HomeController {
     * index(request, response) {
         let test = yield Test.find();
         yield response.sendView('web.dashboard', {
+            sidebar_active: 'dashboard',
             test
         });
     }

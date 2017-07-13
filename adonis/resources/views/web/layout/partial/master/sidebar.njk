@@ -5,7 +5,7 @@
         <div class="menu">
             <ul class="list">
                 <li class="header">MAIN NAVIGATION</li>
-                <li class="active">
+                <li {% if sidebar_active == 'dashboard' %}class="active"{% endif %}>
                     <a href="/">
                         <i class="material-icons">home</i>
                         <span>Home</span>
