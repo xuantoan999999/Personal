@@ -14,6 +14,7 @@ const app = require('./app')
 const fold = require('adonis-fold')
 const path = require('path')
 const packageFile = path.join(__dirname, '../package.json')
+const mongoose = require('mongoose')
 require('./extend')
 
 module.exports = function (callback) {
@@ -109,21 +110,7 @@ module.exports = function (callback) {
             | This config made by Maximus Tims
             |
             */
-
-             /*
-            |--------------------------------------------------------------------------
-            | Start Webpack Config
-            |--------------------------------------------------------------------------
-            */
-
-            /*
-            |--------------------------------------------------------------------------
-            | End Custom Config
-            |--------------------------------------------------------------------------
-            |
-            | This config made by Maximus Tims
-            |
-            */
+            mongoose.connect('mongodb://localhost/' + Env.get('DB_DATABASE'));
 
             Server.listen(Env.get('HOST'), Env.get('PORT'))
             if (typeof (callback) === 'function') {
