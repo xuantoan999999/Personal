@@ -17,6 +17,22 @@
 
 const Route = use('Route')
 
+Route.group('error', function () {
+    Route.get('/error404', function* (request, response) {
+        yield response.sendView('web.404');
+    })
+    Route.get('/404', function* (request, response) {
+        yield response.sendView('web.404');
+    })
+
+    Route.get('/error500', function* (request, response) {
+        yield response.sendView('web.500');
+    })
+    Route.get('/500', function* (request, response) {
+        yield response.sendView('web.500');
+    })
+})
+
 Route.group('web', function () {
     Route.get('/', 'Web/HomeController.index')
     Route.get('/tai-khoan', 'Web/AccountController.index')
