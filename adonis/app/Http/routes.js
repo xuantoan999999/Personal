@@ -20,4 +20,3 @@ const Route = use('Route')
 Route.group('web', function () {
     Route.get('/', 'Web/HomeController.index')
 })
-Route.on('/').render('welcome')

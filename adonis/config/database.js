@@ -14,7 +14,7 @@ module.exports = {
     | interacting with SQL databases.
     |
     */
-    connection: Env.get('DB_CONNECTION', 'sqlite'),
+    connection: Env.get('DB_CONNECTION', 'mongodb'),
 
     /*
     |--------------------------------------------------------------------------
@@ -77,24 +77,31 @@ module.exports = {
         }
     },
 
-     /*
-    |--------------------------------------------------------------------------
-    | Mongodb
-    |--------------------------------------------------------------------------
-    |
-    | Here we define connection settings for PostgreSQL database.
-    |
-    | npm i adonis-lucid-mongodb --save
-    |
-    */
+    /*
+   |--------------------------------------------------------------------------
+   | Mongodb
+   |--------------------------------------------------------------------------
+   |
+   | Here we define connection settings for PostgreSQL database.
+   |
+   | npm i adonis-lucid-mongodb --save
+   |
+   */
     mongodb: {
-        client: 'pg',
+        client: 'mongodb',
         connection: {
+            // host: Env.get('DB_HOST', 'localhost'),
+            // port: Env.get('DB_PORT', '22'),
+            // user: Env.get('DB_USER', 'root'),
+            // password: Env.get('DB_PASSWORD', ''),
+            // database: Env.get('DB_DATABASE', 'db_personal')
+
             host: Env.get('DB_HOST', 'localhost'),
-            port: Env.get('DB_PORT', '22'),
+            port: Env.get('DB_PORT', 27017),
             user: Env.get('DB_USER', 'root'),
             password: Env.get('DB_PASSWORD', ''),
-            database: Env.get('DB_DATABASE', 'db_personal')
+            database: Env.get('DB_DATABASE', 'db_gearup')
+
         }
     }
 
