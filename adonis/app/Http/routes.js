@@ -19,4 +19,8 @@ const Route = use('Route')
 
 Route.group('web', function () {
     Route.get('/', 'Web/HomeController.index')
+    Route.get('/tai-khoan', 'Web/AccountController.index')
 })
+
+Route.group('api', function () {
+}).prefix('api/v1')

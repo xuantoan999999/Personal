@@ -83,9 +83,10 @@
     "uglify-js": "git://github.com/mishoo/UglifyJS2.git#harmony-v2.8.22",
     "ui-select": "^0.19.6",
     "vision": "^4.1.0",
-    "vue": "^2.3.4",
-    "vue-loader": "^13.0.0",
+    "vue": "^2.4.1",
+    "vue-loader": "^13.0.1",
     "vue-router": "^2.7.0",
+    "vue-template-compiler": "^2.4.1",
     "youch": "^2.0.4"
   },
   "standard": {

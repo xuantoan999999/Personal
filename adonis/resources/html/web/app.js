@@ -18,9 +18,4 @@ import './script/main/browser.js';
 import './script/main/done-loading.js';
 
 // Script file module
-import './script/module/dashboard.js'
-
-new Vue({
-    el: '#app',
-    render: h => h(App)
-})
+import './script/module/account.js';
