@@ -1,12 +1,15 @@
 'use strict'
 const Database = use('Database')
 const Env = use('Env')
+const mongoose = use('mongoose');
+const Test = mongoose.model('Test');
 
 class HomeController {
 
     * index(request, response) {
+        let test = yield Test.find();
         yield response.sendView('web.welcome', {
-            test: "Tesst"
+            test
         });
     }
 
