@@ -8,7 +8,7 @@ class HomeController {
 
     * index(request, response) {
         let test = yield Test.find();
-        yield response.sendView('web.welcome', {
+        yield response.sendView('web.dashboard', {
             test
         });
     }

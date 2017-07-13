@@ -1,5 +1,3 @@
-import $ from 'jquery';
-
 var edge = 'Microsoft Edge';
 var ie10 = 'Internet Explorer 10';
 var ie11 = 'Internet Explorer 11';
