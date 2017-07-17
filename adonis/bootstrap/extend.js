@@ -20,5 +20,3 @@
 |
 */
 const Ioc = require('adonis-fold').Ioc
-
-require('./mongo')

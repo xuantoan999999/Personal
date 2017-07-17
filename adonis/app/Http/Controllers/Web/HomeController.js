@@ -7,6 +7,7 @@ const Test = mongoose.model('Test');
 class HomeController {
 
     * index(request, response) {
+        const user = yield request.auth.check()
         yield response.sendView('web.dashboard', {
             sidebar_active: 'dashboard',
         });

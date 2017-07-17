@@ -3,6 +3,9 @@
 class AccountController {
 
     * index(request, response) {
+        const isLoggedIn = yield request.auth.check()
+        console.log(isLoggedIn);
+
         yield response.sendView('web.account', {
             sidebar_active: 'account',
         });
