@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 const Glob = require('Glob')
 const Path = require('path');
-const Env = use('Env')
+const config = require('./../config/mongo')
 
-mongoose.connect('mongodb://localhost/' + Env.get('DB_DATABASE'));
+mongoose.connect('mongodb://' + config.host + '/' + config.database);
 mongoose.Promise = require('bluebird');
 require('mongoose-pagination');
 let models = Glob.sync(process.cwd() + '/app/Model/*.js', {});

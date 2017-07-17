@@ -109,7 +109,6 @@ module.exports = function (callback) {
             | This config made by Maximus Tims
             |
             */
-            require('./mongo');
 
             Server.listen(Env.get('HOST'), Env.get('PORT'))
             if (typeof (callback) === 'function') {

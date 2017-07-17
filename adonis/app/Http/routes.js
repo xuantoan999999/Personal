@@ -38,5 +38,13 @@ Route.group('web', function () {
     Route.get('/tai-khoan', 'Web/AccountController.index')
 })
 
+Route.group('auth', function () {
+    Route.get('/dang-nhap', 'AuthController.signin')
+    Route.post('/dang-nhap', 'AuthController.login')
+})
+
 Route.group('api', function () {
 }).prefix('api/v1')
+
+Route.group('admin', function () {
+}).prefix('admin')

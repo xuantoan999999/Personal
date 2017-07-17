@@ -1,5 +1,6 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 var path = require('path');
 const Webpack = require('webpack');
 
@@ -9,7 +10,7 @@ const Webpack = require('webpack');
 // });
 const ROOT_PATH = process.cwd();
 const extractStyle = new ExtractTextPlugin({
-    filename: '[name]/main.css',
+    filename: '[name]/style/main.css',
     allChunks: false
 });
 const BrowserSync = new BrowserSyncPlugin({
@@ -45,7 +46,7 @@ module.exports = {
     },
     output: {
         path: PATHS.dist,
-        filename: '[name]/main.js'
+        filename: '[name]/script/main.js'
     },
     plugins: [
         extractStyle,
@@ -58,7 +59,8 @@ module.exports = {
             Tether: 'tether',
             Waves: "adminbsb-materialdesign/plugins/node-waves/waves.js",
             io: 'socket.io-client',
-        })
+        }),
+        CopyWebpack()
 
     ],
     module: {
@@ -105,3 +107,14 @@ module.exports = {
         }
     },
 };
+
+function CopyWebpack() {
+    return new CopyWebpackPlugin([{
+        from: 'resources/image/admin',
+        to: 'images'
+    },
+    {
+        from: 'public/assets/fonts',
+        to: 'fonts'
+    }]);
+}

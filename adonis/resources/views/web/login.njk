@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Admin</title>
+
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" type="text/css" href="/assets/dist/web/style/main.css">
+</head>
+
+<body class="login-page">
+    <div class="login-box">
+        <div class="logo">
+            <a href="javascript:void(0);">Admin</a>
+        </div>
+        <div class="card">
+            <div class="body">
+                <form id="sign_in" method="POST">
+                    <input type="hidden" name="_csrf" value="{{ csrfToken }}" />
+                    <div class="msg">Đăng nhập</div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="username" placeholder="Tên đăng nhập" required autofocus>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="password" class="form-control" name="password" placeholder="Mật khẩu" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- <div class="col-xs-8 p-t-5">
+                            <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
+                            <label for="rememberme">Ghi nhớ</label>
+                        </div> -->
+                        <div class="col-xs-12">
+                            <button class="btn btn-block bg-pink waves-effect" type="submit">ĐĂNG NHẬP</button>
+                        </div>
+                    </div>
+                    <!-- <div class="row m-t-15 m-b--20">
+                        <div class="col-xs-6">
+                            <a href="sign-up.html">Register Now!</a>
+                        </div>
+                        <div class="col-xs-6 align-right">
+                            <a href="forgot-password.html">Forgot Password?</a>
+                        </div>
+                    </div> -->
+                </form>
+            </div>
+        </div>
+    </div>
+    {% include "web/layout/partial/master/footer.njk" %}
+</body>
+
+</html>
