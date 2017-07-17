@@ -1,0 +1,68 @@
+{% extends 'web/layout/master' %} {% block content %}
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>Người dùng</h2>
+                </div>
+                <div class="body" id="user">
+                    <button class="btn btn-success waves-effect">
+                        <i class="material-icons">add</i>
+                        <span>Thêm</span>
+                    </button>
+                    <table class="table table-striped">
+                        <tr>
+                            <th class="text-center">Tên</th>
+                            <th class="text-center">Email</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                        <tr v-for="(item,index) in users">
+                            <td>
+                                <p v-if="!item.edit" v-text="item.name"></p>
+                                <div class="form-group" v-if="item.edit">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" v-model="item.name">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <p v-if="!item.edit" v-text="item.email"></p>
+                                <div class="form-group" v-if="item.edit">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" v-model="item.email">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="front" v-if="!item.edit">
+                                    <button class="waves-effect btn btn-primary" @click="showEdit(item, index)">
+                                        <i class="material-icons">edit</i>
+                                        <span>Sửa</span>
+                                    </button>
+                                    <button class="waves-effect btn btn-danger">
+                                        <i class="material-icons">delete</i>
+                                        <span>Xóa</span>
+                                    </button>
+                                </div>
+                                <div class="behind" v-if="item.edit">
+                                    <button class="waves-effect btn btn-success">
+                                        <i class="material-icons">check</i>
+                                        <span>Hoàn thành</span>
+                                    </button>
+                                    <button class="waves-effect btn btn-warning" @click="hideEdit(item, index)">
+                                        <i class="material-icons">clear</i>
+                                        <span>Hủy</span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

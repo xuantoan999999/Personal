@@ -112,20 +112,14 @@ const BaseScheme = require('adonis-auth/src/Schemes/BaseScheme')
 
 class MongoSchema extends BaseScheme {
 
-    // constructor(request, serializer, options) {
-    //     this.request = request
-    //     this.serializer = serializer
-    //     this.options = options // config options
-    // }
-
     * check() {
         console.log('MongoSchema check');
-
+        // yield this.serializer.findById("fga",{})
         // ...
     }
 
     * getUser() {
-        console.log('MongoSchema getUser');
+        // console.log('MongoSchema getUser');
         // ...
     }
 

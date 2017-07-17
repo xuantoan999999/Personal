@@ -33,9 +33,9 @@ Route.group('error', function () {
     })
 })
 
+// Web Group
 Route.group('web', function () {
     Route.get('/', 'Web/HomeController.index')
-    Route.get('/tai-khoan', 'Web/AccountController.index')
 })
 
 Route.group('auth', function () {
@@ -43,8 +43,14 @@ Route.group('auth', function () {
     Route.post('/dang-nhap', 'AuthController.login')
 })
 
+// Api Group
 Route.group('api', function () {
-}).prefix('api/v1')
+    Route.get('/nguoi-dung', 'Api/UserController.index')
+}).prefix('/api/v1')
 
+// Admin Group
 Route.group('admin', function () {
+    Route.get('/', 'Web/HomeController.index')
+    Route.get('/tai-khoan', 'Web/AccountController.index')
+    Route.get('/nguoi-dung', 'Admin/UserController.index')
 }).prefix('admin')

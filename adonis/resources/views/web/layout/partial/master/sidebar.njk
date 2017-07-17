@@ -6,15 +6,21 @@
             <ul class="list">
                 <li class="header">MAIN NAVIGATION</li>
                 <li {% if sidebar_active == 'dashboard' %}class="active"{% endif %}>
-                    <a href="/">
+                    <a href="/admin">
                         <i class="material-icons">home</i>
                         <span>Home</span>
                     </a>
                 </li>
                 <li {% if sidebar_active == 'account' %}class="active"{% endif %}>
-                    <a href="/tai-khoan">
+                    <a href="/admin/tai-khoan">
                         <i class="material-icons">supervisor_account</i>
                         <span>Tài khoản</span>
+                    </a>
+                </li>
+                <li {% if sidebar_active == 'user' %}class="active"{% endif %}>
+                    <a href="/admin/nguoi-dung">
+                        <i class="material-icons">supervisor_account</i>
+                        <span>User</span>
                     </a>
                 </li>
                 <!-- <li>

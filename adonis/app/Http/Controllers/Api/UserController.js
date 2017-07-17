@@ -1,15 +1,18 @@
 'use strict'
-const Database = use('Database')
-const Env = use('Env')
-const mongoose = use('mongoose');
-const Test = mongoose.model('Test');
 
-class HomeController {
+const mongoose = use('mongoose');
+const User = mongoose.model('User');
+
+class UserController {
 
     * index(request, response) {
-        yield response.sendView('web.dashboard', {
-            sidebar_active: 'dashboard',
+        // let new_user = new User({ email: 'skecgash@gmail.com', name: 'skecgash' });
+        // yield new_user.save();
+        let users = yield User.find().lean();
+        users.forEach(function(item) {
+            item.edit = false;
         });
+        yield response.json({ users })
     }
 
     * create(request, response) {
@@ -38,4 +41,4 @@ class HomeController {
 
 }
 
-module.exports = HomeController
+module.exports = UserController

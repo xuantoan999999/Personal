@@ -16,6 +16,8 @@ import './script/main/select.js';
 import './script/main/dropdown-menu.js';
 import './script/main/browser.js';
 import './script/main/done-loading.js';
+import './script/main/input.js';
 
 // Script file module
 import './script/module/account.js';
+import './script/module/user.js';
