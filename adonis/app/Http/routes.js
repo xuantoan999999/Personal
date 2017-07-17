@@ -46,6 +46,7 @@ Route.group('auth', function () {
 // Api Group
 Route.group('api', function () {
     Route.get('/nguoi-dung', 'Api/UserController.index')
+    Route.delete('/nguoi-dung/:id', 'Api/UserController.destroy')
 }).prefix('/api/v1')
 
 // Admin Group

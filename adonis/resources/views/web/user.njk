@@ -36,25 +36,40 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="front" v-if="!item.edit">
+                                <div v-if="!item.edit && !item.delete">
                                     <button class="waves-effect btn btn-primary" @click="showEdit(item, index)">
                                         <i class="material-icons">edit</i>
                                         <span>Sửa</span>
                                     </button>
-                                    <button class="waves-effect btn btn-danger">
+                                    <button class="waves-effect btn btn-danger" @click="showDelete(item, index)">
                                         <i class="material-icons">delete</i>
                                         <span>Xóa</span>
                                     </button>
+                                    <button class="waves-effect btn btn-warning" @click="hideDelete(item, index)">
+                                        <i class="material-icons">lock</i>
+                                        <span>Đổi mật khẩu</span>
+                                    </button>
                                 </div>
-                                <div class="behind" v-if="item.edit">
+                                <div v-if="item.edit">
                                     <button class="waves-effect btn btn-success">
                                         <i class="material-icons">check</i>
-                                        <span>Hoàn thành</span>
+                                        <span>Sửa</span>
                                     </button>
                                     <button class="waves-effect btn btn-warning" @click="hideEdit(item, index)">
                                         <i class="material-icons">clear</i>
                                         <span>Hủy</span>
                                     </button>
+                                </div>
+                                <div v-if="item.delete">
+                                    <button class="waves-effect btn btn-warning" @click="remove(item, index)">
+                                        <i class="material-icons">delete</i>
+                                        <span>Xóa</span>
+                                    </button>
+                                    <button class="waves-effect btn btn-success" @click="hideDelete(item, index)">
+                                        <i class="material-icons">clear</i>
+                                        <span>Hủy</span>
+                                    </button>
+                                    
                                 </div>
                             </td>
                         </tr>

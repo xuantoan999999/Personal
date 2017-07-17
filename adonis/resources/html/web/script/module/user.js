@@ -26,6 +26,18 @@ var user = new Vue({
         },
         hideEdit(data, index) {
             data.edit = false;
+        },
+        showDelete(data, index) {
+            data.delete = true;
+        },
+        hideDelete(data, index) {
+            data.delete = false;
+        },
+        remove(data, index) {
+            axios.delete(`/api/v1/nguoi-dung/${data._id}`).then((resp) => {
+                this.users.splice(index,1);
+                this.users_tmp.splice(index,1);
+            })
         }
     }
 })
