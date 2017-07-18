@@ -18,6 +18,9 @@
 @import "config/variables";
 @import "tools/mixins";
 @import "base/theme";
+@import "base/icon";
+@import "base/css";
 @import "component/rotate";
+@import "component/vue-modal";
 // Layout
 @import "layout/main";

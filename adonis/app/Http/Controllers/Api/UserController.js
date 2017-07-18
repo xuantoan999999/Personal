@@ -1,6 +1,8 @@
 'use strict'
 
 const mongoose = use('mongoose');
+const _ = require('lodash');
+
 const User = mongoose.model('User');
 
 class UserController {
@@ -12,6 +14,7 @@ class UserController {
         users.forEach(function (item) {
             item.edit = false;
             item.delete = false;
+            item.show = false;
         });
         yield response.json({ users })
     }
@@ -33,7 +36,12 @@ class UserController {
     }
 
     * update(request, response) {
-        //
+        let params = request.params();
+        let data = request.all();
+        let user = yield User.findById(params.id);
+        let userUpdate = _.extend(user, data.data);
+        yield userUpdate.save();
+        yield response.json({ success: true })
     }
 
     * destroy(request, response) {

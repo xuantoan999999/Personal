@@ -19,5 +19,5 @@ import './script/main/done-loading.js';
 import './script/main/input.js';
 
 // Script file module
-import './script/module/account.js';
-import './script/module/user.js';
+import './script/module/account.vue';
+import './script/module/user.vue';

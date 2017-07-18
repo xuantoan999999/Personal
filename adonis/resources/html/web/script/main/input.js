@@ -7,7 +7,6 @@ export default class Input {
 
     activate() {
         $('.form-control').focus(function () {
-            console.log("md ksdgmn");
             $(this).parent().addClass('focused');
         });
 
