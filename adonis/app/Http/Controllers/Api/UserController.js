@@ -50,6 +50,9 @@ class UserController {
         yield response.json({ success: true })
     }
 
+    * changePassword(request, response) {
+        yield response.json({ success: true })
+    }
 }
 
 module.exports = UserController

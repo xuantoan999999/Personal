@@ -2,9 +2,8 @@
     background: none;
     box-shadow: none;
     height: auto !important;
-    .content{
-        box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
-        padding: 15px;
-        background: white;
+    bottom: inherit;
+    .card{
+        margin-bottom: 0;
     }
 }

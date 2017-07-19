@@ -110,11 +110,11 @@ module.exports = {
 
 function CopyWebpack() {
     return new CopyWebpackPlugin([{
-        from: 'resources/image/admin',
-        to: 'images'
+        from: 'resources/html/web/image',
+        to: 'web/images'
     },
     {
-        from: 'public/assets/fonts',
-        to: 'fonts'
+        from: 'resources/html/web/fonts',
+        to: 'web/fonts'
     }]);
 }
