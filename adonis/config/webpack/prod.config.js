@@ -3,6 +3,7 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 var path = require('path');
 const Webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // const extractStyle = new ExtractTextPlugin({
 //     filename: 'style/style.css',
@@ -10,8 +11,8 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 // });
 const ROOT_PATH = process.cwd();
 const extractStyle = new ExtractTextPlugin({
-    filename: '[name]/main.css',
-    allChunks: false
+    filename: '[name]/style/main.css',
+    allChunks: true
 });
 const BrowserSync = new BrowserSyncPlugin({
     proxy: "http://localhost:2206",
@@ -39,14 +40,12 @@ const PATHS = {
 
 module.exports = {
     entry: {
-        // admin_vendor:
-        // admin_main:
         admin: './resources/html/admin/app.js',
         web: './resources/html/web/app.js',
     },
     output: {
         path: PATHS.build,
-        filename: '[name]/main.js'
+        filename: '[name]/script/main.js'
     },
     plugins: [
         extractStyle,
@@ -79,13 +78,16 @@ module.exports = {
                 drop_console: false
             },
             comments: false
-        })
+        }),
+        CopyWebpack()
     ],
     module: {
         rules: [{
             test: /\.(js|jsx)$/,
-            use: 'babel-loader',
-            exclude: /node_modules/
+            loaders: [
+                'babel-loader?presets[]=es2015',
+            ],
+            exclude: /node_modules/,
         },
         {
             test: /\.(jpg|png|gif|svg)$/,
@@ -104,7 +106,9 @@ module.exports = {
             options: {
                 loaders: {
                     'scss': 'vue-style-loader!css-loader!sass-loader',
-                    'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
+                    'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
+                    'js': 'babel-loader?presets[]=es2015',
+                    'vue': 'babel-loader?presets[]=es2015'
                 }
             }
         }, {
@@ -125,3 +129,14 @@ module.exports = {
         }
     },
 };
+
+function CopyWebpack() {
+    return new CopyWebpackPlugin([{
+        from: 'resources/html/web/image',
+        to: 'web/images'
+    },
+    {
+        from: 'resources/html/web/fonts',
+        to: 'web/fonts'
+    }]);
+}

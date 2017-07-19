@@ -6,7 +6,7 @@
     "start": "npm-run-all --parallel nodemon develop",
     "dev": "npm run serve:dev",
     "develop": "webpack --env=dev --watch --progress --profile --colors --hide-modules",
-    "build": "webpack --env=prod --progress --profile --colors",
+    "build": "webpack --env=prod --progress --profile --colors --hide-modules",
     "serve:dev": "nodemon --watch app --watch bootstrap --watch config --watch .env -x node server.js",
     "lint": "standard",
     "nodemon": "nodemon server.js",
