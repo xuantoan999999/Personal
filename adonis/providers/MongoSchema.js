@@ -109,18 +109,16 @@
 
 'use strict'
 const BaseScheme = require('adonis-auth/src/Schemes/BaseScheme')
+const scheme = require('adonis-auth/src/Schemes/index')
 
-class MongoSchema extends BaseScheme {
-
+class MongoSchema extends scheme.jwt {
     * check() {
-        console.log('MongoSchema check');
-        // yield this.serializer.findById("fga",{})
-        // ...
+        console.log(this._getRequestToken());
+        return false;
     }
 
     * getUser() {
-        // console.log('MongoSchema getUser');
-        // ...
+        console.log('MongoSchema getUser');
     }
 
 }

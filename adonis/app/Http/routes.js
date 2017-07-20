@@ -18,19 +18,11 @@
 const Route = use('Route')
 
 Route.group('error', function () {
-    Route.get('/error404', function* (request, response) {
-        yield response.sendView('web.404');
-    })
-    Route.get('/404', function* (request, response) {
-        yield response.sendView('web.404');
-    })
+    Route.get('/error404', 'ErrorController.error404')
+    Route.get('/404', 'ErrorController.error404')
 
-    Route.get('/error500', function* (request, response) {
-        yield response.sendView('web.500');
-    })
-    Route.get('/500', function* (request, response) {
-        yield response.sendView('web.500');
-    })
+    Route.get('/error500', 'ErrorController.error500')
+    Route.get('/500', 'ErrorController.error500')
 })
 
 // Web Group
@@ -56,4 +48,4 @@ Route.group('admin', function () {
     Route.get('/', 'Web/HomeController.index')
     Route.get('/tai-khoan', 'Web/AccountController.index')
     Route.get('/nguoi-dung', 'Admin/UserController.index')
-}).prefix('admin')
+}).prefix('admin').middleware('auth')

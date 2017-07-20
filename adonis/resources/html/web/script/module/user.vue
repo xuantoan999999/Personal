@@ -26,7 +26,7 @@
                     showButton: false,
                     width: 600
                 },
-                formstate:{}
+                formState:{}
             },
             mounted() {
                 axios.get('/api/v1/nguoi-dung').then((resp) => {
@@ -38,31 +38,37 @@
             },
             methods: {
                 showEdit(data, index) {
-                    data.edit = true;
+                    data.extra.edit = true;
                     setTimeout(() => { input.activate() }, 100)
                 },
                 hideEdit(data, index) {
-                    data.edit = false;
+                    data.extra.edit = false;
                     _.extend(data,this.users_tmp[index]);
                 },
                 showDelete(data, index) {
-                    data.delete = true;
+                    data.extra.delete = true;
                 },
                 hideDelete(data, index) {
-                    data.delete = false;
+                    data.extra.delete = false;
                 },
                 showChangePassword(data,index){
-                    data.show = true;
-                    setTimeout(() => { input.activate() }, 100)
+                    data.extra.show = true;
+                    setTimeout(() => { input.activate() }, 100);
                 },
                 closeChangePassword(data,index){
-                    data.show = false;
+                    data.extra.show = false;
                 },
                 changePassword(data, index){
-                    if(!this.formstate.$valid){
+                    if(!this.formState.$valid){
                         return;
                     }
-                    axios.post('/api/v1/nguoi-dung/doi-mat-khau',{}).then((resp) => {
+                    if(data.extra.new_password_confirm != data.extra.new_password){
+                        return;
+                    }
+                    axios.post('/api/v1/nguoi-dung/doi-mat-khau',{user: data}).then((resp) => {
+                        this.formState._reset();
+                        data.extra.new_password_confirm = '';
+                        data.extra.new_password = '';
                         this.closeChangePassword(data,index);
                     })
                 },
@@ -75,7 +81,7 @@
                 update(data, index) {
                     axios.post(`/api/v1/nguoi-dung/${data._id}`, {data}).then((resp) => {
                         console.log(resp);
-                        data.edit = false;
+                        data.extra.edit = false;
                         this.users_tmp[index] = (JSON.parse(JSON.stringify(data)))
                     })
                 },

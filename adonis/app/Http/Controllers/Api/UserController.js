@@ -2,6 +2,7 @@
 
 const mongoose = use('mongoose');
 const _ = require('lodash');
+const Hash = use('Hash')
 
 const User = mongoose.model('User');
 
@@ -12,9 +13,13 @@ class UserController {
         // yield new_user.save();
         let users = yield User.find().lean();
         users.forEach(function (item) {
-            item.edit = false;
-            item.delete = false;
-            item.show = false;
+            item.extra = {
+                edit: false,
+                delete: false,
+                show: false,
+                new_password: '',
+                new_password_confirm: ''
+            }
         });
         yield response.json({ users })
     }
@@ -51,6 +56,10 @@ class UserController {
     }
 
     * changePassword(request, response) {
+        let user = request.all().user;
+        let userUpdate = yield User.findById(user._id);
+        userUpdate.password = yield Hash.make(user.extra.new_password);
+        yield userUpdate.save();
         yield response.json({ success: true })
     }
 }
