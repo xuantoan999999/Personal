@@ -20,3 +20,5 @@
 |
 */
 const Ioc = require('adonis-fold').Ioc
+global.APP_NAME = 'Personal';
+global.COOKIE_NAME_WEB = 'Personal-token';

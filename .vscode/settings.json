@@ -1,0 +1,24 @@
+{
+    "git.ignoreLimitWarning": true,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "**/node_modules": true,
+        "misc": true,
+        "db_muahangviet_local": true,
+        "web/sitemap": true,
+        ".vscode": true
+    },
+    "search.exclude": {
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "**/node_modules": true,
+        "misc": true,
+        "db_muahangviet_local": true,
+        "web/sitemap": true,
+        ".vscode": true
+    },
+    "workbench.colorCustomizations": {
+        "activityBar.foreground": "#f44336"
+    }
+}

@@ -1,6 +1,8 @@
 # Introduction
 This is template based on AdonisJS Framework. It's inclue:
 - webpack
+- vuejs
+
 
 **Notes: I run this on window 10 pro 64 bit
 
@@ -12,3 +14,5 @@ This is template based on AdonisJS Framework. It's inclue:
 
 ## Install
 npm install
+
+skecgash

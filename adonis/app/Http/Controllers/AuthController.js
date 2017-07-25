@@ -7,10 +7,21 @@ class AuthController {
     }
 
     * login(request, response) {
-        let user = yield request.auth.getUser()
+        // let user = yield request.auth.getUser();
+        let data = request.all();
+        let email = request.input('username');
+        let password = request.input('password');
 
-        yield response.json(user)
-        // yield response.sendView('web.login');
+        let token = yield request.auth.attempt(email, password);
+
+        if (token) {
+            return response.send({
+                message: 'Logged In Successfully',
+                token
+            }).header('authorization', token).state(COOKIE_NAME_WEB, token);
+        }
+
+        return response.unauthorized('Invalid credentails')
     }
 }
 

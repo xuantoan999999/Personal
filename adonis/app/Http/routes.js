@@ -49,3 +49,4 @@ Route.group('admin', function () {
     Route.get('/tai-khoan', 'Web/AccountController.index')
     Route.get('/nguoi-dung', 'Admin/UserController.index')
 }).prefix('admin').middleware('auth')
+// .middleware('auth')

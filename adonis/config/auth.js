@@ -67,7 +67,14 @@ module.exports = {
         scheme: 'MongoSchema',
         uid: 'email',
         password: 'password',
-        secret: Config.get('app.appKey')
+        secret: Config.get('app.appKey'),
+        ttl: 365 * 24 * 60 * 60 * 1000, // expires a year from today
+        encoding: 'none',    // we already used JWT to encode
+        path: '/',
+        //isSecure: true,      // warm & fuzzy feelings
+        isHttpOnly: false,    // prevent client alteration
+        clearInvalid: true, // remove invalid cookies
+        strictHeader: true   // don't allow violations of RFC 6265
     },
 
     /*
