@@ -165,8 +165,11 @@ class MongoSchema {
      */
     * _getRequestUser() {
         try {
-            const requestToken = yield this.decode()
-            const userId = requestToken.payload.uid || null
+            const Redis = use('Redis')
+            let token = yield this.request.session.get('Authorization');
+            let cachedUsers = yield Redis.get(`Personal:${token}`);
+            let decodeUser = yield this._verifyRequestToken(cachedUsers, this.jwtOptions);
+            const userId = decodeUser.payload.uid || null
             if (!userId) {
                 return null
             }

@@ -1,4 +1,6 @@
 'use strict'
+const Redis = use('Redis')
+const aguid = require('aguid');
 
 class AuthController {
 
@@ -13,15 +15,19 @@ class AuthController {
         let password = request.input('password');
 
         let token = yield request.auth.attempt(email, password);
+        let idRedis = aguid();
+        let session = yield Redis.set('Personal:' + idRedis, token)
+        console.log(session);
 
         if (token) {
-            return response.send({
-                message: 'Logged In Successfully',
-                token
-            }).header('authorization', token).state(COOKIE_NAME_WEB, token);
+            try {
+                yield request.session.put('Authorization', idRedis);
+                return response.send({ test: 'test', 'Authorization': idRedis });
+            } catch (error) {
+                console.log(error);
+            }
         }
-
-        return response.unauthorized('Invalid credentails')
+        return yield response.unauthorized('Invalid credentails')
     }
 }
 

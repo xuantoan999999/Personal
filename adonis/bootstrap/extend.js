@@ -22,3 +22,12 @@
 const Ioc = require('adonis-fold').Ioc
 global.APP_NAME = 'Personal';
 global.COOKIE_NAME_WEB = 'Personal-token';
+global.COOKIE_OPTIONS = {
+    ttl: 365 * 24 * 60 * 60 * 1000, // expires a year from today
+    encoding: 'none',    // we already used JWT to encode
+    path: '/',
+    //isSecure: true,      // warm & fuzzy feelings
+    isHttpOnly: false,    // prevent client alteration
+    clearInvalid: true, // remove invalid cookies
+    strictHeader: true   // don't allow violations of RFC 6265
+}

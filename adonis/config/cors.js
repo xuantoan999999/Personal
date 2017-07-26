@@ -51,7 +51,7 @@ module.exports = {
   | Define Access-Control-Allow-Credentials header
   |
   */
-  credentials: false,
+  credentials: true,
 
   /*
   |--------------------------------------------------------------------------

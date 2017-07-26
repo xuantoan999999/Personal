@@ -17,7 +17,7 @@ module.exports = {
     | Available Serializers - Lucid, Database
     |
     */
-    authenticator: 'jwt',
+    authenticator: 'session',
 
     /*
     |--------------------------------------------------------------------------
@@ -29,11 +29,12 @@ module.exports = {
     |
     */
     session: {
-        serializer: 'Lucid',
+        serializer: 'MongoSerializer',
         model: 'App/Model/User',
-        scheme: 'session',
+        scheme: 'MongoSchema',
         uid: 'email',
-        password: 'password'
+        password: 'password',
+        secret: Config.get('app.appKey'),
     },
 
     /*
@@ -68,13 +69,9 @@ module.exports = {
         uid: 'email',
         password: 'password',
         secret: Config.get('app.appKey'),
-        ttl: 365 * 24 * 60 * 60 * 1000, // expires a year from today
-        encoding: 'none',    // we already used JWT to encode
-        path: '/',
-        //isSecure: true,      // warm & fuzzy feelings
-        isHttpOnly: false,    // prevent client alteration
-        clearInvalid: true, // remove invalid cookies
-        strictHeader: true   // don't allow violations of RFC 6265
+        options: {
+            expiresIn: '1y', // expires a year from today
+        }
     },
 
     /*
@@ -93,6 +90,5 @@ module.exports = {
         serializer: 'Lucid',
         model: 'App/Model/Token',
         scheme: 'api'
-    }
-
+    },
 }

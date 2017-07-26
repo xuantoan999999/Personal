@@ -32,7 +32,10 @@ const providers = [
     'adonis-middleware/providers/AppMiddlewareProvider',
     'adonis-auth/providers/AuthManagerProvider',
     'adonis-websocket/providers/WsProvider',
-    path.join(__dirname, '../providers/MongoProvider'),
+    'adonis-redis/providers/RedisFactoryProvider',
+    'adonis-redis/providers/RedisProvider',
+
+    path.join(__dirname, '../providers/MongoProvider')
 ]
 
 /*
@@ -80,6 +83,7 @@ const aliases = {
     Schema: 'Adonis/Src/Schema',
     View: 'Adonis/Src/View',
     Ws: 'Adonis/Addons/Ws',
+    Redis: 'Adonis/Addons/Redis',
 
     // MongoModel: path.join(__dirname, '../providers/MongoProvider'),
     MongoScheme: path.join(__dirname, '../providers/MongoScheme')

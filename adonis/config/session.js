@@ -125,7 +125,7 @@ module.exports = {
   | are only served over HTTPS.
   |
   */
-  secure: false,
+  secure: true,
 
   /*
   |--------------------------------------------------------------------------
