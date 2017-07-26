@@ -3,7 +3,7 @@
 class UserController {
 
     * index(request, response) {
-        yield response.sendView('web.user', {
+        yield response.sendView('admin.user', {
             sidebar_active: 'user',
         });
     }

@@ -80,7 +80,6 @@
                 },
                 update(data, index) {
                     axios.post(`/api/v1/nguoi-dung/${data._id}`, {data}).then((resp) => {
-                        console.log(resp);
                         data.extra.edit = false;
                         this.users_tmp[index] = (JSON.parse(JSON.stringify(data)))
                     })

@@ -1,6 +1,7 @@
 'use strict'
 
 const Middleware = use('Middleware')
+const path = require('path')
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,8 @@ const globalMiddleware = [
   'Adonis/Middleware/BodyParser',
   'Adonis/Middleware/Shield',
   'Adonis/Middleware/Flash',
-  'Adonis/Middleware/AuthInit'
+  'Adonis/Middleware/AuthInit',
+  // 'App/Http/Middleware/AuthMiddleware'
 ]
 
 /*
@@ -29,7 +31,7 @@ const globalMiddleware = [
 |
 */
 const namedMiddleware = {
-  auth: 'Adonis/Middleware/Auth'
+  auth: 'App/Http/Middleware/AuthMiddleware',
 }
 
 /*

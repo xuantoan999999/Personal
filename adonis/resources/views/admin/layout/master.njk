@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+
+<head>
+    {% include "admin/layout/partial/master/header.njk" %}
+</head>
+
+<body class="theme-red">
+    {% include "admin/layout/partial/master/loading.njk" %}
+    <div class="wrapper">
+        {% include "admin/layout/partial/master/header-nav.njk" %}
+        {% include "admin/layout/partial/master/sidebar.njk" %}
+        <section class="content">
+            {% block content %}{% endblock %}
+        </section>
+    </div>
+    {% include "admin/layout/partial/master/footer.njk" %}
+</body>
+
+</html>

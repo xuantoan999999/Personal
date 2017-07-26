@@ -5,7 +5,12 @@ const aguid = require('aguid');
 class AuthController {
 
     * signin(request, response) {
-        yield response.sendView('web.login');
+        let checkLogin = request.auth.check();
+        console.log(checkLogin);
+        if (Object.keys(checkLogin).length === 0 && checkLogin.constructor === Object) {
+            return yield response.redirect('/admin');
+        }
+        return yield response.sendView('web.login');
     }
 
     * login(request, response) {
@@ -16,13 +21,12 @@ class AuthController {
 
         let token = yield request.auth.attempt(email, password);
         let idRedis = aguid();
-        let session = yield Redis.set('Personal:' + idRedis, token)
-        console.log(session);
+        let session = yield Redis.set('Personal:' + idRedis, token);
 
         if (token) {
             try {
                 yield request.session.put('Authorization', idRedis);
-                return response.send({ test: 'test', 'Authorization': idRedis });
+                return yield response.redirect('/admin');
             } catch (error) {
                 console.log(error);
             }

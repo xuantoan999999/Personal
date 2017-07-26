@@ -1,10 +1,14 @@
 'use strict'
+const Database = use('Database')
+const Env = use('Env')
+const mongoose = use('mongoose');
+const Test = mongoose.model('Test');
 
-class AccountController {
+class HomeController {
 
     * index(request, response) {
-        yield response.sendView('web.account', {
-            sidebar_active: 'account',
+        yield response.sendView('admin.dashboard', {
+            sidebar_active: 'dashboard',
         });
     }
 
@@ -34,4 +38,4 @@ class AccountController {
 
 }
 
-module.exports = AccountController
+module.exports = HomeController

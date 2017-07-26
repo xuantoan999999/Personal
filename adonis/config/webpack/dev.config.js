@@ -116,5 +116,13 @@ function CopyWebpack() {
     {
         from: 'resources/html/web/fonts',
         to: 'web/fonts'
+    },
+    {
+        from: 'resources/html/admin/image',
+        to: 'admin/images'
+    },
+    {
+        from: 'resources/html/admin/fonts',
+        to: 'admin/fonts'
     }]);
 }

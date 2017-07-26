@@ -1,9 +1,11 @@
 'use strict'
 
-class HomeController {
+class AccountController {
 
     * index(request, response) {
-        return yield response.redirect('/admin');
+        yield response.sendView('admin.account', {
+            sidebar_active: 'account',
+        });
     }
 
     * create(request, response) {
@@ -32,4 +34,4 @@ class HomeController {
 
 }
 
-module.exports = HomeController
+module.exports = AccountController

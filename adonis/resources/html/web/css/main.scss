@@ -1,18 +1,7 @@
 // Library
 // @import "./../../../../node_modules/bootstrap/dist/css/bootstrap.css";
 @import "./../../../../node_modules/adminbsb-materialdesign/plugins/bootstrap/css/bootstrap.css";
-@import "./../../../../node_modules/adminbsb-materialdesign/plugins/node-waves/waves.css";
-@import "./../../../../node_modules/adminbsb-materialdesign/plugins/animate-css/animate.css";
 @import "./../../../../node_modules/adminbsb-materialdesign/css/style.css";
-@import "./../../../../node_modules/vodal/common.css";
-@import "./../../../../node_modules/vodal/rotate.css";
-@import "./../../../../node_modules/vodal/door.css";
-@import "./../../../../node_modules/vodal/flip.css";
-@import "./../../../../node_modules/vodal/slide-down.css";
-@import "./../../../../node_modules/vodal/slide-left.css";
-@import "./../../../../node_modules/vodal/slide-right.css";
-@import "./../../../../node_modules/vodal/slide-up.css";
-@import "./../../../../node_modules/vodal/zoom.css";
 
 // Config
 @import "config/variables";
@@ -20,7 +9,6 @@
 @import "base/theme";
 @import "base/icon";
 @import "base/css";
-@import "component/rotate";
-@import "component/vue-modal";
+
 // Layout
 @import "layout/main";

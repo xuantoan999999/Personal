@@ -34,8 +34,10 @@ class MongoSchema {
             return true
         }
         const requestUser = yield this._getRequestUser()
-        this.user = requestUser
-        return !!requestUser
+        if (!requestUser) {
+            return false;
+        }
+        return requestUser
     }
 
     /**
@@ -168,8 +170,9 @@ class MongoSchema {
             const Redis = use('Redis')
             let token = yield this.request.session.get('Authorization');
             let cachedUsers = yield Redis.get(`Personal:${token}`);
+            if (!cachedUsers) return null;
             let decodeUser = yield this._verifyRequestToken(cachedUsers, this.jwtOptions);
-            const userId = decodeUser.payload.uid || null
+            const userId = decodeUser.payload.uid || null;
             if (!userId) {
                 return null
             }
@@ -226,7 +229,6 @@ class MongoSchema {
         const user = yield this.validate(uid, password, true)
         return yield this.generate(user)
     }
-
 }
 
 module.exports = MongoSchema;
