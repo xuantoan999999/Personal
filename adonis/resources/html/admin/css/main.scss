@@ -2,8 +2,10 @@
 // @import "./../../../../node_modules/bootstrap/dist/css/bootstrap.css";
 @import "./../../../../node_modules/adminbsb-materialdesign/plugins/bootstrap/css/bootstrap.css";
 @import "./../../../../node_modules/adminbsb-materialdesign/plugins/node-waves/waves.css";
-@import "./../../../../node_modules/adminbsb-materialdesign/plugins/animate-css/animate.css";
+@import "./../../../../node_modules/adminbsb-materialdesign/plugins/bootstrap-select/css/bootstrap-select.css";
+// @import "./../../../../node_modules/adminbsb-materialdesign/plugins/animate-css/animate.css";
 @import "./../../../../node_modules/adminbsb-materialdesign/css/style.css";
+@import "./../../../../node_modules/vue-multiselect/dist/vue-multiselect.min.css";
 @import "./../../../../node_modules/vodal/common.css";
 @import "./../../../../node_modules/vodal/rotate.css";
 @import "./../../../../node_modules/vodal/door.css";
@@ -22,5 +24,6 @@
 @import "base/css";
 @import "component/rotate";
 @import "component/vue-modal";
+@import "component/multiselect";
 // Layout
 @import "layout/main";

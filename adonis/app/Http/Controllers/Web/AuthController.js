@@ -5,16 +5,14 @@ const aguid = require('aguid');
 class AuthController {
 
     * signin(request, response) {
-        let checkLogin = request.auth.check();
-        console.log(checkLogin);
-        if (Object.keys(checkLogin).length === 0 && checkLogin.constructor === Object) {
+        let checkLogin = yield request.auth.check();
+        if (checkLogin) {
             return yield response.redirect('/admin');
         }
         return yield response.sendView('web.login');
     }
 
     * login(request, response) {
-        // let user = yield request.auth.getUser();
         let data = request.all();
         let email = request.input('username');
         let password = request.input('password');

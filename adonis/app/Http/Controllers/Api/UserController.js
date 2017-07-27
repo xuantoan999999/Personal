@@ -20,6 +20,7 @@ class UserController {
                 new_password: '',
                 new_password_confirm: ''
             }
+            if(!item.roles) item.roles = [];
         });
         yield response.json({ users })
     }
@@ -29,7 +30,12 @@ class UserController {
     }
 
     * store(request, response) {
-        //
+        let data = request.input('data');
+        delete data.confirm_password;
+        data.password =  yield Hash.make(data.password);
+        let newUser = new User(data);
+        let saveUser = yield newUser.save();
+        yield response.json({ success: true })
     }
 
     * show(request, response) {

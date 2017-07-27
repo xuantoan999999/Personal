@@ -9,16 +9,27 @@
     import $ from 'jquery';
     import Vodal from 'vodal';
     import VueForm from 'vue-form';
+    import Multiselect from 'vue-multiselect'
     import _ from 'lodash';
 
     if (document.getElementById('user')) {
         const input = new inputEff()
-        Vue.use(VueForm);
+        Vue.use(VueForm,{
+            validators: {
+                matches: function (value, attrValue) {
+                    if(!attrValue) {
+                        return true;
+                    }
+                    return value === attrValue;
+                }
+            }
+        });
 
-        Vue.component(Vodal.name, Vodal);
+        Vue.component(Vodal.name, Vodal, );
 
         var user = new Vue({
             el: '#user',
+            components: {Multiselect},
             data: {
                 users: [],
                 users_tmp: [],
@@ -26,17 +37,39 @@
                     showButton: false,
                     width: 600
                 },
-                formState:{}
+                formState:{},
+                showAdd: false,
+                dataAdd:{
+                    name: '',
+                    email: '',
+                    password: '',
+                    confirm_password: ''
+                },
+                selected: null,
+                options: ['admin', 'user']
             },
             mounted() {
-                axios.get('/api/v1/nguoi-dung').then((resp) => {
-                    this.users = resp.data.users;
-                    this.users.forEach((item, index)=> {
-                        this.users_tmp.push((JSON.parse(JSON.stringify(item))))
-                    });
-                })
+                this.init(function(){});
             },
             methods: {
+                init(cb) {
+                    axios.get('/api/v1/nguoi-dung').then((resp) => {
+                        this.users = resp.data.users;
+                        this.users.forEach((item, index)=> {
+                            this.users_tmp.push((JSON.parse(JSON.stringify(item))))
+                        });
+                        cb();
+                    })
+                },
+                resetDataAdd() {
+                    this.dataAdd = {
+                        name: '',
+                        email: '',
+                        password: '',
+                        confirm_password: '',
+                        roles: []
+                    }
+                },
                 showEdit(data, index) {
                     data.extra.edit = true;
                     setTimeout(() => { input.activate() }, 100)
@@ -59,12 +92,8 @@
                     data.extra.show = false;
                 },
                 changePassword(data, index){
-                    if(!this.formState.$valid){
-                        return;
-                    }
-                    if(data.extra.new_password_confirm != data.extra.new_password){
-                        return;
-                    }
+                    if(!this.formState.$valid) return;
+                    if(data.extra.new_password_confirm != data.extra.new_password) return;
                     axios.post('/api/v1/nguoi-dung/doi-mat-khau',{user: data}).then((resp) => {
                         this.formState._reset();
                         data.extra.new_password_confirm = '';
@@ -84,6 +113,29 @@
                         this.users_tmp[index] = (JSON.parse(JSON.stringify(data)))
                     })
                 },
+                showAddForm(){
+                    this.showAdd = true;
+                    setTimeout(() => { input.activate() }, 100);
+                },
+                hideAddForm(){
+                    this.showAdd = false;
+                    this.resetDataAdd();
+                },
+                add(){
+                    if(!this.formState.$valid) return;
+                    let $this = this;
+
+                    axios.post(`/api/v1/nguoi-dung`, {
+                        data: this.dataAdd
+                    }).then((resp) => {
+                        this.init(function(){
+                            $this.hideAddForm();
+                        })
+                    })
+                },
+                changeRole(data){
+                    axios.post(`/api/v1/nguoi-dung/${data._id}`, {data}).then((resp) => {})
+                }
             }
         })
     }

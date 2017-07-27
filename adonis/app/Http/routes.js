@@ -41,6 +41,7 @@ Route.group('api', function () {
     Route.get('/dang-xuat', 'Api/HomeController.logout')
     Route.delete('/nguoi-dung/:id', 'Api/UserController.destroy')
     Route.post('/nguoi-dung/doi-mat-khau', 'Api/UserController.changePassword')
+    Route.post('/nguoi-dung', 'Api/UserController.store')
     Route.post('/nguoi-dung/:id', 'Api/UserController.update')
 }).prefix('/api/v1')
 

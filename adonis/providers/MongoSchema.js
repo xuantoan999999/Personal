@@ -37,7 +37,7 @@ class MongoSchema {
         if (!requestUser) {
             return false;
         }
-        return requestUser
+        return requestUser;
     }
 
     /**
