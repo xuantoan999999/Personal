@@ -43,6 +43,7 @@ Route.group('api', function () {
     Route.post('/nguoi-dung/doi-mat-khau', 'Api/UserController.changePassword')
     Route.post('/nguoi-dung', 'Api/UserController.store')
     Route.post('/nguoi-dung/:id', 'Api/UserController.update')
+    Route.post('/nguoi-dung/role/:id', 'Api/UserController.updateRole')
 }).prefix('/api/v1')
 
 // Admin Group

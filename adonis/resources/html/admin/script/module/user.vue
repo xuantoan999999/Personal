@@ -134,7 +134,7 @@
                     })
                 },
                 changeRole(data){
-                    axios.post(`/api/v1/nguoi-dung/${data._id}`, {data}).then((resp) => {})
+                    axios.post(`/api/v1/nguoi-dung/role/${data._id}`, {roles: data.roles}).then((resp) => {})
                 }
             }
         })

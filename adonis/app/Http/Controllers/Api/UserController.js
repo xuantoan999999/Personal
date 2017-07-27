@@ -68,6 +68,13 @@ class UserController {
         yield userUpdate.save();
         yield response.json({ success: true })
     }
+
+    * updateRole(request, response){
+        let params = request.params();
+        let data = request.all();
+        yield User.findByIdAndUpdate(params.id, {roles: data.roles})
+        yield response.json({ success: true })
+    }
 }
 
 module.exports = UserController
