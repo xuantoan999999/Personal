@@ -1,18 +1,5 @@
 {% extends 'admin/layout/master' %} {% block content %}
 <div class="container-fluid">
-
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="card">
-                <div class="header">
-                    <h2>DASHBOARD</h2>
-                </div>
-                <div class="body" id="dashboard">
-                    <button class="btn btn-danger waves-effect" @click="logout()">Đăng xuất</button>
-                </div>
-            </div>
-        </div>
-
-    </div>
+    <router-view></router-view>
 </div>
 {% endblock %}

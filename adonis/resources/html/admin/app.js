@@ -5,6 +5,7 @@ import './css/main.scss';
 import 'jquery';
 import 'bootstrap';
 import Vue from 'vue'
+import VueRouter from 'vue-router'
 
 // Script file main
 import './script/main/left-sidebar.js';
@@ -16,8 +17,19 @@ import './script/main/dropdown-menu.js';
 import './script/main/browser.js';
 import './script/main/input.js';
 import './script/main/done-loading.js';
+import routes from './script/main/routes.js';
 
-// Script file module
-import './script/module/dashboard.vue';
-import './script/module/account.vue';
-import './script/module/user.vue';
+Vue.use(VueRouter)
+
+const router = new VueRouter({
+    routes: routes.list,
+    linkExactActiveClass: 'active',
+})
+
+router.beforeEach((to, from, next) => {
+    next();
+})
+
+const app = new Vue({
+    router
+}).$mount('#app')

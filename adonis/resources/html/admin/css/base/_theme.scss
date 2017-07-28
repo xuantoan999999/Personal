@@ -58,3 +58,9 @@
 .color-danger{
     color: #fb483a;
 }
+
+.theme-red .sidebar .menu .list a.active{
+    i, span{
+      color: #F44336;
+    }
+}
