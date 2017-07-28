@@ -39,6 +39,7 @@ Route.group('auth', function () {
 Route.group('api', function () {
     Route.get('/nguoi-dung', 'Api/UserController.index')
     Route.get('/dang-xuat', 'Api/HomeController.logout')
+    Route.post('/dang-nhap', 'Api/AuthController.login')
     Route.delete('/nguoi-dung/:id', 'Api/UserController.destroy')
     Route.post('/nguoi-dung/doi-mat-khau', 'Api/UserController.changePassword')
     Route.post('/nguoi-dung', 'Api/UserController.store')

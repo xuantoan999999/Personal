@@ -42,7 +42,8 @@ class MongoSerializer {
                 $or: [
                     { email: new RegExp(email, 'i') },
                     { name: new RegExp(email, 'i') }
-                ]
+                ],
+                roles: { $in: ['admin'] }
             }
         ).lean();
         return row;

@@ -43,7 +43,8 @@
                     name: '',
                     email: '',
                     password: '',
-                    confirm_password: ''
+                    confirm_password: '',
+                    roles: []
                 },
                 selected: null,
                 options: ['admin', 'user']

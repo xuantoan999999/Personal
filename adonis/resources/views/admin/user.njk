@@ -47,7 +47,7 @@
                             </div>
                         </div>
                         <div class="col-xs-3">
-                             <multiselect v-model="item.roles" :options="options" :multiple="true" @input="changeRole(item)"></multiselect>
+                             <multiselect v-model="item.roles" :options="options" :multiple="true" placeholder="Chọn quyền" @input="changeRole(item)"></multiselect>
                         </div>
                         <div class="col-xs-3">
                             <div v-if="!item.extra.edit && !item.extra.delete">

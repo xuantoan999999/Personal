@@ -69,13 +69,13 @@ class MongoSchema {
     * validate(uid, password, returnUser) {
         const user = yield this.serializer.findByCredentials(uid, this.options)
         if (!user) {
-            throw new CE.UserNotFoundException(`Unable to find user with ${uid} ${this.options.uid}`)
+            throw new CE.UserNotFoundException(`Không tìm thấy user hoặc user không phải là admin`)
         }
         const isValid = yield this.serializer.validateCredentials(user, password, this.options)
         if (!isValid) {
-            throw new CE.PasswordMisMatchException('Password does not match')
+            throw new CE.PasswordMisMatchException('Mật khẩu không khớp')
         }
-        return returnUser ? user : true
+        return returnUser ? { success: true, user } : { success: true, user: true }
     }
 
     /**
@@ -227,7 +227,8 @@ class MongoSchema {
      */
     * attempt(uid, password) {
         const user = yield this.validate(uid, password, true)
-        return yield this.generate(user)
+        if (!user.success) return user;
+        return yield this.generate(user.user)
     }
 }
 

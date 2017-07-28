@@ -24,7 +24,7 @@ class AuthController {
         if (token) {
             try {
                 yield request.session.put('Authorization', idRedis);
-                return yield response.redirect('/admin');
+                return yield response.json({ success: true });
             } catch (error) {
                 console.log(error);
             }
