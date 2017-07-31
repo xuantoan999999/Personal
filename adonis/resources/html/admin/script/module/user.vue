@@ -204,7 +204,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="text-center">
-                        <paginate :pageCount="pageCount" :containerClass="'pagination'" :clickHandler="clickCallback" ref="paginate" v-if="hasData"></paginate>
+                        <paginate :pageCount="pageCount" :containerClass="'pagination'" :clickHandler="clickCallback" ref="paginate" v-if="hasData" :prev-text="'<<'" :next-text="'>>'"></paginate>
                     </div>
                 </div>
             </div>
