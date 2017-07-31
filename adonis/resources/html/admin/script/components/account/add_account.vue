@@ -88,14 +88,13 @@ export default {
         },
         add(){
             if(!this.formState.$valid) return;
-            console.log(this.formState);
-            // axios.post(`/api/v1/tai-khoan`, {
-            //     data: this.dataAdd
-            // }).then((resp) => {
-            //     this.hideAddForm();
-            //     this.dataAdd = this.defaultDataAdd();
-            //     this.$emit('add')
-            // })
+            axios.post(`/api/v1/tai-khoan`, {
+                data: this.dataAdd
+            }).then((resp) => {
+                this.hideAddForm();
+                this.dataAdd = this.defaultDataAdd();
+                this.$emit('add')
+            })
         }
     }
 }

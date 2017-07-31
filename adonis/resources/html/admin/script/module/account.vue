@@ -13,9 +13,18 @@
                     </div>
                 </div>
                 <div class="body" id="account">
-                    <div class="form-group" v-for="item in accounts">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum suscipit aperiam quos, nostrum, est earum autem impedit quidem labore, id debitis eius hic alias quo rerum obcaecati doloremque reprehenderit architecto!
+                    <div class="row">
+                        <div class="col-xs-4 text-center">
+                            <strong>Tên</strong>
+                        </div>
+                        <div class="col-xs-4 text-center">
+                            <strong>Link website</strong>
+                        </div>
+                        <div class="col-xs-4 text-center">
+                            <strong>Action</strong>
+                        </div>
                     </div>
+                    <updateAccount :data="item" v-for="item in accounts"></updateAccount>
                 </div>
             </div>
         </div>
@@ -24,11 +33,12 @@
 
 <script>
     import addAccount from './../components/account/add_account.vue'
+    import updateAccount from './../components/account/updater_account.vue'
     import axios from 'axios'
     // <img src="https://icons.better-idea.org/icon?url=www.google.com.vn&size=40" alt="">
 
     export default {
-        components: { addAccount },
+        components: { addAccount, updateAccount },
         data(){
             return {
                 accounts: []
