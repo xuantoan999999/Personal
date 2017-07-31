@@ -12,12 +12,12 @@ export default {
         {
             path: '/tai-khoan',
             name: 'account',
-            component: Account
+            component: Account,
         },
         {
             path: '/nguoi-dung',
             name: 'user',
-            component: User
+            component: User,
         }
     ]
 };

@@ -203,6 +203,9 @@
                         </div>
                         <div class="clearfix"></div>
                     </div>
+                    <div class="text-center">
+                        <paginate :pageCount="pageCount" :containerClass="'pagination'" :clickHandler="clickCallback" ref="paginate" v-if="hasData"></paginate>
+                    </div>
                 </div>
             </div>
         </div>
@@ -216,7 +219,8 @@
     import $ from 'jquery';
     import Vodal from 'vodal';
     import VueForm from 'vue-form';
-    import Multiselect from 'vue-multiselect'
+    import Multiselect from 'vue-multiselect';
+    import Paginate from 'vuejs-paginate';
     import _ from 'lodash';
 
     Vue.use(VueForm,{
@@ -250,24 +254,46 @@
                     roles: []
                 },
                 selected: null,
-                options: ['admin', 'user']
+                options: ['admin', 'user'],
+                route: this.$route,
+                pageCount: 1,
+                totalItems: 1,
+                hasData: false
             }
         },
         mounted() {
-            this.init(function(){});
+            let $this = this;
+            this.init(function(){
+                setTimeout(function () { $this.$refs.paginate.selected = $this.currentPage - 1; }, 50);
+            });
         },
         components: {
             // Vodal.name,
             Vodal,
-            Multiselect
+            Multiselect,
+            Paginate
         },
         methods: {
+            clickCallback: function(page) {
+                this.$router.push({
+                    name: 'user', query: { page, limit: this.route.query.limit }
+                })
+                this.route.query.page = page;
+                this.init(function(){});
+            },
             init(cb) {
-                axios.get('/api/v1/nguoi-dung').then((resp) => {
+                let params = this.route.query;
+                axios.get('/api/v1/nguoi-dung', {
+                    params
+                }).then((resp) => {
+                    this.pageCount = resp.data.totalPage;
+                    this.totalItems = resp.data.totalItems;
+                    this.currentPage = resp.data.currentPage;
                     this.users = resp.data.users;
                     this.users.forEach((item, index)=> {
                         this.users_tmp.push((JSON.parse(JSON.stringify(item))))
                     });
+                    this.hasData = true;
                     cb();
                 })
             },
@@ -315,6 +341,8 @@
                 axios.delete(`/api/v1/nguoi-dung/${data._id}`).then((resp) => {
                     this.users.splice(index,1);
                     this.users_tmp.splice(index,1);
+                    this.clickCallback(1);
+                    this.$refs.paginate.selected = 0;
                 })
             },
             update(data, index) {

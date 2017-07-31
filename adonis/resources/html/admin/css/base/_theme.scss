@@ -1,5 +1,5 @@
 .theme-red .navbar {
-  background-color: #F44336; }
+  background-color: $theme-color; }
 
 .theme-red .navbar-brand {
   color: #fff; }
@@ -30,7 +30,7 @@
 .theme-red .sidebar .menu .list li.active {
   background-color: transparent; }
   .theme-red .sidebar .menu .list li.active > :first-child i, .theme-red .sidebar .menu .list li.active > :first-child span {
-    color: #F44336; }
+    color: $theme-color; }
 
 .theme-red .sidebar .menu .list .toggled {
   background-color: transparent; }
@@ -41,26 +41,26 @@
 .theme-red .sidebar .legal {
   background-color: #fff; }
   .theme-red .sidebar .legal .copyright a {
-    color: #F44336 !important; }
+    color: $theme-color !important; }
 
 .color-primary{
-    color: #1f91f3;
+    color: $primary-color;
 }
 .color-success{
-    color: #2b982b;
+    color: $success-color;
 }
 .color-info{
-    color: #00b0e4;
+    color: $info-color;
 }
 .color-warning{
-    color: #ff9600;
+    color: $warning-color;
 }
 .color-danger{
-    color: #fb483a;
+    color: $danger-color;
 }
 
 .theme-red .sidebar .menu .list a.active{
     i, span{
-      color: #F44336;
+      color: $theme-color;
     }
 }

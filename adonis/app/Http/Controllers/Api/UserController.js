@@ -2,6 +2,7 @@
 
 const mongoose = use('mongoose');
 const _ = require('lodash');
+const Promise = require('bluebird');
 const Hash = use('Hash')
 
 const User = mongoose.model('User');
@@ -9,10 +10,27 @@ const User = mongoose.model('User');
 class UserController {
 
     * index(request, response) {
-        // let new_user = new User({ email: 'skecgash@gmail.com', name: 'skecgash' });
-        // yield new_user.save();
-        let users = yield User.find().lean();
-        users.forEach(function (item) {
+        let params = request.all();
+        let page = parseInt(params.page) || 1;
+        let itemsPerPage = parseInt(params.limit) || 10;
+
+        let find = () => {
+            return new Promise(function (resolve, reject) {
+                User.find().lean().paginate(page, itemsPerPage, (err, items, total) => {
+                    let dataSend = {
+                        totalItems: total,
+                        totalPage: Math.ceil(total / itemsPerPage),
+                        currentPage: page,
+                        itemsPerPage: itemsPerPage,
+                        users: items,
+                    };
+                    resolve(dataSend);
+                });
+            })
+        }
+        let dataSend = yield find();
+
+        dataSend.users.forEach((item) => {
             item.extra = {
                 edit: false,
                 delete: false,
@@ -20,9 +38,9 @@ class UserController {
                 new_password: '',
                 new_password_confirm: ''
             }
-            if(!item.roles) item.roles = [];
+            if (!item.roles) item.roles = [];
         });
-        yield response.json({ users })
+        yield response.json(dataSend)
     }
 
     * create(request, response) {
@@ -32,7 +50,7 @@ class UserController {
     * store(request, response) {
         let data = request.input('data');
         delete data.confirm_password;
-        data.password =  yield Hash.make(data.password);
+        data.password = yield Hash.make(data.password);
         let newUser = new User(data);
         let saveUser = yield newUser.save();
         yield response.json({ success: true })
@@ -69,10 +87,10 @@ class UserController {
         yield response.json({ success: true })
     }
 
-    * updateRole(request, response){
+    * updateRole(request, response) {
         let params = request.params();
         let data = request.all();
-        yield User.findByIdAndUpdate(params.id, {roles: data.roles})
+        yield User.findByIdAndUpdate(params.id, { roles: data.roles })
         yield response.json({ success: true })
     }
 }
