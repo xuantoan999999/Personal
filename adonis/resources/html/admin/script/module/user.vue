@@ -3,85 +3,93 @@
         <div class="col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2>Người dùng</h2>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h2>Người dùng</h2>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="text-right">
+                                <button class="btn btn-success waves-effect" @click="showAddForm()">
+                                    <i class="material-icons">add</i>
+                                    <span>Thêm</span>
+                                </button>
+                            </div>
+
+                            <vodal :show="showAdd" animation="slideDown" :width="modal.width" :close-button="modal.hideAdd" @hide="hideAddForm()">
+                                <div class="card">
+                                    <div class="header">
+                                        <h2>Thêm người dùng</h2>
+                                    </div>
+                                    <div class="body">
+                                        <vue-form :state="formState" v-model="formState" @submit.prevent="add()" v-if="showAdd">
+                                            <validate auto-label class="form-group">
+                                                <label>Tên</label>
+                                                <div class="form-line">
+                                                    <input type="text" name="name" class="form-control" v-model="dataAdd.name" required>
+                                                </div>
+                                            </validate>
+                                            <field-messages auto-label name="name" show="$submitted" class="color-danger form-group">
+                                                <p slot="required">Chưa nhập tên.</p>
+                                            </field-messages>
+
+                                            <validate auto-label class="form-group">
+                                                <label>Email</label>
+                                                <div class="form-line">
+                                                    <input type="email" name="email" class="form-control" v-model="dataAdd.email" required>
+                                                </div>
+                                            </validate>
+
+                                            <field-messages auto-label name="email" show="$submitted" class="color-danger form-group">
+                                                <p slot="required">Chưa nhập email.</p>
+                                                <p slot="email">Email chưa nhập đúng định dạng.</p>
+                                            </field-messages>
+
+                                            <validate auto-label class="form-group">
+                                                <label>Mật khẩu</label>
+                                                <div class="form-line">
+                                                    <input type="password" name="password" class="form-control" v-model="dataAdd.password" required>
+                                                </div>
+                                            </validate>
+
+                                            <field-messages auto-label name="password" show="$submitted" class="color-danger form-group">
+                                                <p slot="required">Chưa nhập mật khẩu.</p>
+                                            </field-messages>
+
+                                            <validate auto-label class="form-group">
+                                                <label>Nhập lại mật khẩu</label>
+                                                <div class="form-line">
+                                                    <input type="password" name="confirm_password" class="form-control" v-model="dataAdd.confirm_password" required :matches="dataAdd.password">
+                                                </div>
+                                            </validate>
+
+                                            <field-messages auto-label name="confirm_password" show="$submitted" class="color-danger form-group">
+                                                <p slot="required">Chưa xác nhận mật khẩu.</p>
+                                                <p slot="matches">Nhập lại mật khẩu không đúng</p>
+                                            </field-messages>
+
+                                            <div class="form-group">
+                                                <multiselect v-model="dataAdd.roles" :options="options" :multiple="true"></multiselect>
+                                            </div>
+
+                                            <div class="form-group text-right">
+                                                <button class="waves-effect btn btn-success" type="submit" :disabled="formState.$invalid && formState.$submitted">
+                                                    <i class="material-icons">add</i>
+                                                    <span>Thêm</span>
+                                                </button>
+                                                <a class="waves-effect btn btn-warning" @click="hideAddForm()">
+                                                    <i class="material-icons">clear</i>
+                                                    <span>Đóng</span>
+                                                </a>
+                                            </div>
+                                        </vue-form>
+                                    </div>
+                                </div>
+                            </vodal>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
                 </div>
                 <div class="body" id="user">
-                    <button class="btn btn-success waves-effect" @click="showAddForm()">
-                        <i class="material-icons">add</i>
-                        <span>Thêm</span>
-                    </button>
-
-                    <vodal :show="showAdd" animation="slideDown" :width="modal.width" :close-button="modal.hideAdd" @hide="hideAddForm()">
-                        <div class="card">
-                            <div class="header">
-                                <h2>Thêm người dùng</h2>
-                            </div>
-                            <div class="body">
-                                <vue-form :state="formState" v-model="formState" @submit.prevent="add()" v-if="showAdd">
-                                    <validate auto-label class="form-group">
-                                        <label>Tên</label>
-                                        <div class="form-line">
-                                            <input type="text" name="name" class="form-control" v-model="dataAdd.name" required>
-                                        </div>
-                                    </validate>
-                                    <field-messages auto-label name="name" show="$submitted" class="color-danger form-group">
-                                        <p slot="required">Chưa nhập tên.</p>
-                                    </field-messages>
-
-                                    <validate auto-label class="form-group">
-                                        <label>Email</label>
-                                        <div class="form-line">
-                                            <input type="email" name="email" class="form-control" v-model="dataAdd.email" required>
-                                        </div>
-                                    </validate>
-
-                                    <field-messages auto-label name="email" show="$submitted" class="color-danger form-group">
-                                        <p slot="required">Chưa nhập email.</p>
-                                        <p slot="email">Email chưa nhập đúng định dạng.</p>
-                                    </field-messages>
-
-                                    <validate auto-label class="form-group">
-                                        <label>Mật khẩu</label>
-                                        <div class="form-line">
-                                            <input type="password" name="password" class="form-control" v-model="dataAdd.password" required>
-                                        </div>
-                                    </validate>
-
-                                    <field-messages auto-label name="password" show="$submitted" class="color-danger form-group">
-                                        <p slot="required">Chưa nhập mật khẩu.</p>
-                                    </field-messages>
-
-                                    <validate auto-label class="form-group">
-                                        <label>Nhập lại mật khẩu</label>
-                                        <div class="form-line">
-                                            <input type="password" name="confirm_password" class="form-control" v-model="dataAdd.confirm_password" required :matches="dataAdd.password">
-                                        </div>
-                                    </validate>
-
-                                    <field-messages auto-label name="confirm_password" show="$submitted" class="color-danger form-group">
-                                        <p slot="required">Chưa xác nhận mật khẩu.</p>
-                                        <p slot="matches">Nhập lại mật khẩu không đúng</p>
-                                    </field-messages>
-
-                                    <div class="form-group">
-                                        <multiselect v-model="dataAdd.roles" :options="options" :multiple="true"></multiselect>
-                                    </div>
-
-                                    <div class="form-group text-right">
-                                        <button class="waves-effect btn btn-success" type="submit" :disabled="formState.$invalid && formState.$submitted">
-                                            <i class="material-icons">add</i>
-                                            <span>Thêm</span>
-                                        </button>
-                                        <a class="waves-effect btn btn-warning" @click="hideAddForm()">
-                                            <i class="material-icons">clear</i>
-                                            <span>Đóng</span>
-                                        </a>
-                                    </div>
-                                </vue-form>
-                            </div>
-                        </div>
-                    </vodal>
-
                     <div class="body table-responsive">
                         <div class="col-xs-3 text-center">
                             <strong>Tên</strong>
@@ -204,7 +212,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="text-center">
-                        <paginate :pageCount="pageCount" :containerClass="'pagination'" :clickHandler="clickCallback" ref="paginate" v-if="hasData" :prev-text="'<<'" :next-text="'>>'"></paginate>
+                        <paginate :pageCount="pageCount" :containerClass="'pagination'" :clickHandler="clickCallback" ref="paginate" v-if="hasData" :prev-text="'Prev'" :next-text="'Next'"></paginate>
                     </div>
                 </div>
             </div>
@@ -254,7 +262,7 @@
                     roles: []
                 },
                 selected: null,
-                options: ['admin', 'user'],
+                options: ['admin', 'user', 'supper_admin'],
                 route: this.$route,
                 pageCount: 1,
                 totalItems: 1,

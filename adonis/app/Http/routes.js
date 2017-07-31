@@ -37,14 +37,25 @@ Route.group('auth', function () {
 
 // Api Group
 Route.group('api', function () {
-    Route.get('/nguoi-dung', 'Api/UserController.index')
+    // Start: Auth
     Route.get('/dang-xuat', 'Api/HomeController.logout')
     Route.post('/dang-nhap', 'Api/AuthController.login')
+    // End: Auth
+
+    // Start: User
+    Route.get('/nguoi-dung', 'Api/UserController.index')
     Route.delete('/nguoi-dung/:id', 'Api/UserController.destroy')
-    Route.post('/nguoi-dung/doi-mat-khau', 'Api/UserController.changePassword')
     Route.post('/nguoi-dung', 'Api/UserController.store')
     Route.post('/nguoi-dung/:id', 'Api/UserController.update')
+    Route.post('/nguoi-dung/doi-mat-khau', 'Api/UserController.changePassword')
     Route.post('/nguoi-dung/role/:id', 'Api/UserController.updateRole')
+    // End: User
+
+    // Start: Account
+    Route.get('/tai-khoan', 'Api/AccountController.index')
+    Route.post('/tai-khoan', 'Api/AccountController.store')
+    // End: Account
+
 }).prefix('/api/v1')
 
 // Admin Group
