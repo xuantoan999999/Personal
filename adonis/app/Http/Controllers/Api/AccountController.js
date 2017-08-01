@@ -1,5 +1,6 @@
 'use strict'
 const mongoose = use('mongoose');
+const _ = require('lodash');
 
 const Account = mongoose.model('Account');
 
@@ -50,11 +51,25 @@ class AccountController {
     }
 
     * edit(request, response) {
+        let params = request.params();
+        let account = yield Account.findById(params.id).lean();
+        yield response.json({
+            account
+        })
         //
     }
 
     * update(request, response) {
-        //
+        let params = request.params();
+        let data = request.all();
+        let account = yield Account.findById(params.id);
+        let accountUpdate = _.extend(account, data.data);
+        let accountDone = yield accountUpdate.save();
+
+        yield response.json({
+            success: true,
+            account: accountDone
+        })
     }
 
     * destroy(request, response) {

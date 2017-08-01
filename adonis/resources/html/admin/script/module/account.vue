@@ -24,7 +24,7 @@
                             <strong>Action</strong>
                         </div>
                     </div>
-                    <updateAccount :data="item" v-for="item in accounts"></updateAccount>
+                    <itemAccount :data="item" v-for="item in accounts"></itemAccount>
                 </div>
             </div>
         </div>
@@ -33,12 +33,12 @@
 
 <script>
     import addAccount from './../components/account/add_account.vue'
-    import updateAccount from './../components/account/updater_account.vue'
+    import itemAccount from './../components/account/item_account.vue'
     import axios from 'axios'
     // <img src="https://icons.better-idea.org/icon?url=www.google.com.vn&size=40" alt="">
 
     export default {
-        components: { addAccount, updateAccount },
+        components: { addAccount, itemAccount },
         data(){
             return {
                 accounts: []
@@ -53,7 +53,6 @@
                     
                 }).then((resp) => {
                     this.accounts = resp.data.accounts;
-                    console.log(resp);
                     if(callback) callback();
                 })
             }
