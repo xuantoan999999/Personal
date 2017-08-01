@@ -35,7 +35,7 @@
     import addAccount from './../components/account/add_account.vue'
     import itemAccount from './../components/account/item_account.vue'
     import axios from 'axios'
-    // <img src="https://icons.better-idea.org/icon?url=www.google.com.vn&size=40" alt="">
+    import Vue from 'vue'
 
     export default {
         components: { addAccount, itemAccount },
@@ -49,9 +49,7 @@
         },
         methods: {
             init(callback){
-                axios.get(`/api/v1/tai-khoan`, {
-                    
-                }).then((resp) => {
+                axios.get(`/api/v1/tai-khoan`, {}).then((resp) => {
                     this.accounts = resp.data.accounts;
                     if(callback) callback();
                 })

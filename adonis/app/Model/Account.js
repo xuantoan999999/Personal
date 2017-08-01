@@ -19,20 +19,9 @@ const AccountSchema = new Schema({
         password: {
             type: String
         },
-        question: {
+        extra: {
             type: String
-        },
-        answer: {
-            type: String
-        },
-        extra: [{
-            key: {
-                type: String
-            },
-            value: {
-                type: String
-            }
-        }]
+        }
     }],
     creater: {
         type: Schema.ObjectId,
