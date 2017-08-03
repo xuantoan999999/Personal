@@ -24,7 +24,9 @@
                             <strong>Action</strong>
                         </div>
                     </div>
-                    <itemAccount :data="item" v-for="item in accounts" v-on:deleteAcc="changePage(1)"></itemAccount>
+                    <div v-for="item in accounts">
+                        <itemAccount :data="item" v-on:deleteAcc="changePage(1)"></itemAccount>
+                    </div>
                 </div>
                 <div class="text-center">
                     <paginate :pageCount="pageCount" :containerClass="'pagination'" :clickHandler="changePage" ref="paginate" v-if="hasData" :prev-text="'Prev'" :next-text="'Next'"></paginate>

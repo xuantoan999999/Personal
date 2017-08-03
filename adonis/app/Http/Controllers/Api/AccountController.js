@@ -25,7 +25,6 @@ class AccountController {
                 });
             })
         }
-
         let dataSend = yield find();
         yield response.json(dataSend);
     }
