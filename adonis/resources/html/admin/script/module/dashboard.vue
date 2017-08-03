@@ -16,9 +16,6 @@
 <script>
     import Vue from 'vue'
     import axios from 'axios'
-    import inputEff from './../main/input'
-
-    const input = new inputEff()
 
     export default {
         data(){

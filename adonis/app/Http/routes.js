@@ -56,6 +56,7 @@ Route.group('api', function () {
     Route.post('/tai-khoan', 'Api/AccountController.store')
     Route.get('/tai-khoan/:id', 'Api/AccountController.edit')
     Route.post('/tai-khoan/:id', 'Api/AccountController.update')
+    Route.delete('/tai-khoan/:id', 'Api/AccountController.destroy')
     // End: Account
 
 }).prefix('/api/v1')

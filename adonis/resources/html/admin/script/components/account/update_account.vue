@@ -64,14 +64,8 @@
                             <span>Hủy</span>
                         </button>
 
-                        <div v-for="item in tmpData.list_account">
-                            <button class="btn btn-default waves-effect m-b-15 btn-block " type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" >
-                                dgsdg
-                            </button>
-                            <div class="collapse" id="collapseExample">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica,
-                                craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                            </div>
+                        <div v-for="(item, index) in tmpData.list_account">
+                            <updateAccountList :data="item" :index="index" @deleteAcount="deleteAcc(index)"></updateAccountList>
                         </div>
 
                         <div class="form-group text-right">
@@ -97,6 +91,7 @@ import VueForm from 'vue-form';
 import Vue from 'vue'
 import axios from 'axios'
 import inputEff from './../../main/input.js'
+import updateAccountList from './update_account_list.vue'
 
 export default {
     data() {
@@ -114,7 +109,8 @@ export default {
     },
     props:['data'],
     components: {
-        Vodal
+        Vodal,
+        updateAccountList
     },
     mounted() {
     },
@@ -155,9 +151,13 @@ export default {
                     this.tmpData.list_account.push(this.tmpDataAcc);
                 }
             }
-            this.tmpDataAcc = this.defaultDataAcc()
+            this.tmpDataAcc = this.defaultDataAcc();
             this.showAddAcc = !this.showAddAcc;
+            $('.form-line.focused').removeClass('focused');
         },
+        deleteAcc(index){
+            this.tmpData.list_account.splice(index,1);
+        }
     }
 }
 </script>

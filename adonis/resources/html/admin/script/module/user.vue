@@ -276,7 +276,6 @@
             });
         },
         components: {
-            // Vodal.name,
             Vodal,
             Multiselect,
             Paginate

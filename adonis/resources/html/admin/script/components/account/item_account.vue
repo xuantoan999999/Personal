@@ -8,7 +8,7 @@
         </div>
         <div class="col-xs-4">
             <updateAccount :data="dataItem" @reloadAccount="updateAccount"></updateAccount>
-            <button class="waves-effect btn btn-danger">
+            <button class="waves-effect btn btn-danger" @click="removeAccount">
                 <i class="material-icons">delete</i>
                 <span>Xóa</span>
             </button>
@@ -17,15 +17,9 @@
 </template>
 
 <script>
-import Vodal from 'vodal';
-import VueForm from 'vue-form';
 import Vue from 'vue'
 import axios from 'axios'
-import inputEff from './../../main/input.js'
 import updateAccount from './update_account.vue'
-
-const input = new inputEff()
-Vue.use(VueForm);
 
 export default {
     data() {
@@ -41,7 +35,6 @@ export default {
     },
     props:['data'],
     components: {
-        Vodal,
         updateAccount
     },
     mounted() {
@@ -50,6 +43,11 @@ export default {
     methods:{
         updateAccount(data){
             this.dataItem = data.data;
+        },
+        removeAccount(){
+            axios.delete(`/api/v1/tai-khoan/${this.dataItem._id}`).then((resp) => {
+                this.$emit('deleteAcc', {data: this.dataItem})
+            })
         }
     }
 }

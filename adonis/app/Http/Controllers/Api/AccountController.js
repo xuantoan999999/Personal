@@ -13,7 +13,7 @@ class AccountController {
 
         let find = () => {
             return new Promise(function (resolve, reject) {
-                Account.find().lean().paginate(page, itemsPerPage, (err, items, total) => {
+                Account.find().lean().sort('-createdAt').paginate(page, itemsPerPage, (err, items, total) => {
                     let dataSend = {
                         totalItems: total,
                         totalPage: Math.ceil(total / itemsPerPage),
@@ -73,7 +73,11 @@ class AccountController {
     }
 
     * destroy(request, response) {
-        //
+        let params = request.params();
+        let removeAccount = yield Account.findByIdAndRemove(params.id);
+        yield response.json({
+            success: true
+        })
     }
 }
 
