@@ -82,9 +82,7 @@
         },
         mounted() {
             this.filterData = (JSON.parse(JSON.stringify(this.route.query)))
-            this.init(() => {
-                
-            });
+            this.init(() => {});
         },
         methods: {
             init(callback){
@@ -116,7 +114,7 @@
                 this.init(function(){});
             },
             filter(){
-                if(!this.filterData.search && this.route.query.search) delete this.route.query.search;
+                if(this.route.query.search) delete this.route.query.search;
                 if(this.filterData.search) this.route.query.search = this.filterData.search;
 
                 this.changePage(1);

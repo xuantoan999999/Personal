@@ -23,8 +23,7 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
     routes: routes.list,
-    // linkExactActiveClass: 'active',
-    linkActiveClass: 'active'
+    linkActiveClass: 'active',
 })
 
 router.beforeEach((to, from, next) => {
