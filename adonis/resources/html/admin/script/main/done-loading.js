@@ -6,7 +6,7 @@ export default class DoneLoading {
     }
 
     removeLoading() {
-        setTimeout(function () { $('#loading-wrapper').fadeOut(); }, 50);
+        setTimeout(function () { $('#loading-wrapper').fadeOut(); }, 100);
     }
 }
 

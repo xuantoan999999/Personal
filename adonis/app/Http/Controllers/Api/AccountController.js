@@ -11,9 +11,19 @@ class AccountController {
         let page = parseInt(params.page) || 1;
         let itemsPerPage = parseInt(params.limit) || 10;
 
+        let option_and = [];
+        let option = {};
+        if (params.search) option_and.push({
+            $or: [
+                { name: new RegExp(params.search, 'i') },
+                { website: new RegExp(params.search, 'i') },
+            ]
+        })
+        if (option_and.length > 0) option = { $and: option_and };
+
         let find = () => {
             return new Promise(function (resolve, reject) {
-                Account.find().lean().sort('-createdAt').paginate(page, itemsPerPage, (err, items, total) => {
+                Account.find(option).lean().sort('-createdAt').paginate(page, itemsPerPage, (err, items, total) => {
                     let dataSend = {
                         totalItems: total,
                         totalPage: Math.ceil(total / itemsPerPage),
