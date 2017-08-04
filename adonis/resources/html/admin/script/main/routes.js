@@ -1,6 +1,7 @@
 import Dashboard from './../module/dashboard.vue';
 import Account from './../module/account.vue';
 import User from './../module/user.vue';
+import Website from './../module/website.vue';
 
 export default {
     list: [
@@ -17,17 +18,16 @@ export default {
             path: '/tai-khoan',
             name: 'account',
             component: Account,
-            query: {
-                query: {
-                    page: 1,
-                    limit: 15
-                }
-            }
         },
         {
             path: '/nguoi-dung',
             name: 'user',
             component: User,
+        },
+        {
+            path: '/website',
+            name: 'website',
+            component: Website,
         }
     ]
 };

@@ -1,5 +1,13 @@
 {
     "presets": [
         "es2017"
+    ],
+    "plugins": [
+        [
+            "transform-object-rest-spread",
+            {
+                "useBuiltIns": true
+            }
+        ]
     ]
 }

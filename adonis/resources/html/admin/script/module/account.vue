@@ -63,7 +63,6 @@
     import axios from 'axios'
     import Vue from 'vue'
     import Paginate from 'vuejs-paginate';
-    import _ from 'lodash';
 
     export default {
         components: { addAccount, itemAccount, Paginate },

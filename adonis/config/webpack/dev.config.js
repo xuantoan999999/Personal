@@ -61,11 +61,10 @@ module.exports = {
             io: 'socket.io-client',
         }),
         CopyWebpack()
-
     ],
     module: {
         rules: [{
-            test: /\.(js|jsx)$/,
+            test: /\.(vue|js|jsx)$/,
             use: 'babel-loader',
             exclude: /node_modules/
         },
