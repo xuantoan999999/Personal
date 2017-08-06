@@ -5,6 +5,7 @@
   "scripts": {
     "start": "npm-run-all --parallel nodemon develop",
     "dev": "npm run serve:dev",
+    "runserv": "npm-run-all build dev",
     "develop": "webpack --env=dev --watch --progress --profile --colors --hide-modules",
     "build": "webpack --env=prod --progress --profile --colors --hide-modules",
     "serve:dev": "nodemon --watch app --watch bootstrap --watch config --watch .env -x node server.js",
