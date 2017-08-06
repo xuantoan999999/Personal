@@ -44,7 +44,7 @@ module.exports = {
         web: './resources/html/web/app.js',
     },
     output: {
-        path: PATHS.build,
+        path: PATHS.dist,
         filename: '[name]/script/main.js'
     },
     plugins: [
