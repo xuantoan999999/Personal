@@ -8,11 +8,11 @@
                             <h2>Website</h2>
                         </div>
                         <div class="col-xs-6">
-                            
+                            <addWebsite @add="changePage(1)"></addWebsite>
                         </div>
                     </div>
                 </div>
-                <div class="body" id="account">
+                <div class="body">
                     <div class="row">
                         <div class="col-xs-3">
                             <div class="form-group form-float">
@@ -34,7 +34,26 @@
                             </div>
                         </div>
                     </div>
-                    <Test></Test>
+
+                    <div v-if="hasData">
+                        <div class="row">
+                            <div class="col-xs-4 text-center">
+                                <strong>Tên</strong>
+                            </div>
+                            <div class="col-xs-4 text-center">
+                                <strong>Link website</strong>
+                            </div>
+                            <div class="col-xs-4 text-center">
+                                <strong>Action</strong>
+                            </div>
+                        </div>
+                        <div v-for="item in websites">
+                            <itemWebsite :data="item" @update="update"></itemWebsite>
+                        </div>
+                        <div class="text-center">
+                            <paginate :pageCount="pageCount" :containerClass="'pagination'" :clickHandler="changePage" ref="paginate" :prev-text="'Prev'" :next-text="'Next'"></paginate>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -46,96 +65,59 @@
     import axios from 'axios'
     import Vue from 'vue'
     import Paginate from 'vuejs-paginate';
-    import Vuex from 'vuex';
-    import Test from './../components/website/test.vue';
+    import { mapGetters, mapActions, mapState } from 'vuex'
 
-    Vue.use(Vuex);
-
-    const store = new Vuex.Store({
-        state: {
-            count: 0,
-            todos: [
-                { id: 1, text: '...', done: true },
-                { id: 2, text: '...', done: false }
-            ]
-
-        },
-        mutations: {
-            increment: state => state.count++,
-            decrement: state => state.count--
-        },
-        getters: {
-            doneTodos: state => state.todos.filter(todo => todo.done),
-            lengthTodos: (state, getters) => getters.doneTodos.length
-        },
-        actions: {
-            increment (context, payload) {
-                context.commit('increment')
-            }
-        }
-
-    })
+    import itemWebsite from './../components/website/item_website.vue'
+    import addWebsite from './../components/website/add_website.vue'
 
     export default {
-        components: {Test, Paginate },
-        store,
         data(){
             return {
-                // selected: null,
-                // route: this.$route,
-                // pageCount: 1,
-                // totalItems: 1,
-                // hasData: false,
-                // filterData:{
-                //     search: ''
-                // }
+                selected: null,
+                route: this.$route,
+                filterData:{
+                    search: ''
+                },
             }
         },
-        mounted() {
-            // this.filterData = (JSON.parse(JSON.stringify(this.route.query)))
-            // this.init(() => {});
-        },
+        components: { Paginate, itemWebsite, addWebsite },
         computed: {
-            // count () {
-            //     return store.state.count
-            // }
+            ...mapState({
+                websites: state => state.website.listWeb,
+                hasData: state => state.website.hasData,
+                currentPage: state => state.website.currentPage,
+                totalItems: state => state.website.totalItems,
+                pageCount: state => state.website.totalPage,
+            }),
+        },
+        mounted() {
+            this.init(() => {});
         },
         methods: {
-            // increment () {
-            //     console.log("increment");
-            //     store.commit('increment')
-            // },
-            // decrement () {
-            //     console.log("decrement");
-            //     store.commit('decrement')
-            // },
+            update(){
+                console.log("ksdn skdgk s");
+            },
             init(callback){
-                // this.hasData = false;
-                // let params = this.route.query;
-                // axios.get(`/api/v1/tai-khoan`, {
-                //     params
-                // }).then((resp) => {
-                //     this.pageCount = resp.data.totalPage;
-                //     this.totalItems = resp.data.totalItems;
-                //     this.currentPage = resp.data.currentPage;
-                //     this.accounts = resp.data.accounts;
-                //     this.hasData = true;
-                //     let $this = this;
-                //     setTimeout(function () { $this.$refs.paginate.selected = $this.currentPage - 1; }, 50);
-                //     if(callback) callback();
-                // })
+                let params = this.route.query;
+                this.$store.dispatch('getListWeb', {
+                    params,
+                }).then(() => {
+                    let $this = this;
+                    setTimeout(function () { $this.$refs.paginate.selected = $this.currentPage - 1; }, 50);
+                    if(callback) callback();
+                });
             },
             changePage(page){
-                // // Change url
-                // let query = (JSON.parse(JSON.stringify(this.route.query)));
-                // query.page = page;
-                // this.$router.push({
-                //     name: 'account', query
-                // })
+                // Change url
+                let query = (JSON.parse(JSON.stringify(this.route.query)));
+                query.page = page;
+                this.$router.replace({
+                    name: 'website', query
+                })
 
-                // // Query
-                // this.route.query.page = page;
-                // this.init(function(){});
+                // Query
+                this.route.query.page = page;
+                this.init(function(){});
             },
             filter(){
                 // if(this.route.query.search) delete this.route.query.search;

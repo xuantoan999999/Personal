@@ -37,27 +37,39 @@ Route.group('auth', function () {
 
 // Api Group
 Route.group('api', function () {
-    // Start: Auth
+    /**
+     * Module Auth
+     */
     Route.get('/dang-xuat', 'Api/HomeController.logout')
     Route.post('/dang-nhap', 'Api/AuthController.login')
-    // End: Auth
 
-    // Start: User
+    /**
+     * Module User
+     */
     Route.get('/nguoi-dung', 'Api/UserController.index')
     Route.delete('/nguoi-dung/:id', 'Api/UserController.destroy')
     Route.post('/nguoi-dung', 'Api/UserController.store')
     Route.post('/nguoi-dung/:id', 'Api/UserController.update')
     Route.post('/nguoi-dung/doi-mat-khau', 'Api/UserController.changePassword')
     Route.post('/nguoi-dung/role/:id', 'Api/UserController.updateRole')
-    // End: User
 
-    // Start: Account
+    /**
+     * Module Account
+     */
     Route.get('/tai-khoan', 'Api/AccountController.index')
     Route.post('/tai-khoan', 'Api/AccountController.store')
     Route.get('/tai-khoan/:id', 'Api/AccountController.edit')
     Route.post('/tai-khoan/:id', 'Api/AccountController.update')
     Route.delete('/tai-khoan/:id', 'Api/AccountController.destroy')
-    // End: Account
+
+    /**
+     * Module Website
+     */
+    Route.get('/website', 'Api/WebsiteController.index')
+    Route.post('/website', 'Api/WebsiteController.store')
+    Route.get('/website/:id', 'Api/WebsiteController.show')
+    Route.post('/website/:id', 'Api/WebsiteController.update')
+    Route.delete('/website/:id', 'Api/WebsiteController.destroy')
 
 }).prefix('/api/v1')
 
