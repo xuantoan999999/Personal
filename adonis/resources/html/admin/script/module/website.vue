@@ -17,17 +17,17 @@
                         <div class="col-xs-3">
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <input type="text" class="form-control" name="search" placeholder="Link website">
+                                    <input type="text" class="form-control" name="search" placeholder="Link website" v-model="filterData.search">
                                 </div>
                             </div>
                         </div>
                         <div class="col-xs-3">
                             <div class="form-group">
-                                <button class="btn btn-primary waves-effect" type="button">
+                                <button class="btn btn-primary waves-effect" type="button" @click="filter">
                                     <i class="material-icons">search</i>
                                     <span>Filter</span>
                                 </button>
-                                <button class="btn btn-warning waves-effect" type="button">
+                                <button class="btn btn-warning waves-effect" type="button" @click="reset">
                                     <i class="material-icons">clear</i>
                                     <span>Reset</span>
                                 </button>
@@ -111,7 +111,7 @@
                 // Change url
                 let query = (JSON.parse(JSON.stringify(this.route.query)));
                 query.page = page;
-                this.$router.replace({
+                this.$router.push({
                     name: 'website', query
                 })
 
@@ -120,16 +120,16 @@
                 this.init(function(){});
             },
             filter(){
-                // if(this.route.query.search) delete this.route.query.search;
-                // if(this.filterData.search) this.route.query.search = this.filterData.search;
+                if(this.route.query.search) delete this.route.query.search;
+                if(this.filterData.search) this.route.query.search = this.filterData.search;
 
-                // this.changePage(1);
+                this.changePage(1);
             },
             reset(){
-                // this.filterData = {
-                //     search: null
-                // }
-                // this.filter();
+                this.filterData = {
+                    search: null
+                }
+                this.filter();
             }
         }
     }
