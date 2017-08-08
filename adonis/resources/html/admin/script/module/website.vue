@@ -69,6 +69,10 @@
 
     import itemWebsite from './../components/website/item_website.vue'
     import addWebsite from './../components/website/add_website.vue'
+    import Url from './../main/url.js';
+
+    let url = new Url();
+    console.log(url);
 
     export default {
         data(){
@@ -93,10 +97,14 @@
         mounted() {
             this.filterData = (JSON.parse(JSON.stringify(this.$route.query)));
             this.init(() => {});
+            this.$router.push({
+                name: 'website',
+                query: this.filterData
+            })
         },
         methods: {
             init(callback){
-                let params = this.route.query;
+                let params = this.$route.query;
                 this.$store.dispatch('getListWeb', {
                     params,
                 }).then(() => {
@@ -107,19 +115,19 @@
             },
             changePage(page){
                 // Change url
-                let query = (JSON.parse(JSON.stringify(this.route.query)));
+                let query = (JSON.parse(JSON.stringify(this.$route.query)));
                 query.page = page;
                 this.$router.push({
                     name: 'website', query
                 })
 
                 // Query
-                this.route.query.page = page;
+                this.$route.query.page = page;
                 this.init(function(){});
             },
             filter(){
-                if(this.route.query.search) delete this.route.query.search;
-                if(this.filterData.search) this.route.query.search = this.filterData.search;
+                if(this.$route.query.search) delete this.$route.query.search;
+                if(this.filterData.search) this.$route.query.search = this.filterData.search;
 
                 this.changePage(1);
             },

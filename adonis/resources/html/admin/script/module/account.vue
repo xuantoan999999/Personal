@@ -102,7 +102,8 @@
             changePage(page){
                 // Change url
                 let query = (JSON.parse(JSON.stringify(this.$route.query)));
-                query.page = page + '';
+                query.page = page;
+                console.log(query);
                 this.$router.push({
                     name: 'account',
                     query,
