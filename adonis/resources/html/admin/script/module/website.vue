@@ -91,6 +91,7 @@
             }),
         },
         mounted() {
+            this.filterData = (JSON.parse(JSON.stringify(this.$route.query)));
             this.init(() => {});
         },
         methods: {
