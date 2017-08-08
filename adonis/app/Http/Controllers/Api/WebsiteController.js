@@ -52,10 +52,11 @@ class WebsiteController {
         let data = request.all().data;
         data.creater = user._id;
         let saveWebsite = new Website(data);
-        yield saveWebsite.save();
+        let addWebsite = yield saveWebsite.save();
 
         yield response.json({
             success: true,
+            addWebsite
         })
     }
 

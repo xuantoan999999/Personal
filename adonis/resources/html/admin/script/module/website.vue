@@ -48,7 +48,7 @@
                             </div>
                         </div>
                         <div v-for="item in websites">
-                            <itemWebsite :data="item" @update="update"></itemWebsite>
+                            <itemWebsite :data="item"></itemWebsite>
                         </div>
                         <div class="text-center">
                             <paginate :pageCount="pageCount" :containerClass="'pagination'" :clickHandler="changePage" ref="paginate" :prev-text="'Prev'" :next-text="'Next'"></paginate>
@@ -94,16 +94,13 @@
             this.init(() => {});
         },
         methods: {
-            update(){
-                console.log("ksdn skdgk s");
-            },
             init(callback){
                 let params = this.route.query;
                 this.$store.dispatch('getListWeb', {
                     params,
                 }).then(() => {
                     let $this = this;
-                    setTimeout(function () { $this.$refs.paginate.selected = $this.currentPage - 1; }, 50);
+                    setTimeout(function () { $this.$refs.paginate.selected = $this.currentPage - 1; }, 200);
                     if(callback) callback();
                 });
             },

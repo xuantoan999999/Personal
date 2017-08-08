@@ -70,7 +70,6 @@
             return {
                 accounts: [],
                 selected: null,
-                route: this.$route,
                 pageCount: 1,
                 totalItems: 1,
                 hasData: false,
@@ -80,13 +79,13 @@
             }
         },
         mounted() {
-            this.filterData = (JSON.parse(JSON.stringify(this.route.query)))
+            this.filterData = (JSON.parse(JSON.stringify(this.$route.query)));
             this.init(() => {});
         },
         methods: {
             init(callback){
                 this.hasData = false;
-                let params = this.route.query;
+                let params = this.$route.query;
                 axios.get(`/api/v1/tai-khoan`, {
                     params
                 }).then((resp) => {
@@ -102,19 +101,20 @@
             },
             changePage(page){
                 // Change url
-                let query = (JSON.parse(JSON.stringify(this.route.query)));
-                query.page = page;
+                let query = (JSON.parse(JSON.stringify(this.$route.query)));
+                query.page = page + '';
                 this.$router.push({
-                    name: 'account', query
+                    name: 'account',
+                    query,
                 })
 
                 // Query
-                this.route.query.page = page;
+                this.$route.query.page = page;
                 this.init(function(){});
             },
             filter(){
-                if(this.route.query.search) delete this.route.query.search;
-                if(this.filterData.search) this.route.query.search = this.filterData.search;
+                if(this.$route.query.search) delete this.$route.query.search;
+                if(this.filterData.search) this.$route.query.search = this.filterData.search;
 
                 this.changePage(1);
             },

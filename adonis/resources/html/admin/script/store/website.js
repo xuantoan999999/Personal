@@ -15,17 +15,19 @@ const getters = {};
 
 const actions = {
     getListWeb({ commit, state }, { params }) {
-        state.hasData = false;
-        axios.get('api/v1/website', {
-            params
-        }).then((resp) => {
-            commit('createListWeb', {
-                data: resp.data.data.websites,
-                currentPage: resp.data.data.currentPage,
-                totalItems: resp.data.data.totalItems,
-                totalPage: resp.data.data.totalPage
-            });
-        })
+        setTimeout(() => {
+            state.hasData = false;
+            axios.get('api/v1/website', {
+                params
+            }).then((resp) => {
+                commit('createListWeb', {
+                    data: resp.data.data.websites,
+                    currentPage: resp.data.data.currentPage,
+                    totalItems: resp.data.data.totalItems,
+                    totalPage: resp.data.data.totalPage
+                });
+            })
+        }, 50);
     },
     addWeb({ commit, state }, { data }) {
         axios.post(`/api/v1/website`, {

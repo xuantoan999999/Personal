@@ -88,12 +88,15 @@ export default {
         },
         add(){
             if(!this.formState.$valid) return;
+            let params = this.$route.query;
             this.$store.dispatch('addWeb', {
                 data: this.dataAdd
             }).then(() => {
                 this.hideAddForm();
                 this.dataAdd = this.defaultDataAdd();
-                this.$emit('add');
+                this.$store.dispatch('getListWeb', {
+                    params,
+                }).then(() =>{});
             });
         }
     }
