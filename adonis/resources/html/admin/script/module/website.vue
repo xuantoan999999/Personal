@@ -71,8 +71,7 @@
     import addWebsite from './../components/website/add_website.vue'
     import Url from './../main/url.js';
 
-    let url = new Url();
-    console.log(url);
+    
 
     export default {
         data(){
@@ -95,6 +94,8 @@
             }),
         },
         mounted() {
+            let url = new Url();
+            console.log(url);
             this.filterData = (JSON.parse(JSON.stringify(this.$route.query)));
             this.init(() => {});
             this.$router.push({
