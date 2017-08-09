@@ -1,0 +1,14 @@
+{
+  "name": "expresslearn",
+  "version": "1.0.0",
+  "description": "Learn express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Maximus Tims",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
+}
