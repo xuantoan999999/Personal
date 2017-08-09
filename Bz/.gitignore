@@ -1,7 +1,0 @@
-node_modules
-var/*.log
-*.log
-.vscode
-.idea
-web/public/assets/dist/
-web/app/config/development.conf.js

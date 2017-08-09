@@ -94,8 +94,6 @@
             }),
         },
         mounted() {
-            let url = new Url();
-            console.log(url);
             this.filterData = (JSON.parse(JSON.stringify(this.$route.query)));
             this.init(() => {});
             this.$router.push({
@@ -115,6 +113,8 @@
                 });
             },
             changePage(page){
+                let url = new Url();
+                url.toUrlString();
                 // Change url
                 let query = (JSON.parse(JSON.stringify(this.$route.query)));
                 query.page = page;
