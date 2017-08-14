@@ -20,5 +20,6 @@
     },
     "workbench.colorCustomizations": {
         "activityBar.foreground": "#f44336"
-    }
+    },
+    "workbench.colorTheme": "Default Dark+"
 }
