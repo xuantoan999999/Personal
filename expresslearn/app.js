@@ -1,11 +1,10 @@
 const express = require('express')
-const app = express()
 const port = 2200;
+const app = express();
+module.exports = app;
 
-app.get('/', function (req, res) {
-  res.send('Hello World!')
-})
+require('./boostrap/boostrap');
 
-app.listen(port, function () {
-  console.log(`Example app listening on port ${port}!`)
+app.listen(port, () => {
+  console.log(`Go to http://localhost:${port}`)
 })
