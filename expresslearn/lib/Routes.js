@@ -40,8 +40,8 @@ class Route {
         app.delete(route, this.controller[name][func]);
     }
 
-    group(){
-        console.log('kngkdsngk');
+    group(name, routes){
+        routes();
     }
 
     // Register controller to route method

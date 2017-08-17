@@ -31,6 +31,7 @@ import { Component } from '@angular/core';
         <p>{{ course.student | number:'1.2-2' }}</p>
         <p>{{ course.price | currency:'AUD':true:'3.2-2' }}</p>
         <p>{{ course.releaseDate | date:'dd/MM/yyyy' }}</p>
+        <p>{{ text | summary:10 }}</p>
     `
 })
 
@@ -49,6 +50,8 @@ export class CoursesComponent {
         price: 109.95,
         releaseDate: new Date()
     };
+    text = `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    `
 
     constructor(service: CoursesService) {
         this.courses = service.getCourses();
