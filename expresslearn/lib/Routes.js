@@ -7,7 +7,7 @@ class Route {
 
     constructor() {
         this.controller = {};
-        this.registerController(path.resolve(__dirname, './../app/module'));
+        this.registerController(path.resolve(__dirname, './../app/modules'));
     }
 
     // Http all method

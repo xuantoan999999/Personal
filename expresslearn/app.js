@@ -1,10 +1,10 @@
 const express = require('express')
-const port = 2200;
 const app = express();
+const config = require('./config/config');
 module.exports = app;
 
 require('./boostrap/boostrap');
 
-app.listen(port, () => {
-  console.log(`Go to http://localhost:${port}`)
+app.listen(config.port, () => {
+  console.log(`Go to http://localhost:${config.port}`)
 })
