@@ -21,5 +21,7 @@
     "workbench.colorCustomizations": {
         "activityBar.foreground": "#f44336"
     },
-    "workbench.colorTheme": "Default Dark+"
+    "workbench.colorTheme": "Default Dark+",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true
 }
