@@ -3,7 +3,10 @@
 class HomeController {
 
     * index(request, response) {
-        return yield response.redirect('/admin');
+        return yield response.sendView('web.home', {
+            sidebar_active: 'dashboard',
+        });
+        // return yield response.redirect('/admin');
     }
 
     * create(request, response) {

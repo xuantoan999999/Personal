@@ -42,7 +42,7 @@ module.exports = {
         // admin_vendor:
         // admin_main:
         admin: './resources/html/admin/app.js',
-        web: './resources/html/web/app.js',
+        web: './resources/script/web/app.js',
     },
     output: {
         path: PATHS.dist,
@@ -109,19 +109,19 @@ module.exports = {
 
 function CopyWebpack() {
     return new CopyWebpackPlugin([{
-        from: 'resources/html/web/image',
+        from: 'public/image/web',
         to: 'web/images'
     },
     {
-        from: 'resources/html/web/fonts',
+        from: 'public/fonts',
         to: 'web/fonts'
     },
     {
-        from: 'resources/html/admin/image',
+        from: 'public/image/admin',
         to: 'admin/images'
     },
     {
-        from: 'resources/html/admin/fonts',
+        from: 'public/fonts',
         to: 'admin/fonts'
     }]);
 }

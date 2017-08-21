@@ -5,15 +5,8 @@
     {% include "web/layout/partial/master/header.njk" %}
 </head>
 
-<body class="theme-red">
-    {% include "web/layout/partial/master/loading.njk" %}
-    <div class="wrapper">
-        {% include "web/layout/partial/master/header-nav.njk" %}
-        {% include "web/layout/partial/master/sidebar.njk" %}
-        <section class="content">
-            {% block content %}{% endblock %}
-        </section>
-    </div>
+<body>
+    {% block content %}{% endblock %}
     {% include "web/layout/partial/master/footer.njk" %}
 </body>
 
