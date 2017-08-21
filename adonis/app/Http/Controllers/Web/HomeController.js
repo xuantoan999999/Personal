@@ -4,7 +4,7 @@ class HomeController {
 
     * index(request, response) {
         return yield response.sendView('web.home', {
-            sidebar_active: 'dashboard',
+            content: 'Hello world',
         });
         // return yield response.redirect('/admin');
     }
