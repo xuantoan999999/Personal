@@ -59,6 +59,7 @@ module.exports = {
             Tether: 'tether',
             Waves: "adminbsb-materialdesign/plugins/node-waves/waves.js",
             io: 'socket.io-client',
+            Popper: 'popper.js'
         }),
         CopyWebpack()
     ],

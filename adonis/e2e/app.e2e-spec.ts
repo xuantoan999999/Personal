@@ -1,10 +1,10 @@
-import { AngularCliPage } from './app.po';
+import { AngadonisPage } from './app.po';
 
-describe('angular-cli App', () => {
-  let page: AngularCliPage;
+describe('angadonis App', () => {
+  let page: AngadonisPage;
 
   beforeEach(() => {
-    page = new AngularCliPage();
+    page = new AngadonisPage();
   });
 
   it('should display welcome message', () => {
