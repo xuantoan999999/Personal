@@ -14,9 +14,9 @@ const extractStyle = new ExtractTextPlugin({
     allChunks: false
 });
 const BrowserSync = new BrowserSyncPlugin({
-    proxy: "http://localhost:2206",
+    proxy: "http://localhost:2201",
     files: ["app/**/*.*", "resources/**/*.*"],
-    port: 1111
+    port: 2206
 }, {
         reload: true
     }
@@ -41,7 +41,7 @@ module.exports = {
     entry: {
         // admin_vendor:
         // admin_main:
-        admin: './resources/html/admin/app.js',
+        // admin: './resources/html/admin/app.js',
         web: './resources/script/web/app.js',
     },
     output: {
@@ -117,12 +117,13 @@ function CopyWebpack() {
         from: 'public/fonts',
         to: 'web/fonts'
     },
-    {
-        from: 'public/image/admin',
-        to: 'admin/images'
-    },
-    {
-        from: 'public/fonts',
-        to: 'admin/fonts'
-    }]);
+    // {
+    //     from: 'public/image/admin',
+    //     to: 'admin/images'
+    // },
+    // {
+    //     from: 'public/fonts',
+    //     to: 'admin/fonts'
+    // }
+    ]);
 }

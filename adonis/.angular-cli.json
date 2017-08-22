@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "resources/script/admin",
-      "outDir": "dist",
+      "outDir": "public/assets/dist/admin",
       "assets": [
         "assets",
         "favicon.ico"
@@ -52,6 +52,9 @@
   },
   "defaults": {
     "styleExt": "css",
-    "component": {}
+    "component": {},
+    "serve": {
+      "port": 2205
+    }
   }
 }
