@@ -30,10 +30,7 @@ Route.group('web', function () {
     Route.get('/', 'Web/HomeController.index')
 })
 
-Route.group('auth', function () {
-    Route.get('/dang-nhap', 'Web/AuthController.signin')
-    Route.post('/dang-nhap', 'Web/AuthController.login')
-})
+
 
 // Api Group
 Route.group('api', function () {
@@ -80,3 +77,8 @@ Route.group('admin', function () {
     Route.get('/nguoi-dung', 'Admin/UserController.index')
 }).prefix('admin').middleware('auth')
 // .middleware('auth')
+
+Route.group('auth', function () {
+    Route.get('/dang-nhap', 'Admin/AuthController.signin')
+    Route.post('/dang-nhap', 'Admin/AuthController.login')
+})

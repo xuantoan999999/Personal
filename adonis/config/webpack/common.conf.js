@@ -1,6 +1,7 @@
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
 const pluginLoader = require('./pluginLoader.conf');
+const helpers = require('./helpers');
 
 const ROOT_PATH = process.cwd();
 
@@ -21,8 +22,10 @@ const PATHS = {
 
 module.exports = {
     entry: {
-        admin: './resources/admin/app.js',
         web: './resources/web/app.js',
+        polyfills: './resources/admin/polyfills.ts',
+        vendor: './resources/admin/vendor.ts',
+        app: './resources/admin/main.ts'
     },
     output: {
         path: PATHS.dist,
@@ -35,14 +38,29 @@ module.exports = {
             exclude: /node_modules/
         },
         {
+            test: /\.ts$/,
+            loaders: [
+                {
+                    loader: 'awesome-typescript-loader',
+                    options: { configFileName: helpers.root('resources/admin', 'tsconfig.json') }
+                }, 'angular2-template-loader'
+            ]
+        },
+        {
+            test: /\.html$/,
+            loader: 'html-loader'
+        },
+        {
             test: /\.(jpg|png|gif|svg)$/,
             loader: 'url-loader?limit=100000'
-        }, {
-            test: /\.css$/,
-            use: ExtractTextPlugin.extract({
-                use: 'css-loader'
-            }),
-        }, {
+        },
+        // {
+        //     test: /\.css$/,
+        //     use: ExtractTextPlugin.extract({
+        //         use: 'css-loader'
+        //     }),
+        // },
+        {
             test: /\.vue$/,
             loader: 'vue-loader',
             options: {
@@ -51,6 +69,16 @@ module.exports = {
                     'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
                 }
             }
+        },
+        {
+            test: /\.css$/,
+            exclude: helpers.root('resources/admin', 'app'),
+            loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader?sourceMap' })
+        },
+        {
+            test: /\.css$/,
+            include: helpers.root('resources/admin', 'app'),
+            loader: 'raw-loader'
         }, {
             test: /\.(scss|sass)$/,
             use: pluginLoader.extractStyle.extract({
@@ -66,6 +94,7 @@ module.exports = {
     resolve: {
         alias: {
             'vue$': 'vue/dist/vue.esm.js'
-        }
+        },
+        extensions: ['.ts', '.js']
     },
 };

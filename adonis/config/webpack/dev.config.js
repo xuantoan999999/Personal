@@ -1,7 +1,9 @@
 const Webpack = require('webpack');
-var commonConfig = require('./common.conf');
-var merge = require('webpack-merge')
+const commonConfig = require('./common.conf');
+const merge = require('webpack-merge')
 const pluginLoader = require('./pluginLoader.conf');
+const helpers = require('./helpers');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = merge(commonConfig, {
     plugins: [
@@ -16,6 +18,20 @@ module.exports = merge(commonConfig, {
             Waves: "adminbsb-materialdesign/plugins/node-waves/waves.js",
             io: 'socket.io-client',
         }),
-        pluginLoader.CopyWebpack()
+        pluginLoader.CopyWebpack(),
+        new Webpack.ContextReplacementPlugin(
+            // The (\\|\/) piece accounts for path separators in *nix and Windows
+            /angular(\\|\/)core(\\|\/)@angular/,
+            helpers.root('./resources/admin'), // location of your resources/admin
+            {} // a map of your routes
+        ),
+
+        new Webpack.optimize.CommonsChunkPlugin({
+            name: ['app', 'vendor', 'polyfills']
+        }),
+
+        new HtmlWebpackPlugin({
+            template: 'resources/admin/index.html'
+        })
     ],
 });

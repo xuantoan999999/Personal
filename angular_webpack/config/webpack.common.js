@@ -5,9 +5,9 @@ var helpers = require('./helpers');
 
 module.exports = {
   entry: {
-    'polyfills': './src/polyfills.ts',
-    'vendor': './src/vendor.ts',
-    'app': './src/main.ts'
+    'polyfills': './resources/admin/polyfills.ts',
+    'vendor': './resources/admin/vendor.ts',
+    'app': './resources/admin/main.ts'
   },
 
   resolve: {
@@ -21,7 +21,7 @@ module.exports = {
         loaders: [
           {
             loader: 'awesome-typescript-loader',
-            options: { configFileName: helpers.root('src', 'tsconfig.json') }
+            options: { configFileName: helpers.root('resources/admin', 'tsconfig.json') }
           } , 'angular2-template-loader'
         ]
       },
@@ -35,12 +35,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        exclude: helpers.root('src', 'app'),
+        exclude: helpers.root('resources/admin', 'app'),
         loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader?sourceMap' })
       },
       {
         test: /\.css$/,
-        include: helpers.root('src', 'app'),
+        include: helpers.root('resources/admin', 'app'),
         loader: 'raw-loader'
       }
     ]
@@ -51,7 +51,7 @@ module.exports = {
     new webpack.ContextReplacementPlugin(
       // The (\\|\/) piece accounts for path separators in *nix and Windows
       /angular(\\|\/)core(\\|\/)@angular/,
-      helpers.root('./src'), // location of your src
+      helpers.root('./resources/admin'), // location of your resources/admin
       {} // a map of your routes
     ),
 
@@ -60,7 +60,7 @@ module.exports = {
     }),
 
     new HtmlWebpackPlugin({
-      template: 'src/index.html'
+      template: 'resources/admin/index.html'
     })
   ]
 };
