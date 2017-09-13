@@ -14,9 +14,9 @@ const extractStyle = new ExtractTextPlugin({
     allChunks: false
 });
 const BrowserSync = new BrowserSyncPlugin({
-    proxy: "http://localhost:2201",
+    proxy: "http://localhost:2206",
     files: ["app/**/*.*", "resources/**/*.*"],
-    port: 2206
+    port: 1111
 }, {
         reload: true
     }
@@ -41,7 +41,7 @@ module.exports = {
     entry: {
         // admin_vendor:
         // admin_main:
-        // admin: './resources/html/admin/app.js',
+        admin: './resources/html/admin/app.js',
         web: './resources/script/web/app.js',
     },
     output: {
@@ -59,7 +59,6 @@ module.exports = {
             Tether: 'tether',
             Waves: "adminbsb-materialdesign/plugins/node-waves/waves.js",
             io: 'socket.io-client',
-            Popper: 'popper.js'
         }),
         CopyWebpack()
     ],
@@ -117,13 +116,12 @@ function CopyWebpack() {
         from: 'public/fonts',
         to: 'web/fonts'
     },
-    // {
-    //     from: 'public/image/admin',
-    //     to: 'admin/images'
-    // },
-    // {
-    //     from: 'public/fonts',
-    //     to: 'admin/fonts'
-    // }
-    ]);
+    {
+        from: 'public/image/admin',
+        to: 'admin/images'
+    },
+    {
+        from: 'public/fonts',
+        to: 'admin/fonts'
+    }]);
 }

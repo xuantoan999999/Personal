@@ -40,7 +40,8 @@ const PATHS = {
 
 module.exports = {
     entry: {
-        web: './resources/script/web/app.js',
+        admin: './resources/html/admin/app.js',
+        web: './resources/html/web/app.js',
     },
     output: {
         path: PATHS.dist,
@@ -131,11 +132,11 @@ module.exports = {
 
 function CopyWebpack() {
     return new CopyWebpackPlugin([{
-        from: 'public/image/web',
+        from: 'resources/html/web/image',
         to: 'web/images'
     },
     {
-        from: 'public/fonts',
+        from: 'resources/html/web/fonts',
         to: 'web/fonts'
     }]);
 }

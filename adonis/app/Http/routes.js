@@ -78,5 +78,5 @@ Route.group('admin', function () {
     Route.get('/', 'Admin/HomeController.index')
     Route.get('/tai-khoan', 'Admin/AccountController.index')
     Route.get('/nguoi-dung', 'Admin/UserController.index')
-}).prefix('admin')
+}).prefix('admin').middleware('auth')
 // .middleware('auth')
