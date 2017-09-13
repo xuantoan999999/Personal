@@ -1,12 +1,13 @@
 // Library
-@import "./../../../node_modules/mini.css/dist/mini-default.min.css";
-// @import "./../../../../node_modules/bootstrap/dist/css/bootstrap.css";
 
 // Config
 @import "config/variables";
 @import "tools/mixins";
+@import "base/theme";
 @import "base/icon";
 @import "base/css";
-
+@import "component/rotate";
+@import "component/multiselect";
+@import "component/pagination";
 // Layout
 @import "layout/main";

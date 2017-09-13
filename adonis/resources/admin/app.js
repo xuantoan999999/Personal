@@ -1,5 +1,5 @@
 // CSS
-import './css/main.scss';
+import './style/main.scss';
 
 // Library
 import 'jquery';

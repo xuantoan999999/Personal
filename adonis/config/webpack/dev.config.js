@@ -41,8 +41,8 @@ module.exports = {
     entry: {
         // admin_vendor:
         // admin_main:
-        admin: './resources/html/admin/app.js',
-        web: './resources/script/web/app.js',
+        admin: './resources/admin/app.js',
+        web: './resources/web/app.js',
     },
     output: {
         path: PATHS.dist,
