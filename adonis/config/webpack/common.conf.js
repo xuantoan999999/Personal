@@ -22,10 +22,8 @@ const PATHS = {
 
 module.exports = {
     entry: {
+        // admin: './resources/admin/app.js',
         web: './resources/web/app.js',
-        polyfills: './resources/admin/polyfills.ts',
-        vendor: './resources/admin/vendor.ts',
-        app: './resources/admin/main.ts'
     },
     output: {
         path: PATHS.dist,
@@ -42,7 +40,7 @@ module.exports = {
             loaders: [
                 {
                     loader: 'awesome-typescript-loader',
-                    options: { configFileName: helpers.root('resources/admin', 'tsconfig.json') }
+                    options: { configFileName: helpers.root('src', 'tsconfig.json') }
                 }, 'angular2-template-loader'
             ]
         },
@@ -53,14 +51,12 @@ module.exports = {
         {
             test: /\.(jpg|png|gif|svg)$/,
             loader: 'url-loader?limit=100000'
-        },
-        // {
-        //     test: /\.css$/,
-        //     use: ExtractTextPlugin.extract({
-        //         use: 'css-loader'
-        //     }),
-        // },
-        {
+        }, {
+            test: /\.css$/,
+            use: ExtractTextPlugin.extract({
+                use: 'css-loader'
+            }),
+        }, {
             test: /\.vue$/,
             loader: 'vue-loader',
             options: {
@@ -69,16 +65,6 @@ module.exports = {
                     'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
                 }
             }
-        },
-        {
-            test: /\.css$/,
-            exclude: helpers.root('resources/admin', 'app'),
-            loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader?sourceMap' })
-        },
-        {
-            test: /\.css$/,
-            include: helpers.root('resources/admin', 'app'),
-            loader: 'raw-loader'
         }, {
             test: /\.(scss|sass)$/,
             use: pluginLoader.extractStyle.extract({
