@@ -49,6 +49,7 @@
     "kea-config": "^0.2.3",
     "kue": "^0.11.1",
     "lodash": "^4.17.4",
+    "mini.css": "^2.3.4",
     "moment": "^2.15.1",
     "mongoose": "^4.11.1",
     "mongoose-pagination": "^1.0.0",

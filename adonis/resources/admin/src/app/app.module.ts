@@ -1,13 +1,13 @@
+import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdButtonModule, MdCheckboxModule, MdInputModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { MdButtonModule, MdCheckboxModule, MdInputModule } from '@angular/material';
 
 @NgModule({
   declarations: [
