@@ -1,19 +1,22 @@
 <div id="mod-login" class="container">
-    <form class="form-layout">
+    <form class="form-layout" #f="ngForm" (ngSubmit)="submit(f)">
         <h4 class="text-center">Đăng nhập để vào</h4>
-        <div class="col-sm-12">
-            <div class="form-group">
-                <md-form-field class="form-control">
-                    <input mdInput placeholder="Tên / Email" value="">
-                </md-form-field>
-            </div>
-            <div class="form-group">
-                <md-form-field class="form-control">
-                    <input mdInput placeholder="Mật khẩu" value="">
-                </md-form-field>
-            </div>
-            <div class="form-group">
-                <button md-raised-button color="primary" type="submit">Đăng nhập</button>
+        <div class="form-group">
+            <md-form-field class="form-control">
+                <input mdInput placeholder="Tên / Email" value="">
+            </md-form-field>
+        </div>
+        <div class="form-group">
+            <md-form-field class="form-control">
+                <input mdInput placeholder="Mật khẩu" value="" type="password">
+            </md-form-field>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-6 text-right">
+                    <button md-raised-button color="primary" type="submit">Đăng nhập</button>
+                </div>
             </div>
         </div>
     </form>

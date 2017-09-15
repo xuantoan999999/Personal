@@ -1,8 +1,7 @@
 /* Library */
-@import "~@angular/material/_theming.scss";
 @import "~bootstrap/scss/bootstrap.scss";
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 /* Overide */
-@import "style/variable.scss";
 @import "style/form.scss";
 @import "style/material.scss";
