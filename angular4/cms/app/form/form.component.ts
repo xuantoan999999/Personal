@@ -12,9 +12,8 @@ export class FormComponent {
   ];
   constructor() { }
 
-  submit(f) {
-    f.value
-    console.log(f);
+  submit(form) {
+    console.log(form);
   }
 
 }

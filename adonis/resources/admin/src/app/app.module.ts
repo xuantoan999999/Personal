@@ -8,7 +8,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { MdButtonModule, MdCheckboxModule, MdInputModule } from '@angular/material';
-
+import routes from 'app/boostrap/routes';
+console.log(routes.getRoutes())
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,19 +24,10 @@ import { MdButtonModule, MdCheckboxModule, MdInputModule } from '@angular/materi
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot([
-      {
-        path: '',
-        redirectTo: 'dang-nhap',
-        pathMatch: 'full'
-      },
-      {
-        path: 'dang-nhap',
-        component: LoginComponent
-      }
-    ])
+    RouterModule.forRoot(routes.getRoutes())
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
