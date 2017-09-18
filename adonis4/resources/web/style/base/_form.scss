@@ -1,0 +1,92 @@
+/****************************************************************************************
+Description: Base/Form
+*****************************************************************************************/
+
+input::-moz-focus-inner,a:focus{
+    outline:none;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"],
+input[type="number"]:hover,
+input[type="number"]:focus {
+    -moz-appearance: textfield;
+}
+select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}
+select::-ms-expand {
+    display: none;
+}
+.form-group {
+  &.error {
+    .msg-input {
+      border-color: #E13D35;
+    }
+    .messages-error {
+      display: block;
+      margin-top:2px;
+    }
+  }
+  input,
+  select {
+    @include sizeEx(100%);
+    border: none;
+    box-shadow: none;
+		color: #333;
+    border-radius: 4px;
+    background-color: transparent;
+
+		&:focus {
+			box-shadow: none;
+			outline:none;
+		}
+  }
+
+	select {
+    padding: 6px 12px;
+	}
+
+  label {
+    @include font(null,14px,#2f3639,400);
+  }
+
+  .msg-input {
+    height: 40px;
+    position: relative;
+    border:1px solid #d5d7d7;
+    border-radius: 4px;
+    background: #fff;
+  }
+  .messages-error {
+    @include font(null,12px,#E13D35);
+  }
+  .msg-textarea {
+    @include sizeEx(100%,60px);
+    background: #fff;
+    position: relative;
+    border:1px solid #d5d7d7;
+    padding: 12px;
+    textarea {
+      @include font(null,14px,#2f3639,400);
+      @include sizeEx(100%);
+      background: none;
+      resize: none;
+      outline: none;
+      border:none;
+      padding: 0px;
+      box-shadow: none;
+    }
+  }
+}
+.form-horizontal {
+  label {
+    margin: 0px;
+    display: flex;
+    align-items: center;
+  }
+}

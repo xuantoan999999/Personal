@@ -5,10 +5,12 @@
   "description": "Smallest possible application for adonisjs",
   "main": "index.js",
   "scripts": {
-    "start": "adonis serve --dev",
+    "start": "npm-run-all --parallel adonis_server webpack_dev",
     "start1": "node server.js",
     "test": "node ace test",
-    "lint": "standard"
+    "lint": "standard",
+    "adonis_server": "adonis serve --dev",
+    "webpack_dev": "webpack --env=dev --progress --watch --profile --colors --hide-modules"
   },
   "keywords": [
     "adonisjs",
@@ -26,11 +28,35 @@
     "@adonisjs/framework": "^4.0.18",
     "@adonisjs/ignitor": "^1.0.10",
     "@adonisjs/lucid": "^4.0.16",
+    "@adonisjs/mail": "^3.0.2",
+    "@adonisjs/redis": "^2.0.2",
     "@adonisjs/session": "^1.0.12",
-    "@adonisjs/shield": "^1.0.2"
+    "@adonisjs/shield": "^1.0.2",
+    "axios": "^0.16.2",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "lodash": "^4.17.4",
+    "moment": "^2.18.1",
+    "mongoose": "^4.11.11",
+    "mongoose-pagination": "^1.0.0",
+    "toastr": "^2.1.2",
+    "vue": "^2.4.4",
+    "vuex": "^2.4.0"
   },
   "devDependencies": {
-    "standard": "^10.0.3"
+    "standard": "^10.0.3",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "browser-sync": "^2.18.13",
+    "browser-sync-webpack-plugin": "^1.2.0",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.28.7",
+    "webpack": "^3.6.0",
+    "webpack-merge": "^4.1.0",
+    "node-sass": "^4.5.3",
+    "npm-run-all": "^4.1.1",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "uglifyjs-webpack-plugin": "^0.4.6"
   },
   "standard": {
     "globals": [

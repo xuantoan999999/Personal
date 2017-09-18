@@ -1,0 +1,15 @@
+@layout('web/layout/master.edge')
+@section('content')
+  <div class="subtitle" id="mod-home">
+    <p>
+    @if(!guessedNumber)
+      <p> Please specify a number by passing <code>?number</code> to the url </p>
+      @elseif(guessedNumber === randomNumber)
+      <h2> Matched </h2>
+      @else
+      <h2>Match failed. The actual number is {{ randomNumber }}</h2>
+      @endif
+    </p>
+    <p>[[text]]</p>
+  </div>
+@endsection
