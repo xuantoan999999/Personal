@@ -15,4 +15,8 @@
 
 const Route = use('Route')
 
-Route.get('/', 'GameController.render')
+Route.get('/', 'Web/IndexController.index')
+
+Route.group(() => {
+    Route.get('/', 'Admin/DashboardController.index')
+}).prefix('admin')

@@ -94,7 +94,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 let app = __WEBPACK_IMPORTED_MODULE_0__util_initVue_js__["a" /* default */].createVue('mod-home', {
     data: {
-        text: 'Hello sa'
+        text: 'VueJS: Include success'
     }
 });
 
