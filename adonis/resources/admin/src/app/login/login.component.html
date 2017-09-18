@@ -3,7 +3,7 @@
         <h6 class="text-center">Đăng nhập để vào</h6>
         <div class="form-group">
             <md-form-field class="form-control">
-                <input mdInput placeholder="Tên/Email" ngModel name="username" #username="ngModel" value="" required>
+                <input mdInput placeholder="Tên/Email" ngModel name="username" #username="ngModel" autocomplete="off" required>
             </md-form-field>
             <div class="text-danger" *ngIf="(username.touched || f.submitted) && !username.valid">
                 <div *ngIf="username.errors.required">Chưa nhập tên/email</div>
@@ -11,7 +11,7 @@
         </div>
         <div class="form-group">
             <md-form-field class="form-control">
-                <input mdInput placeholder="Mật khẩu" value="" ngModel name="password" #password="ngModel" type="password" required>
+                <input mdInput placeholder="Mật khẩu"  ngModel name="password" #password="ngModel" type="password" autocomplete="off" required>
             </md-form-field>
             <div class="text-danger" *ngIf="(password.touched || f.submitted) && !password.valid">
                 <div *ngIf="password.errors.required">Chưa nhập mật khẩu</div>

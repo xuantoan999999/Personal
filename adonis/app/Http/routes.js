@@ -72,10 +72,13 @@ Route.group('api', function () {
 
 // Admin Group
 Route.group('admin', function () {
+    Route.get('/dang-nhap', 'Admin/AuthController.signin')
+    Route.post('/dang-nhap', 'Admin/AuthController.login')
     Route.get('/', 'Admin/HomeController.index')
-    Route.get('/tai-khoan', 'Admin/AccountController.index')
+    // Route.get('/tai-khoan', 'Admin/AccountController.index')
+    Route.get('/tai-khoan', 'Api/AccountController.index')
     Route.get('/nguoi-dung', 'Admin/UserController.index')
-}).prefix('admin').middleware('auth')
+}).prefix('admin')
 // .middleware('auth')
 
 Route.group('auth', function () {

@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <base href="/">
 
     <title>Admin</title>
 
@@ -14,50 +15,8 @@
     <link rel="stylesheet" type="text/css" href="/assets/dist/web/style/main.css">
 </head>
 
-<body class="login-page">
-    <div class="login-box">
-        <div class="logo">
-            <a href="javascript:void(0);">Admin</a>
-        </div>
-        <div class="card" id="login">
-            <div class="body">
-                <form>
-                    <div class="msg">Đăng nhập</div>
-                    <div class="input-group" name="username">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="text" class="form-control" name="username" placeholder="Tên đăng nhập" required autofocus>
-                        </div>
-                    </div>
-
-                    <div name="username" show="$submitted" class="color-danger form-group">
-                        <p>Chưa nhập tên đăng nhập.</p>
-                    </div>
-
-                    <div class="input-group" name="password">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="password" class="form-control" name="password" placeholder="Mật khẩu" required>
-                        </div>
-                    </div>
-
-                    <div name="password" show="$submitted" class="color-danger form-group">
-                        <p>Chưa nhập mật khẩu.</p>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <button class="btn btn-block bg-pink waves-effect" type="submit" :disabled="formState.$invalid && formState.$submitted">ĐĂNG NHẬP</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+<body>
+    <app-root></app-root>
     {% include "admin/layout/partial/master/footer.njk" %}
 </body>
 

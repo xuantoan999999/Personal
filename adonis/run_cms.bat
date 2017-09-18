@@ -1,2 +1,2 @@
 cd resources/admin
-ng serve
+ng build -w

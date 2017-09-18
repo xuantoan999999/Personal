@@ -37,7 +37,7 @@ class MongoSerializer {
     }
 
     * findByCredentials(email, options) {
-        const row = yield User.findOne(
+        const user = yield User.findOne(
             {
                 $or: [
                     { email: new RegExp(email, 'i') },
@@ -46,7 +46,7 @@ class MongoSerializer {
                 roles: { $in: ['admin'] }
             }
         ).lean();
-        return row;
+        return user;
     }
 
     * findByToken(token, options) {
@@ -112,7 +112,6 @@ class MongoSerializer {
             return false
         }
     }
-
 }
 
 module.exports = MongoSerializer;

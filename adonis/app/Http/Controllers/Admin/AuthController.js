@@ -14,22 +14,17 @@ class AuthController {
 
     * login(request, response) {
         let data = request.all();
-        let email = request.input('username');
-        let password = request.input('password');
+        let email = data.username;
+        let password = data.password;
 
         let token = yield request.auth.attempt(email, password);
         let idRedis = aguid();
         let session = yield Redis.set('Personal:' + idRedis, token);
 
-        if (token) {
-            try {
-                yield request.session.put('Authorization', idRedis);
-                return yield response.json({ success: true });
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        return yield response.unauthorized('Invalid credentails')
+        yield response.json({
+            token,
+            success: true
+        })
     }
 }
 
