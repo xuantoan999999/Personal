@@ -39,6 +39,7 @@ Route.group('api', function () {
      */
     Route.get('/dang-xuat', 'Api/HomeController.logout')
     Route.post('/dang-nhap', 'Api/AuthController.login')
+    Route.post('/thong-tin-user', 'Api/AuthController.getUserInfo')
 
     /**
      * Module User
@@ -67,7 +68,6 @@ Route.group('api', function () {
     Route.get('/website/:id', 'Api/WebsiteController.show')
     Route.post('/website/:id', 'Api/WebsiteController.update')
     Route.delete('/website/:id', 'Api/WebsiteController.destroy')
-
 }).prefix('/api/v1')
 
 // Admin Group

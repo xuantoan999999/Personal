@@ -52,6 +52,12 @@ class AuthController {
         return yield response.unauthorized('Invalid credentails')
     }
 
+    * getUserInfo(request, response) {
+        return yield response.json({
+            test: true
+        })
+    }
+
 }
 
 module.exports = AuthController

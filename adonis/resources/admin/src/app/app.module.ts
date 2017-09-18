@@ -28,7 +28,9 @@ import { UserComponent } from './user/user.component';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot(routes.getRoutes())
+    RouterModule.forRoot(routes.getRoutes(), {
+      useHash: true
+    })
   ],
   providers: [
     HttpService,

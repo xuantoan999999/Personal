@@ -167,7 +167,7 @@ class MongoSchema {
      */
     * _getRequestUser() {
         try {
-            const Redis = use('Redis')
+            const Redis = use('Redis');
             let token = yield this.request.session.get('Authorization');
             let cachedUsers = yield Redis.get(`Personal:${token}`);
             if (!cachedUsers) return null;
