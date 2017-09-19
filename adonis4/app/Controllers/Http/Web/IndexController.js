@@ -9,7 +9,7 @@ class WebIndexController {
         // let data = await Account.find().lean();
         return view.render('web.game', {
             // data,
-            text: 'This is hello world'
+            text: 'This is hello text'
         });
     }
 }

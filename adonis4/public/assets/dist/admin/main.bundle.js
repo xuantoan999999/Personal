@@ -20,7 +20,7 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_gendir lazy recursive";
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div style=\"text-align:center\">\n  <h1>\n    Welcome to {{title}}!\n  </h1>\n</div>"
+module.exports = "<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -90,12 +90,17 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_material__ = __webpack_require__("../../../material/@angular/material.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__user_user_component__ = __webpack_require__("../../../../../src/app/user/user.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_auth_guard_service__ = __webpack_require__("../../../../../src/app/services/auth-guard.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
+
 
 
 
@@ -120,9 +125,6 @@ var routes = [
         component: __WEBPACK_IMPORTED_MODULE_11__user_user_component__["a" /* UserComponent */]
     }
 ];
-
-
-
 var AppModule = (function () {
     function AppModule() {
     }
@@ -151,7 +153,8 @@ AppModule = __decorate([
         ],
         providers: [
             __WEBPACK_IMPORTED_MODULE_1__services_http_service__["a" /* HttpService */],
-            __WEBPACK_IMPORTED_MODULE_0__login_login_service__["a" /* LoginService */]
+            __WEBPACK_IMPORTED_MODULE_0__login_login_service__["a" /* LoginService */],
+            __WEBPACK_IMPORTED_MODULE_12__services_auth_guard_service__["a" /* AuthGuardService */]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* AppComponent */]]
     })
@@ -217,7 +220,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__login_service__ = __webpack_require__("../../../../../src/app/login/login.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_material__ = __webpack_require__("../../../material/@angular/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_app_boostrap_config__ = __webpack_require__("../../../../../src/app/boostrap/config.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__boostrap_config__ = __webpack_require__("../../../../../src/app/boostrap/config.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -237,7 +240,7 @@ var LoginComponent = (function () {
         this.loginService = loginService;
         this.snackBar = snackBar;
         this.router = router;
-        this.config = __WEBPACK_IMPORTED_MODULE_4_app_boostrap_config__["a" /* default */].getConfigs();
+        this.config = __WEBPACK_IMPORTED_MODULE_4__boostrap_config__["a" /* default */].getConfigs();
     }
     LoginComponent.prototype.submit = function (form) {
         var _this = this;
@@ -324,6 +327,43 @@ LoginService = __decorate([
 
 var _a;
 //# sourceMappingURL=login.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/services/auth-guard.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthGuardService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var AuthGuardService = (function () {
+    function AuthGuardService(router) {
+        this.router = router;
+    }
+    AuthGuardService.prototype.canActivate = function (route, state) {
+        return false;
+    };
+    return AuthGuardService;
+}());
+AuthGuardService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["C" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* Router */]) === "function" && _a || Object])
+], AuthGuardService);
+
+var _a;
+//# sourceMappingURL=auth-guard.service.js.map
 
 /***/ }),
 

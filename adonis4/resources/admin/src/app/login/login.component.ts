@@ -3,7 +3,7 @@ import { LoginService } from './login.service';
 import { HttpService } from './../services/http.service';
 import { Component } from '@angular/core';
 import { MdSnackBar } from '@angular/material';
-import Config from 'app/boostrap/config';
+import Config from '../boostrap/config';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,7 @@ export class LoginComponent {
   constructor(
     private loginService: LoginService,
     private snackBar: MdSnackBar,
-    private router:Router
+    private router: Router
   ) {
     this.config = Config.getConfigs();
   }

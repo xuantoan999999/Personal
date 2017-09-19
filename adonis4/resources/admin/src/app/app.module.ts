@@ -1,4 +1,3 @@
-import Routes from './boostrap/routes';
 import { LoginService } from './login/login.service';
 import { HttpService } from './services/http.service';
 import { LoginComponent } from './login/login.component';
@@ -8,6 +7,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
+
+import { AppComponent } from './app.component';
+import { MdButtonModule, MdCheckboxModule, MdInputModule, MdSnackBarModule } from '@angular/material';
+import { UserComponent } from './user/user.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 let routes = [
   {
@@ -24,9 +29,7 @@ let routes = [
     component: UserComponent
   }
 ];
-import { AppComponent } from './app.component';
-import { MdButtonModule, MdCheckboxModule, MdInputModule, MdSnackBarModule } from '@angular/material';
-import { UserComponent } from './user/user.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +52,8 @@ import { UserComponent } from './user/user.component';
   ],
   providers: [
     HttpService,
-    LoginService
+    LoginService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })
