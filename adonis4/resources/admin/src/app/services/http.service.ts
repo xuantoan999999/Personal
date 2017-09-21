@@ -6,9 +6,11 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class HttpService {
   url;
+  csrfToken;
 
   constructor(private http: Http) {
     this.url = url.getConfigs().url;
+    this.csrfToken = (<any>window).csrfToken;
   }
 
   get(method: string, id: string = null) {
@@ -19,6 +21,7 @@ export class HttpService {
 
   post(data: any, method: string, id: string = null) {
     let urlString = this.convertUrl(method, id);
+    data.csrfToken = 
     return this.http.post(urlString, data)
       .map(response => response.json());
   }

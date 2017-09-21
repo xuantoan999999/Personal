@@ -1,17 +1,19 @@
 @import "./../../style/variable.scss";
 
 #mod-login{
-    background: #d2d6de;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    form{
-        max-width: 330px;
+    padding:200px 0 50px;
+    .fake-bg{
+        background: #d2d6de;
         position: fixed;
         width: 100%;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%,-50%);
+        height: 100%;
+        left: 0;
+        top: 0;
+        z-index: -1;
+    }
+    form{
+        max-width: 330px;
+        width: 100%;
+        margin: 0 auto;
     }
 }

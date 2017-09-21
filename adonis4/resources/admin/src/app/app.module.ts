@@ -27,7 +27,7 @@ let routes = [
   {
     path: 'nguoi-dung',
     component: UserComponent
-  }
+  },
 ];
 
 @NgModule({

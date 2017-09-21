@@ -123,7 +123,7 @@ var routes = [
     {
         path: 'nguoi-dung',
         component: __WEBPACK_IMPORTED_MODULE_11__user_user_component__["a" /* UserComponent */]
-    }
+    },
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -189,7 +189,7 @@ var Config = (function () {
 /***/ "../../../../../src/app/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"mod-login\" class=\"container\">\n    <form class=\"form-layout\" #f=\"ngForm\" (ngSubmit)=\"submit(f)\">\n        <h6 class=\"text-center\">Đăng nhập để vào</h6>\n        <div class=\"form-group\">\n            <md-form-field class=\"form-control\">\n                <input mdInput placeholder=\"Tên/Email\" ngModel name=\"username\" #username=\"ngModel\" autocomplete=\"off\" required>\n            </md-form-field>\n            <div class=\"text-danger\" *ngIf=\"(username.touched || f.submitted) && !username.valid\">\n                <div *ngIf=\"username.errors.required\">Chưa nhập tên/email</div>\n            </div>\n        </div>\n        <div class=\"form-group\">\n            <md-form-field class=\"form-control\">\n                <input mdInput placeholder=\"Mật khẩu\"  ngModel name=\"password\" #password=\"ngModel\" type=\"password\" autocomplete=\"off\" required>\n            </md-form-field>\n            <div class=\"text-danger\" *ngIf=\"(password.touched || f.submitted) && !password.valid\">\n                <div *ngIf=\"password.errors.required\">Chưa nhập mật khẩu</div>\n            </div>\n        </div>\n        <div class=\"form-group\">\n            <div class=\"row\">\n                <div class=\"col-sm-6\"></div>\n                <div class=\"col-sm-6 text-right\">\n                    <button md-raised-button color=\"primary\" type=\"submit\">Đăng nhập</button>\n                </div>\n            </div>\n        </div>\n    </form>\n</div>"
+module.exports = "<div id=\"mod-login\" class=\"container\">\n    <div class=\"fake-bg\"></div>\n    <form class=\"form-layout\" #f=\"ngForm\" (ngSubmit)=\"submit(f)\">\n        <input type=\"text\" ngModel name=\"csrfToken\" #csrfToken=\"ngModel\">\n        <div class=\"form-group\">\n            <md-form-field class=\"form-control\">\n                <input mdInput placeholder=\"Tên/Email\" ngModel name=\"username\" #username=\"ngModel\" autocomplete=\"off\" required>\n            </md-form-field>\n            <div class=\"text-danger\" *ngIf=\"(username.touched || f.submitted) && !username.valid\">\n                <div *ngIf=\"username.errors.required\">Chưa nhập tên/email</div>\n            </div>\n        </div>\n        <div class=\"form-group\">\n            <md-form-field class=\"form-control\">\n                <input mdInput placeholder=\"Mật khẩu\"  ngModel name=\"password\" #password=\"ngModel\" type=\"password\" autocomplete=\"off\" required>\n            </md-form-field>\n            <div class=\"text-danger\" *ngIf=\"(password.touched || f.submitted) && !password.valid\">\n                <div *ngIf=\"password.errors.required\">Chưa nhập mật khẩu</div>\n            </div>\n        </div>\n        <div class=\"form-group\">\n            <div class=\"row\">\n                <div class=\"col-sm-6\"></div>\n                <div class=\"col-sm-6 text-right\">\n                    <button md-raised-button color=\"primary\" type=\"submit\">Đăng nhập</button>\n                </div>\n            </div>\n        </div>\n    </form>\n</div>"
 
 /***/ }),
 
@@ -201,7 +201,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#mod-login {\n  background: #d2d6de;\n  position: fixed;\n  width: 100%;\n  height: 100%;\n  left: 0; }\n  #mod-login form {\n    max-width: 330px;\n    position: fixed;\n    width: 100%;\n    left: 50%;\n    top: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%); }\n", ""]);
+exports.push([module.i, "#mod-login {\n  padding: 200px 0 50px; }\n  #mod-login .fake-bg {\n    background: #d2d6de;\n    position: fixed;\n    width: 100%;\n    height: 100%;\n    left: 0;\n    top: 0;\n    z-index: -1; }\n  #mod-login form {\n    max-width: 330px;\n    width: 100%;\n    margin: 0 auto; }\n", ""]);
 
 // exports
 
@@ -249,10 +249,10 @@ var LoginComponent = (function () {
         }
         this.loginService.login(form.value.username, form.value.password)
             .subscribe(function (data) {
-            var token = data.token;
-            localStorage.setItem(_this.config.userJWT + "_userInfo", token);
-            _this.router.navigate(['/nguoi-dung']);
-            // Storage.set(`${this.config.userJWT}_userInfo`, token, this.config.storageExpireTime);
+            // let token = data.token;
+            // localStorage.setItem(`${this.config.userJWT}_userInfo`, token);
+            // this.router.navigate(['/nguoi-dung'])
+            console.log(data);
         }, function (error) {
             var err = JSON.parse(error._body).error;
             var snackBarRef = _this.snackBar.open(err.message, 'Close', {
