@@ -14,6 +14,6 @@ export class LoginService extends HttpService {
       username,
       password
     }
-    return this.post(data, 'dang-nhap');
+    return this.postAdmin(data, 'dang-nhap');
   }
 }

@@ -1,7 +1,0 @@
-{
-    "delay": 5,
-    "ignore": [
-        "node_modules/"
-    ],
-    "ext": "js ts json html css scss sass njk"
-}

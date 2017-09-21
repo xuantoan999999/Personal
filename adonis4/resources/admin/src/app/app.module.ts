@@ -13,6 +13,8 @@ import { AppComponent } from './app.component';
 import { MdButtonModule, MdCheckboxModule, MdInputModule, MdSnackBarModule } from '@angular/material';
 import { UserComponent } from './user/user.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthService } from './services/auth/auth.service';
 
 let routes = [
   {
@@ -25,8 +27,18 @@ let routes = [
     component: LoginComponent
   },
   {
-    path: 'nguoi-dung',
-    component: UserComponent
+    path: 'dash-board',
+    canActivate: [AuthGuardService],
+    children: [
+      {
+        path: '',
+        component: DashboardComponent,
+      },
+      {
+        path: 'nguoi-dung',
+        component: UserComponent,
+      },
+    ]
   },
 ];
 
@@ -34,7 +46,8 @@ let routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    UserComponent
+    UserComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +66,8 @@ let routes = [
   providers: [
     HttpService,
     LoginService,
-    AuthGuardService
+    AuthGuardService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

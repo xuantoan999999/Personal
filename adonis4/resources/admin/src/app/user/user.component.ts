@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class UserComponent {
 
-  constructor() { }
+  constructor() {
+    console.log("gkdnsk n");
+  }
 
 }

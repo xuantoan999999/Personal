@@ -1,7 +1,6 @@
 <div id="mod-login" class="container">
     <div class="fake-bg"></div>
     <form class="form-layout" #f="ngForm" (ngSubmit)="submit(f)">
-        <input type="text" ngModel name="csrfToken" #csrfToken="ngModel">
         <div class="form-group">
             <md-form-field class="form-control">
                 <input mdInput placeholder="Tên/Email" ngModel name="username" #username="ngModel" autocomplete="off" required>

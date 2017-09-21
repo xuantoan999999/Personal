@@ -13,6 +13,7 @@ import Config from '../boostrap/config';
 export class LoginComponent {
   config;
   csrfToken;
+
   constructor(
     private loginService: LoginService,
     private snackBar: MdSnackBar,
@@ -27,13 +28,13 @@ export class LoginComponent {
     }
     this.loginService.login(form.value.username, form.value.password)
       .subscribe(data => {
-        // let token = data.token;
-        // localStorage.setItem(`${this.config.userJWT}_userInfo`, token);
-        // this.router.navigate(['/nguoi-dung'])
-        console.log(data);
+        let token = data.token;
+        localStorage.setItem(`${this.config.userJWT}_userInfo`, token);
+        this.router.navigate(['nguoi-dung'])
       }, error => {
-        let err = JSON.parse(error._body).error;
-        let snackBarRef = this.snackBar.open(err.message, 'Close', {
+        let err = JSON.parse(error._body);
+        let message = err.reduce((string, item) => string + item.message, '');
+        let snackBarRef = this.snackBar.open(message, 'Close', {
           duration: 3000
         });
       })
