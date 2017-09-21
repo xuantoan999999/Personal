@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { HttpService } from './../services/http.service';
@@ -13,13 +14,20 @@ import Config from '../boostrap/config';
 export class LoginComponent {
   config;
   csrfToken;
+  showLogin: boolean = false;
 
   constructor(
     private loginService: LoginService,
+    private authService: AuthService,
     private snackBar: MdSnackBar,
     private router: Router
   ) {
-    this.config = Config.getConfigs();
+    this.authService.getUserLogin().subscribe(data => {
+      if (data.user) {
+        this.router.navigate(['dash-board']);
+      }
+      this.showLogin = true;
+    })
   }
 
   submit(form) {

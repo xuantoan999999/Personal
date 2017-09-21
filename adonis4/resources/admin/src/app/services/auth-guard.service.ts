@@ -7,8 +7,6 @@ import { AuthService } from './auth/auth.service';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
-  @Input() user: object;
-
   constructor(private router: Router, private authService: AuthService) {
   }
 
@@ -24,6 +22,7 @@ export class AuthGuardService implements CanActivate {
           this.router.navigate(['dang-nhap']);
           return false;
         }
+        (<any>window).user = user;
         return true;
       })
   }

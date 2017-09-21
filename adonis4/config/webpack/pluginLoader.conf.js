@@ -19,11 +19,15 @@ const BrowserSync = new BrowserSyncPlugin({
 const CopyWebpack = () => {
     return new CopyWebpackPlugin([{
         from: 'resources/web/image',
-        to: 'web/images'
+        to: 'images'
     },
     {
         from: 'resources/web/fonts',
         to: 'web/fonts'
+    },
+    {
+        from: 'resources/admin/src/assets',
+        to: 'images'
     }]);
 }
 

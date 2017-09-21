@@ -26,9 +26,6 @@ class ApiAuthController {
                 user: {}
             });
         }
-
-
-
     }
 }
 

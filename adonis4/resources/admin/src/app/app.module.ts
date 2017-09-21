@@ -8,13 +8,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
 import { AppComponent } from './app.component';
 import { MdButtonModule, MdCheckboxModule, MdInputModule, MdSnackBarModule } from '@angular/material';
 import { UserComponent } from './user/user.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthService } from './services/auth/auth.service';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { LoginGuardService } from './services/login-guard/login-guard.service';
+import { IconComponent } from './icon/icon.component';
 
 let routes = [
   {
@@ -24,7 +26,8 @@ let routes = [
   },
   {
     path: 'dang-nhap',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [LoginGuardService],
   },
   {
     path: 'dash-board',
@@ -47,7 +50,9 @@ let routes = [
     AppComponent,
     LoginComponent,
     UserComponent,
-    DashboardComponent
+    DashboardComponent,
+    SidebarComponent,
+    IconComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +72,7 @@ let routes = [
     HttpService,
     LoginService,
     AuthGuardService,
+    LoginGuardService,
     AuthService
   ],
   bootstrap: [AppComponent]

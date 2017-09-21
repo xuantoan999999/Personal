@@ -1,4 +1,4 @@
-<div id="mod-login" class="container">
+<div id="mod-login" class="container" *ngIf="showLogin">
     <div class="fake-bg"></div>
     <form class="form-layout" #f="ngForm" (ngSubmit)="submit(f)">
         <div class="form-group">
