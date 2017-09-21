@@ -32,5 +32,22 @@
         .list-item{
             padding: 18px 0 0;
         }
+        .item{
+            display: block;
+            padding-left: 52px;
+            a{
+                color: white;
+                text-decoration: none;
+            }
+        }
+        .item.active{
+            background-color: #209e91;
+            color: white;
+        }
+        .item:hover{
+            a{
+                color: #209e91;
+            }
+        }
     }
 }

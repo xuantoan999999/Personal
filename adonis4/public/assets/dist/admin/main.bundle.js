@@ -754,7 +754,7 @@ var _a, _b;
 /***/ "../../../../../src/app/sidebar/sidebar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<aside ng-if=\"showSidebar\" id=\"mod-sidebar\">\n    <div class=\"fake-bg\" style=\"background: url('assets/dist/images/blur-bg.jpg') no-repeat;\"></div>\n    <div class=\"fake-sidebar-bg\"></div>\n    <div class=\"content-sidebar\">\n        <div class=\"header text-center\">\n            <app-icon></app-icon>\n            Admin\n        </div>\n        <div class=\"list-item\">\n            <ul>\n                <li>\n                    sdgsd g\n                </li>\n            </ul>\n        </div>\n    </div>\n</aside>"
+module.exports = "<aside ng-if=\"showSidebar\" id=\"mod-sidebar\">\n    <div class=\"fake-bg\" style=\"background: url('assets/dist/images/blur-bg.jpg') no-repeat;\"></div>\n    <div class=\"fake-sidebar-bg\"></div>\n    <div class=\"content-sidebar\">\n        <div class=\"header text-center\">\n            <app-icon></app-icon>\n            Admin\n        </div>\n        <div class=\"list-item\">\n            <ul>\n                <li class=\"item\">\n                    <a href=\"\" >sdgsd g</a>\n                </li>\n            </ul>\n        </div>\n    </div>\n</aside>"
 
 /***/ }),
 
@@ -766,7 +766,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#mod-sidebar {\n  color: #fff;\n  position: relative;\n  -webkit-box-ordinal-group: 2;\n      -ms-flex-order: 1;\n          order: 1;\n  -webkit-box-flex: 1;\n      -ms-flex: 1 auto;\n          flex: 1 auto;\n  width: 180px;\n  overflow: hidden; }\n  #mod-sidebar .fake-bg {\n    position: fixed;\n    left: 0;\n    top: 0;\n    width: 100%;\n    height: 100%;\n    z-index: -100; }\n  #mod-sidebar .fake-sidebar-bg {\n    position: fixed;\n    left: 0;\n    top: 0;\n    width: 180px;\n    height: 100%;\n    z-index: -99;\n    background-color: rgba(0, 0, 0, 0.5); }\n  #mod-sidebar .content-sidebar .header {\n    font-size: 24px;\n    font-family: Roboto,sans-serif;\n    line-height: 60px;\n    box-shadow: 2px 0 3px rgba(0, 0, 0, 0.5); }\n  #mod-sidebar .content-sidebar .list-item {\n    padding: 18px 0 0; }\n", ""]);
+exports.push([module.i, "#mod-sidebar {\n  color: #fff;\n  position: relative;\n  -webkit-box-ordinal-group: 2;\n      -ms-flex-order: 1;\n          order: 1;\n  -webkit-box-flex: 1;\n      -ms-flex: 1 auto;\n          flex: 1 auto;\n  width: 180px;\n  overflow: hidden; }\n  #mod-sidebar .fake-bg {\n    position: fixed;\n    left: 0;\n    top: 0;\n    width: 100%;\n    height: 100%;\n    z-index: -100; }\n  #mod-sidebar .fake-sidebar-bg {\n    position: fixed;\n    left: 0;\n    top: 0;\n    width: 180px;\n    height: 100%;\n    z-index: -99;\n    background-color: rgba(0, 0, 0, 0.5); }\n  #mod-sidebar .content-sidebar .header {\n    font-size: 24px;\n    font-family: Roboto,sans-serif;\n    line-height: 60px;\n    box-shadow: 2px 0 3px rgba(0, 0, 0, 0.5); }\n  #mod-sidebar .content-sidebar .list-item {\n    padding: 18px 0 0; }\n  #mod-sidebar .content-sidebar .item {\n    display: block;\n    padding-left: 52px; }\n    #mod-sidebar .content-sidebar .item a {\n      color: white;\n      text-decoration: none; }\n  #mod-sidebar .content-sidebar .item.active {\n    background-color: #209e91;\n    color: white; }\n  #mod-sidebar .content-sidebar .item:hover a {\n    color: #209e91; }\n", ""]);
 
 // exports
 
