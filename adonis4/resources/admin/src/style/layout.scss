@@ -1,7 +1,13 @@
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/icon-mt.woff2") format('woff2');
+  }
 body.mt-template{
     font-size: 14px;
     background: url('../images/blur-bg.jpg') no-repeat;
-    background-size: cover
+    background-size: cover;
 }
 ul{
     padding: 0;
@@ -24,12 +30,7 @@ ul{
     background: url("../images/blur-bg-blurred.jpg") fixed;
 }
 
-@font-face {
-    font-family: 'Material Icons';
-    font-style: normal;
-    font-weight: 400;
-    src: url("../fonts/icon-mt.woff2") format('woff2');
-  }
+
 .material-icons {
     font-family: 'Material Icons';
     font-weight: normal;

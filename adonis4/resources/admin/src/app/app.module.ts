@@ -18,7 +18,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { LoginGuardService } from './services/login-guard/login-guard.service';
 import { IconComponent } from './components/icon/icon.component';
 import { MenuComponent } from './components/menu/menu.component';
-import { ListItemComponent } from './components/sidebar/list-item/list-item.component';
+import { ListItemsComponent } from './components/sidebar/list-items/list-items.component';
+import { ItemComponent } from './components/sidebar/item/item.component';
 
 let routes = [
   {
@@ -56,7 +57,8 @@ let routes = [
     SidebarComponent,
     IconComponent,
     MenuComponent,
-    ListItemComponent
+    ListItemsComponent,
+    ItemComponent,
   ],
   imports: [
     BrowserModule,

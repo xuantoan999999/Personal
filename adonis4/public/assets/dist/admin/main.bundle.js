@@ -100,12 +100,16 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_login_guard_login_guard_service__ = __webpack_require__("../../../../../src/app/services/login-guard/login-guard.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_icon_icon_component__ = __webpack_require__("../../../../../src/app/components/icon/icon.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_menu_menu_component__ = __webpack_require__("../../../../../src/app/components/menu/menu.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_sidebar_list_items_list_items_component__ = __webpack_require__("../../../../../src/app/components/sidebar/list-items/list-items.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_sidebar_item_item_component__ = __webpack_require__("../../../../../src/app/components/sidebar/item/item.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -165,7 +169,9 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_13__modules_dashboard_dashboard_component__["a" /* DashboardComponent */],
             __WEBPACK_IMPORTED_MODULE_15__components_sidebar_sidebar_component__["a" /* SidebarComponent */],
             __WEBPACK_IMPORTED_MODULE_17__components_icon_icon_component__["a" /* IconComponent */],
-            __WEBPACK_IMPORTED_MODULE_18__components_menu_menu_component__["a" /* MenuComponent */]
+            __WEBPACK_IMPORTED_MODULE_18__components_menu_menu_component__["a" /* MenuComponent */],
+            __WEBPACK_IMPORTED_MODULE_19__components_sidebar_list_items_list_items_component__["a" /* ListItemsComponent */],
+            __WEBPACK_IMPORTED_MODULE_20__components_sidebar_item_item_component__["a" /* ItemComponent */],
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_7__angular_platform_browser__["a" /* BrowserModule */],
@@ -345,10 +351,137 @@ MenuComponent = __decorate([
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/sidebar/item/item.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<a md-button class=\"el-item\">\n    <i class=\"material-icons icon\" *ngIf=\"menu.icon\">{{menu.icon}}</i>\n    {{menu.title}}\n    <b class=\"material-icons arrows\">keyboard_arrow_down</b>\n</a>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/sidebar/item/item.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".el-item {\n  display: block;\n  color: white;\n  text-decoration: none;\n  padding-left: 45px;\n  line-height: 42px;\n  position: relative;\n  width: 100%;\n  text-align: left; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/sidebar/item/item.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ItemComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ItemComponent = (function () {
+    function ItemComponent() {
+    }
+    ItemComponent.prototype.ngOnInit = function () {
+    };
+    return ItemComponent;
+}());
+ItemComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-item',
+        template: __webpack_require__("../../../../../src/app/components/sidebar/item/item.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/sidebar/item/item.component.scss")]
+    }),
+    __metadata("design:paramtypes", [])
+], ItemComponent);
+
+//# sourceMappingURL=item.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/sidebar/list-items/list-items.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div id=\"mod-list-items\">\n    <ul>\n        <li *ngFor=\"let menu of listMenu\" class=\"item\">\n            <a md-button class=\"el-item\">\n                <i class=\"material-icons icon\" *ngIf=\"menu.icon\">{{menu.icon}}</i>\n                {{menu.title}}\n                <b class=\"material-icons arrows\">keyboard_arrow_down</b>\n            </a>\n            <ul class=\"sub-item\" *ngIf=\"menu.child && menu.child.length > 0\">\n                <li class=\"item\" *ngFor=\"let subMenu of menu.child\">\n                    <a md-button class=\"el-item\">\n                        {{subMenu.title}}\n                    </a>\n                </li>\n            </ul>\n        </li>\n    </ul>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/sidebar/list-items/list-items.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "#mod-list-items {\n  padding: 18px 0 0; }\n  #mod-list-items .item.active .el-item {\n    color: white;\n    background-color: #209e91; }\n  #mod-list-items .material-icons {\n    position: absolute;\n    top: 50%;\n    -webkit-transform: translateY(-50%);\n            transform: translateY(-50%); }\n  #mod-list-items .el-item:hover {\n    color: #209e91; }\n  #mod-list-items .icon {\n    left: 15px; }\n  #mod-list-items .arrows {\n    right: 10px; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/sidebar/list-items/list-items.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListItemsComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ListItemsComponent = (function () {
+    function ListItemsComponent() {
+    }
+    ListItemsComponent.prototype.ngOnInit = function () {
+        // console.log('ngOnit', this.listMenu);
+    };
+    return ListItemsComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])('list-menu'),
+    __metadata("design:type", String)
+], ListItemsComponent.prototype, "listMenu", void 0);
+ListItemsComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-list-items',
+        template: __webpack_require__("../../../../../src/app/components/sidebar/list-items/list-items.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/sidebar/list-items/list-items.component.scss")]
+    }),
+    __metadata("design:paramtypes", [])
+], ListItemsComponent);
+
+//# sourceMappingURL=list-items.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/sidebar/sidebar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"mod-sidebar\" ng-if=\"showSidebar\">\n    <div class=\"content-sidebar\">\n        <div class=\"header text-center\">\n            <app-icon></app-icon>\n            Admin\n        </div>\n        <div class=\"list-item\">\n            <ul>\n                <li class=\"item\">\n                    <a href=\"\" class=\"el-item\">\n                        <i class=\"material-icons\">home</i>\n                        Item 1\n                    </a>\n                </li>\n                <li class=\"item active\">\n                    <a href=\"\" class=\"el-item\">\n                        <i class=\"material-icons\">home</i>\n                        Item 2\n                    </a>\n                </li>\n                <li class=\"item\">\n                    <a href=\"\" class=\"el-item\">\n                        <i class=\"material-icons\">home</i>\n                        Item 3\n                    </a>\n                </li>\n            </ul>\n        </div>\n    </div>\n</div>"
+module.exports = "<div id=\"mod-sidebar\" ng-if=\"showSidebar\">\n    <div class=\"content-sidebar\">\n        <div class=\"header text-center\">\n            <app-icon></app-icon>\n            Admin\n        </div>\n        <app-list-items [list-menu]=\"menuSidebar\"></app-list-items>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -360,7 +493,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#mod-sidebar {\n  color: #fff;\n  position: relative;\n  -webkit-box-ordinal-group: 2;\n      -ms-flex-order: 1;\n          order: 1;\n  -webkit-box-flex: 1;\n      -ms-flex: 1 auto;\n          flex: 1 auto;\n  width: 180px;\n  overflow: hidden; }\n  #mod-sidebar .content-sidebar .header {\n    font-size: 24px;\n    font-family: Roboto,sans-serif;\n    line-height: 60px;\n    box-shadow: 2px 0 3px rgba(0, 0, 0, 0.5); }\n  #mod-sidebar .content-sidebar .list-item {\n    padding: 18px 0 0; }\n  #mod-sidebar .content-sidebar .el-item {\n    display: block;\n    color: white;\n    text-decoration: none;\n    padding: 10px 0 10px 15px; }\n  #mod-sidebar .content-sidebar .item.active .el-item {\n    color: white;\n    background-color: #209e91; }\n  #mod-sidebar .content-sidebar .el-item:hover {\n    color: #209e91; }\n", ""]);
+exports.push([module.i, "#mod-sidebar {\n  color: #fff;\n  position: relative;\n  -webkit-box-ordinal-group: 2;\n      -ms-flex-order: 1;\n          order: 1;\n  -webkit-box-flex: 1;\n      -ms-flex: 1 auto;\n          flex: 1 auto;\n  width: 180px;\n  overflow: hidden; }\n  #mod-sidebar .content-sidebar .header {\n    font-size: 24px;\n    font-family: Roboto,sans-serif;\n    line-height: 60px;\n    box-shadow: 2px 0 3px rgba(0, 0, 0, 0.5); }\n", ""]);
 
 // exports
 
@@ -390,6 +523,14 @@ var SidebarComponent = (function () {
     function SidebarComponent() {
         var _this = this;
         this.showSidebar = false;
+        this.menuSidebar = [
+            this.initMenuSidebar('', 'Item 1', 'home', [
+                this.initMenuSidebar('', 'Sub 1'),
+                this.initMenuSidebar('', 'Sub 2')
+            ]),
+            this.initMenuSidebar('', 'Item 2', 'home'),
+            this.initMenuSidebar('', 'Item 3', 'home'),
+        ];
         var count = 0;
         var checkSideBar = setInterval(function () {
             if (window.user) {
@@ -403,6 +544,11 @@ var SidebarComponent = (function () {
             count++;
         }, 100);
     }
+    SidebarComponent.prototype.initMenuSidebar = function (route, title, icon, child) {
+        if (icon === void 0) { icon = null; }
+        if (child === void 0) { child = null; }
+        return { route: route, icon: icon, title: title, child: child };
+    };
     return SidebarComponent;
 }());
 SidebarComponent = __decorate([
