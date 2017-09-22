@@ -22,7 +22,7 @@ const PATHS = {
 
 module.exports = {
     entry: {
-        // admin: './resources/admin/app.js',
+        admin_cms: './resources/admin/src/app.js',
         web: './resources/web/app.js',
     },
     output: {

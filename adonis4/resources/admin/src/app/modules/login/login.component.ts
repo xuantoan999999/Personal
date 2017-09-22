@@ -1,10 +1,10 @@
-import { AuthService } from './../services/auth/auth.service';
+import { AuthService } from './../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
-import { HttpService } from './../services/http.service';
+import { HttpService } from './../../services/http.service';
 import { Component } from '@angular/core';
 import { MdSnackBar } from '@angular/material';
-import Config from '../boostrap/config';
+import Config from '../../boostrap/config';
 
 @Component({
   selector: 'app-login',

@@ -1,7 +1,42 @@
-body{
+body.mt-template{
     font-size: 14px;
+    background: url('../images/blur-bg.jpg') no-repeat;
+    background-size: cover
 }
 ul{
     padding: 0;
     list-style: none;
 }
+
+.box{
+    padding: 15px;
+    margin: 15px;
+    background: rgba(0,0,0,.2);
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.box.white{
+    box-shadow: 0 5px 5px 0 rgba(0,0,0,.25);
+    background-size: 1913px 1076px;
+    background-position: 0px -52px;
+    background: url("../images/blur-bg-blurred.jpg") fixed;
+}
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/icon-mt.woff2") format('woff2');
+  }
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 1;
+    position: relative;
+    top: 5px;
+    margin-right: 10px;
+  }

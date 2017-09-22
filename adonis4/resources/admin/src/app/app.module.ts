@@ -1,6 +1,6 @@
-import { LoginService } from './login/login.service';
+import { LoginService } from './modules/login/login.service';
 import { HttpService } from './services/http.service';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './modules/login/login.component';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,13 +10,15 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { MdButtonModule, MdCheckboxModule, MdInputModule, MdSnackBarModule } from '@angular/material';
-import { UserComponent } from './user/user.component';
+import { UserComponent } from './modules/user/user.component';
 import { AuthGuardService } from './services/auth-guard.service';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { AuthService } from './services/auth/auth.service';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { LoginGuardService } from './services/login-guard/login-guard.service';
-import { IconComponent } from './icon/icon.component';
+import { IconComponent } from './components/icon/icon.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { ListItemComponent } from './components/sidebar/list-item/list-item.component';
 
 let routes = [
   {
@@ -52,7 +54,9 @@ let routes = [
     UserComponent,
     DashboardComponent,
     SidebarComponent,
-    IconComponent
+    IconComponent,
+    MenuComponent,
+    ListItemComponent
   ],
   imports: [
     BrowserModule,

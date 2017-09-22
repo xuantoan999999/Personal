@@ -10,14 +10,14 @@
     "test": "node ace test",
     "lint": "standard",
     "adonis_server": "adonis serve --dev",
-    "webpack_dev": "webpack --env=dev --progress --watch --profile --colors --hide-modules"
+    "webpack_dev": "webpack --env=dev --progress --watch  --profile --colors --hide-modules"
   },
   "keywords": [
     "adonisjs",
     "adonis-app"
   ],
   "author": "",
-  "license": "UNLICENSED",
+  "license": "No license, free to use if you have this.",
   "private": true,
   "dependencies": {
     "@adonisjs/ace": "^4.0.5",
