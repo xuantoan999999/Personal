@@ -20,7 +20,7 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_gendir lazy recursive";
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"mod-app\">\r\n    <aside class=\"sidebar\">\r\n        <app-sidebar></app-sidebar>\r\n    </aside>\r\n    <section class=\"menu\">\r\n        <app-menu></app-menu>\r\n    </section>\r\n    <section class=\"main-content\">\r\n        <router-outlet></router-outlet>\r\n    </section>\r\n</div>"
+module.exports = "<div id=\"mod-app\" [ngClass]=\"{'no-padding': !showNavigator}\">\r\n    <aside class=\"sidebar\" *ngIf=\"showNavigator\">\r\n        <app-sidebar></app-sidebar>\r\n    </aside>\r\n    <section class=\"menu\" *ngIf=\"showNavigator\">\r\n        <app-menu></app-menu>\r\n    </section>\r\n    <section class=\"main-content\">\r\n        <router-outlet></router-outlet>\r\n    </section>\r\n</div>"
 
 /***/ }),
 
@@ -32,7 +32,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#mod-app {\n  color: #fff;\n  padding-left: 180px;\n  padding-top: 60px;\n  position: relative; }\n  #mod-app .sidebar {\n    position: fixed;\n    width: 180px;\n    left: 0;\n    top: 0;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0.5);\n    z-index: 1; }\n  #mod-app .menu {\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100%;\n    padding-left: 180px;\n    z-index: 0; }\n  #mod-app .main-content {\n    padding: 15px; }\n", ""]);
+exports.push([module.i, "#mod-app {\n  color: #fff;\n  padding-left: 180px;\n  padding-top: 60px;\n  position: relative; }\n  #mod-app.no-padding {\n    padding-left: 0;\n    padding-top: 0; }\n  #mod-app .sidebar {\n    position: fixed;\n    width: 180px;\n    left: 0;\n    top: 0;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0.5);\n    z-index: 1; }\n  #mod-app .menu {\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100%;\n    padding-left: 180px;\n    z-index: 0; }\n  #mod-app .main-content {\n    padding: 15px; }\n", ""]);
 
 // exports
 
@@ -47,7 +47,8 @@ module.exports = module.exports.toString();
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -58,20 +59,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(router) {
+        var _this = this;
+        this.router = router;
+        this.showNavigator = false;
+        router.events.subscribe(function (event) {
+            if (event instanceof __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* NavigationEnd */]) {
+                var url = event.url;
+                _this.showNavigator = url.search('dang-nhap') == -1;
+            }
+        });
     }
     return AppComponent;
 }());
 AppComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["o" /* Component */])({
         selector: 'app-root',
         template: __webpack_require__("../../../../../src/app/app.component.html"),
         styles: [__webpack_require__("../../../../../src/app/app.component.scss")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */]) === "function" && _a || Object])
 ], AppComponent);
 
+var _a;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -129,6 +141,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+var initRoute = function (path, component) {
+    return { path: path, component: component, canActivate: [__WEBPACK_IMPORTED_MODULE_12__services_auth_guard_service__["a" /* AuthGuardService */]] };
+};
 var routes = [
     {
         path: '',
@@ -140,16 +155,8 @@ var routes = [
         component: __WEBPACK_IMPORTED_MODULE_2__modules_login_login_component__["a" /* LoginComponent */],
         canActivate: [__WEBPACK_IMPORTED_MODULE_16__services_login_guard_login_guard_service__["a" /* LoginGuardService */]],
     },
-    {
-        path: 'dash-board',
-        canActivate: [__WEBPACK_IMPORTED_MODULE_12__services_auth_guard_service__["a" /* AuthGuardService */]],
-        component: __WEBPACK_IMPORTED_MODULE_13__modules_dashboard_dashboard_component__["a" /* DashboardComponent */],
-    },
-    {
-        path: 'nguoi-dung',
-        component: __WEBPACK_IMPORTED_MODULE_11__modules_user_user_component__["a" /* UserComponent */],
-        canActivate: [__WEBPACK_IMPORTED_MODULE_12__services_auth_guard_service__["a" /* AuthGuardService */]],
-    }
+    initRoute('dash-board', __WEBPACK_IMPORTED_MODULE_13__modules_dashboard_dashboard_component__["a" /* DashboardComponent */]),
+    initRoute('nguoi-dung', __WEBPACK_IMPORTED_MODULE_11__modules_user_user_component__["a" /* UserComponent */]),
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -179,7 +186,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_5__angular_forms__["c" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_5__angular_forms__["h" /* ReactiveFormsModule */],
             __WEBPACK_IMPORTED_MODULE_4__angular_http__["b" /* HttpModule */],
-            __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* RouterModule */].forRoot(routes, {
+            __WEBPACK_IMPORTED_MODULE_3__angular_router__["c" /* RouterModule */].forRoot(routes, {
                 useHash: true
             })
         ],
@@ -637,7 +644,7 @@ DashboardComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/modules/dashboard/dashboard.component.html"),
         styles: [__webpack_require__("../../../../../src/app/modules/dashboard/dashboard.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__login_login_service__["a" /* LoginService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__login_login_service__["a" /* LoginService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_material__["d" /* MdSnackBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_material__["d" /* MdSnackBar */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* Router */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__login_login_service__["a" /* LoginService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__login_login_service__["a" /* LoginService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_material__["d" /* MdSnackBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_material__["d" /* MdSnackBar */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */]) === "function" && _c || Object])
 ], DashboardComponent);
 
 var _a, _b, _c;
@@ -648,7 +655,7 @@ var _a, _b, _c;
 /***/ "../../../../../src/app/modules/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"mod-login\" class=\"container\" *ngIf=\"showLogin\">\n    <!-- <div class=\"fake-bg\"></div> -->\n    <form class=\"box\" #f=\"ngForm\" (ngSubmit)=\"submit(f)\">\n        <h1 class=\"text-center\">Đăng nhập vào Admin</h1>\n        <div class=\"form-group\">\n            <md-form-field class=\"form-control\">\n                <input mdInput placeholder=\"Tên/Email\" ngModel name=\"username\" #username=\"ngModel\" autocomplete=\"off\" required>\n            </md-form-field>\n            <div class=\"text-danger\" *ngIf=\"(username.touched || f.submitted) && !username.valid\">\n                <div *ngIf=\"username.errors.required\">Chưa nhập tên/email</div>\n            </div>\n        </div>\n        <div class=\"form-group\">\n            <md-form-field class=\"form-control\">\n                <input mdInput placeholder=\"Mật khẩu\"  ngModel name=\"password\" #password=\"ngModel\" type=\"password\" autocomplete=\"off\" required>\n            </md-form-field>\n            <div class=\"text-danger\" *ngIf=\"(password.touched || f.submitted) && !password.valid\">\n                <div *ngIf=\"password.errors.required\">Chưa nhập mật khẩu</div>\n            </div>\n        </div>\n        <div class=\"form-group\">\n            <div class=\"row\">\n                <div class=\"col-sm-6\"></div>\n                <div class=\"col-sm-6 text-right\">\n                    <button md-raised-button color=\"primary\" type=\"submit\">Đăng nhập</button>\n                </div>\n            </div>\n        </div>\n    </form>\n</div>"
+module.exports = "<div id=\"mod-login\" class=\"container\" *ngIf=\"showLogin\">\n    <!-- <div class=\"fake-bg\"></div> -->\n    <form class=\"box\" #f=\"ngForm\" (ngSubmit)=\"submit(f)\">\n        <h1 class=\"text-center\">Đăng nhập vào Admin</h1>\n        <div class=\"form-group\">\n            <a (click)=\"noFunction('Không có đăng ký được đâu. Chỉ có đăng nhập thôi.')\" class=\"link\">Người dùng mới ? Đăng ký!</a>\n        </div>\n        <div class=\"form-group\">\n            <md-form-field class=\"form-control\">\n                <input mdInput placeholder=\"Tên/Email\" ngModel name=\"username\" #username=\"ngModel\" autocomplete=\"off\" required>\n            </md-form-field>\n            <div class=\"text-danger\" *ngIf=\"(username.touched || f.submitted) && !username.valid\">\n                <div *ngIf=\"username.errors.required\">Chưa nhập tên/email</div>\n            </div>\n        </div>\n        <div class=\"form-group\">\n            <md-form-field class=\"form-control\">\n                <input mdInput placeholder=\"Mật khẩu\"  ngModel name=\"password\" #password=\"ngModel\" type=\"password\" autocomplete=\"off\" required>\n            </md-form-field>\n            <div class=\"text-danger\" *ngIf=\"(password.touched || f.submitted) && !password.valid\">\n                <div *ngIf=\"password.errors.required\">Chưa nhập mật khẩu</div>\n            </div>\n        </div>\n        <div class=\"form-group\">\n            <div class=\"row\">\n                <div class=\"col-sm-6\">\n                    <a (click)=\"noFunction('Quên ráng chịu.')\" class=\"link\">Quên mật khẩu?</a>\n                </div>\n                <div class=\"col-sm-6 text-right\">\n                    <button md-raised-button color=\"primary\" type=\"submit\">Đăng nhập</button>\n                </div>\n            </div>\n        </div>\n    </form>\n</div>"
 
 /***/ }),
 
@@ -660,7 +667,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#mod-login {\n  padding: 200px 0 50px; }\n  #mod-login h1 {\n    margin: 20px 0 28px;\n    font-weight: lighter; }\n  #mod-login form {\n    max-width: 540px;\n    width: 100%;\n    margin: 0 auto;\n    background: rgba(0, 0, 0, 0.55); }\n", ""]);
+exports.push([module.i, "#mod-login {\n  padding: 150px 0 50px; }\n  #mod-login h1 {\n    margin: 20px 0 28px;\n    font-weight: lighter; }\n  #mod-login form {\n    max-width: 540px;\n    width: 100%;\n    margin: 0 auto;\n    background: rgba(0, 0, 0, 0.55);\n    padding: 30px; }\n  #mod-login a.link {\n    color: #009688;\n    text-decoration: none;\n    cursor: pointer; }\n", ""]);
 
 // exports
 
@@ -704,6 +711,7 @@ var LoginComponent = (function () {
         this.snackBar = snackBar;
         this.router = router;
         this.showLogin = false;
+        this.countClick = 0;
         this.authService.getUserLogin().subscribe(function (data) {
             _this.config = __WEBPACK_IMPORTED_MODULE_5__boostrap_config__["a" /* default */].getConfigs();
             if (data.user) {
@@ -712,6 +720,24 @@ var LoginComponent = (function () {
             _this.showLogin = true;
         });
     }
+    LoginComponent.prototype.noFunction = function (message) {
+        if (this.countClick == 5) {
+            message = 'Không có đâu. Thằng dev lười code rồi. Đừng cố nữa';
+        }
+        if (this.countClick == 10) {
+            message = 'Đã bảo không có rồi. Đừng bấm nữa.';
+        }
+        if (this.countClick == 15) {
+            message = 'Dai ghê ta';
+        }
+        if (this.countClick >= 20) {
+            message = 'Lầy vãi! Acc nè, vào đi: skecgash1/skecgash';
+        }
+        var snackBarRef = this.snackBar.open(message, 'Close', {
+            duration: 3000
+        });
+        this.countClick++;
+    };
     LoginComponent.prototype.submit = function (form) {
         var _this = this;
         if (!form.valid) {
@@ -738,7 +764,7 @@ LoginComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/modules/login/login.component.html"),
         styles: [__webpack_require__("../../../../../src/app/modules/login/login.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__login_service__["a" /* LoginService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__login_service__["a" /* LoginService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__services_auth_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__services_auth_auth_service__["a" /* AuthService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__angular_material__["d" /* MdSnackBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_material__["d" /* MdSnackBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__login_service__["a" /* LoginService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__login_service__["a" /* LoginService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__services_auth_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__services_auth_auth_service__["a" /* AuthService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__angular_material__["d" /* MdSnackBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_material__["d" /* MdSnackBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _d || Object])
 ], LoginComponent);
 
 var _a, _b, _c, _d;
@@ -912,7 +938,7 @@ var AuthGuardService = (function () {
 }());
 AuthGuardService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["C" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__auth_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__auth_auth_service__["a" /* AuthService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__auth_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__auth_auth_service__["a" /* AuthService */]) === "function" && _b || Object])
 ], AuthGuardService);
 
 var _a, _b;
@@ -970,7 +996,7 @@ var AuthService = (function (_super) {
 }(__WEBPACK_IMPORTED_MODULE_2__http_service__["a" /* HttpService */]));
 AuthService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["C" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Http */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Http */]) === "function" && _b || Object])
 ], AuthService);
 
 var _a, _b;
@@ -1107,7 +1133,7 @@ var LoginGuardService = (function () {
 }());
 LoginGuardService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["C" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__auth_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__auth_auth_service__["a" /* AuthService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__auth_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__auth_auth_service__["a" /* AuthService */]) === "function" && _b || Object])
 ], LoginGuardService);
 
 var _a, _b;

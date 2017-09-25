@@ -3,6 +3,10 @@
     padding-left: 180px;
     padding-top: 60px;
     position: relative;
+    &.no-padding{
+        padding-left: 0;
+        padding-top: 0;
+    }
     .sidebar{
         position: fixed;
         width: 180px;

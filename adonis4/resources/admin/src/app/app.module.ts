@@ -21,6 +21,10 @@ import { MenuComponent } from './components/menu/menu.component';
 import { ListItemsComponent } from './components/sidebar/list-items/list-items.component';
 import { ItemComponent } from './components/sidebar/item/item.component';
 
+let initRoute = (path, component) => {
+  return { path, component, canActivate: [AuthGuardService] }
+}
+
 let routes = [
   {
     path: '',
@@ -32,16 +36,8 @@ let routes = [
     component: LoginComponent,
     canActivate: [LoginGuardService],
   },
-  {
-    path: 'dash-board',
-    canActivate: [AuthGuardService],
-    component: DashboardComponent,
-  },
-  {
-    path: 'nguoi-dung',
-    component: UserComponent,
-    canActivate: [AuthGuardService],
-  }
+  initRoute('dash-board', DashboardComponent),
+  initRoute('nguoi-dung', UserComponent),
 ];
 
 @NgModule({

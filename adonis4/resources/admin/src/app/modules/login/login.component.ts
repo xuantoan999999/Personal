@@ -15,6 +15,7 @@ export class LoginComponent {
   config;
   csrfToken;
   showLogin: boolean = false;
+  countClick: number = 0;
 
   constructor(
     private loginService: LoginService,
@@ -29,6 +30,25 @@ export class LoginComponent {
       }
       this.showLogin = true;
     })
+  }
+
+  noFunction(message) {
+    if (this.countClick == 5) {
+      message = 'Không có đâu. Thằng dev lười code rồi. Đừng cố nữa';
+    }
+    if (this.countClick == 10) {
+      message = 'Đã bảo không có rồi. Đừng bấm nữa.';
+    }
+    if (this.countClick == 15) {
+      message = 'Dai ghê ta';
+    }
+    if (this.countClick >= 20) {
+      message = 'Lầy vãi! Acc nè, vào đi: skecgash1/skecgash';
+    }
+    let snackBarRef = this.snackBar.open(message, 'Close', {
+      duration: 3000
+    });
+    this.countClick++;
   }
 
   submit(form) {
