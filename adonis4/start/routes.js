@@ -22,21 +22,6 @@ Route.group(() => {
     Route.get('/', 'Admin/DashboardController.index')
     Route.get('/dash-board', 'Admin/DashboardController.getDashboard')
     Route.post('/dang-nhap', 'Admin/AuthController.login')
-    // Route.get('/', 'Admin/HomeController.index')
-    // Route.get('/tai-khoan', 'Api/AccountController.index')
-    // Route.get('/nguoi-dung', 'Admin/UserController.index')
-}).prefix('admin')
-// .middleware('auth')
-
-
-
-Route.group(() => {
-    /**
-     * Module Auth
-     */
-    Route.post('is-login', 'Api/AuthController.checkLogin')
-    // Route.post('/dang-nhap', 'Api/AuthController.login')
-    // Route.post('/thong-tin-user', 'Api/AuthController.getUserInfo')
 
     /**
      * Module User
@@ -65,4 +50,16 @@ Route.group(() => {
     // Route.get('/website/:id', 'Api/WebsiteController.show')
     // Route.post('/website/:id', 'Api/WebsiteController.update')
     // Route.delete('/website/:id', 'Api/WebsiteController.destroy')
+}).prefix('admin')
+// .middleware('auth')
+
+
+
+Route.group(() => {
+    /**
+     * Module Auth
+     */
+    Route.post('is-login', 'Api/AuthController.checkLogin')
+    // Route.post('/dang-nhap', 'Api/AuthController.login')
+    // Route.post('/thong-tin-user', 'Api/AuthController.getUserInfo')
 }).prefix('api/v1')

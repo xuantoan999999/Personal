@@ -17,6 +17,7 @@ class AdminDashboardController {
         let countAccount = await Account.count();
         let allAccount = await Account.find().select('list_account').lean();
         let countWebsite = await Website.count();
+
         return response.send({
             countUser,
             countAccount,

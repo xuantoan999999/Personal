@@ -1,12 +1,7 @@
 'use strict'
-const mongoose = use('mongoose');
-const _ = require('lodash');
 
-const Account = mongoose.model('Account');
-
-class AccountController {
-
-    * index(request, response) {
+class AdminWebsiteController {
+    async index({ request, response }) {
         let params = request.all();
         let page = parseInt(params.page) || 1;
         let itemsPerPage = parseInt(params.limit) || 10;
@@ -16,77 +11,78 @@ class AccountController {
         if (params.search) option_and.push({
             $or: [
                 { name: new RegExp(params.search, 'i') },
-                { website: new RegExp(params.search, 'i') },
+                { link_website: new RegExp(params.search, 'i') },
             ]
         })
         if (option_and.length > 0) option = { $and: option_and };
 
         let find = () => {
             return new Promise(function (resolve, reject) {
-                Account.find(option).lean().sort('-createdAt').paginate(page, itemsPerPage, (err, items, total) => {
+                Website.find(option).lean().sort('-createdAt').paginate(page, itemsPerPage, (err, items, total) => {
                     let dataSend = {
                         totalItems: total,
                         totalPage: Math.ceil(total / itemsPerPage),
                         currentPage: page,
                         itemsPerPage: itemsPerPage,
-                        accounts: items,
+                        websites: items,
                     };
                     resolve(dataSend);
                 });
             })
         }
-        let dataSend = yield find();
-        yield response.json(dataSend);
+
+        let data = yield find();
+        yield response.json({
+            success: true,
+            data
+        })
     }
 
-    * create(request, response) {
-        yield response.json({ success: true })
-    }
-
-    * store(request, response) {
+    async store({ request, response }) {
         let user = yield request.auth.check();
         let data = request.all().data;
         data.creater = user._id;
-        let saveAccount = new Account(data);
-        yield saveAccount.save();
+        let saveWebsite = new Website(data);
+        let addWebsite = yield saveWebsite.save();
 
         yield response.json({
             success: true,
+            addWebsite
         })
     }
 
-    * show(request, response) {
+    async show({ request, response }) {
+        let params = request.params();
+        let website = yield Website.findById(params.id).lean();
+        yield response.json({
+            website
+        })
+    }
+
+    async edit({ request, response }) {
         //
     }
 
-    * edit(request, response) {
-        let params = request.params();
-        let account = yield Account.findById(params.id).lean();
-        yield response.json({
-            account
-        })
-    }
-
-    * update(request, response) {
+    async update({ request, response }) {
         let params = request.params();
         let data = request.all();
-        let account = yield Account.findById(params.id);
-        let accountUpdate = _.extend(account, data.data);
-        let accountDone = yield accountUpdate.save();
+        let website = yield Website.findById(params.id);
+        let websiteUpdate = _.extend(website, data.data);
+        let websiteDone = yield websiteUpdate.save();
 
         yield response.json({
             success: true,
-            account: accountDone
+            website: websiteDone
         })
     }
 
-    * destroy(request, response) {
+    async destroy({ request, response }) {
         let params = request.params();
-        let removeAccount = yield Account.findByIdAndRemove(params.id);
+        let removeWebsite = yield Website.findByIdAndRemove(params.id);
         yield response.json({
             success: true
         })
     }
 }
 
-module.exports = AccountController
+module.exports = AdminWebsiteController

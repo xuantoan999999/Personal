@@ -10,6 +10,5 @@ export class ListItemsComponent implements OnInit {
   constructor() {
   }
   ngOnInit() {
-    // console.log('ngOnit', this.listMenu);
   }
 }

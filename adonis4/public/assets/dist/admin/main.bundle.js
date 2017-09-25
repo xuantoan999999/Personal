@@ -482,7 +482,6 @@ var ListItemsComponent = (function () {
     function ListItemsComponent() {
     }
     ListItemsComponent.prototype.ngOnInit = function () {
-        // console.log('ngOnit', this.listMenu);
     };
     return ListItemsComponent;
 }());
