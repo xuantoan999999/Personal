@@ -20,25 +20,7 @@ import { IconComponent } from './components/icon/icon.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { ListItemsComponent } from './components/sidebar/list-items/list-items.component';
 import { ItemComponent } from './components/sidebar/item/item.component';
-
-let initRoute = (path, component) => {
-  return { path, component, canActivate: [AuthGuardService] }
-}
-
-let routes = [
-  {
-    path: '',
-    redirectTo: 'dang-nhap',
-    pathMatch: 'full'
-  },
-  {
-    path: 'dang-nhap',
-    component: LoginComponent,
-    canActivate: [LoginGuardService],
-  },
-  initRoute('dash-board', DashboardComponent),
-  initRoute('nguoi-dung', UserComponent),
-];
+import { DashboardService } from './modules/dashboard/dashboard.service';
 
 @NgModule({
   declarations: [
@@ -62,16 +44,38 @@ let routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot(routes, {
-      useHash: true
-    })
+    RouterModule.forRoot([
+      {
+        path: '',
+        redirectTo: 'dang-nhap',
+        pathMatch: 'full'
+      },
+      {
+        path: 'dang-nhap',
+        component: LoginComponent,
+        canActivate: [LoginGuardService],
+      },
+      {
+        path: 'dash-board',
+        component: DashboardComponent,
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: 'nguoi-dung',
+        component: UserComponent,
+        canActivate: [AuthGuardService]
+      },
+    ], {
+        useHash: true
+      })
   ],
   providers: [
     HttpService,
     LoginService,
     AuthGuardService,
     LoginGuardService,
-    AuthService
+    AuthService,
+    DashboardService
   ],
   bootstrap: [AppComponent]
 })

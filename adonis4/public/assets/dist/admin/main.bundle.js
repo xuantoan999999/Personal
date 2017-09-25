@@ -114,6 +114,7 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_menu_menu_component__ = __webpack_require__("../../../../../src/app/components/menu/menu.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_sidebar_list_items_list_items_component__ = __webpack_require__("../../../../../src/app/components/sidebar/list-items/list-items.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_sidebar_item_item_component__ = __webpack_require__("../../../../../src/app/components/sidebar/item/item.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__modules_dashboard_dashboard_service__ = __webpack_require__("../../../../../src/app/modules/dashboard/dashboard.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -141,23 +142,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var initRoute = function (path, component) {
-    return { path: path, component: component, canActivate: [__WEBPACK_IMPORTED_MODULE_12__services_auth_guard_service__["a" /* AuthGuardService */]] };
-};
-var routes = [
-    {
-        path: '',
-        redirectTo: 'dang-nhap',
-        pathMatch: 'full'
-    },
-    {
-        path: 'dang-nhap',
-        component: __WEBPACK_IMPORTED_MODULE_2__modules_login_login_component__["a" /* LoginComponent */],
-        canActivate: [__WEBPACK_IMPORTED_MODULE_16__services_login_guard_login_guard_service__["a" /* LoginGuardService */]],
-    },
-    initRoute('dash-board', __WEBPACK_IMPORTED_MODULE_13__modules_dashboard_dashboard_component__["a" /* DashboardComponent */]),
-    initRoute('nguoi-dung', __WEBPACK_IMPORTED_MODULE_11__modules_user_user_component__["a" /* UserComponent */]),
-];
+
 var AppModule = (function () {
     function AppModule() {
     }
@@ -186,7 +171,28 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_5__angular_forms__["c" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_5__angular_forms__["h" /* ReactiveFormsModule */],
             __WEBPACK_IMPORTED_MODULE_4__angular_http__["b" /* HttpModule */],
-            __WEBPACK_IMPORTED_MODULE_3__angular_router__["c" /* RouterModule */].forRoot(routes, {
+            __WEBPACK_IMPORTED_MODULE_3__angular_router__["c" /* RouterModule */].forRoot([
+                {
+                    path: '',
+                    redirectTo: 'dang-nhap',
+                    pathMatch: 'full'
+                },
+                {
+                    path: 'dang-nhap',
+                    component: __WEBPACK_IMPORTED_MODULE_2__modules_login_login_component__["a" /* LoginComponent */],
+                    canActivate: [__WEBPACK_IMPORTED_MODULE_16__services_login_guard_login_guard_service__["a" /* LoginGuardService */]],
+                },
+                {
+                    path: 'dash-board',
+                    component: __WEBPACK_IMPORTED_MODULE_13__modules_dashboard_dashboard_component__["a" /* DashboardComponent */],
+                    canActivate: [__WEBPACK_IMPORTED_MODULE_12__services_auth_guard_service__["a" /* AuthGuardService */]]
+                },
+                {
+                    path: 'nguoi-dung',
+                    component: __WEBPACK_IMPORTED_MODULE_11__modules_user_user_component__["a" /* UserComponent */],
+                    canActivate: [__WEBPACK_IMPORTED_MODULE_12__services_auth_guard_service__["a" /* AuthGuardService */]]
+                },
+            ], {
                 useHash: true
             })
         ],
@@ -195,7 +201,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_0__modules_login_login_service__["a" /* LoginService */],
             __WEBPACK_IMPORTED_MODULE_12__services_auth_guard_service__["a" /* AuthGuardService */],
             __WEBPACK_IMPORTED_MODULE_16__services_login_guard_login_guard_service__["a" /* LoginGuardService */],
-            __WEBPACK_IMPORTED_MODULE_14__services_auth_auth_service__["a" /* AuthService */]
+            __WEBPACK_IMPORTED_MODULE_14__services_auth_auth_service__["a" /* AuthService */],
+            __WEBPACK_IMPORTED_MODULE_21__modules_dashboard_dashboard_service__["a" /* DashboardService */]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* AppComponent */]]
     })
@@ -583,7 +590,14 @@ SidebarComponent = __decorate([
 
 /***/ }),
 
-/***/ "../../../../../src/app/modules/dashboard/dashboard.component.css":
+/***/ "../../../../../src/app/modules/dashboard/dashboard.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\" id=\"mod-dashboard\">\n    <div class=\"col-3\">\n        <div class=\"box white\">\n            <div class=\"float-left left-section\">\n                <i class=\"material-icons\">supervisor_account</i>\n            </div>\n            <div class=\"float-right\">\n                <p>User</p>\n                <p>{{countUser}}</p>\n            </div>\n        </div>\n    </div>\n    <div class=\"col-3\">\n        <div class=\"box white\">\n            <div class=\"float-left left-section\">\n                <i class=\"material-icons\">bookmark</i>\n            </div>\n            <div class=\"float-right\">\n                <p>Link Website</p>\n                <p>{{countWebsite}}</p>\n            </div>\n        </div>\n    </div>\n    <div class=\"col-3\">\n        <div class=\"box white\">\n            <div class=\"float-left left-section\">\n                <i class=\"material-icons\">web</i>\n            </div>\n            <div class=\"float-right\">\n                <p>Websites</p>\n                <p>{{countAccount}}</p>\n            </div>\n        </div>\n    </div>\n    <div class=\"col-3\">\n        <div class=\"box white\">\n            <div class=\"float-left left-section\">\n                <i class=\"material-icons\">work</i>\n            </div>\n            <div class=\"float-right\">\n                <p>Account</p>\n                <p>{{allAccount}}</p>\n            </div>\n        </div>\n    </div>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/modules/dashboard/dashboard.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -591,20 +605,13 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "#mod-dashboard .material-icons {\n  font-size: 80px; }\n\n#mod-dashboard .float-right {\n  font-size: 28px; }\n  #mod-dashboard .float-right p {\n    margin-bottom: 0; }\n", ""]);
 
 // exports
 
 
 /*** EXPORTS FROM exports-loader ***/
 module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/modules/dashboard/dashboard.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"box white\">\n  <p>\n    This is dashboard\n  </p>\n</div>"
 
 /***/ }),
 
@@ -616,7 +623,7 @@ module.exports = "<div class=\"box white\">\n  <p>\n    This is dashboard\n  </p
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/@angular/material.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_login_service__ = __webpack_require__("../../../../../src/app/modules/login/login.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dashboard_service__ = __webpack_require__("../../../../../src/app/modules/dashboard/dashboard.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -631,10 +638,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var DashboardComponent = (function () {
-    function DashboardComponent(loginService, snackBar, router) {
-        this.loginService = loginService;
+    function DashboardComponent(dashboardService, snackBar, router) {
+        var _this = this;
+        this.dashboardService = dashboardService;
         this.snackBar = snackBar;
         this.router = router;
+        this.countUser = 0;
+        this.countWebsite = 0;
+        this.countAccount = 0;
+        this.allAccount = 0;
+        this.dashboardService.getDashboard()
+            .subscribe(function (data) {
+            _this.countUser = data.countUser;
+            _this.countWebsite = data.countWebsite;
+            _this.countAccount = data.countAccount;
+            _this.allAccount = data.allAccount;
+        });
     }
     return DashboardComponent;
 }());
@@ -642,13 +661,63 @@ DashboardComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["o" /* Component */])({
         selector: 'app-dashboard',
         template: __webpack_require__("../../../../../src/app/modules/dashboard/dashboard.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/modules/dashboard/dashboard.component.css")]
+        styles: [__webpack_require__("../../../../../src/app/modules/dashboard/dashboard.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__login_login_service__["a" /* LoginService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__login_login_service__["a" /* LoginService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_material__["d" /* MdSnackBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_material__["d" /* MdSnackBar */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__dashboard_service__["a" /* DashboardService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__dashboard_service__["a" /* DashboardService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_material__["d" /* MdSnackBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_material__["d" /* MdSnackBar */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */]) === "function" && _c || Object])
 ], DashboardComponent);
 
 var _a, _b, _c;
 //# sourceMappingURL=dashboard.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/modules/dashboard/dashboard.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_http_service__ = __webpack_require__("../../../../../src/app/services/http.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var DashboardService = (function (_super) {
+    __extends(DashboardService, _super);
+    function DashboardService(http) {
+        return _super.call(this, http) || this;
+    }
+    DashboardService.prototype.getDashboard = function () {
+        return this.getAdmin('dash-board');
+    };
+    return DashboardService;
+}(__WEBPACK_IMPORTED_MODULE_1__services_http_service__["a" /* HttpService */]));
+DashboardService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */]) === "function" && _a || Object])
+], DashboardService);
+
+var _a;
+//# sourceMappingURL=dashboard.service.js.map
 
 /***/ }),
 

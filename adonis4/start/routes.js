@@ -16,11 +16,11 @@
 const Route = use('Route')
 
 Route.get('/', 'Web/IndexController.index')
-Route.get('/test', 'Api/AuthController.checkLogin')
 
 // Admin Group
 Route.group(() => {
     Route.get('/', 'Admin/DashboardController.index')
+    Route.get('/dash-board', 'Admin/DashboardController.getDashboard')
     Route.post('/dang-nhap', 'Admin/AuthController.login')
     // Route.get('/', 'Admin/HomeController.index')
     // Route.get('/tai-khoan', 'Api/AccountController.index')
