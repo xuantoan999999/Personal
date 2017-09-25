@@ -10,6 +10,7 @@
         top: 0;
         height: 100%;
         background-color: rgba(0,0,0,.5);
+        z-index: 1;
     }
     .menu{
         position: fixed;
@@ -17,7 +18,7 @@
         left: 0;
         width: 100%;
         padding-left: 180px;
-        z-index: 1
+        z-index: 0
     }
     .main-content{
         padding: 15px;

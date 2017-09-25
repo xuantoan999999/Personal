@@ -35,17 +35,13 @@ let routes = [
   {
     path: 'dash-board',
     canActivate: [AuthGuardService],
-    children: [
-      {
-        path: '',
-        component: DashboardComponent,
-      },
-      {
-        path: 'nguoi-dung',
-        component: UserComponent,
-      },
-    ]
+    component: DashboardComponent,
   },
+  {
+    path: 'nguoi-dung',
+    component: UserComponent,
+    canActivate: [AuthGuardService],
+  }
 ];
 
 @NgModule({

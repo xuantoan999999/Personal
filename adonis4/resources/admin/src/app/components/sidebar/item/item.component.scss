@@ -29,13 +29,14 @@
     }
 }
 
-.el-item.active{
+.el-item.active, .el-item.active:hover{
     color: white;
     background-color: #209e91;
 }
 
 .el-item:hover{
     color: #209e91;
+    background-color: none;
 }
 .item.is-open{
     .el-item{

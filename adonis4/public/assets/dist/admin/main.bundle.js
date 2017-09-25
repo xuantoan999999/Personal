@@ -32,7 +32,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#mod-app {\n  color: #fff;\n  padding-left: 180px;\n  padding-top: 60px;\n  position: relative; }\n  #mod-app .sidebar {\n    position: fixed;\n    width: 180px;\n    left: 0;\n    top: 0;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0.5); }\n  #mod-app .menu {\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100%;\n    padding-left: 180px;\n    z-index: 1; }\n  #mod-app .main-content {\n    padding: 15px; }\n", ""]);
+exports.push([module.i, "#mod-app {\n  color: #fff;\n  padding-left: 180px;\n  padding-top: 60px;\n  position: relative; }\n  #mod-app .sidebar {\n    position: fixed;\n    width: 180px;\n    left: 0;\n    top: 0;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0.5);\n    z-index: 1; }\n  #mod-app .menu {\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100%;\n    padding-left: 180px;\n    z-index: 0; }\n  #mod-app .main-content {\n    padding: 15px; }\n", ""]);
 
 // exports
 
@@ -143,17 +143,13 @@ var routes = [
     {
         path: 'dash-board',
         canActivate: [__WEBPACK_IMPORTED_MODULE_12__services_auth_guard_service__["a" /* AuthGuardService */]],
-        children: [
-            {
-                path: '',
-                component: __WEBPACK_IMPORTED_MODULE_13__modules_dashboard_dashboard_component__["a" /* DashboardComponent */],
-            },
-            {
-                path: 'nguoi-dung',
-                component: __WEBPACK_IMPORTED_MODULE_11__modules_user_user_component__["a" /* UserComponent */],
-            },
-        ]
+        component: __WEBPACK_IMPORTED_MODULE_13__modules_dashboard_dashboard_component__["a" /* DashboardComponent */],
     },
+    {
+        path: 'nguoi-dung',
+        component: __WEBPACK_IMPORTED_MODULE_11__modules_user_user_component__["a" /* UserComponent */],
+        canActivate: [__WEBPACK_IMPORTED_MODULE_12__services_auth_guard_service__["a" /* AuthGuardService */]],
+    }
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -354,7 +350,7 @@ MenuComponent = __decorate([
 /***/ "../../../../../src/app/components/sidebar/item/item.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"item transition\" [ngClass]=\"{'is-open': isOpenSubmenu}\" [ngStyle]=\"{'height.px': heightItem}\">\n    <a md-button class=\"el-item\" *ngIf=\"data.child && data.child.length > 0\" (click)=\"openSubmenu($event)\">\n        <i class=\"material-icons icon\" *ngIf=\"data.icon\">{{data.icon}}</i>\n        {{data.title}}\n        <b class=\"material-icons arrows transition\" *ngIf=\"data.child && data.child.length > 0\">keyboard_arrow_down</b>\n    </a>\n    <a md-button class=\"el-item\" *ngIf=\"!data.child || data.child.length == 0\">\n        <i class=\"material-icons icon\" *ngIf=\"data.icon\">{{data.icon}}</i>\n        {{data.title}}\n    </a>\n    <ul class=\"sub-item\" *ngIf=\"data.child && data.child.length > 0\">\n        <li class=\"item\" *ngFor=\"let subMenu of data.child\">\n            <a md-button class=\"el-item\">\n                {{subMenu.title}}\n            </a>\n        </li>\n    </ul>\n</div>\n\n"
+module.exports = "<div class=\"item transition\" [ngClass]=\"{'is-open': isOpenSubmenu}\" [ngStyle]=\"{'height.px': heightItem}\">\n    <a md-button class=\"el-item\" *ngIf=\"data.child && data.child.length > 0\" (click)=\"openSubmenu($event)\" routerLinkActive=\"active\">\n        <i class=\"material-icons icon\" *ngIf=\"data.icon\">{{data.icon}}</i>\n        {{data.title}}\n        <b class=\"material-icons arrows transition\" *ngIf=\"data.child && data.child.length > 0\">keyboard_arrow_down</b>\n    </a>\n    <a md-button class=\"el-item\" *ngIf=\"!data.child || data.child.length == 0\" [routerLink]=\"data.route\" routerLinkActive=\"active\">\n        <i class=\"material-icons icon\" *ngIf=\"data.icon\">{{data.icon}}</i>\n        {{data.title}}\n    </a>\n    <ul class=\"sub-item\" *ngIf=\"data.child && data.child.length > 0\">\n        <li class=\"item\" *ngFor=\"let subMenu of data.child\">\n            <a md-button class=\"el-item\">\n                {{subMenu.title}}\n            </a>\n        </li>\n    </ul>\n</div>\n\n"
 
 /***/ }),
 
@@ -366,7 +362,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".item {\n  height: 42px;\n  overflow: hidden;\n  transition: 0.2s; }\n\n.transition {\n  transition: 0.2s; }\n\n.el-item {\n  display: block;\n  color: white;\n  text-decoration: none;\n  padding-left: 45px;\n  line-height: 42px;\n  position: relative;\n  width: 100%;\n  text-align: left; }\n  .el-item .icon {\n    left: 15px;\n    -webkit-transform: translateY(-50%);\n            transform: translateY(-50%); }\n  .el-item .arrows {\n    right: 10px;\n    -webkit-transform: translateY(-50%) rotate(90deg);\n            transform: translateY(-50%) rotate(90deg); }\n  .el-item .material-icons {\n    position: absolute;\n    top: 50%; }\n\n.el-item.active {\n  color: white;\n  background-color: #209e91; }\n\n.el-item:hover {\n  color: #209e91; }\n\n.item.is-open .el-item .arrows {\n  -webkit-transform: translateY(-50%);\n          transform: translateY(-50%); }\n", ""]);
+exports.push([module.i, ".item {\n  height: 42px;\n  overflow: hidden;\n  transition: 0.2s; }\n\n.transition {\n  transition: 0.2s; }\n\n.el-item {\n  display: block;\n  color: white;\n  text-decoration: none;\n  padding-left: 45px;\n  line-height: 42px;\n  position: relative;\n  width: 100%;\n  text-align: left; }\n  .el-item .icon {\n    left: 15px;\n    -webkit-transform: translateY(-50%);\n            transform: translateY(-50%); }\n  .el-item .arrows {\n    right: 10px;\n    -webkit-transform: translateY(-50%) rotate(90deg);\n            transform: translateY(-50%) rotate(90deg); }\n  .el-item .material-icons {\n    position: absolute;\n    top: 50%; }\n\n.el-item.active, .el-item.active:hover {\n  color: white;\n  background-color: #209e91; }\n\n.el-item:hover {\n  color: #209e91;\n  background-color: none; }\n\n.item.is-open .el-item .arrows {\n  -webkit-transform: translateY(-50%);\n          transform: translateY(-50%); }\n", ""]);
 
 // exports
 
@@ -496,7 +492,7 @@ ListItemsComponent = __decorate([
 /***/ "../../../../../src/app/components/sidebar/sidebar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"mod-sidebar\" ng-if=\"showSidebar\">\n    <div class=\"content-sidebar\">\n        <div class=\"header text-center\">\n            <app-icon></app-icon>\n            Admin\n        </div>\n        <app-list-items [list-menu]=\"menuSidebar\"></app-list-items>\n    </div>\n</div>"
+module.exports = "<div id=\"mod-sidebar\" ng-if=\"showSidebar\">\n    <div class=\"content-sidebar\">\n        <a class=\"header d-block text-center\" href=\"\">\n            <app-icon></app-icon>\n            Admin\n        </a>\n        <app-list-items [list-menu]=\"menuSidebar\"></app-list-items>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -508,7 +504,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#mod-sidebar {\n  color: #fff;\n  position: relative;\n  -webkit-box-ordinal-group: 2;\n      -ms-flex-order: 1;\n          order: 1;\n  -webkit-box-flex: 1;\n      -ms-flex: 1 auto;\n          flex: 1 auto;\n  width: 180px;\n  overflow: hidden; }\n  #mod-sidebar .content-sidebar .header {\n    font-size: 24px;\n    font-family: Roboto,sans-serif;\n    line-height: 60px;\n    box-shadow: 2px 0 3px rgba(0, 0, 0, 0.5); }\n", ""]);
+exports.push([module.i, "#mod-sidebar {\n  color: #fff;\n  position: relative;\n  -webkit-box-ordinal-group: 2;\n      -ms-flex-order: 1;\n          order: 1;\n  -webkit-box-flex: 1;\n      -ms-flex: 1 auto;\n          flex: 1 auto;\n  width: 180px;\n  overflow: hidden; }\n  #mod-sidebar .content-sidebar .header {\n    font-size: 24px;\n    font-family: Roboto,sans-serif;\n    line-height: 60px;\n    box-shadow: 2px 0 3px rgba(0, 0, 0, 0.5);\n    text-decoration: none;\n    color: white; }\n", ""]);
 
 // exports
 
@@ -539,12 +535,13 @@ var SidebarComponent = (function () {
         var _this = this;
         this.showSidebar = false;
         this.menuSidebar = [
-            this.initMenuSidebar('', 'Item 1', 'home', [
-                this.initMenuSidebar('', 'Sub 1'),
-                this.initMenuSidebar('', 'Sub 2')
-            ]),
-            this.initMenuSidebar('', 'Item 2', 'home'),
-            this.initMenuSidebar('', 'Item 3', 'home'),
+            // this.initMenuSidebar('', 'Item 1', 'home', [
+            //     this.initMenuSidebar('', 'Sub 1'),
+            //     this.initMenuSidebar('', 'Sub 2')
+            // ]),
+            // this.initMenuSidebar('', 'Item 2', 'home'),
+            this.initMenuSidebar('dash-board', 'Dashboard', 'dashboard'),
+            this.initMenuSidebar('nguoi-dung', 'User', 'supervisor_account'),
         ];
         var count = 0;
         var checkSideBar = setInterval(function () {
@@ -600,7 +597,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/modules/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"box white\">\n  <p>\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas atque voluptates obcaecati maiores pariatur unde, velit molestias aperiam mollitia. Fugit animi dignissimos consequatur quia natus dolorum similique odio architecto quod.\n  </p>\n</div>"
+module.exports = "<div class=\"box white\">\n  <p>\n    This is dashboard\n  </p>\n</div>"
 
 /***/ }),
 
@@ -806,7 +803,7 @@ var _a;
 /***/ "../../../../../src/app/modules/user/user.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  user works!\n</p>\n"
+module.exports = "<div class=\"box white\">\n    <p>\n        user works!\n    </p>\n  </div>"
 
 /***/ }),
 

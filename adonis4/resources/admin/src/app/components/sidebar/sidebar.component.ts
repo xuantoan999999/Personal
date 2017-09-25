@@ -10,14 +10,14 @@ export class SidebarComponent {
     showSidebar: boolean = false;
 
     menuSidebar = [
-        this.initMenuSidebar('', 'Item 1', 'home', [
-            this.initMenuSidebar('', 'Sub 1'),
-            this.initMenuSidebar('', 'Sub 2')
-        ]),
-        this.initMenuSidebar('', 'Item 2', 'home'),
-        this.initMenuSidebar('', 'Item 3', 'home'),
+        // this.initMenuSidebar('', 'Item 1', 'home', [
+        //     this.initMenuSidebar('', 'Sub 1'),
+        //     this.initMenuSidebar('', 'Sub 2')
+        // ]),
+        // this.initMenuSidebar('', 'Item 2', 'home'),
+        this.initMenuSidebar('dash-board', 'Dashboard', 'dashboard'),
+        this.initMenuSidebar('nguoi-dung', 'User', 'supervisor_account'),
     ];
-
     constructor() {
         let count = 0;
         var checkSideBar = setInterval(() => {
