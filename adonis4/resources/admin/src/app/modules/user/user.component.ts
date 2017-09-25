@@ -1,3 +1,4 @@
+import { UserService } from './user.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,8 +7,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent {
+  rows = [
+    { name: 'Austin', gender: 'Male', company: 'Swimlane' },
+    { name: 'Dany', gender: 'Male', company: 'KFC' },
+    { name: 'Molly', gender: 'Female', company: 'Burger King' },
+  ];
+  columns = [
+    { prop: 'name' },
+    { name: 'Gender' },
+    { name: 'Company' }
+  ];
 
-  constructor() {
+  constructor(
+    private userService: UserService,
+  ) {
+    this.userService.index()
+      .subscribe(data => {
+        console.log(data);
+      })
   }
 
 }

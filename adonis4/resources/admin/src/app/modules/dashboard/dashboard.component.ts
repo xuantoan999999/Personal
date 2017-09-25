@@ -17,8 +17,6 @@ export class DashboardComponent {
 
   constructor(
     private dashboardService: DashboardService,
-
-    private snackBar: MdSnackBar,
     private router: Router
   ) {
     this.dashboardService.getDashboard()

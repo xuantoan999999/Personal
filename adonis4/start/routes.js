@@ -23,10 +23,11 @@ Route.group(() => {
     Route.get('/dash-board', 'Admin/DashboardController.getDashboard')
     Route.post('/dang-nhap', 'Admin/AuthController.login')
 
+
     /**
      * Module User
      */
-    // Route.get('/nguoi-dung', 'Api/UserController.index')
+    Route.get('/nguoi-dung', 'Admin/UserController.index')
     // Route.delete('/nguoi-dung/:id', 'Api/UserController.destroy')
     // Route.post('/nguoi-dung', 'Api/UserController.store')
     // Route.post('/nguoi-dung/:id', 'Api/UserController.update')

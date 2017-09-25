@@ -1,6 +1,39 @@
 'use strict'
+const Helpers = use('Helpers');
+const mongoose = use('mongoose');
+
+const User = mongoose.model('User');
 
 class AdminUserController {
+    async index({ request, response }) {
+        let params = request.all();
+        let page = parseInt(params.page) || 1;
+        let itemsPerPage = parseInt(params.limit) || 10;
+
+        let usersQuery = () => {
+            return new Promise((resolve, reject) => {
+                User.find().lean().paginate(page, itemsPerPage, (err, items, total) => {
+                    let dataSend = {
+                        totalItems: total,
+                        totalPage: Math.ceil(total / itemsPerPage),
+                        currentPage: page,
+                        itemsPerPage: itemsPerPage,
+                        users: items,
+                    };
+                    return resolve(dataSend);
+                });
+            })
+        }
+        let usersList = await usersQuery();
+
+        return response.send({
+            success: true,
+            params,
+            page,
+            itemsPerPage,
+            usersList
+        })
+    }
     // * index(request, response) {
     //     let params = request.all();
     //     let page = parseInt(params.page) || 1;

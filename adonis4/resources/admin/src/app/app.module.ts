@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { AppComponent } from './app.component';
 import { MdButtonModule, MdCheckboxModule, MdInputModule, MdSnackBarModule } from '@angular/material';
@@ -21,6 +22,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { ListItemsComponent } from './components/sidebar/list-items/list-items.component';
 import { ItemComponent } from './components/sidebar/item/item.component';
 import { DashboardService } from './modules/dashboard/dashboard.service';
+import { UserService } from './modules/user/user.service';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { DashboardService } from './modules/dashboard/dashboard.service';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    NgxDatatableModule,
     RouterModule.forRoot([
       {
         path: '',
@@ -75,7 +78,8 @@ import { DashboardService } from './modules/dashboard/dashboard.service';
     AuthGuardService,
     LoginGuardService,
     AuthService,
-    DashboardService
+    DashboardService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
