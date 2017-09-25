@@ -1,18 +1,7 @@
 <div id="mod-list-items">
     <ul>
         <li *ngFor="let menu of listMenu" class="item">
-            <a md-button class="el-item">
-                <i class="material-icons icon" *ngIf="menu.icon">{{menu.icon}}</i>
-                {{menu.title}}
-                <b class="material-icons arrows">keyboard_arrow_down</b>
-            </a>
-            <ul class="sub-item" *ngIf="menu.child && menu.child.length > 0">
-                <li class="item" *ngFor="let subMenu of menu.child">
-                    <a md-button class="el-item">
-                        {{subMenu.title}}
-                    </a>
-                </li>
-            </ul>
+            <app-item [data]='menu' class="d-block"></app-item>
         </li>
     </ul>
 </div>

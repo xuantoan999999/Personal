@@ -1,3 +1,11 @@
+.item{
+    height: 42px;
+    overflow: hidden;
+    transition: 0.2s;
+}
+.transition{
+    transition: 0.2s;
+}
 .el-item{
     display: block;
     color: white;
@@ -7,4 +15,32 @@
     position: relative;
     width: 100%;
     text-align: left;
+    .icon{
+        left: 15px;
+        transform: translateY(-50%);
+    }
+    .arrows{
+        right: 10px;
+        transform: translateY(-50%) rotate(90deg);
+    }
+    .material-icons{
+        position: absolute;
+        top: 50%;
+    }
+}
+
+.el-item.active{
+    color: white;
+    background-color: #209e91;
+}
+
+.el-item:hover{
+    color: #209e91;
+}
+.item.is-open{
+    .el-item{
+        .arrows{
+            transform: translateY(-50%);
+        }
+    }
 }

@@ -1,26 +1,3 @@
 #mod-list-items{
     padding: 18px 0 0;
-    .sub-item{
-
-    }
-    .item.active{
-        .el-item{
-            color: white;
-            background-color: #209e91;
-        }
-    }
-    .material-icons{
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-    .el-item:hover{
-        color: #209e91;
-    }
-    .icon{
-        left: 15px;
-    }
-    .arrows{
-        right: 10px;
-    }
 }

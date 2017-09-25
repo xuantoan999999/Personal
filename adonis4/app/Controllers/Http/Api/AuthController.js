@@ -22,8 +22,9 @@ class ApiAuthController {
                 user: userLogin
             });
         } catch (error) {
+            console.log(error);
             return response.send({
-                user: {}
+                user: null
             });
         }
     }

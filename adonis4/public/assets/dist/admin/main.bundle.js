@@ -211,9 +211,9 @@ var Config = (function () {
     }
     Config.getConfigs = function () {
         var config = {
+            userJWT: 'Personal',
             adminUrl: {
                 url: 'http://localhost:2206/admin',
-                userJWT: 'Personal',
                 storageExpireTime: 365 * 24 * 60 * 60 * 1000
             },
             apiUrl: {
@@ -293,7 +293,7 @@ IconComponent = __decorate([
 /***/ "../../../../../src/app/components/menu/menu.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"mod-menu\">\n  sdgsdg sdg sdg\n</div>"
+module.exports = "<div id=\"mod-menu\">\n  <!-- sdgsdg sdg sdg -->\n</div>"
 
 /***/ }),
 
@@ -354,7 +354,7 @@ MenuComponent = __decorate([
 /***/ "../../../../../src/app/components/sidebar/item/item.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<a md-button class=\"el-item\">\n    <i class=\"material-icons icon\" *ngIf=\"menu.icon\">{{menu.icon}}</i>\n    {{menu.title}}\n    <b class=\"material-icons arrows\">keyboard_arrow_down</b>\n</a>\n"
+module.exports = "<div class=\"item transition\" [ngClass]=\"{'is-open': isOpenSubmenu}\" [ngStyle]=\"{'height.px': heightItem}\">\n    <a md-button class=\"el-item\" *ngIf=\"data.child && data.child.length > 0\" (click)=\"openSubmenu($event)\">\n        <i class=\"material-icons icon\" *ngIf=\"data.icon\">{{data.icon}}</i>\n        {{data.title}}\n        <b class=\"material-icons arrows transition\" *ngIf=\"data.child && data.child.length > 0\">keyboard_arrow_down</b>\n    </a>\n    <a md-button class=\"el-item\" *ngIf=\"!data.child || data.child.length == 0\">\n        <i class=\"material-icons icon\" *ngIf=\"data.icon\">{{data.icon}}</i>\n        {{data.title}}\n    </a>\n    <ul class=\"sub-item\" *ngIf=\"data.child && data.child.length > 0\">\n        <li class=\"item\" *ngFor=\"let subMenu of data.child\">\n            <a md-button class=\"el-item\">\n                {{subMenu.title}}\n            </a>\n        </li>\n    </ul>\n</div>\n\n"
 
 /***/ }),
 
@@ -366,7 +366,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".el-item {\n  display: block;\n  color: white;\n  text-decoration: none;\n  padding-left: 45px;\n  line-height: 42px;\n  position: relative;\n  width: 100%;\n  text-align: left; }\n", ""]);
+exports.push([module.i, ".item {\n  height: 42px;\n  overflow: hidden;\n  transition: 0.2s; }\n\n.transition {\n  transition: 0.2s; }\n\n.el-item {\n  display: block;\n  color: white;\n  text-decoration: none;\n  padding-left: 45px;\n  line-height: 42px;\n  position: relative;\n  width: 100%;\n  text-align: left; }\n  .el-item .icon {\n    left: 15px;\n    -webkit-transform: translateY(-50%);\n            transform: translateY(-50%); }\n  .el-item .arrows {\n    right: 10px;\n    -webkit-transform: translateY(-50%) rotate(90deg);\n            transform: translateY(-50%) rotate(90deg); }\n  .el-item .material-icons {\n    position: absolute;\n    top: 50%; }\n\n.el-item.active {\n  color: white;\n  background-color: #209e91; }\n\n.el-item:hover {\n  color: #209e91; }\n\n.item.is-open .el-item .arrows {\n  -webkit-transform: translateY(-50%);\n          transform: translateY(-50%); }\n", ""]);
 
 // exports
 
@@ -394,11 +394,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var ItemComponent = (function () {
     function ItemComponent() {
+        this.heighItemDefault = 42;
+        this.fullHeight = this.heighItemDefault;
+        this.heightItem = this.fullHeight;
+        this.isOpenSubmenu = false;
     }
     ItemComponent.prototype.ngOnInit = function () {
+        if (this.data.child && this.data.child.length > 0) {
+            this.fullHeight += this.data.child.length * 42;
+        }
+    };
+    ItemComponent.prototype.openSubmenu = function () {
+        this.isOpenSubmenu = !this.isOpenSubmenu;
+        this.heightItem = this.isOpenSubmenu ? this.fullHeight : this.heighItemDefault;
     };
     return ItemComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Object)
+], ItemComponent.prototype, "data", void 0);
 ItemComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'app-item',
@@ -415,7 +430,7 @@ ItemComponent = __decorate([
 /***/ "../../../../../src/app/components/sidebar/list-items/list-items.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"mod-list-items\">\n    <ul>\n        <li *ngFor=\"let menu of listMenu\" class=\"item\">\n            <a md-button class=\"el-item\">\n                <i class=\"material-icons icon\" *ngIf=\"menu.icon\">{{menu.icon}}</i>\n                {{menu.title}}\n                <b class=\"material-icons arrows\">keyboard_arrow_down</b>\n            </a>\n            <ul class=\"sub-item\" *ngIf=\"menu.child && menu.child.length > 0\">\n                <li class=\"item\" *ngFor=\"let subMenu of menu.child\">\n                    <a md-button class=\"el-item\">\n                        {{subMenu.title}}\n                    </a>\n                </li>\n            </ul>\n        </li>\n    </ul>\n</div>"
+module.exports = "<div id=\"mod-list-items\">\n    <ul>\n        <li *ngFor=\"let menu of listMenu\" class=\"item\">\n            <app-item [data]='menu' class=\"d-block\"></app-item>\n        </li>\n    </ul>\n</div>"
 
 /***/ }),
 
@@ -427,7 +442,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#mod-list-items {\n  padding: 18px 0 0; }\n  #mod-list-items .item.active .el-item {\n    color: white;\n    background-color: #209e91; }\n  #mod-list-items .material-icons {\n    position: absolute;\n    top: 50%;\n    -webkit-transform: translateY(-50%);\n            transform: translateY(-50%); }\n  #mod-list-items .el-item:hover {\n    color: #209e91; }\n  #mod-list-items .icon {\n    left: 15px; }\n  #mod-list-items .arrows {\n    right: 10px; }\n", ""]);
+exports.push([module.i, "#mod-list-items {\n  padding: 18px 0 0; }\n", ""]);
 
 // exports
 
@@ -636,7 +651,7 @@ var _a, _b, _c;
 /***/ "../../../../../src/app/modules/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"mod-login\" class=\"container\" *ngIf=\"showLogin\">\n    <div class=\"fake-bg\"></div>\n    <form class=\"form-layout\" #f=\"ngForm\" (ngSubmit)=\"submit(f)\">\n        <div class=\"form-group\">\n            <md-form-field class=\"form-control\">\n                <input mdInput placeholder=\"Tên/Email\" ngModel name=\"username\" #username=\"ngModel\" autocomplete=\"off\" required>\n            </md-form-field>\n            <div class=\"text-danger\" *ngIf=\"(username.touched || f.submitted) && !username.valid\">\n                <div *ngIf=\"username.errors.required\">Chưa nhập tên/email</div>\n            </div>\n        </div>\n        <div class=\"form-group\">\n            <md-form-field class=\"form-control\">\n                <input mdInput placeholder=\"Mật khẩu\"  ngModel name=\"password\" #password=\"ngModel\" type=\"password\" autocomplete=\"off\" required>\n            </md-form-field>\n            <div class=\"text-danger\" *ngIf=\"(password.touched || f.submitted) && !password.valid\">\n                <div *ngIf=\"password.errors.required\">Chưa nhập mật khẩu</div>\n            </div>\n        </div>\n        <div class=\"form-group\">\n            <div class=\"row\">\n                <div class=\"col-sm-6\"></div>\n                <div class=\"col-sm-6 text-right\">\n                    <button md-raised-button color=\"primary\" type=\"submit\">Đăng nhập</button>\n                </div>\n            </div>\n        </div>\n    </form>\n</div>"
+module.exports = "<div id=\"mod-login\" class=\"container\" *ngIf=\"showLogin\">\n    <!-- <div class=\"fake-bg\"></div> -->\n    <form class=\"box\" #f=\"ngForm\" (ngSubmit)=\"submit(f)\">\n        <h1 class=\"text-center\">Đăng nhập vào Admin</h1>\n        <div class=\"form-group\">\n            <md-form-field class=\"form-control\">\n                <input mdInput placeholder=\"Tên/Email\" ngModel name=\"username\" #username=\"ngModel\" autocomplete=\"off\" required>\n            </md-form-field>\n            <div class=\"text-danger\" *ngIf=\"(username.touched || f.submitted) && !username.valid\">\n                <div *ngIf=\"username.errors.required\">Chưa nhập tên/email</div>\n            </div>\n        </div>\n        <div class=\"form-group\">\n            <md-form-field class=\"form-control\">\n                <input mdInput placeholder=\"Mật khẩu\"  ngModel name=\"password\" #password=\"ngModel\" type=\"password\" autocomplete=\"off\" required>\n            </md-form-field>\n            <div class=\"text-danger\" *ngIf=\"(password.touched || f.submitted) && !password.valid\">\n                <div *ngIf=\"password.errors.required\">Chưa nhập mật khẩu</div>\n            </div>\n        </div>\n        <div class=\"form-group\">\n            <div class=\"row\">\n                <div class=\"col-sm-6\"></div>\n                <div class=\"col-sm-6 text-right\">\n                    <button md-raised-button color=\"primary\" type=\"submit\">Đăng nhập</button>\n                </div>\n            </div>\n        </div>\n    </form>\n</div>"
 
 /***/ }),
 
@@ -648,7 +663,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#mod-login {\n  padding: 200px 0 50px; }\n  #mod-login .fake-bg {\n    background: #d2d6de;\n    position: fixed;\n    width: 100%;\n    height: 100%;\n    left: 0;\n    top: 0;\n    z-index: -1; }\n  #mod-login form {\n    max-width: 330px;\n    width: 100%;\n    margin: 0 auto; }\n", ""]);
+exports.push([module.i, "#mod-login {\n  padding: 200px 0 50px; }\n  #mod-login h1 {\n    margin: 20px 0 28px;\n    font-weight: lighter; }\n  #mod-login form {\n    max-width: 540px;\n    width: 100%;\n    margin: 0 auto;\n    background: rgba(0, 0, 0, 0.55); }\n", ""]);
 
 // exports
 
@@ -668,6 +683,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_service__ = __webpack_require__("../../../../../src/app/modules/login/login.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_material__ = __webpack_require__("../../../material/@angular/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__boostrap_config__ = __webpack_require__("../../../../../src/app/boostrap/config.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -682,6 +698,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var LoginComponent = (function () {
     function LoginComponent(loginService, authService, snackBar, router) {
         var _this = this;
@@ -691,6 +708,7 @@ var LoginComponent = (function () {
         this.router = router;
         this.showLogin = false;
         this.authService.getUserLogin().subscribe(function (data) {
+            _this.config = __WEBPACK_IMPORTED_MODULE_5__boostrap_config__["a" /* default */].getConfigs();
             if (data.user) {
                 _this.router.navigate(['dash-board']);
             }
@@ -706,7 +724,7 @@ var LoginComponent = (function () {
             .subscribe(function (data) {
             var token = data.token;
             localStorage.setItem(_this.config.userJWT + "_userInfo", token);
-            _this.router.navigate(['nguoi-dung']);
+            _this.router.navigate(['dash-board']);
         }, function (error) {
             var err = JSON.parse(error._body);
             var message = err.reduce(function (string, item) { return string + item.message; }, '');
@@ -871,20 +889,27 @@ var AuthGuardService = (function () {
     }
     AuthGuardService.prototype.canActivate = function (route, state) {
         var _this = this;
-        return this.authService.getUserLogin()
-            .map(function (resp) {
-            var user = resp.user;
-            if (!user) {
-                _this.router.navigate(['dang-nhap']);
-                return false;
-            }
-            if (user.roles.indexOf('admin') == -1) {
-                _this.router.navigate(['dang-nhap']);
-                return false;
-            }
-            window.user = user;
-            return true;
-        });
+        var token = localStorage['Personal_userInfo'];
+        if (!token) {
+            this.router.navigate(['dang-nhap']);
+            return false;
+        }
+        else {
+            return this.authService.getUserLogin()
+                .map(function (resp) {
+                var user = resp.user;
+                if (!user) {
+                    _this.router.navigate(['dang-nhap']);
+                    return false;
+                }
+                if (user.roles.indexOf('admin') == -1) {
+                    _this.router.navigate(['dang-nhap']);
+                    return false;
+                }
+                window.user = user;
+                return true;
+            });
+        }
     };
     return AuthGuardService;
 }());
@@ -1073,7 +1098,7 @@ var LoginGuardService = (function () {
                 _this.router.navigate(['dash-board']);
                 return false;
             }
-            if (user.roles.indexOf('admin') == -1) {
+            if (user && user.roles.indexOf('admin') == -1) {
                 _this.router.navigate(['dash-board']);
                 return false;
             }

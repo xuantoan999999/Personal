@@ -23,6 +23,7 @@ export class LoginComponent {
     private router: Router
   ) {
     this.authService.getUserLogin().subscribe(data => {
+      this.config = Config.getConfigs();
       if (data.user) {
         this.router.navigate(['dash-board']);
       }
@@ -38,7 +39,7 @@ export class LoginComponent {
       .subscribe(data => {
         let token = data.token;
         localStorage.setItem(`${this.config.userJWT}_userInfo`, token);
-        this.router.navigate(['nguoi-dung'])
+        this.router.navigate(['dash-board'])
       }, error => {
         let err = JSON.parse(error._body);
         let message = err.reduce((string, item) => string + item.message, '');

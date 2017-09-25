@@ -15,7 +15,7 @@ export class LoginGuardService implements CanActivate {
           this.router.navigate(['dash-board']);
           return false;
         }
-        if (user.roles.indexOf('admin') == -1) {
+        if (user && user.roles.indexOf('admin') == -1) {
           this.router.navigate(['dash-board']);
           return false;
         }

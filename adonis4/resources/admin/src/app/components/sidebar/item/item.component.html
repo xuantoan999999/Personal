@@ -1,5 +1,19 @@
-<a md-button class="el-item">
-    <i class="material-icons icon" *ngIf="menu.icon">{{menu.icon}}</i>
-    {{menu.title}}
-    <b class="material-icons arrows">keyboard_arrow_down</b>
-</a>
+<div class="item transition" [ngClass]="{'is-open': isOpenSubmenu}" [ngStyle]="{'height.px': heightItem}">
+    <a md-button class="el-item" *ngIf="data.child && data.child.length > 0" (click)="openSubmenu($event)">
+        <i class="material-icons icon" *ngIf="data.icon">{{data.icon}}</i>
+        {{data.title}}
+        <b class="material-icons arrows transition" *ngIf="data.child && data.child.length > 0">keyboard_arrow_down</b>
+    </a>
+    <a md-button class="el-item" *ngIf="!data.child || data.child.length == 0">
+        <i class="material-icons icon" *ngIf="data.icon">{{data.icon}}</i>
+        {{data.title}}
+    </a>
+    <ul class="sub-item" *ngIf="data.child && data.child.length > 0">
+        <li class="item" *ngFor="let subMenu of data.child">
+            <a md-button class="el-item">
+                {{subMenu.title}}
+            </a>
+        </li>
+    </ul>
+</div>
+

@@ -1,6 +1,7 @@
 <div id="mod-login" class="container" *ngIf="showLogin">
-    <div class="fake-bg"></div>
-    <form class="form-layout" #f="ngForm" (ngSubmit)="submit(f)">
+    <!-- <div class="fake-bg"></div> -->
+    <form class="box" #f="ngForm" (ngSubmit)="submit(f)">
+        <h1 class="text-center">Đăng nhập vào Admin</h1>
         <div class="form-group">
             <md-form-field class="form-control">
                 <input mdInput placeholder="Tên/Email" ngModel name="username" #username="ngModel" autocomplete="off" required>
