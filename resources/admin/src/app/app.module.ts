@@ -10,7 +10,7 @@ import { NgModule } from '@angular/core';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { AppComponent } from './app.component';
-import { MdButtonModule, MdCheckboxModule, MdInputModule, MdSnackBarModule } from '@angular/material';
+import { MdButtonModule, MdCheckboxModule, MdInputModule, MdSnackBarModule, MdSelectModule, MdOptionModule, MdDialogModule } from '@angular/material';
 import { UserComponent } from './modules/user/user.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
@@ -23,6 +23,7 @@ import { ListItemsComponent } from './components/sidebar/list-items/list-items.c
 import { ItemComponent } from './components/sidebar/item/item.component';
 import { DashboardService } from './modules/dashboard/dashboard.service';
 import { UserService } from './modules/user/user.service';
+import { UserFormComponent } from './modules/user/modal/user-form/user-form.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { UserService } from './modules/user/user.service';
     MenuComponent,
     ListItemsComponent,
     ItemComponent,
+    UserFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +45,9 @@ import { UserService } from './modules/user/user.service';
     MdCheckboxModule,
     MdInputModule,
     MdSnackBarModule,
+    MdSelectModule,
+    MdOptionModule,
+    MdDialogModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
@@ -81,7 +86,10 @@ import { UserService } from './modules/user/user.service';
     DashboardService,
     UserService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    UserFormComponent
+  ]
 })
 
 export class AppModule { }

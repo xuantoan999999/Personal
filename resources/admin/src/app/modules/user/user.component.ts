@@ -1,5 +1,7 @@
+import { UserFormComponent } from './modal/user-form/user-form.component';
 import { UserService } from './user.service';
 import { Component } from '@angular/core';
+import { MdDialog } from '@angular/material';
 
 @Component({
   selector: 'app-user',
@@ -7,24 +9,40 @@ import { Component } from '@angular/core';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent {
-  rows = [
-    { name: 'Austin', gender: 'Male', company: 'Swimlane' },
-    { name: 'Dany', gender: 'Male', company: 'KFC' },
-    { name: 'Molly', gender: 'Female', company: 'Burger King' },
-  ];
+  usersList;
+  totalItems: number;
+  itemsPerPage: number;
+  currentPage: number;
+  totalPage: number;
+  sortable: boolean = false;
+  rows = [];
   columns = [
-    { prop: 'name' },
-    { name: 'Gender' },
-    { name: 'Company' }
+    { name: 'Email' },
+    { name: 'Name' }
   ];
+
+  animal: string;
 
   constructor(
     private userService: UserService,
+    public dialog: MdDialog
   ) {
     this.userService.index()
       .subscribe(data => {
-        console.log(data);
+        this.usersList = data.usersList;
+        this.rows = this.usersList.users;
       })
+  }
+
+  openDialogAdd(): void {
+    let dialogRef = this.dialog.open(UserFormComponent, {
+      width: '750px',
+      data: {  }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+    });
   }
 
 }

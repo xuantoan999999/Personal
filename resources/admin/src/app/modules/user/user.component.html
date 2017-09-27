@@ -1,6 +1,27 @@
 <div class="box white">
-    <p>
-        user works!
-    </p>
-    <ngx-datatable [rows]="rows" [columns]="columns"></ngx-datatable>
+    <button md-raised-button color="primary" (click)="openDialogAdd()">
+        <i class="material-icons">add</i>
+        Add user
+    </button>
+
+    <ngx-datatable [rows]="rows" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="0" [rowHeight]="'auto'">
+        <ngx-datatable-column name="Tên" prop="name" editable="false" frozenLeft="True" [sortable]="sortable"></ngx-datatable-column>
+        <ngx-datatable-column name="Email" prop="email" editable="false" frozenLeft="True" [sortable]="sortable"></ngx-datatable-column>
+        <ngx-datatable-column name="Action" [sortable]="sortable">
+            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-user="row" let-group="group" let-rowHeight="rowHeight">
+                <button md-raised-button color="primary">
+                    <i class="material-icons">edit</i>
+                    Edit
+                </button>
+                <button md-raised-button color="accent">
+                    <i class="material-icons">lock</i>
+                    Change Password
+                </button>
+                <button md-raised-button color="warn">
+                    <i class="material-icons">delete_forever</i>
+                    Delete
+                </button>
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
 </div>

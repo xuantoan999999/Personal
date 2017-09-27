@@ -37,7 +37,7 @@ export class LoginComponent {
       message = 'Không có đâu. Thằng dev lười code rồi. Đừng cố nữa';
     }
     if (this.countClick == 10) {
-      message = 'Đã bảo không có rồi. Đừng bấm nữa.';
+      message = 'Đã bảo không có rồi. Đừng cố bấm nữa.';
     }
     if (this.countClick == 15) {
       message = 'Dai ghê ta';

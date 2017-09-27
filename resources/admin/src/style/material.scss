@@ -21,3 +21,20 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($candy-app-theme);
+
+.form-group{
+    // margin-bottom: 10px;
+}
+
+.form-control{
+    padding: 0;
+    border: none;
+}
+.mat-form-field{
+    width: 100%;
+    border: none;
+}
+.mat-dialog-container{
+    border-radius: 5px;
+    color: rgba(0, 0, 0, 0.87);
+}

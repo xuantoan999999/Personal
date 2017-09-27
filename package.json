@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm-run-all --parallel adonis_server webpack_dev",
+    "start2": "adonis serve --dev",
     "start1": "node server.js",
     "test": "node ace test",
     "lint": "standard",
