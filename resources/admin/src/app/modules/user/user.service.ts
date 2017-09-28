@@ -7,7 +7,14 @@ export class UserService extends HttpService {
   constructor(http: Http) {
     super(http);
   }
-  index(){
+  index() {
     return this.getAdmin('nguoi-dung')
+  }
+  allRole() {
+    return [
+      { name: 'Admin', value: 'admin' },
+      { name: 'User', value: 'user' },
+      { name: 'Super Admin', value: 'supper_admin' }
+    ]
   }
 }

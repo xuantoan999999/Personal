@@ -1,3 +1,4 @@
+import { EqualValidator } from './validators/equalValidators.validators';
 import { LoginService } from './modules/login/login.service';
 import { HttpService } from './services/http.service';
 import { LoginComponent } from './modules/login/login.component';
@@ -37,6 +38,7 @@ import { UserFormComponent } from './modules/user/modal/user-form/user-form.comp
     ListItemsComponent,
     ItemComponent,
     UserFormComponent,
+    EqualValidator
   ],
   imports: [
     BrowserModule,

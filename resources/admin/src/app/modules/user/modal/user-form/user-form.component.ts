@@ -1,5 +1,8 @@
+import { PatternValidator } from './../../../../validators/pattern.validators';
+import { UserService } from './../../user.service';
 import { MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
 import { Component, OnInit, Inject } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-user-form',
@@ -8,18 +11,20 @@ import { Component, OnInit, Inject } from '@angular/core';
 })
 export class UserFormComponent implements OnInit {
   multiple = true;
-  selectedValue: string;
-
-  foods = [
-    { value: 'steak', viewValue: 'Steak' },
-    { value: 'pizza', viewValue: 'Pizza' },
-    { value: 'tacos', viewValue: 'Tacos' }
-  ];
+  submited: boolean = false;
+  allRoles = [];
+  user: object = {};
+  pattern = {
+    email: PatternValidator.EMAIL_REGEXP
+  }
 
   constructor(
     public dialogRef: MdDialogRef<UserFormComponent>,
+    private userService: UserService,
     @Inject(MD_DIALOG_DATA) public data: any
-  ) { }
+  ) {
+    this.allRoles = this.userService.allRole();
+  }
 
   ngOnInit() {
   }
@@ -28,6 +33,8 @@ export class UserFormComponent implements OnInit {
   }
 
   submit(form) {
+    this.submited = true;
+    console.log(form, this.user);
     if (!form.valid) {
       return;
     }
@@ -43,6 +50,5 @@ export class UserFormComponent implements OnInit {
     //       duration: 3000
     //     });
     //   })
-    console.log("ns dgknsdk");
   }
 }
