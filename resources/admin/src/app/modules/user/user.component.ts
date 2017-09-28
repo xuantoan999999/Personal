@@ -27,6 +27,10 @@ export class UserComponent {
     private userService: UserService,
     public dialog: MdDialog
   ) {
+    this.getData();
+  }
+
+  getData() {
     this.userService.index()
       .subscribe(data => {
         this.usersList = data.usersList;
@@ -37,11 +41,22 @@ export class UserComponent {
   openDialogAdd(): void {
     let dialogRef = this.dialog.open(UserFormComponent, {
       width: '750px',
-      data: {  }
+      data: {}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
+      this.getData();
+    });
+  }
+
+  openDialogEdit(): void {
+    let dialogRef = this.dialog.open(UserFormComponent, {
+      width: '750px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getData();
     });
   }
 

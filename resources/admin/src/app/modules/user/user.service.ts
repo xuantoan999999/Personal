@@ -4,11 +4,16 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class UserService extends HttpService {
+  method: string = 'nguoi-dung';
   constructor(http: Http) {
     super(http);
   }
   index() {
-    return this.getAdmin('nguoi-dung')
+    return this.getAdmin(this.method)
+  }
+
+  add(data) {
+    return this.postAdmin(data, this.method)
   }
   allRole() {
     return [
