@@ -25,6 +25,7 @@ import { ItemComponent } from './components/sidebar/item/item.component';
 import { DashboardService } from './modules/dashboard/dashboard.service';
 import { UserService } from './modules/user/user.service';
 import { UserFormComponent } from './modules/user/modal/user-form/user-form.component';
+import { UserChangePasswordComponent } from './modules/user/modal/user-change-password/user-change-password.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { UserFormComponent } from './modules/user/modal/user-form/user-form.comp
     ListItemsComponent,
     ItemComponent,
     UserFormComponent,
-    EqualValidator
+    EqualValidator,
+    UserChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +92,8 @@ import { UserFormComponent } from './modules/user/modal/user-form/user-form.comp
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    UserFormComponent
+    UserFormComponent,
+    UserChangePasswordComponent
   ]
 })
 

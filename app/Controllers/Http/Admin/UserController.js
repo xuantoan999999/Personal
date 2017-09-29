@@ -1,6 +1,8 @@
 'use strict'
 const Helpers = use('Helpers');
-const mongoose = use('mongoose');
+const mongoose = require('mongoose');
+const Hash = use('Hash')
+const _ = use('lodash')
 
 const User = mongoose.model('User');
 
@@ -35,13 +37,10 @@ class AdminUserController {
         })
     }
 
-    // * create(request, response) {
-    //     //
-    // }
-
     async store({ request, response }) {
         let data = request.input('data');
         delete data.confirm_password;
+        data.password = await Hash.make(data.password);
         let newUser = new User(data);
         let saveUser = await newUser.save();
 
@@ -50,22 +49,39 @@ class AdminUserController {
         })
     }
 
-    // * show(request, response) {
-    //     //
-    // }
+    async info({ request, response, params }) {
+        let user = await User.findById(params.id).lean();
+        return response.send({
+            success: true,
+            user
+        })
+    }
 
     // * edit(request, response) {
     //     //
     // }
 
-    // * update(request, response) {
-    //     let params = request.params();
-    //     let data = request.all();
-    //     let user = yield User.findById(params.id);
-    //     let userUpdate = _.extend(user, data.data);
-    //     yield userUpdate.save();
-    //     yield response.json({ success: true })
-    // }
+    async update({ request, response, params }) {
+        let userNew = request.input('data');
+        let userOld = await User.findById(params.id);
+        let userUpdate = _.extend(userOld, userNew);
+        await userUpdate.save();
+        return response.send({
+            success: true,
+        })
+    }
+
+    async changePassword({ request, response, params }) {
+        let data = request.input('data');
+        data.password = await Hash.make(data.password);
+        await User.findByIdAndUpdate(params.id, {
+            password: data.password
+        });
+        return response.send({
+            success: true,
+            data
+        })
+    }
 
     // * destroy(request, response) {
     //     let params = request.params();

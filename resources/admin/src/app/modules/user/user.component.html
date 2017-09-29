@@ -1,5 +1,5 @@
 <div class="box white" *ngIf="!showLoading">
-    <button md-raised-button color="primary" (click)="openDialogAdd()">
+    <button md-raised-button color="primary" (click)="popAdd()">
         <i class="material-icons">add</i>
         Add user
     </button>
@@ -7,13 +7,18 @@
     <ngx-datatable [rows]="rows" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [externalPaging]="true" [offset]="currentPage" [limit]="itemsPerPage" [count]="totalItems" (page)='setPage($event)'>
         <ngx-datatable-column name="Tên" prop="name" editable="false" frozenLeft="True" [sortable]="sortable"></ngx-datatable-column>
         <ngx-datatable-column name="Email" prop="email" editable="false" frozenLeft="True" [sortable]="sortable"></ngx-datatable-column>
+        <ngx-datatable-column name="Quyền" [sortable]="sortable">
+            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-user="row" let-group="group" let-rowHeight="rowHeight">
+                {{getRoleString(user.roles)}}
+            </ng-template>
+        </ngx-datatable-column>
         <ngx-datatable-column name="Action" [sortable]="sortable">
             <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-user="row" let-group="group" let-rowHeight="rowHeight">
-                <button md-raised-button color="primary">
+                <button md-raised-button color="primary" (click)="popEdit(user._id)">
                     <i class="material-icons">edit</i>
                     Edit
                 </button>
-                <button md-raised-button color="accent">
+                <button md-raised-button color="accent" (click)="popChangePassword(user._id)">
                     <i class="material-icons">lock</i>
                     Change Password
                 </button>

@@ -25,7 +25,6 @@ export class HttpService {
   }
 
   postAdmin(data: any, method: string, id: string = null) {
-    console.log(this.urlAdmin);
     let urlString = this.convertUrlAdmin(method, id);
     data._csrf = this.csrfToken;
     return this.http.post(urlString, data)

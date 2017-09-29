@@ -23,15 +23,15 @@ Route.group(() => {
     Route.get('/dash-board', 'Admin/DashboardController.getDashboard')
     Route.post('/dang-nhap', 'Admin/AuthController.login')
 
-
     /**
      * Module User
      */
     Route.get('/nguoi-dung', 'Admin/UserController.index')
     // Route.delete('/nguoi-dung/:id', 'Api/UserController.destroy')
     Route.post('/nguoi-dung', 'Admin/UserController.store')
-    // Route.post('/nguoi-dung/:id', 'Api/UserController.update')
-    // Route.post('/nguoi-dung/doi-mat-khau', 'Api/UserController.changePassword')
+    Route.get('/nguoi-dung/:id', 'Admin/UserController.info')
+    Route.post('/nguoi-dung/:id', 'Admin/UserController.update')
+    Route.post('/nguoi-dung-doi-mat-khau/:id', 'Admin/UserController.changePassword')
     // Route.post('/nguoi-dung/role/:id', 'Api/UserController.updateRole')
 
     /**

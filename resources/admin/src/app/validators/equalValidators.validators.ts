@@ -10,7 +10,6 @@ export class EqualValidator implements Validator {
     constructor( @Attribute('validateEqual') public validateEqual: string) { }
 
     validate(c: AbstractControl): { [key: string]: any } {
-        console.log(c);
         let v = c.value;
         let e = c.root.get(this.validateEqual);
         if (e && v !== e.value) return {

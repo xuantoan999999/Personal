@@ -1,3 +1,4 @@
+import { UserChangePasswordComponent } from './modal/user-change-password/user-change-password.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserFormComponent } from './modal/user-form/user-form.component';
 import { UserService } from './user.service';
@@ -34,8 +35,13 @@ export class UserComponent {
     this.getData();
   }
 
+  getRoleString(roles) {
+    return roles
+      .map(role => this.userService.searchRole(role).name)
+      .join(', ');
+  }
+
   getData() {
-    console.log()
     this.userService.index(this.activeRoute.snapshot.queryParams)
       .subscribe(data => {
         this.usersList = data.usersList;
@@ -55,25 +61,41 @@ export class UserComponent {
     })
   }
 
-  openDialogAdd(): void {
+  popAdd(): void {
     let dialogRef = this.dialog.open(UserFormComponent, {
       width: '750px',
       data: {}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.setPage({ offset: 0 });
+      this.reloadDataFromPop(result);
     });
   }
 
-  openDialogEdit(): void {
+  popEdit(id): void {
     let dialogRef = this.dialog.open(UserFormComponent, {
       width: '750px',
-      data: {}
+      data: { id }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.setPage({ offset: 0 });
+      this.reloadDataFromPop(result);
     });
+  }
+
+  popChangePassword(id): void {
+    let dialogRef = this.dialog.open(UserChangePasswordComponent, {
+      width: '750px',
+      data: { id }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+  reloadDataFromPop(result) {
+    if (result && result.reload) {
+      this.getData();
+    }
   }
 }
