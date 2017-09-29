@@ -14,6 +14,47 @@
         <input mdInput placeholder="Tên website" [(ngModel)]="account.website" #websiteControl="ngModel" name="email">
       </md-form-field>
     </div>
+    <div class="list-account">
+      <div class="item-account" *ngFor="let item_account of account.list_account">
+
+      </div>
+      <div class="add-account">
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <md-form-field class="form-control">
+                <input mdInput placeholder="Username" [(ngModel)]="account_add.user_name" #usernameAddControl="ngModel" name="email">
+              </md-form-field>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <md-form-field class="form-control">
+                <input mdInput placeholder="Email" [(ngModel)]="account_add.email" #usernameAddControl="ngModel" name="email">
+              </md-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <md-form-field class="form-control">
+                <input mdInput placeholder="Password" [(ngModel)]="account_add.password" #passwordAddControl="ngModel" name="password">
+              </md-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <md-form-field class="form-control">
+                <textarea mdInput placeholder="Extra" [(ngModel)]="account_add.extra" #extraAddControl="ngModel" name="extra"></textarea>
+              </md-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- <div class="form-group">
         <md-select placeholder="Roles" ngModel [(ngModel)]="account.roles" name="roles" class="form-control" #rolesControl="ngModel" [multiple]="multiple" required>

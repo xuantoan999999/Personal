@@ -10,6 +10,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 export class AccountFormComponent implements OnInit {
   account: object = {};
   showAdd: boolean = true;
+  account_add: object = {};
 
   constructor(
     public dialogRef: MdDialogRef<AccountFormComponent>,
