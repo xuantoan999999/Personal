@@ -21,6 +21,7 @@ export class UserComponent {
     { name: 'Email' },
     { name: 'Name' }
   ];
+  showLoading: boolean = true;
 
   animal: string;
 
@@ -34,15 +35,24 @@ export class UserComponent {
   }
 
   getData() {
+    console.log()
     this.userService.index(this.activeRoute.snapshot.queryParams)
       .subscribe(data => {
         this.usersList = data.usersList;
         this.rows = this.usersList.users;
         this.totalItems = this.usersList.totalItems;
         this.itemsPerPage = this.usersList.itemsPerPage;
-        this.currentPage = this.usersList.currentPage;
+        this.currentPage = this.usersList.currentPage - 1;
         this.totalPage = this.usersList.totalPage;
+        this.showLoading = false;
       })
+  }
+
+  setPage(pageInfo) {
+    this.router.navigate(['nguoi-dung'], { queryParams: { page: pageInfo.offset + 1, limit: this.itemsPerPage } })
+    this.activeRoute.queryParams.subscribe(data => {
+      this.getData();
+    })
   }
 
   openDialogAdd(): void {
@@ -52,7 +62,7 @@ export class UserComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.getData();
+      this.setPage({ offset: 0 });
     });
   }
 
@@ -63,8 +73,7 @@ export class UserComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.getData();
+      this.setPage({ offset: 0 });
     });
   }
-
 }

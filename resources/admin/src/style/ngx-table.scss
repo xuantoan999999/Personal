@@ -190,9 +190,9 @@
 }
 .ngx-datatable .datatable-footer {
     border-top: 1px solid rgba(0, 0, 0, 0.12);
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
-    color: rgba(0, 0, 0, 0.54);
+    color: white;
 }
 .ngx-datatable .datatable-body-cell-label span{
     display: inline-block;
@@ -211,7 +211,7 @@
     vertical-align: middle;
 }
 .ngx-datatable .datatable-footer .datatable-pager li.disabled a {
-    color: rgba(0, 0, 0, 0.26) !important;
+    color: rgba(255, 255, 255, 0.26) !important;
     background-color: transparent !important;
 }
 .ngx-datatable .datatable-footer .datatable-pager li.active a {
@@ -219,29 +219,27 @@
     font-weight: bold;
 }
 .ngx-datatable .datatable-footer .datatable-pager a {
-    height: 22px;
-    min-width: 24px;
-    line-height: 22px;
-    padding: 0 6px;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
     border-radius: 3px;
     margin: 6px 3px;
     text-align: center;
     vertical-align: top;
-    color: rgba(0, 0, 0, 0.54);
+    color: white;
     text-decoration: none;
     vertical-align: bottom;
 }
 .ngx-datatable .datatable-footer .datatable-pager a:hover {
-    color: rgba(0, 0, 0, 0.75);
+    color: rgba(255, 255, 255, 0.75);
     background-color: rgba(158, 158, 158, 0.2);
 }
 .ngx-datatable .datatable-footer .datatable-pager .datatable-icon-left,
 .ngx-datatable .datatable-footer .datatable-pager .datatable-icon-skip,
 .ngx-datatable .datatable-footer .datatable-pager .datatable-icon-right,
 .ngx-datatable .datatable-footer .datatable-pager .datatable-icon-prev {
-    font-size: 20px;
-    line-height: 20px;
-    padding: 0 3px;
+    font-size: 30px;
+    line-height: 30px;
 }
 
 .datatable-checkbox {

@@ -16,12 +16,12 @@ export class HttpService {
   }
 
   getAdmin(method: string, query?) {
+    query = query || {};
     let urlString = this.convertUrlAdmin(method, query.id);
     if (query.id) delete query.id;
     return this.http.get(urlString, {
       params: query
-    })
-      .map(response => response.json());
+    }).map(response => response.json());
   }
 
   postAdmin(data: any, method: string, id: string = null) {

@@ -1,10 +1,10 @@
-<div class="box white">
+<div class="box white" *ngIf="!showLoading">
     <button md-raised-button color="primary" (click)="openDialogAdd()">
         <i class="material-icons">add</i>
         Add user
     </button>
 
-    <ngx-datatable [rows]="rows" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="0" [rowHeight]="'auto'" [externalPaging]="true" [offset]="currentPage" [limit]="itemsPerPage" [count]="totalItems">
+    <ngx-datatable [rows]="rows" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [externalPaging]="true" [offset]="currentPage" [limit]="itemsPerPage" [count]="totalItems" (page)='setPage($event)'>
         <ngx-datatable-column name="Tên" prop="name" editable="false" frozenLeft="True" [sortable]="sortable"></ngx-datatable-column>
         <ngx-datatable-column name="Email" prop="email" editable="false" frozenLeft="True" [sortable]="sortable"></ngx-datatable-column>
         <ngx-datatable-column name="Action" [sortable]="sortable">

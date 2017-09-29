@@ -33,7 +33,6 @@ export class UserFormComponent implements OnInit {
   }
 
   submit(form) {
-    console.log(form, this.user);
     if (!form.valid) {
       return;
     }
