@@ -15,8 +15,12 @@ export class SidebarComponent {
         //     this.initMenuSidebar('', 'Sub 2')
         // ]),
         // this.initMenuSidebar('', 'Item 2', 'home'),
-        this.initMenuSidebar('dash-board', 'Dashboard', 'dashboard'),
-        this.initMenuSidebar('nguoi-dung', 'User', 'supervisor_account'),
+        this.initMenuSidebar('dash-board', 'Dashboard', {
+            icon: 'dashboard',
+        }),
+        this.initMenuSidebar('nguoi-dung', 'User', {
+            icon: 'supervisor_account'
+        }),
     ];
     constructor() {
         let count = 0;
@@ -33,8 +37,8 @@ export class SidebarComponent {
         }, 100);
     }
 
-    initMenuSidebar(route, title, icon = null, child = null) {
-        return { route, icon, title, child };
+    initMenuSidebar(route, title, extra) {
+        return { route, title, extra };
     }
 
 }

@@ -4,7 +4,7 @@
         Add user
     </button>
 
-    <ngx-datatable [rows]="rows" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="0" [rowHeight]="'auto'">
+    <ngx-datatable [rows]="rows" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="0" [rowHeight]="'auto'" [externalPaging]="true" [offset]="currentPage" [limit]="itemsPerPage" [count]="totalItems">
         <ngx-datatable-column name="Tên" prop="name" editable="false" frozenLeft="True" [sortable]="sortable"></ngx-datatable-column>
         <ngx-datatable-column name="Email" prop="email" editable="false" frozenLeft="True" [sortable]="sortable"></ngx-datatable-column>
         <ngx-datatable-column name="Action" [sortable]="sortable">

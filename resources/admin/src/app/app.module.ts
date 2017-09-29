@@ -73,7 +73,7 @@ import { UserFormComponent } from './modules/user/modal/user-form/user-form.comp
       {
         path: 'nguoi-dung',
         component: UserComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService],
       },
     ], {
         useHash: true

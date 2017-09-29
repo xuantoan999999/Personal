@@ -15,9 +15,12 @@ export class HttpService {
     this.csrfToken = (<any>window).csrfToken;
   }
 
-  getAdmin(method: string, id: string = null) {
-    let urlString = this.convertUrlAdmin(method, id);
-    return this.http.get(urlString)
+  getAdmin(method: string, query?) {
+    let urlString = this.convertUrlAdmin(method, query.id);
+    if (query.id) delete query.id;
+    return this.http.get(urlString, {
+      params: query
+    })
       .map(response => response.json());
   }
 

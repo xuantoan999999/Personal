@@ -8,8 +8,8 @@ export class UserService extends HttpService {
   constructor(http: Http) {
     super(http);
   }
-  index() {
-    return this.getAdmin(this.method)
+  index(query) {
+    return this.getAdmin(this.method, query)
   }
 
   add(data) {

@@ -1,3 +1,4 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserFormComponent } from './modal/user-form/user-form.component';
 import { UserService } from './user.service';
 import { Component } from '@angular/core';
@@ -25,16 +26,22 @@ export class UserComponent {
 
   constructor(
     private userService: UserService,
+    private router: Router,
+    private activeRoute: ActivatedRoute,
     public dialog: MdDialog
   ) {
     this.getData();
   }
 
   getData() {
-    this.userService.index()
+    this.userService.index(this.activeRoute.snapshot.queryParams)
       .subscribe(data => {
         this.usersList = data.usersList;
         this.rows = this.usersList.users;
+        this.totalItems = this.usersList.totalItems;
+        this.itemsPerPage = this.usersList.itemsPerPage;
+        this.currentPage = this.usersList.currentPage;
+        this.totalPage = this.usersList.totalPage;
       })
   }
 

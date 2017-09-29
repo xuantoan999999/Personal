@@ -11,12 +11,16 @@ export class ItemComponent implements OnInit {
   fullHeight: number = this.heighItemDefault;
   heightItem: number = this.fullHeight;
   isOpenSubmenu: boolean = false;
+  page: number;
+  limit: number;
   constructor() { }
 
   ngOnInit() {
-    if (this.data.child && this.data.child.length > 0) {
-      this.fullHeight += this.data.child.length * 42;
+    if (this.data.extra.child && this.data.extra.child.length > 0) {
+      this.fullHeight += this.data.extra.child.length * 42;
     }
+    this.page = this.data.extra.page || 1;
+    this.limit = this.data.extra.limit || 10;
   }
   openSubmenu() {
     this.isOpenSubmenu = !this.isOpenSubmenu;
