@@ -12,12 +12,13 @@ const UserSchema = new Schema({
     password: {
         type: String
     },
-    roles:[{
+    roles: [{
         type: String,
         enum: ['admin', 'user', 'supper_admin']
     }]
 }, {
         collection: 'user',
+        timestamps: true
     }
 );
 

@@ -27,17 +27,16 @@ Route.group(() => {
      * Module User
      */
     Route.get('/nguoi-dung', 'Admin/UserController.index')
-    // Route.delete('/nguoi-dung/:id', 'Api/UserController.destroy')
+    Route.delete('/nguoi-dung/:id', 'Admin/UserController.destroy')
     Route.post('/nguoi-dung', 'Admin/UserController.store')
     Route.get('/nguoi-dung/:id', 'Admin/UserController.info')
     Route.post('/nguoi-dung/:id', 'Admin/UserController.update')
     Route.post('/nguoi-dung-doi-mat-khau/:id', 'Admin/UserController.changePassword')
-    // Route.post('/nguoi-dung/role/:id', 'Api/UserController.updateRole')
 
     /**
      * Module Account
      */
-    // Route.get('/tai-khoan', 'Api/AccountController.index')
+    Route.get('/tai-khoan', 'Admin/AccountController.index')
     // Route.post('/tai-khoan', 'Api/AccountController.store')
     // Route.get('/tai-khoan/:id', 'Api/AccountController.edit')
     // Route.post('/tai-khoan/:id', 'Api/AccountController.update')

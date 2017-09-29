@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UserFormComponent } from './modal/user-form/user-form.component';
 import { UserService } from './user.service';
 import { Component } from '@angular/core';
-import { MdDialog } from '@angular/material';
+import { MdDialog, MdSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-user',
@@ -25,13 +25,12 @@ export class UserComponent {
   ];
   showLoading: boolean = true;
 
-  animal: string;
-
   constructor(
     private userService: UserService,
     private router: Router,
     private activeRoute: ActivatedRoute,
-    public dialog: MdDialog
+    public dialog: MdDialog,
+    private snackBar: MdSnackBar,
   ) {
     this.getData();
   }
@@ -102,7 +101,15 @@ export class UserComponent {
       }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(ok => {
+      if (ok) {
+        this.userService.remove(id).subscribe(data => {
+          let snackBarRef = this.snackBar.open('Xóa user thành công', 'Close', {
+            duration: 3000
+          });
+          this.setPage({ offset: 0 });
+        })
+      }
     });
   }
 

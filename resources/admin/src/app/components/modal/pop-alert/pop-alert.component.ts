@@ -19,4 +19,11 @@ export class PopAlertComponent implements OnInit {
   ngOnInit() {
   }
 
+  continue() {
+    this.dialogRef.close(true);
+  }
+
+  cancel() {
+    this.dialogRef.close(false);
+  }
 }

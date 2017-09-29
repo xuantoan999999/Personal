@@ -1,0 +1,34 @@
+<div id="mod-account-form" class="container">
+  <form #formAccount="ngForm" (ngSubmit)="submit(formAccount)">
+    <div class="form-group">
+      <md-form-field class="form-control">
+        <input mdInput placeholder="Tên" [(ngModel)]="account.name" #nameControl="ngModel" name="name" required>
+        <md-error *ngIf="(nameControl.touched || formAccount.submitted) && !nameControl.valid">
+          <span *ngIf="nameControl.errors.required">Chưa nhập tên</span>
+        </md-error>
+      </md-form-field>
+    </div>
+
+    <div class="form-group">
+      <md-form-field class="form-control">
+        <input mdInput placeholder="Tên website" [(ngModel)]="account.website" #websiteControl="ngModel" name="email">
+      </md-form-field>
+    </div>
+
+    <!-- <div class="form-group">
+        <md-select placeholder="Roles" ngModel [(ngModel)]="account.roles" name="roles" class="form-control" #rolesControl="ngModel" [multiple]="multiple" required>
+            <md-option *ngFor="let role of allRoles" [value]="role.value">
+                {{role.name}}
+            </md-option>
+        </md-select>
+        <md-error *ngIf="formAccount.submitted && !rolesControl.valid">
+            <span *ngIf="rolesControl.errors.required">Chưa chọn role</span>
+        </md-error>
+    </div> -->
+
+    <div class="form-group text-right">
+      <button md-raised-button color="primary" type="submit" [disabled]="!formAccount.valid && formAccount.submitted" *ngIf="showAdd">Thêm</button>
+      <button md-raised-button color="primary" type="submit" [disabled]="!formAccount.valid && formAccount.submitted" *ngIf="!showAdd">Sửa</button>
+    </div>
+  </form>
+</div>

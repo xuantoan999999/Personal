@@ -1,3 +1,4 @@
+import { AccountService } from './modules/account/account.service';
 import { EqualValidator } from './validators/equalValidators.validators';
 import { LoginService } from './modules/login/login.service';
 import { HttpService } from './services/http.service';
@@ -27,6 +28,8 @@ import { UserService } from './modules/user/user.service';
 import { UserFormComponent } from './modules/user/modal/user-form/user-form.component';
 import { UserChangePasswordComponent } from './modules/user/modal/user-change-password/user-change-password.component';
 import { PopAlertComponent } from './components/modal/pop-alert/pop-alert.component';
+import { AccountComponent } from './modules/account/account.component';
+import { AccountFormComponent } from './modules/account/account-form/account-form.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,9 @@ import { PopAlertComponent } from './components/modal/pop-alert/pop-alert.compon
     UserFormComponent,
     EqualValidator,
     UserChangePasswordComponent,
-    PopAlertComponent
+    PopAlertComponent,
+    AccountComponent,
+    AccountFormComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +84,11 @@ import { PopAlertComponent } from './components/modal/pop-alert/pop-alert.compon
         component: UserComponent,
         canActivate: [AuthGuardService],
       },
+      {
+        path: 'tai-khoan',
+        component: AccountComponent,
+        canActivate: [AuthGuardService],
+      },
     ], {
         useHash: true
       })
@@ -90,12 +100,14 @@ import { PopAlertComponent } from './components/modal/pop-alert/pop-alert.compon
     LoginGuardService,
     AuthService,
     DashboardService,
-    UserService
+    UserService,
+    AccountService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
     UserFormComponent,
     UserChangePasswordComponent,
+    AccountFormComponent,
     PopAlertComponent
   ]
 })

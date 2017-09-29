@@ -10,20 +10,20 @@ class AdminUserController {
     async index({ request, response }) {
         let params = request.all();
         let page = parseInt(params.page) || 1;
-        let itemsPerPage = parseInt(params.limit) || 1000;
+        let itemsPerPage = parseInt(params.limit) || 10;
 
         let usersQuery = () => {
             return new Promise((resolve, reject) => {
-                User.find().select('email name roles').lean().paginate(page, itemsPerPage, (err, items, total) => {
-                    let dataSend = {
-                        totalItems: total,
-                        totalPage: Math.ceil(total / itemsPerPage),
-                        currentPage: page,
-                        itemsPerPage: itemsPerPage,
-                        users: items,
-                    };
-                    return resolve(dataSend);
-                });
+                User.find().select('email name roles').sort('-_id').lean()
+                    .paginate(page, itemsPerPage, (err, items, total) => {
+                        return resolve({
+                            totalItems: total,
+                            totalPage: Math.ceil(total / itemsPerPage),
+                            currentPage: page,
+                            itemsPerPage: itemsPerPage,
+                            users: items,
+                        });
+                    });
             })
         }
         let usersList = await usersQuery();
@@ -79,26 +79,12 @@ class AdminUserController {
         })
     }
 
-    // * destroy(request, response) {
-    //     let params = request.params();
-    //     let removeUser = yield User.findByIdAndRemove(params.id);
-    //     yield response.json({ success: true })
-    // }
-
-    // * changePassword(request, response) {
-    //     let user = request.all().user;
-    //     let userUpdate = yield User.findById(user._id);
-    //     userUpdate.password = yield Hash.make(user.extra.new_password);
-    //     yield userUpdate.save();
-    //     yield response.json({ success: true })
-    // }
-
-    // * updateRole(request, response) {
-    //     let params = request.params();
-    //     let data = request.all();
-    //     yield User.findByIdAndUpdate(params.id, { roles: data.roles })
-    //     yield response.json({ success: true })
-    // }
+    async destroy({ request, response, params }) {
+        await User.findByIdAndRemove(params.id);
+        return response.send({
+            success: true,
+        })
+    }
 }
 
 module.exports = AdminUserController

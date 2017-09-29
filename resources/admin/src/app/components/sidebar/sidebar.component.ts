@@ -21,6 +21,9 @@ export class SidebarComponent {
         this.initMenuSidebar('nguoi-dung', 'User', {
             icon: 'supervisor_account'
         }),
+        this.initMenuSidebar('tai-khoan', 'Account', {
+            icon: 'account_circle'
+        }),
     ];
     constructor() {
         let count = 0;
