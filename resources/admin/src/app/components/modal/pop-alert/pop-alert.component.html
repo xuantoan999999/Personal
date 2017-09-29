@@ -1,0 +1,17 @@
+<div id="mod-popup-alert" class="mt-modal">
+  <div class="modal-header">
+    <h4>Warning</h4>
+  </div>
+  <div class="modal-body">
+    <p *ngIf="!content.message">Are you sure ?</p>
+    <p *ngIf="content.message">{{content.message}} ?</p>
+  </div>
+  <div class="modal-footer">
+    <button md-raised-button color="warn">
+      OK
+    </button>
+    <button md-button >
+      Cancle
+    </button>
+  </div>
+</div>

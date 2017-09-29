@@ -14,7 +14,7 @@ class AdminUserController {
 
         let usersQuery = () => {
             return new Promise((resolve, reject) => {
-                User.find().lean().paginate(page, itemsPerPage, (err, items, total) => {
+                User.find().select('email name roles').lean().paginate(page, itemsPerPage, (err, items, total) => {
                     let dataSend = {
                         totalItems: total,
                         totalPage: Math.ceil(total / itemsPerPage),
@@ -56,10 +56,6 @@ class AdminUserController {
             user
         })
     }
-
-    // * edit(request, response) {
-    //     //
-    // }
 
     async update({ request, response, params }) {
         let userNew = request.input('data');

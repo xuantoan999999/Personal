@@ -26,6 +26,7 @@ import { DashboardService } from './modules/dashboard/dashboard.service';
 import { UserService } from './modules/user/user.service';
 import { UserFormComponent } from './modules/user/modal/user-form/user-form.component';
 import { UserChangePasswordComponent } from './modules/user/modal/user-change-password/user-change-password.component';
+import { PopAlertComponent } from './components/modal/pop-alert/pop-alert.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { UserChangePasswordComponent } from './modules/user/modal/user-change-pa
     ItemComponent,
     UserFormComponent,
     EqualValidator,
-    UserChangePasswordComponent
+    UserChangePasswordComponent,
+    PopAlertComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +95,8 @@ import { UserChangePasswordComponent } from './modules/user/modal/user-change-pa
   bootstrap: [AppComponent],
   entryComponents: [
     UserFormComponent,
-    UserChangePasswordComponent
+    UserChangePasswordComponent,
+    PopAlertComponent
   ]
 })
 

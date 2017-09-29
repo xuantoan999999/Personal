@@ -1,3 +1,4 @@
+import { PopAlertComponent } from './../../components/modal/pop-alert/pop-alert.component';
 import { UserChangePasswordComponent } from './modal/user-change-password/user-change-password.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserFormComponent } from './modal/user-form/user-form.component';
@@ -87,6 +88,18 @@ export class UserComponent {
     let dialogRef = this.dialog.open(UserChangePasswordComponent, {
       width: '750px',
       data: { id }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+  popDeleteUser(id): void {
+    let dialogRef = this.dialog.open(PopAlertComponent, {
+      width: '400px',
+      data: {
+        message: 'Do you want to delete this user'
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
