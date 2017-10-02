@@ -4,11 +4,16 @@
     font-weight: 400;
     src: url("../fonts/icon-mt.woff2") format('woff2');
   }
+
 body.mt-template{
     font-size: 14px;
     background: url('../images/blur-bg.jpg') fixed no-repeat;
     button:focus{
         outline: none;
+    }
+    a:hover, a:focus{
+        text-decoration: none;
+        color: white;
     }
 }
 ul{
@@ -22,6 +27,16 @@ ul{
     border-radius: 5px;
     position: relative;
     overflow: hidden;
+    .form-control{
+        background: none;
+        color: white;
+    }
+    .mat-form-field-placeholder {
+        color: white;
+    }
+    .mat-form-field-underline{
+        background-color: white;
+    }
 }
 
 .box.white{

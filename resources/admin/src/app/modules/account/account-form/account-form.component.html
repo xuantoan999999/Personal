@@ -1,75 +1,84 @@
-<div id="mod-account-form" class="container">
-  <form #formAccount="ngForm" (ngSubmit)="submit(formAccount)">
-    <div class="form-group">
-      <md-form-field class="form-control">
-        <input mdInput placeholder="Tên" [(ngModel)]="account.name" #nameControl="ngModel" name="name" required>
-        <md-error *ngIf="(nameControl.touched || formAccount.submitted) && !nameControl.valid">
-          <span *ngIf="nameControl.errors.required">Chưa nhập tên</span>
-        </md-error>
-      </md-form-field>
-    </div>
+<div id="mod-account-form" class="box white">
+    <form #formAccount="ngForm" (ngSubmit)="submit(formAccount)">
+        <md-form-field class="form-control">
+            <input mdInput placeholder="Tên" [(ngModel)]="account.name" #nameControl="ngModel" name="name">
+            <md-error *ngIf="(nameControl.touched || formAccount.submitted) && !nameControl.valid">
+                <span *ngIf="nameControl.errors.required">Chưa nhập tên</span>
+            </md-error>
+        </md-form-field>
 
-    <div class="form-group">
-      <md-form-field class="form-control">
-        <input mdInput placeholder="Tên website" [(ngModel)]="account.website" #websiteControl="ngModel" name="email">
-      </md-form-field>
-    </div>
-    <div class="list-account">
-      <div class="item-account" *ngFor="let item_account of account.list_account">
-
-      </div>
-      <div class="add-account">
-        <div class="row">
-          <div class="col-6">
-            <div class="form-group">
-              <md-form-field class="form-control">
-                <input mdInput placeholder="Username" [(ngModel)]="account_add.user_name" #usernameAddControl="ngModel" name="email">
-              </md-form-field>
+        <md-form-field class="form-control">
+            <input mdInput placeholder="Tên website" [(ngModel)]="account.website" #websiteControl="ngModel" name="website" required>
+        </md-form-field>
+        <div class="list-account">
+            <div class="item-account" *ngFor="let item_account of account.list_account">
+                <div class="row">
+                    <div class="col-4" *ngIf="item_account.user_name && item_account.user_name !== ''">
+                        Username: {{item_account.user_name}}
+                    </div>
+                    <div class="col-4">
+                        Password: {{item_account.password}}
+                    </div>
+                    <div class="col-4">
+                        Email: {{item_account.email}}
+                    </div>
+                    <div class="col-12" *ngIf="item_account.extra && item_account.extra !== ''">
+                        <p>Thông tin thêm:</p>
+                        <textarea mdInput placeholder="Extra" [(ngModel)]="item_account.extra" rows="4" disabled [ngModelOptions]="{standalone: true}"></textarea>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-6">
-            <div class="form-group">
-              <md-form-field class="form-control">
-                <input mdInput placeholder="Email" [(ngModel)]="account_add.email" #usernameAddControl="ngModel" name="email">
-              </md-form-field>
+            <div class="add-account" *ngIf="addAccount">
+                <form #formAddAccount="ngForm" (ngSubmit)="submitAddAccount(formAddAccount)">
+                    <div class="row">
+                        <div class="col-6">
+                            <md-form-field class="form-control">
+                                <input mdInput placeholder="Username" [(ngModel)]="account_add.user_name" #usernameAddControl="ngModel" name="username">
+                            </md-form-field>
+                        </div>
+                        <div class="col-6">
+                            <md-form-field class="form-control">
+                                <input mdInput placeholder="Email" [(ngModel)]="account_add.email" #emailAddControl="ngModel" name="email" [pattern]="pattern.email"
+                                    required>
+                                <md-error *ngIf="(emailAddControl.touched || formAddAccount.submitted) && !emailAddControl.valid">
+                                    <span *ngIf="emailAddControl.errors.pattern">Email không đúng dạng</span>
+                                    <span *ngIf="emailAddControl.errors.required">Chưa nhập email</span>
+                                </md-error>
+                            </md-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <md-form-field class="form-control">
+                                <input mdInput placeholder="Password" [(ngModel)]="account_add.password" #passwordAddControl="ngModel" name="password" required>
+                                <md-error *ngIf="(passwordAddControl.touched || formAddAccount.submitted) && !passwordAddControl.valid">
+                                    <span *ngIf="passwordAddControl.errors.required">Chưa nhập mật khẩu</span>
+                                </md-error>
+                            </md-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <md-form-field class="form-control">
+                                <textarea mdInput placeholder="Extra" [(ngModel)]="account_add.extra" #extraAddControl="ngModel" rows="4" name="extra"></textarea>
+                            </md-form-field>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button md-raised-button type="submit" color="primary" [disabled]="!formAddAccount.valid && formAddAccount.submitted">Thêm</button>
+                        <button md-button type="button" (click)="toggleAddForm()">Cancel</button>
+                    </div>
+                </form>
             </div>
-          </div>
+            <div class="form-group" *ngIf="!addAccount">
+                <button md-raised-button type="button" color="primary" (click)="toggleAddForm()">Thêm Account</button>
+            </div>
         </div>
-        <div class="row">
-          <div class="col-12">
-            <div class="form-group">
-              <md-form-field class="form-control">
-                <input mdInput placeholder="Password" [(ngModel)]="account_add.password" #passwordAddControl="ngModel" name="password">
-              </md-form-field>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <div class="form-group">
-              <md-form-field class="form-control">
-                <textarea mdInput placeholder="Extra" [(ngModel)]="account_add.extra" #extraAddControl="ngModel" name="extra"></textarea>
-              </md-form-field>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- <div class="form-group">
-        <md-select placeholder="Roles" ngModel [(ngModel)]="account.roles" name="roles" class="form-control" #rolesControl="ngModel" [multiple]="multiple" required>
-            <md-option *ngFor="let role of allRoles" [value]="role.value">
-                {{role.name}}
-            </md-option>
-        </md-select>
-        <md-error *ngIf="formAccount.submitted && !rolesControl.valid">
-            <span *ngIf="rolesControl.errors.required">Chưa chọn role</span>
-        </md-error>
-    </div> -->
-
-    <div class="form-group text-right">
-      <button md-raised-button color="primary" type="submit" [disabled]="!formAccount.valid && formAccount.submitted" *ngIf="showAdd">Thêm</button>
-      <button md-raised-button color="primary" type="submit" [disabled]="!formAccount.valid && formAccount.submitted" *ngIf="!showAdd">Sửa</button>
-    </div>
-  </form>
+        <div class="form-group text-right">
+            <button md-raised-button color="primary" type="submit" [disabled]="!formAccount.valid && formAccount.submitted" *ngIf="showAdd">Thêm</button>
+            <button md-raised-button color="primary" type="submit" [disabled]="!formAccount.valid && formAccount.submitted" *ngIf="!showAdd">Sửa</button>
+            <a md-button [routerLink]="['/tai-khoan']" [queryParams]="{ limit: 10}">Cancel</a>
+        </div>
+    </form>
 </div>

@@ -86,8 +86,15 @@ import { AccountFormComponent } from './modules/account/account-form/account-for
       },
       {
         path: 'tai-khoan',
-        component: AccountComponent,
         canActivate: [AuthGuardService],
+        children: [{
+          path: '',
+          component: AccountComponent,
+        },
+        {
+          path: 'them',
+          component: AccountFormComponent,
+        }]
       },
     ], {
         useHash: true
