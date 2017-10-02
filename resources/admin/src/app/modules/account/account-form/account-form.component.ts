@@ -6,7 +6,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 @Component({
   selector: 'app-account-form',
   templateUrl: './account-form.component.html',
-  styleUrls: ['./account-form.component.css']
+  styleUrls: ['./account-form.component.scss']
 })
 export class AccountFormComponent implements OnInit {
   account = {
@@ -38,9 +38,16 @@ export class AccountFormComponent implements OnInit {
     if (!form.valid) {
       return;
     }
-    console.log(this.account_add);
     this.account.list_account.push(this.account_add);
     this.toggleAddForm();
+  }
+
+  popupEditAccount(data){
+    console.log(data);
+  }
+
+  deleteAccount(index){
+    console.log(index);
   }
 
   submit(form) {

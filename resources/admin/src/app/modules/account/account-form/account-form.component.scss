@@ -1,0 +1,24 @@
+.item-account{
+    position: relative;
+    .action{
+        position: absolute;
+        right: 0;
+        top: 0;
+        display: none;
+        .mat-mini-fab{
+            width: 28px;
+            height: 28px;
+        }
+        .mat-mini-fab .mat-button-wrapper{
+            padding: 0;
+        }
+        .material-icons {
+            font-size: 14px;
+        }
+    }
+}
+.item-account:hover{
+    .action{
+        display: block;
+    }
+}

@@ -11,7 +11,7 @@
             <input mdInput placeholder="Tên website" [(ngModel)]="account.website" #websiteControl="ngModel" name="website" required>
         </md-form-field>
         <div class="list-account">
-            <div class="item-account form-group" *ngFor="let item_account of account.list_account">
+            <div class="item-account form-group" *ngFor="let item_account of account.list_account; let i = index;">
                 <div class="row">
                     <div class="col-4" *ngIf="item_account.user_name && item_account.user_name !== ''">
                         Username: {{item_account.user_name}}
@@ -26,6 +26,10 @@
                         <p>Thông tin thêm:</p>
                         <textarea mdInput placeholder="Extra" [(ngModel)]="item_account.extra" rows="4" disabled [ngModelOptions]="{standalone: true}"></textarea>
                     </div>
+                </div>
+                <div class="action">
+                    <button md-mini-fab type="button" color="primary" (click)="popupEditAccount(item_account)"><i class="material-icons">edit</i></button>
+                    <button md-mini-fab type="button" color="warn" (click)="deleteAccount(i)"><i class="material-icons">clear</i></button>
                 </div>
             </div>
             <div class="add-account" *ngIf="addAccount">
