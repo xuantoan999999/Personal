@@ -1,7 +1,7 @@
 import { PatternValidator } from './../../../validators/pattern.validators';
 import { AccountService } from './../account.service';
-import { MdDialogRef, MD_DIALOG_DATA, MdSnackBar } from '@angular/material';
-import { Component, OnInit, Inject } from '@angular/core';
+import { MdDialogRef, MD_DIALOG_DATA, MdSnackBar, MdDialog } from '@angular/material';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-account-form',
@@ -9,24 +9,28 @@ import { Component, OnInit, Inject } from '@angular/core';
   styleUrls: ['./account-form.component.scss']
 })
 export class AccountFormComponent implements OnInit {
+  @ViewChild('formAccount') formAccount;
+
   account = {
     list_account: []
   };
   showAdd: boolean = true;
   account_add: object = {};
   addAccount: boolean = false;
+  validFormEditAcc: boolean = true;
   pattern = {
     email: PatternValidator.EMAIL_REGEXP
   }
 
   constructor(
-    // public dialogRef: MdDialogRef<AccountFormComponent>,
     private accountService: AccountService,
-    // @Inject(MD_DIALOG_DATA) public data: any,
     private snackBar: MdSnackBar,
-  ) { }
+    public dialog: MdDialog,
+  ) {
+  }
 
   ngOnInit() {
+
   }
 
   toggleAddForm() {
@@ -42,16 +46,23 @@ export class AccountFormComponent implements OnInit {
     this.toggleAddForm();
   }
 
-  popupEditAccount(data){
-    console.log(data);
+  onChangeForm(event, index) {
+    this.account.list_account[index].validForm = event === 'VALID';
+    this.validFormEditAcc = this.account.list_account.reduce((sum, item) => sum = sum && item.validForm, true)
   }
 
-  deleteAccount(index){
-    console.log(index);
+  onDeleteAccount(index) {
+    this.account.list_account.splice(index, 1);
   }
 
   submit(form) {
-    console.log('Submit All');
+    if (!this.validFormEditAcc && !form.valid) {
+      return;
+    }
+    this.accountService.add({
+      data: this.account
+    }).subscribe(data => {
+      console.log(data);
+    })
   }
-
 }

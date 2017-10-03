@@ -34,54 +34,21 @@ class AdminAccountController {
         })
     }
 
-    // * index(request, response) {
-    //     let params = request.all();
-    //     let page = parseInt(params.page) || 1;
-    //     let itemsPerPage = parseInt(params.limit) || 10;
-
-    //     let option_and = [];
-    //     let option = {};
-    //     if (params.search) option_and.push({
-    //         $or: [
-    //             { name: new RegExp(params.search, 'i') },
-    //             { website: new RegExp(params.search, 'i') },
-    //         ]
-    //     })
-    //     if (option_and.length > 0) option = { $and: option_and };
-
-    //     let find = () => {
-    //         return new Promise(function (resolve, reject) {
-    //             Account.find(option).lean().sort('-createdAt').paginate(page, itemsPerPage, (err, items, total) => {
-    //                 let dataSend = {
-    //                     totalItems: total,
-    //                     totalPage: Math.ceil(total / itemsPerPage),
-    //                     currentPage: page,
-    //                     itemsPerPage: itemsPerPage,
-    //                     accounts: items,
-    //                 };
-    //                 resolve(dataSend);
-    //             });
-    //         })
-    //     }
-    //     let dataSend = yield find();
-    //     yield response.json(dataSend);
-    // }
-
     // * create(request, response) {
     //     yield response.json({ success: true })
     // }
 
-    // * store(request, response) {
-    //     let user = yield request.auth.check();
-    //     let data = request.all().data;
-    //     data.creater = user._id;
-    //     let saveAccount = new Account(data);
-    //     yield saveAccount.save();
+    async store({ request, response }) {
+        // let user = yield request.auth.check();
+        // let data = request.all().data;
+        // data.creater = user._id;
+        // let saveAccount = new Account(data);
+        // yield saveAccount.save();
 
-    //     yield response.json({
-    //         success: true,
-    //     })
-    // }
+        return response.send({
+            success: true,
+        })
+    }
 
     // * show(request, response) {
     //     //

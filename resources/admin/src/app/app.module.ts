@@ -12,7 +12,7 @@ import { NgModule } from '@angular/core';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { AppComponent } from './app.component';
-import { MdButtonModule, MdCheckboxModule, MdInputModule, MdSnackBarModule, MdSelectModule, MdOptionModule, MdDialogModule } from '@angular/material';
+import { MdButtonModule, MdCheckboxModule, MdInputModule, MdSnackBarModule, MdSelectModule, MdOptionModule, MdDialogModule, MdMenuModule } from '@angular/material';
 import { UserComponent } from './modules/user/user.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
@@ -30,6 +30,7 @@ import { UserChangePasswordComponent } from './modules/user/modal/user-change-pa
 import { PopAlertComponent } from './components/modal/pop-alert/pop-alert.component';
 import { AccountComponent } from './modules/account/account.component';
 import { AccountFormComponent } from './modules/account/account-form/account-form.component';
+import { AccountEditFormComponent } from './modules/account/account-edit-form/account-edit-form.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { AccountFormComponent } from './modules/account/account-form/account-for
     UserChangePasswordComponent,
     PopAlertComponent,
     AccountComponent,
-    AccountFormComponent
+    AccountFormComponent,
+    AccountEditFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +61,7 @@ import { AccountFormComponent } from './modules/account/account-form/account-for
     MdSelectModule,
     MdOptionModule,
     MdDialogModule,
+    MdMenuModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
@@ -115,7 +118,7 @@ import { AccountFormComponent } from './modules/account/account-form/account-for
     UserFormComponent,
     UserChangePasswordComponent,
     AccountFormComponent,
-    PopAlertComponent
+    PopAlertComponent,
   ]
 })
 

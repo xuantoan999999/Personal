@@ -12,35 +12,17 @@
         </md-form-field>
         <div class="list-account">
             <div class="item-account form-group" *ngFor="let item_account of account.list_account; let i = index;">
-                <div class="row">
-                    <div class="col-4" *ngIf="item_account.user_name && item_account.user_name !== ''">
-                        Username: {{item_account.user_name}}
-                    </div>
-                    <div class="col-4">
-                        Password: {{item_account.password}}
-                    </div>
-                    <div class="col-4">
-                        Email: {{item_account.email}}
-                    </div>
-                    <div class="col-12" *ngIf="item_account.extra && item_account.extra !== ''">
-                        <p>Thông tin thêm:</p>
-                        <textarea mdInput placeholder="Extra" [(ngModel)]="item_account.extra" rows="4" disabled [ngModelOptions]="{standalone: true}"></textarea>
-                    </div>
-                </div>
-                <div class="action">
-                    <button md-mini-fab type="button" color="primary" (click)="popupEditAccount(item_account)"><i class="material-icons">edit</i></button>
-                    <button md-mini-fab type="button" color="warn" (click)="deleteAccount(i)"><i class="material-icons">clear</i></button>
-                </div>
+                <app-account-edit-form [account]="item_account" [formAccount]="formAccount" (onChangeForm)="onChangeForm($event, i)" (onRemoveAccount)="onDeleteAccount(i)"></app-account-edit-form>
             </div>
             <div class="add-account" *ngIf="addAccount">
                 <form #formAddAccount="ngForm" (ngSubmit)="submitAddAccount(formAddAccount)">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-4">
                             <md-form-field class="form-control">
                                 <input mdInput placeholder="Username" [(ngModel)]="account_add.user_name" #usernameAddControl="ngModel" name="username">
                             </md-form-field>
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
                             <md-form-field class="form-control">
                                 <input mdInput placeholder="Email" [(ngModel)]="account_add.email" #emailAddControl="ngModel" name="email" [pattern]="pattern.email"
                                     required>
@@ -50,9 +32,7 @@
                                 </md-error>
                             </md-form-field>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
+                        <div class="col-4">
                             <md-form-field class="form-control">
                                 <input mdInput placeholder="Password" [(ngModel)]="account_add.password" #passwordAddControl="ngModel" name="password" required>
                                 <md-error *ngIf="(passwordAddControl.touched || formAddAccount.submitted) && !passwordAddControl.valid">
@@ -80,8 +60,8 @@
         </div>
 
         <div class="form-group text-right">
-            <button md-raised-button color="primary" type="submit" [disabled]="!formAccount.valid && formAccount.submitted" *ngIf="showAdd">Thêm</button>
-            <button md-raised-button color="primary" type="submit" [disabled]="!formAccount.valid && formAccount.submitted" *ngIf="!showAdd">Sửa</button>
+            <button md-raised-button color="primary" type="submit" [disabled]="(!formAccount.valid || !validFormEditAcc) && formAccount.submitted" *ngIf="showAdd">Thêm</button>
+            <button md-raised-button color="primary" type="submit" [disabled]="(!formAccount.valid || !validFormEditAcc) && formAccount.submitted" *ngIf="!showAdd">Sửa</button>
             <a md-button [routerLink]="['/tai-khoan']" [queryParams]="{ limit: 10}">Cancel</a>
         </div>
     </form>
