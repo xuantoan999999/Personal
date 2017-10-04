@@ -38,15 +38,19 @@ class AdminAccountController {
     //     yield response.json({ success: true })
     // }
 
-    async store({ request, response }) {
-        // let user = yield request.auth.check();
+    async store({ request, response, auth  }) {
+        let data = request.input('data');
+        console.log(auth);
+        // let user = await request.auth.check();
         // let data = request.all().data;
         // data.creater = user._id;
         // let saveAccount = new Account(data);
-        // yield saveAccount.save();
+        // await saveAccount.save();
 
         return response.send({
             success: true,
+            data,
+            // user
         })
     }
 
