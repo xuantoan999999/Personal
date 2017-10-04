@@ -23,7 +23,7 @@ const providers = [
   '@adonisjs/auth/providers/AuthProvider',
   '@adonisjs/redis/providers/RedisProvider',
   '@adonisjs/mail/providers/MailProvider',
-  path.join(__dirname, '../providers/MongoProvider.js')
+  path.join(__dirname, '../providers/MongoProvider.js'),
 ]
 
 /*

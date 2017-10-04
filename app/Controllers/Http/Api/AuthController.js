@@ -9,14 +9,10 @@ const Helpers = use('Helpers');
 const User = mongoose.model('User');
 
 class ApiAuthController {
-    async checkLogin({ request, response }) {
+    async checkLogin({ request, response, auth }) {
         try {
             let data = request.all();
-            let token = data.token;
-            let idRedis = jwt.verify(token, 'secret');
-            let userCache = await Redis.get(idRedis);
-            let decrypted = Encryption.decrypt(userCache);
-            let userLogin = await User.findById(decrypted.user_id).lean();
+            let userLogin = await auth.getUserByToken(data.token);
 
             return response.send({
                 user: userLogin

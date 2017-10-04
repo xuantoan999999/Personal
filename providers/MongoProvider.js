@@ -10,6 +10,10 @@ const config = require('./../config/mongo');
 class MongoProvider extends ServiceProvider {
 
     register() {
+
+    }
+
+    boot() {
         mongoose.connect('mongodb://' + config.host + '/' + config.database, {
             useMongoClient: true
         });
@@ -22,10 +26,11 @@ class MongoProvider extends ServiceProvider {
 
         const managers = this.app.getManagers();
         const MongoSchema = require('./../providers/MongoSchema');
-        managers['Adonis/Src/Auth'].extend('MongoSchema', MongoSchema, 'scheme');
-
         const MongoSerializer = require('./../providers/MongoSerializer')
-        ioc.extend('Adonis/Src/Auth', 'MongoSerializer', function (app) {
+        ioc.extend('Adonis/Src/Auth', 'MongoSchema', (app) => {
+            return new MongoSchema()
+        }, 'scheme')
+        ioc.extend('Adonis/Src/Auth', 'MongoSerializer', (app) => {
             return new MongoSerializer()
         }, 'serializer')
     }

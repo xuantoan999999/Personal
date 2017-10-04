@@ -1,4 +1,5 @@
 'use strict'
+// path.join(__dirname, '../providers/MongoProvider.js'),
 
 module.exports = {
   /*
@@ -25,9 +26,9 @@ module.exports = {
   |
   */
   session: {
-    serializer: 'lucid',
+    serializer: 'MongoSerializer',
     model: 'App/Models/User',
-    scheme: 'session',
+    scheme: 'MongoSchema',
     uid: 'email',
     password: 'password'
   },
