@@ -31,13 +31,14 @@ export class AccountFormComponent implements OnInit {
     private router: Router,
     private activeRoute: ActivatedRoute,
   ) {
-    console.log(this.account);
     this.activeRoute.params.subscribe(params => {
-      this.accountService.info(params.id).subscribe(data => {
-        this.account = data.account;
-        this.showAdd = false;
-        this.id = params.id;
-      })
+      if (params.id) {
+        this.accountService.info(params.id).subscribe(data => {
+          this.account = data.account;
+          this.showAdd = false;
+          this.id = params.id;
+        })
+      }
     })
   }
 

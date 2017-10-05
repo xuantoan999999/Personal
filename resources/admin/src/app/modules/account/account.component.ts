@@ -23,7 +23,9 @@ export class AccountComponent implements OnInit {
     { name: 'Email' },
     { name: 'Name' }
   ];
-  filter = {};
+  filter = {
+    search: ''
+  };
   showLoading: boolean = true;
   constructor(
     private accountService: AccountService,
@@ -48,6 +50,7 @@ export class AccountComponent implements OnInit {
         this.currentPage = this.accountList.currentPage - 1;
         this.totalPage = this.accountList.totalPage;
         this.showLoading = false;
+        this.filter.search = this.activeRoute.snapshot.queryParams.search;
       })
   }
 
@@ -78,7 +81,7 @@ export class AccountComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(ok => {
-      if (ok) {
+      if (ok === true) {
         this.accountService.remove(id).subscribe(data => {
           let snackBarRef = this.snackBar.open('Xóa user thành công', 'Close', {
             duration: 3000
@@ -90,8 +93,25 @@ export class AccountComponent implements OnInit {
   }
 
   filterForm(form) {
-    let queryParams = { page: 1, limit: this.itemsPerPage }
-    this.router.navigate(['tai-khoan'], { queryParams })
+    if (!form.valid) {
+      return;
+    }
+    let queryParams = { page: 1, limit: this.itemsPerPage };
+
+    if (this.filter.search) (<any>queryParams).search = this.filter.search;
+    this.router.navigate(['tai-khoan'], { queryParams });
+    this.activeRoute.queryParams.subscribe(data => {
+      this.getData();
+    })
+  }
+
+  resetForm() {
+    let queryParams = { page: 1, limit: this.itemsPerPage };
+
+    this.router.navigate(['tai-khoan'], { queryParams });
+    this.activeRoute.queryParams.subscribe(data => {
+      this.getData();
+    })
   }
 
   reloadDataFromPop(result) {

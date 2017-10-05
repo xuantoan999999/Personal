@@ -7,14 +7,25 @@ const _ = use('lodash');
 const Account = mongoose.model('Account');
 
 class AdminAccountController {
-    async index({ request, response}) {
+    async index({ request, response }) {
         let params = request.all();
         let page = parseInt(params.page) || 1;
         let itemsPerPage = parseInt(params.limit) || 10;
 
+        let option_and = [];
+        let option = {};
+        if (params.search)
+            option_and.push({
+                $or: [
+                    { name: new RegExp(params.search, 'i') },
+                    { website: new RegExp(params.search, 'i') },
+                ]
+            })
+        if (option_and.length > 0) option = { $and: option_and };
+
         let usersQuery = () => {
             return new Promise((resolve, reject) => {
-                Account.find().lean().sort('-createdAt')
+                Account.find(option).lean().sort('-createdAt')
                     .paginate(page, itemsPerPage, (err, items, total) => {
                         return resolve({
                             totalItems: total,
@@ -33,10 +44,6 @@ class AdminAccountController {
             accountList
         })
     }
-
-    // * create(request, response) {
-    //     yield response.json({ success: true })
-    // }
 
     async store({ request, response, auth }) {
         let data = request.input('data');

@@ -1,8 +1,7 @@
 'use strict'
 
 class AdminWebsiteController {
-    async index({ request, response }) {
-        let params = request.all();
+    async index({ request, response, params }) {
         let page = parseInt(params.page) || 1;
         let itemsPerPage = parseInt(params.limit) || 10;
 

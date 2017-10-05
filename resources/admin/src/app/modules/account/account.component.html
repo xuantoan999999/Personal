@@ -3,10 +3,7 @@
         <div class="row">
             <div class="col-4">
                 <md-form-field class="form-control">
-                    <input mdInput placeholder="Tìm kiếm" [(ngModel)]="filter.name" #nameControl="ngModel" name="name" required>
-                    <md-error *ngIf="(nameControl.touched || formFilter.submitted) && !nameControl.valid">
-                        <span *ngIf="nameControl.errors.required">Chưa nhập tìm kiếm</span>
-                    </md-error>
+                    <input mdInput placeholder="Tìm kiếm" [(ngModel)]="filter.search" #nameControl="ngModel" name="name">
                 </md-form-field>
             </div>
             <div class="col-4">
@@ -14,7 +11,7 @@
                     <i class="material-icons">search</i>
                     <span>Filter</span>
                 </button>
-                <a md-button>
+                <a md-button (click)="resetForm()">
                     <i class="material-icons">refresh</i>
                     <span>Clear</span>
                 </a>
