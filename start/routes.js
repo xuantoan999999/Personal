@@ -38,9 +38,9 @@ Route.group(() => {
      */
     Route.get('/tai-khoan', 'Admin/AccountController.index')
     Route.post('/tai-khoan', 'Admin/AccountController.store')
-    // Route.get('/tai-khoan/:id', 'Api/AccountController.edit')
-    // Route.post('/tai-khoan/:id', 'Api/AccountController.update')
-    // Route.delete('/tai-khoan/:id', 'Api/AccountController.destroy')
+    Route.get('/tai-khoan/:id', 'Admin/AccountController.info')
+    Route.post('/tai-khoan/:id', 'Admin/AccountController.update')
+    Route.delete('/tai-khoan/:id', 'Admin/AccountController.destroy')
 
     /**
      * Module Website

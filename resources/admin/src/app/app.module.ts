@@ -97,7 +97,12 @@ import { AccountEditFormComponent } from './modules/account/account-edit-form/ac
         {
           path: 'them',
           component: AccountFormComponent,
-        }]
+        },
+        {
+          path: ':id',
+          component: AccountFormComponent,
+        }
+      ]
       },
     ], {
         useHash: true

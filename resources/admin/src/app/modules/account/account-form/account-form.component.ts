@@ -1,3 +1,4 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import { PatternValidator } from './../../../validators/pattern.validators';
 import { AccountService } from './../account.service';
 import { MdDialogRef, MD_DIALOG_DATA, MdSnackBar, MdDialog } from '@angular/material';
@@ -20,13 +21,24 @@ export class AccountFormComponent implements OnInit {
   validFormEditAcc: boolean = true;
   pattern = {
     email: PatternValidator.EMAIL_REGEXP
-  }
+  };
+  id: string;
 
   constructor(
     private accountService: AccountService,
     private snackBar: MdSnackBar,
     public dialog: MdDialog,
+    private router: Router,
+    private activeRoute: ActivatedRoute,
   ) {
+    console.log(this.account);
+    this.activeRoute.params.subscribe(params => {
+      this.accountService.info(params.id).subscribe(data => {
+        this.account = data.account;
+        this.showAdd = false;
+        this.id = params.id;
+      })
+    })
   }
 
   ngOnInit() {
@@ -59,10 +71,25 @@ export class AccountFormComponent implements OnInit {
     if (!this.validFormEditAcc && !form.valid) {
       return;
     }
-    this.accountService.add({
-      data: this.account
-    }).subscribe(data => {
-      console.log(data);
-    })
+    if (this.showAdd) {
+      this.accountService.add({
+        data: this.account
+      }).subscribe(data => {
+        this.router.navigate(['tai-khoan'], { queryParams: { page: 1, limit: 10 } });
+        let snackBarRef = this.snackBar.open('Thêm tài khoản thành công', 'Close', {
+          duration: 3000
+        });
+      })
+    }
+    else {
+      this.accountService.update({
+        data: this.account
+      }, this.id).subscribe(data => {
+        this.router.navigate(['tai-khoan'], { queryParams: { page: 1, limit: 10 } });
+        let snackBarRef = this.snackBar.open('Sửa tài khoản thành công', 'Close', {
+          duration: 3000
+        });
+      })
+    }
   }
 }

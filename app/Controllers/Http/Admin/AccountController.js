@@ -1,20 +1,20 @@
 'use strict'
 const Helpers = use('Helpers');
 const mongoose = require('mongoose');
-const Hash = use('Hash')
-const _ = use('lodash')
+const Hash = use('Hash');
+const _ = use('lodash');
 
 const Account = mongoose.model('Account');
 
 class AdminAccountController {
-    async index({ request, response }) {
+    async index({ request, response}) {
         let params = request.all();
         let page = parseInt(params.page) || 1;
         let itemsPerPage = parseInt(params.limit) || 10;
 
         let usersQuery = () => {
             return new Promise((resolve, reject) => {
-                Account.find().lean()
+                Account.find().lean().sort('-createdAt')
                     .paginate(page, itemsPerPage, (err, items, total) => {
                         return resolve({
                             totalItems: total,
@@ -50,38 +50,31 @@ class AdminAccountController {
         })
     }
 
-    // * show(request, response) {
-    //     //
-    // }
+    async info({ request, response, params }) {
+        let account = await Account.findById(params.id).lean();
+        return response.send({
+            success: true,
+            account
+        })
+    }
 
-    // * edit(request, response) {
-    //     let params = request.params();
-    //     let account = yield Account.findById(params.id).lean();
-    //     yield response.json({
-    //         account
-    //     })
-    // }
+    async update({ request, response, params }) {
+        let accountNew = request.input('data');
+        let accountOld = await Account.findById(params.id);
+        let accountUpdate = _.extend(accountOld, accountNew);
+        let accountDone = await accountUpdate.save();
 
-    // * update(request, response) {
-    //     let params = request.params();
-    //     let data = request.all();
-    //     let account = yield Account.findById(params.id);
-    //     let accountUpdate = _.extend(account, data.data);
-    //     let accountDone = yield accountUpdate.save();
+        return response.send({
+            success: true,
+        })
+    }
 
-    //     yield response.json({
-    //         success: true,
-    //         account: accountDone
-    //     })
-    // }
-
-    // * destroy(request, response) {
-    //     let params = request.params();
-    //     let removeAccount = yield Account.findByIdAndRemove(params.id);
-    //     yield response.json({
-    //         success: true
-    //     })
-    // }
+    async destroy({ request, response, params }) {
+        let removeAccount = await Account.findByIdAndRemove(params.id);
+        return response.send({
+            success: true,
+        })
+    }
 }
 
 module.exports = AdminAccountController
