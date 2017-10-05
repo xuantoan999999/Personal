@@ -60,9 +60,6 @@ export class LoginComponent {
         let token = data.token;
         localStorage.setItem(`${this.config.userJWT}_userInfo`, token);
         this.router.navigate(['dash-board'])
-
-        // let headers = new Headers();
-        // headers.append('Authentication', token);
       }, error => {
         let err = JSON.parse(error._body);
         let message = err.reduce((string, item) => string + item.message, '');
