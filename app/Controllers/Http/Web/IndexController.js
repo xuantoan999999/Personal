@@ -6,9 +6,7 @@ const Account = mongoose.model('Account');
 
 class WebIndexController {
     async index({ request, view }) {
-        // let data = await Account.find().lean();
-        return view.render('web.game', {
-            // data,
+        return view.render('web.index', {
             text: 'This is hello text'
         });
     }

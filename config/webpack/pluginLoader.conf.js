@@ -10,7 +10,7 @@ const extractStyle = new ExtractTextPlugin({
 const BrowserSync = new BrowserSyncPlugin({
     proxy: "http://localhost:2206",
     files: ["app/**/*.*", "resources/**/*.*"],
-    port: 1111
+    port: 2200
 }, {
         reload: true
     }

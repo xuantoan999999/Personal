@@ -1,0 +1,24 @@
+#mod-header{
+    background: $brand-sub-primary;
+    @include font(null, 16px, white);
+    margin: 0;
+    padding: 20px 0;
+    @include position(fixed,0, null, 0, 0, 20);
+    width: 100%;
+    transition: 0.3s;
+    &.fixed{
+        padding: 10px 0;
+        font-size: 14px;
+    }
+    .button{
+        background: transparent;
+        margin: 0;
+        padding: 5px;
+        &:hover{
+            color: $brand-primary;
+        }
+        &.active{
+            background: $brand-primary;
+        }
+    }
+}
