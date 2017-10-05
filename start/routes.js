@@ -45,11 +45,11 @@ Route.group(() => {
     /**
      * Module Website
      */
-    // Route.get('/website', 'Api/WebsiteController.index')
-    // Route.post('/website', 'Api/WebsiteController.store')
-    // Route.get('/website/:id', 'Api/WebsiteController.show')
-    // Route.post('/website/:id', 'Api/WebsiteController.update')
-    // Route.delete('/website/:id', 'Api/WebsiteController.destroy')
+    Route.get('/website', 'Admin/WebsiteController.index')
+    Route.post('/website', 'Admin/WebsiteController.store')
+    Route.get('/website/:id', 'Admin/WebsiteController.info')
+    Route.post('/website/:id', 'Admin/WebsiteController.update')
+    Route.delete('/website/:id', 'Admin/WebsiteController.destroy')
 }).prefix('admin')
 // .middleware('auth')
 

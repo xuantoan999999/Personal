@@ -24,6 +24,9 @@ export class SidebarComponent {
         this.initMenuSidebar('tai-khoan', 'Account', {
             icon: 'account_circle'
         }),
+        this.initMenuSidebar('website', 'Website', {
+            icon: 'web'
+        }),
     ];
     constructor() {
         let count = 0;

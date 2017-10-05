@@ -31,100 +31,123 @@ import { PopAlertComponent } from './components/modal/pop-alert/pop-alert.compon
 import { AccountComponent } from './modules/account/account.component';
 import { AccountFormComponent } from './modules/account/account-form/account-form.component';
 import { AccountEditFormComponent } from './modules/account/account-edit-form/account-edit-form.component';
+import { WebsiteComponent } from './modules/website/website.component';
+import { WebsiteService } from './modules/website/website.service';
+import { WebsiteFormComponent } from './modules/website/website-form/website-form.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    UserComponent,
-    DashboardComponent,
-    SidebarComponent,
-    IconComponent,
-    MenuComponent,
-    ListItemsComponent,
-    ItemComponent,
-    UserFormComponent,
-    EqualValidator,
-    UserChangePasswordComponent,
-    PopAlertComponent,
-    AccountComponent,
-    AccountFormComponent,
-    AccountEditFormComponent,
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MdButtonModule,
-    MdCheckboxModule,
-    MdInputModule,
-    MdSnackBarModule,
-    MdSelectModule,
-    MdOptionModule,
-    MdDialogModule,
-    MdMenuModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpModule,
-    NgxDatatableModule,
-    RouterModule.forRoot([
-      {
-        path: '',
-        redirectTo: 'dang-nhap',
-        pathMatch: 'full'
-      },
-      {
-        path: 'dang-nhap',
-        component: LoginComponent,
-        canActivate: [LoginGuardService],
-      },
-      {
-        path: 'dash-board',
-        component: DashboardComponent,
-        canActivate: [AuthGuardService]
-      },
-      {
-        path: 'nguoi-dung',
-        component: UserComponent,
-        canActivate: [AuthGuardService],
-      },
-      {
-        path: 'tai-khoan',
-        canActivate: [AuthGuardService],
-        children: [{
-          path: '',
-          component: AccountComponent,
-        },
-        {
-          path: 'them',
-          component: AccountFormComponent,
-        },
-        {
-          path: ':id',
-          component: AccountFormComponent,
-        }
-      ]
-      },
-    ], {
-        useHash: true
-      })
-  ],
-  providers: [
-    HttpService,
-    LoginService,
-    AuthGuardService,
-    LoginGuardService,
-    AuthService,
-    DashboardService,
-    UserService,
-    AccountService
-  ],
-  bootstrap: [AppComponent],
-  entryComponents: [
-    UserFormComponent,
-    UserChangePasswordComponent,
-    AccountFormComponent,
-    PopAlertComponent,
-  ]
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        UserComponent,
+        DashboardComponent,
+        SidebarComponent,
+        IconComponent,
+        MenuComponent,
+        ListItemsComponent,
+        ItemComponent,
+        UserFormComponent,
+        EqualValidator,
+        UserChangePasswordComponent,
+        PopAlertComponent,
+        AccountComponent,
+        AccountFormComponent,
+        AccountEditFormComponent,
+        WebsiteComponent,
+        WebsiteFormComponent,
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MdButtonModule,
+        MdCheckboxModule,
+        MdInputModule,
+        MdSnackBarModule,
+        MdSelectModule,
+        MdOptionModule,
+        MdDialogModule,
+        MdMenuModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpModule,
+        NgxDatatableModule,
+        RouterModule.forRoot([
+            {
+                path: '',
+                redirectTo: 'dang-nhap',
+                pathMatch: 'full'
+            },
+            {
+                path: 'dang-nhap',
+                component: LoginComponent,
+                canActivate: [LoginGuardService],
+            },
+            {
+                path: 'dash-board',
+                component: DashboardComponent,
+                canActivate: [AuthGuardService]
+            },
+            {
+                path: 'nguoi-dung',
+                component: UserComponent,
+                canActivate: [AuthGuardService],
+            },
+            {
+                path: 'tai-khoan',
+                canActivate: [AuthGuardService],
+                children: [{
+                    path: '',
+                    component: AccountComponent,
+                },
+                {
+                    path: 'them',
+                    component: AccountFormComponent,
+                },
+                {
+                    path: ':id',
+                    component: AccountFormComponent,
+                }]
+            },
+            {
+                path: 'website',
+                canActivate: [AuthGuardService],
+                children: [{
+                    path: '',
+                    component: WebsiteComponent,
+                },
+                // {
+                //     path: 'them',
+                //     component: AccountFormComponent,
+                // },
+                // {
+                //     path: ':id',
+                //     component: AccountFormComponent,
+                // }
+                ]
+            },
+        ], {
+                useHash: true
+            })
+    ],
+    providers: [
+        HttpService,
+        LoginService,
+        AuthGuardService,
+        LoginGuardService,
+        AuthService,
+        DashboardService,
+        UserService,
+        AccountService,
+        WebsiteService
+    ],
+    bootstrap: [AppComponent],
+    entryComponents: [
+        UserFormComponent,
+        UserChangePasswordComponent,
+        AccountFormComponent,
+        PopAlertComponent,
+        WebsiteFormComponent
+    ]
 })
 
 export class AppModule { }

@@ -1,0 +1,44 @@
+<div class="box white" *ngIf="!showLoading">
+  <form #formFilter="ngForm" (ngSubmit)="filterForm(formFilter)">
+      <div class="row">
+          <div class="col-4">
+              <md-form-field class="form-control">
+                  <input mdInput placeholder="Tìm kiếm" [(ngModel)]="filter.search" #nameControl="ngModel" name="name">
+              </md-form-field>
+          </div>
+          <div class="col-4">
+              <button md-raised-button color="primary" type="submit">
+                  <i class="material-icons">search</i>
+                  <span>Filter</span>
+              </button>
+              <a md-button (click)="resetForm()">
+                  <i class="material-icons">refresh</i>
+                  <span>Clear</span>
+              </a>
+          </div>
+      </div>
+  </form>
+  <div class="text-right">
+      <a md-raised-button color="primary" (click)="popAdd()">
+          <i class="material-icons">add</i>
+          Add link
+      </a>
+  </div>
+
+  <ngx-datatable [rows]="rows" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [externalPaging]="true" [offset]="currentPage" [limit]="itemsPerPage" [count]="totalItems" (page)='setPage($event)'>
+      <ngx-datatable-column name="Tên" prop="name" editable="false" frozenLeft="True" [sortable]="sortable"></ngx-datatable-column>
+      <ngx-datatable-column name="Link Website" prop="link_website" editable="false" frozenLeft="True" [sortable]="sortable"></ngx-datatable-column>
+      <ngx-datatable-column name="Action" [sortable]="sortable">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-website="row" let-group="group" let-rowHeight="rowHeight">
+              <a md-raised-button color="primary" (click)="popEdit(website._id)">
+                  <i class="material-icons">edit</i>
+                  Edit
+              </a>
+              <button md-raised-button color="warn" (click)="popDelete(website._id)">
+                  <i class="material-icons">delete_forever</i>
+                  Delete
+              </button>
+          </ng-template>
+      </ngx-datatable-column>
+  </ngx-datatable>
+</div>

@@ -1,7 +1,14 @@
 'use strict'
+const Helpers = use('Helpers');
+const mongoose = require('mongoose');
+const Hash = use('Hash');
+const _ = use('lodash');
+
+const Website = mongoose.model('Website');
 
 class AdminWebsiteController {
-    async index({ request, response, params }) {
+    async index({ request, response }) {
+        let params = request.all();
         let page = parseInt(params.page) || 1;
         let itemsPerPage = parseInt(params.limit) || 10;
 
@@ -30,56 +37,49 @@ class AdminWebsiteController {
             })
         }
 
-        let data = yield find();
-        yield response.json({
+        let data = await find();
+
+        return response.send({
             success: true,
             data
         })
     }
 
-    async store({ request, response }) {
-        let user = yield request.auth.check();
-        let data = request.all().data;
-        data.creater = user._id;
+    async store({ request, response, auth }) {
+        let data = request.input('data');
+        let currentUser = await auth.currentUser();
+        data.creater = currentUser._id;
         let saveWebsite = new Website(data);
-        let addWebsite = yield saveWebsite.save();
+        await saveWebsite.save();
 
-        yield response.json({
+        return response.send({
             success: true,
-            addWebsite
         })
     }
 
-    async show({ request, response }) {
-        let params = request.params();
-        let website = yield Website.findById(params.id).lean();
-        yield response.json({
+    async info({ request, response, params }) {
+        let website = await Website.findById(params.id).lean();
+        return response.send({
+            success: true,
             website
         })
     }
 
-    async edit({ request, response }) {
-        //
-    }
+    async update({ request, response, params }) {
+        let websiteNew = request.input('data');
+        let websiteOld = await Website.findById(params.id);
+        let websiteUpdate = _.extend(websiteOld, websiteNew);
+        await websiteUpdate.save();
 
-    async update({ request, response }) {
-        let params = request.params();
-        let data = request.all();
-        let website = yield Website.findById(params.id);
-        let websiteUpdate = _.extend(website, data.data);
-        let websiteDone = yield websiteUpdate.save();
-
-        yield response.json({
+        return response.send({
             success: true,
-            website: websiteDone
         })
     }
 
-    async destroy({ request, response }) {
-        let params = request.params();
-        let removeWebsite = yield Website.findByIdAndRemove(params.id);
-        yield response.json({
-            success: true
+    async destroy({ request, response, params }) {
+        let removeWebsite = await Website.findByIdAndRemove(params.id);
+        return response.send({
+            success: true,
         })
     }
 }
