@@ -8,8 +8,6 @@ html, body {
 body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 300;
-  background-image: url("./../images/splash.png");
-  background-color: #220052;
 }
 
 * {
@@ -57,7 +55,6 @@ section:before {
 
 .subtitle {
   margin-top: 25px;
-  color: #BDB3CB;
   font-size: 17px;
   text-align: center;
   letter-spacing: 0.5;
