@@ -1,55 +1,54 @@
 #mod-home{
-  .grid{
-    display: grid;
-    background: var(--main-bg-color);
-    height: 600px;
-    grid-gap: 1rem;
-    grid-template-columns:
-      [main-start sidebar-start] 200px
-      [sidebar-end content-start] 1fr
-      [column3-start] 1fr
-      [content-end main-end];
-    grid-template-rows:
-      [row1-start] 80px
-      [row2-start] 1fr
-      [row3-start] 1fr
-      [row4-start] 100px
-      [row4-end];
+  // .grid{
+  //   display: grid;
+  //   height: 600px;
+  //   grid-gap: 1rem;
+  //   grid-template-columns:
+  //     [main-start sidebar-start] 200px
+  //     [sidebar-end content-start] 1fr
+  //     [column3-start] 1fr
+  //     [content-end main-end];
+  //   grid-template-rows:
+  //     [row1-start] 80px
+  //     [row2-start] 1fr
+  //     [row3-start] 1fr
+  //     [row4-start] 100px
+  //     [row4-end];
 
-    div{
-      background: black;
-      color: white;
-      display: flex;
-      justify-content: center;
-      font-size: 30px;
-      align-items: center;
-    }
-  }
-  .header {
-    grid-column: main-start / main-end;
-    grid-row: row1-start / row2-start;
-  }
-  .sidebar {
-    grid-column: sidebar-start / sidebar-end;
-    grid-row: row2-start / row4-start;
-  }
-  .content-1 {
-    grid-column: content-start / content-end;
-    grid-row: row2-start / row3-start;
-  }
+  //   div{
+  //     background: black;
+  //     color: white;
+  //     display: flex;
+  //     justify-content: center;
+  //     font-size: 30px;
+  //     align-items: center;
+  //   }
+  // }
+  // .header {
+  //   grid-column: main-start / main-end;
+  //   grid-row: row1-start / row2-start;
+  // }
+  // .sidebar {
+  //   grid-column: sidebar-start / sidebar-end;
+  //   grid-row: row2-start / row4-start;
+  // }
+  // .content-1 {
+  //   grid-column: content-start / content-end;
+  //   grid-row: row2-start / row3-start;
+  // }
   
-  .content-2 {
-    grid-column: content-start / column3-start;
-    grid-row: row3-start / row4-start;
-  }
+  // .content-2 {
+  //   grid-column: content-start / column3-start;
+  //   grid-row: row3-start / row4-start;
+  // }
 
-  .content-3 {
-    grid-column: column3-start / content-end;
-    grid-row: row3-start / row4-start;
-  }
+  // .content-3 {
+  //   grid-column: column3-start / content-end;
+  //   grid-row: row3-start / row4-start;
+  // }
 
-  .footer {
-    grid-column: main-start / main-end;
-    grid-row: row4-start / row4-end;
-  }
+  // .footer {
+  //   grid-column: main-start / main-end;
+  //   grid-row: row4-start / row4-end;
+  // }
 }

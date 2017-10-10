@@ -1,7 +1,9 @@
 /****************************************************************************************
 Description: Main layout
 *****************************************************************************************/
-
+header{
+    height: auto;
+}
 html.full-frame {
     overflow-x: hidden;
     .view-container {
@@ -12,12 +14,12 @@ html.full-frame {
 }
 
 body {
-    padding-top: 90px;
     position: relative;
+    display: grid;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    grid-template-rows: 80px 1fr;
 }
-
 .img-responsive {
     max-width: 100%;
     margin: 0 auto;
