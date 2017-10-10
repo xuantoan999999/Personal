@@ -2,6 +2,10 @@
 @section('content')
   <div class="container" id="mod-home">
     <p>{{text}}</p>
+    <p>{{activePage}}</p>
+    @if(activePage == 'home')
+    Home
+    @endif
     <p>[[text]]</p>
     <div class="grid">
       <div class="header">header</div>

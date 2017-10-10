@@ -18,14 +18,12 @@
     .icon{
         left: 15px;
         transform: translateY(-50%);
+        position: absolute;
+        top: 50%;
     }
     .arrows{
         right: 10px;
         transform: translateY(-50%) rotate(90deg);
-    }
-    .material-icons{
-        position: absolute;
-        top: 50%;
     }
 }
 

@@ -34,6 +34,7 @@ import { AccountEditFormComponent } from './modules/account/account-edit-form/ac
 import { WebsiteComponent } from './modules/website/website.component';
 import { WebsiteService } from './modules/website/website.service';
 import { WebsiteFormComponent } from './modules/website/website-form/website-form.component';
+import { FacebookComponent } from './modules/facebook/facebook.component';
 
 @NgModule({
     declarations: [
@@ -55,6 +56,7 @@ import { WebsiteFormComponent } from './modules/website/website-form/website-for
         AccountEditFormComponent,
         WebsiteComponent,
         WebsiteFormComponent,
+        FacebookComponent,
     ],
     imports: [
         BrowserModule,

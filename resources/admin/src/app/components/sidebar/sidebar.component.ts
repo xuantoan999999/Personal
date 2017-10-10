@@ -27,6 +27,10 @@ export class SidebarComponent {
         this.initMenuSidebar('website', 'Website', {
             icon: 'web'
         }),
+        this.initMenuSidebar('facebook', 'Facebook', {
+            icon: 'facebook-icon.png',
+            image: true
+        }),
     ];
     constructor() {
         let count = 0;

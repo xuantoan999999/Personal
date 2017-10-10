@@ -1,8 +1,26 @@
 <header id="mod-header">
     <div class="header-nav" :class="classHeader">
         <div class="container">
-            <a href="" class="button">
+            <a href="/" class="button
+            @if(activePage == 'home')
+            active
+            @endif
+            ">
                 <strong>Home</strong>
+            </a>
+            <a href="/youtube" class="button
+            @if(activePage == 'youtube')
+            active
+            @endif
+            ">
+                <strong>Youtube</strong>
+            </a>
+            <a href="/convert-image" class="button
+            @if(activePage == 'tinyPNG')
+            active
+            @endif
+            ">
+                <strong>Convert Image</strong>
             </a>
         </div>
     </div>

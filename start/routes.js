@@ -15,9 +15,14 @@
 
 const Route = use('Route')
 
+//region web group
 Route.get('/', 'Web/IndexController.index')
+Route.get('/youtube', 'Web/IndexController.youtube')
+Route.get('/convert-image', 'Web/IndexController.convert')
+Route.get('/test-youtube', 'Web/IndexController.testYoutube')
+//endregion
 
-// Admin Group
+//region Admin Group
 Route.group(() => {
     Route.get('/', 'Admin/DashboardController.index')
     Route.get('/dash-board', 'Admin/DashboardController.getDashboard')
@@ -50,16 +55,14 @@ Route.group(() => {
     Route.get('/website/:id', 'Admin/WebsiteController.info')
     Route.post('/website/:id', 'Admin/WebsiteController.update')
     Route.delete('/website/:id', 'Admin/WebsiteController.destroy')
-}).prefix('admin')
-// .middleware('auth')
+}).prefix('admin')// .middleware('auth')
+//endregion
 
-
-
+//region Api
 Route.group(() => {
     /**
      * Module Auth
      */
     Route.post('is-login', 'Api/AuthController.checkLogin')
-    // Route.post('/dang-nhap', 'Api/AuthController.login')
-    // Route.post('/thong-tin-user', 'Api/AuthController.getUserInfo')
 }).prefix('api/v1')
+//endregion
