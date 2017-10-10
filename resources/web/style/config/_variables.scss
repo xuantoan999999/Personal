@@ -691,3 +691,7 @@ $pre-bg: $gray-lightest;
 $pre-color: $gray-dark;
 $pre-border-color: #ccc;
 $pre-scrollable-max-height: 340px;
+
+:root{
+    --main-bg-color: gray;
+}
