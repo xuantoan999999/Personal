@@ -12,5 +12,4 @@ export class DashboardService extends HttpService {
   getDashboard() {
     return this.getAdmin('dash-board');
   }
-
 }

@@ -28,8 +28,8 @@ export class SidebarComponent {
             icon: 'web'
         }),
         this.initMenuSidebar('facebook', 'Facebook', {
-            icon: 'facebook-icon.png',
-            image: true
+            icon: 'fa-facebook-official',
+            fontAwesome: true
         }),
     ];
     constructor() {

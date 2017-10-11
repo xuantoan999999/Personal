@@ -55,6 +55,16 @@ Route.group(() => {
     Route.get('/website/:id', 'Admin/WebsiteController.info')
     Route.post('/website/:id', 'Admin/WebsiteController.update')
     Route.delete('/website/:id', 'Admin/WebsiteController.destroy')
+
+    /**
+     * Module Website
+     */
+    Route.get('/facebook', 'Admin/FacebookController.index')
+    Route.post('/facebook', 'Admin/FacebookController.store')
+    Route.get('/facebook/:id', 'Admin/FacebookController.info')
+    Route.post('/facebook/:id', 'Admin/FacebookController.update')
+    Route.delete('/facebook/:id', 'Admin/FacebookController.destroy')
+
 }).prefix('admin')// .middleware('auth')
 //endregion
 

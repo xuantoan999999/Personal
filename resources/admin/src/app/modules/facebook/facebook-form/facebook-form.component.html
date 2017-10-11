@@ -1,0 +1,17 @@
+<div id="mod-facebook" class="container">
+  <form #formFanpage="ngForm" (ngSubmit)="submit(formFanpage)">
+    <div class="form-group">
+      <md-form-field class="form-control">
+        <input mdInput placeholder="Tên" [(ngModel)]="facebook.name" #nameControl="ngModel" name="name" required>
+        <md-error *ngIf="(nameControl.touched || formFanpage.submitted) && !nameControl.valid">
+          <span *ngIf="nameControl.errors.required">Chưa nhập tên</span>
+        </md-error>
+      </md-form-field>
+    </div>
+
+    <div class="form-group text-right">
+      <button md-raised-button color="primary" type="submit" [disabled]="!formFanpage.valid && formFanpage.submitted" *ngIf="showAdd">Thêm</button>
+      <button md-raised-button color="primary" type="submit" [disabled]="!formFanpage.valid && formFanpage.submitted" *ngIf="!showAdd">Sửa</button>
+    </div>
+  </form>
+</div>

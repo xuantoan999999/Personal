@@ -1,12 +1,12 @@
 <div class="item transition" [ngClass]="{'is-open': isOpenSubmenu}" [ngStyle]="{'height.px': heightItem}">
     <a md-button class="el-item" *ngIf="data.child && data.child.length > 0" (click)="openSubmenu($event)">
-        <i class="material-icons icon" *ngIf="data.extra.icon && !data.extra.image">{{data.extra.icon}}</i>
+        <i class="material-icons icon" *ngIf="data.extra.icon && !data.extra.fontAwesome">{{data.extra.icon}}</i>
         {{data.title}}
         <b class="material-icons arrows transition" *ngIf="data.child && data.child.length > 0">keyboard_arrow_down</b>
     </a>
     <a md-button class="el-item" *ngIf="!data.child || data.child.length == 0" [routerLink]="[data.route]" [queryParams]="{ limit: limit}" routerLinkActive="active">
-        <i class="material-icons icon" *ngIf="data.extra.icon && !data.extra.image">{{data.extra.icon}}</i>
-        <i class="icon" *ngIf="data.extra.image"><img [src]="'assets/dist/admin_cms/images/' + data.extra.icon" alt=""></i>
+        <i class="material-icons icon" *ngIf="data.extra.icon && !data.extra.fontAwesome">{{data.extra.icon}}</i>
+        <i class="icon fa" [ngClass]="data.extra.icon" *ngIf="data.extra.fontAwesome"></i>
         {{data.title}}
     </a>
     <ul class="sub-item" *ngIf="data.child && data.child.length > 0">

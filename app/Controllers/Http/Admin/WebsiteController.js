@@ -1,7 +1,6 @@
 'use strict'
 const Helpers = use('Helpers');
 const mongoose = require('mongoose');
-const Hash = use('Hash');
 const _ = use('lodash');
 
 const Website = mongoose.model('Website');

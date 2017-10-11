@@ -1,3 +1,4 @@
+import { FacebookService } from './modules/facebook/facebook.service';
 import { AccountService } from './modules/account/account.service';
 import { EqualValidator } from './validators/equalValidators.validators';
 import { LoginService } from './modules/login/login.service';
@@ -35,6 +36,7 @@ import { WebsiteComponent } from './modules/website/website.component';
 import { WebsiteService } from './modules/website/website.service';
 import { WebsiteFormComponent } from './modules/website/website-form/website-form.component';
 import { FacebookComponent } from './modules/facebook/facebook.component';
+import { FacebookFormComponent } from './modules/facebook/facebook-form/facebook-form.component';
 
 @NgModule({
     declarations: [
@@ -57,6 +59,7 @@ import { FacebookComponent } from './modules/facebook/facebook.component';
         WebsiteComponent,
         WebsiteFormComponent,
         FacebookComponent,
+        FacebookFormComponent,
     ],
     imports: [
         BrowserModule,
@@ -116,17 +119,16 @@ import { FacebookComponent } from './modules/facebook/facebook.component';
                 children: [{
                     path: '',
                     component: WebsiteComponent,
-                },
-                // {
-                //     path: 'them',
-                //     component: AccountFormComponent,
-                // },
-                // {
-                //     path: ':id',
-                //     component: AccountFormComponent,
-                // }
-                ]
+                }]
             },
+            {
+                path: 'facebook',
+                canActivate: [AuthGuardService],
+                children: [{
+                    path: '',
+                    component: FacebookComponent,
+                }]
+            }
         ], {
                 useHash: true
             })
@@ -140,7 +142,8 @@ import { FacebookComponent } from './modules/facebook/facebook.component';
         DashboardService,
         UserService,
         AccountService,
-        WebsiteService
+        WebsiteService,
+        FacebookService
     ],
     bootstrap: [AppComponent],
     entryComponents: [
@@ -148,7 +151,8 @@ import { FacebookComponent } from './modules/facebook/facebook.component';
         UserChangePasswordComponent,
         AccountFormComponent,
         PopAlertComponent,
-        WebsiteFormComponent
+        WebsiteFormComponent,
+        FacebookFormComponent
     ]
 })
 
