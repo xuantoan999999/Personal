@@ -9,9 +9,7 @@ const Facebook = mongoose.model('Facebook');
 
 class WebIndexController {
     async index({ request, view, response }) {
-        // let test = await axios.get('https://graph.facebook.com/beatvn.troll/posts?access_token=1561899710537365|LAbHspQ9kH8pajrVUGgE2RpljHw');
         let facebookNews = await Facebook.find().lean();
-        // return response.send(facebookNews)
         return view.render('web.index', {
             text: 'This is hello text',
             activePage: 'home',
