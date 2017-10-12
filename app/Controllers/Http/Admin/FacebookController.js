@@ -26,7 +26,6 @@ class AdminFacebookController {
             return new Promise((resolve, reject) => {
                 Facebook.find(option).lean().sort('-createdAt')
                     .paginate(page, itemsPerPage, (err, items, total) => {
-                        console.log(items);
                         let dataSend = {
                             totalItems: total,
                             totalPage: Math.ceil(total / itemsPerPage),

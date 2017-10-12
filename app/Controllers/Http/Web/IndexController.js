@@ -2,18 +2,20 @@
 
 const mongoose = use('mongoose');
 const axios = use('axios')
+const Env = use('Env')
+
 const Account = mongoose.model('Account');
+const Facebook = mongoose.model('Facebook');
 
 class WebIndexController {
     async index({ request, view, response }) {
         // let test = await axios.get('https://graph.facebook.com/beatvn.troll/posts?access_token=1561899710537365|LAbHspQ9kH8pajrVUGgE2RpljHw');
-        // return response.send({
-        //     success: true,
-        //     test: test.data
-        // })
+        let facebookNews = await Facebook.find().lean();
+        // return response.send(facebookNews)
         return view.render('web.index', {
             text: 'This is hello text',
-            activePage: 'home'
+            activePage: 'home',
+            facebookNews
         });
     }
 
@@ -29,6 +31,19 @@ class WebIndexController {
             text: 'This is hello text',
             activePage: 'tinyPNG'
         });
+    }
+
+    async getNewsFacebook({ request, view, response, params }) {
+        let facebookToken = Env.get('FACEBOOK_TOKEN');
+        let urlDetailFanpage = `https://graph.facebook.com/${params.fanpage}?access_token=${facebookToken}`;
+        let detailFanpage = await axios.get(urlDetailFanpage);
+        let urlPost = `https://graph.facebook.com/${detailFanpage.data.id}/posts?access_token=${facebookToken}&limit=10&fields=from,name,description,picture,permalink_url,object_id,message`;
+        let newsFacebook = await axios.get(urlPost);
+        return response.send({
+            success: true,
+            news: newsFacebook.data,
+            detail: detailFanpage.data,
+        })
     }
 }
 
