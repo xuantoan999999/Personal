@@ -6,11 +6,9 @@
     @if(activePage == 'home')
     Home
     @endif
-    <div class="col-sm row facebook-news">
+    <div class="facebook-news">
       @each(item in facebookNews)
-        <div class="col-sm-6 item">
-          <facebook :fanpage="'{{item.name}}'"></facebook>
-        </div>
+        <facebook :fanpage="'{{item.name}}'"></facebook>
       @endeach
     </div>
     <p>[[text]]</p>

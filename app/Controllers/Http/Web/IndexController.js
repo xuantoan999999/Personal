@@ -35,7 +35,7 @@ class WebIndexController {
         let facebookToken = Env.get('FACEBOOK_TOKEN');
         let urlDetailFanpage = `https://graph.facebook.com/${params.fanpage}?access_token=${facebookToken}`;
         let detailFanpage = await axios.get(urlDetailFanpage);
-        let urlPost = `https://graph.facebook.com/${detailFanpage.data.id}/posts?access_token=${facebookToken}&limit=10&fields=from,name,description,picture,permalink_url,object_id,message`;
+        let urlPost = `https://graph.facebook.com/${detailFanpage.data.id}/posts?access_token=${facebookToken}&limit=6&fields=from,name,description,picture,permalink_url,object_id,message`;
         let newsFacebook = await axios.get(urlPost);
         return response.send({
             success: true,
