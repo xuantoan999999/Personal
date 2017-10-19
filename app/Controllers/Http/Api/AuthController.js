@@ -5,6 +5,7 @@ const Encryption = use('Encryption');
 const aguid = require('aguid');
 const Redis = use('Redis');
 const Helpers = use('Helpers');
+const Env = use('Env')
 
 const User = mongoose.model('User');
 
@@ -23,6 +24,15 @@ class ApiAuthController {
                 user: null
             });
         }
+    }
+
+    async commonWeb({ request, response, auth }) {
+        let userLogin = await auth.currentUser();
+        let facebookToken = Env.get('FACEBOOK_TOKEN');
+        return response.send({
+            userLogin,
+            facebookToken
+        });
     }
 }
 

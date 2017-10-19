@@ -75,5 +75,6 @@ Route.group(() => {
      * Module Auth
      */
     Route.post('is-login', 'Api/AuthController.checkLogin')
+    Route.get('common-web', 'Api/AuthController.commonWeb')
 }).prefix('api/v1')
 //endregion

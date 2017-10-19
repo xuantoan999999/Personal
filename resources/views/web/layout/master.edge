@@ -1,5 +1,8 @@
 @include('web/layout/partial/master/header')
 <body>
+  <script>
+      var csrfToken = '{{csrfToken}}';
+  </script>
   @include('web/layout/partial/master/header-nav')
   <section class="mod-content">
     @!section('content')
