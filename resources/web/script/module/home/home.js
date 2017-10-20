@@ -8,5 +8,13 @@ let app = initVue.createVue('mod-home', {
     },
     components: { facebookComponent },
     mounted() {
+    },
+    methods: {
+        show() {
+            this.$modal.show('hello-world');
+        },
+        hide() {
+            this.$modal.hide('hello-world');
+        }
     }
 })

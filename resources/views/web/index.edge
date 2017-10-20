@@ -3,6 +3,10 @@
   <div class="container" id="mod-home">
     <p>{{text}}</p>
     <p>{{activePage}}</p>
+    <button class='btn' @click="show()">Open</button>
+    <modal name="hello-world">
+      hello, world!
+    </modal>
     @if(activePage == 'home')
     Home
     @endif
