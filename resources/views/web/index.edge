@@ -12,7 +12,7 @@
     @endif
     <div class="facebook-news">
       @each(item in facebookNews)
-        <facebook :fanpage="'{{item.name}}'"></facebook>
+        <facebook-component :fanpage="'{{item.name}}'"></facebook-component>
       @endeach
     </div>
     <p>[[text]]</p>

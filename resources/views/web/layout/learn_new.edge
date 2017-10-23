@@ -1,0 +1,9 @@
+@include('web/layout/partial/master/header')
+<body>
+  <script>
+      var csrfToken = '{{csrfToken}}';
+  </script>
+    @!section('content')
+    @include('web/layout/partial/master/footer')
+</body>
+</html>

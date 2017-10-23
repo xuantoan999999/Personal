@@ -43,6 +43,11 @@ class WebIndexController {
             detail: detailFanpage.data,
         })
     }
+
+    async learn({ request, view, response, params }) {
+        return view.render(`web.${params.slug}`, {
+        });
+    }
 }
 
 module.exports = WebIndexController

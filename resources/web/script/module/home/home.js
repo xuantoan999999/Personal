@@ -1,7 +1,6 @@
-import initVue from './../../util/initVue.js'
-import facebookComponent from './facebookComponent'
+import initVue from './../../util/initVue.js';
+import facebookComponent from './facebookComponent.vue';
 
-// console.log(facebook);
 let app = initVue.createVue('mod-home', {
     data: {
         text: 'VueJS: Include success'

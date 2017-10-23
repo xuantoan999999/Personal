@@ -1,9 +1,11 @@
 // Library
 @import "./../../../node_modules/mini.css/dist/mini-default.min.css";
+@import "./../../../node_modules/slick-carousel/slick/slick.css";
 
 // Config
 @import "config/variables";
 @import "tools/mixins";
+@import "base/base";
 @import "base/icon";
 @import "base/css";
 // Layout
@@ -12,3 +14,4 @@
 // Component
 @import "component/header";
 @import "component/home";
+@import "component/exercice-1";
