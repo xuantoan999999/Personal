@@ -17,6 +17,7 @@
       }
       .thumb-image{
         @include position(absolute, 0, null, null, 0);
+        max-width: 120px;
       }
       .content{
         cursor: pointer;
@@ -24,6 +25,15 @@
     }
     .change-post{
       cursor: pointer;
+    }
+  }
+}
+
+#modal-facebook{
+  .content-modal{
+    a{
+        display: block;
+        color: #292b2c;
     }
   }
 }

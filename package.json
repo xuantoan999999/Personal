@@ -45,6 +45,7 @@
     "moment": "^2.19.1",
     "mongoose": "^4.12.4",
     "mongoose-pagination": "^1.0.0",
+    "sweet-modal-vue": "^2.0.0",
     "toastr": "^2.1.2",
     "vue": "^2.5.2",
     "vue-awesome-swiper": "^2.6.7",

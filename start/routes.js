@@ -22,6 +22,8 @@ Route.get('/convert-image', 'Web/IndexController.convert')
 Route.get('/test-youtube', 'Web/IndexController.testYoutube')
 Route.get('/facebook/:fanpage', 'Web/IndexController.getNewsFacebook')
 Route.get('learn/:slug', 'Web/IndexController.learn')
+Route.get('/facebook-post/:id', 'Web/IndexController.getDetailPostFacebook')
+
 //endregion
 
 //region Admin Group

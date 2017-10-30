@@ -1,9 +1,15 @@
 @layout('web/layout/master.edge')
 @section('content')
   <div class="container" id="mod-home">
-    <modal name="hello-world" height="auto" class="modal">
+    <modal name="hello-world" height="auto" class="modal" id="modal-facebook">
+      <div class="header-modal" v-if="facebookContent.name">
+        [[ facebookContent.name ]]
+      </div>
       <div class="content-modal">
-        [[ facebookContent.message ]]
+        <p>[[ facebookContent.message ]]</p>
+        <a :href="facebookContent.permalink_url" target="_blank">
+          <img :src="facebookContent.full_picture" class="img-responsive">
+        </a>
       </div>
     </modal>
     <div class="facebook-news">

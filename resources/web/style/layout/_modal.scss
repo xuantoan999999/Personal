@@ -2,6 +2,9 @@
     .content-modal,.header-modal,.footer-modal{
         padding: 15px;
     }
+    .content-modal{
+        white-space: pre-line;
+    }
     .header-modal{
         border-bottom: 1px solid #d7d7d7;
     }
