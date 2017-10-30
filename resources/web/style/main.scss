@@ -1,6 +1,6 @@
 // Library
-@import "./../../../node_modules/mini.css/dist/mini-default.min.css";
-@import "./../../../node_modules/slick-carousel/slick/slick.css";
+// @import "./../../../node_modules/mini.css/dist/mini-default.min.css";
+@import "./../../../node_modules/swiper/dist/css/swiper.css";
 
 // Config
 @import "config/variables";
@@ -9,6 +9,7 @@
 @import "base/icon";
 @import "base/css";
 // Layout
+@import "layout/reset";
 @import "layout/main";
 
 // Component

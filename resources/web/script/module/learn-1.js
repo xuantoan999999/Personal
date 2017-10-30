@@ -1,24 +1,33 @@
 import initVue from './../util/initVue.js'
-import Slick from 'vue-slick';
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
-// console.log(facebook);
 let app = initVue.createVue('mod-exercice-1', {
     data: {
         text: 'VueJS: Include success',
-        slickOptions: {
-        },
+        notNextTick: true,
+        swiperOption: {
+            initialSlide: 1,
+            autoplay: 3000,
+            grabCursor: true,
+            setWrapperSize: true,
+            autoHeight: true,
+            paginationClickable: true,
+            prevButton: '.swiper-button-prev',
+            nextButton: '.swiper-button-next',
+            observeParents: true,
+            loop: true,
+        }
 
     },
-    components: { Slick  },
+    components: { swiper, swiperSlide },
+    computed: {
+        swiper() {
+            return this.$refs.mySwiper.swiper
+        }
+    },
     mounted() {
+
     },
     methods: {
-        next() {
-            this.$refs.slick.next();
-        },
-
-        prev() {
-            this.$refs.slick.prev();
-        },
     }
 })

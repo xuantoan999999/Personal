@@ -13,6 +13,8 @@
     }
     .left-side{
         font-weight: 700;
+        display: flex;
+        align-items: center;
         p{
             text-transform: uppercase;
             font-size: 38px;
@@ -116,27 +118,169 @@
     }
 }
 #mod-exercice-1{
+    padding-top: 86px;
     #banner{
         padding-top: 86px;
-        background: url("/assets/dist/web/images/background-banner.jpg") center center no-repeat ;
+        background: url("/assets/dist/web/images/learn-1/background-banner.jpg") center center no-repeat ;
         background-size: cover;
         height: 100vh;
         color: white;
         text-transform: uppercase;
         text-shadow: 0 0 5px rgba(0, 0, 0, 0.34);
-        display: flex;
-        align-items: center;
-        justify-content: center;
         max-height: 800px;
         h3{
             letter-spacing: 29.1px;
             font-family: "Helvetica Neue";
             font-size: 22px;
+            margin-bottom: 30px;
         }
         h4{
             font-family: Impact;
             font-size: 116px;
             line-height: 1;
+        }
+        .swiper-wrapper{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .swiper-button-prev{
+            background-image: url('/assets/dist/web/images/learn-1/icon-slider-left.png');
+            left: 35px;
+        }
+        .swiper-button-next{
+            background-image: url('/assets/dist/web/images/learn-1/icon-slider-right.png');
+            right: 35px;
+        }
+        .swiper-button-prev, .swiper-button-next{
+            margin-top: -85px;
+            @include sizeEx(43px, 149px);
+            background-size: 43px 149px;
+        }
+    }
+    #shirts{
+        padding: 47.5px;
+        .list{
+            display: grid;
+            grid-template-columns: repeat(4, 25%);
+            grid-gap: 15px;
+            grid-template-rows: 250px;
+        }
+        .item{
+            padding: 25px 30px;
+            text-transform: uppercase;
+            color: white;
+            position: relative;
+            .header{
+                font-size: 30px;
+            }
+            .text{
+                font-size: 22px;
+            }
+            .price{
+                position: absolute;
+                @include position(absolute, null, null, 22.5px, 30px);
+                @include font(Helvetica, 36px, rgba(0, 0, 0, 0.5), bold);
+            }
+            .shirts-image{
+                @include position(absolute, null, 0, 0, null);
+            }
+        }
+        .item-1{
+            background: var(--e1-color-1);
+            .header{
+                margin-bottom: 30px;
+            }
+        }
+        .item-2{
+            background: #e4ce9a;
+        }
+        .item-3{
+            background: #ffa7ce;
+            .text{
+                font-size: 16px;
+            }
+            .price{
+                color: #414049;
+            }
+        }
+        .item-4{
+            background: #f2ca66;
+            font-weight: bold;
+            padding-top: 15px;
+            .header{
+                font-size: 100px;
+                margin-bottom: 0;
+                transform: rotate3d(1,0,0,180deg)
+            }
+            .text{
+                font-size: 70px;
+            }
+            .price{
+                background: white;
+                @include font(null, 20px, #f2ca66, null);
+                padding: 10px 15px;
+                display: block;
+                bottom: 12.5px;
+                left: 0;
+            }
+        }
+    }
+    #categories{
+        background: url("/assets/dist/web/images/learn-1/background-shirts.jpg") center center no-repeat;
+        background-size: cover;
+        min-height: 560px;
+        padding-top: 65px;
+        font-weight: 400;
+        @include font(null, 85px, white);
+        overflow: hidden;
+        .list{
+            padding-top: 75px;
+            font-size: 0;
+            margin: 0 -7.5%;
+        }
+        .item{
+            display: inline-block;
+            width: 12.5%;
+            position: relative;
+            // opacity: 0.7;
+        }
+        .circle{
+            img{
+                width: 100%;
+            }
+        }
+        .item-2{
+            transform: translateY(-15%);
+            margin-left: -1.6%;
+        }
+        .item-3{
+            transform: translateY(20%);
+            margin-left: -3%;
+        }
+        .item-4{
+            transform: translateY(-10%);
+            margin-left: -2%;
+        }
+        .item-5{
+            transform: translateY(5%);
+            margin-left: -2%;
+        }
+        .item-6{
+            transform: translateY(21.25%);
+            margin-left: -1.6%;
+        }
+        .item-7{
+            transform: translateY(-8%);
+            margin-left: -3%;
+        }
+        .item-8{
+            transform: translateY(35%);
+            margin-left: -3%;
+        }
+        .item-9{
+            transform: translateY(-18%);
+            margin-left: -4%;
         }
     }
 }
