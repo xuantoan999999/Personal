@@ -12,13 +12,13 @@ let app_header = initVue.createVue('mod-header', {
         window.addEventListener('scroll', e => {
             this.changeClassHeader();
         });
-        // axios.get('/api/v1/common-web', {
-        //     headers: {
-        //         'Authorization': localStorage['Personal_userInfo']
-        //     }
-        // }).then(({ data }) => {
-        //     window.settings = data;
-        // })
+        axios.get('/api/v1/common-web', {
+            headers: {
+                'Authorization': localStorage['Personal_userInfo']
+            }
+        }).then(({ data }) => {
+            window.settings = data;
+        })
     },
     methods: {
         changeClassHeader: function () {

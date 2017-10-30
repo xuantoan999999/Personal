@@ -1,6 +1,6 @@
 // Library
-// @import "./../../../node_modules/mini.css/dist/mini-default.min.css";
-@import "./../../../node_modules/swiper/dist/css/swiper.css";
+@import "./bootstrap/bootstrap";
+// @import "./../../../node_modules/swiper/dist/css/swiper.css";
 
 // Config
 @import "config/variables";
@@ -9,10 +9,11 @@
 @import "base/icon";
 @import "base/css";
 // Layout
-@import "layout/reset";
+// @import "layout/reset";
 @import "layout/main";
+@import "layout/modal";
 
 // Component
 @import "component/header";
 @import "component/home";
-@import "component/exercice-1";
+// @import "component/exercice-1";

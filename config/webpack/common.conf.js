@@ -22,7 +22,7 @@ const PATHS = {
 
 module.exports = {
     entry: {
-        admin_cms: './resources/admin/src/app.js',
+        // admin_cms: './resources/admin/src/app.js',
         web: './resources/web/app.js',
     },
     output: {
@@ -33,7 +33,7 @@ module.exports = {
         rules: [{
             test: /\.(vue|js|jsx)$/,
             use: 'babel-loader',
-            exclude: /node_modules/
+            exclude: /node_modules/,
         },
         {
             test: /\.html$/,

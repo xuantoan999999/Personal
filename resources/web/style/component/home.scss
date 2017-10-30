@@ -10,12 +10,20 @@
       margin-bottom: 15px;
       position: relative;
       min-height: 130px;
+      max-height: 160px;
+      overflow: hidden;
       p{
         white-space: pre-wrap;
       }
       .thumb-image{
         @include position(absolute, 0, null, null, 0);
       }
+      .content{
+        cursor: pointer;
+      }
+    }
+    .change-post{
+      cursor: pointer;
     }
   }
 }
