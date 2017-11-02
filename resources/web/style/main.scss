@@ -1,6 +1,6 @@
 // Library
 @import "./bootstrap/bootstrap";
-// @import "./../../../node_modules/swiper/dist/css/swiper.css";
+@import "./../../../node_modules/swiper/dist/css/swiper.css";
 
 // Config
 @import "config/variables";
@@ -16,4 +16,4 @@
 // Component
 @import "component/header";
 @import "component/home";
-// @import "component/exercice-1";
+@import "component/exercice-1";
