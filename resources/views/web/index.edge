@@ -1,6 +1,21 @@
 @layout('web/layout/master.edge')
 @section('content')
   <div class="container" id="mod-home">
+    <div class="form-group">
+    <div class="form-group">
+      <label for="">Foot Roll</label>
+      <input type="number" class="form-control" step="1" v-model="footRollInput.footRoll" :change="footRollFunction()" :max="footRollInput.toeStraightAngle">
+    </div>
+      <label for="">Bend Limit Angle</label>
+      <input type="number" class="form-control" step="1" v-model="footRollInput.bendLimitAngle" :change="footRollFunction()">
+    </div>
+    <div class="form-group">
+      <label for="">Toe Straight Angle</label>
+      <input type="number" class="form-control" step="1" v-model="footRollInput.toeStraightAngle" :change="footRollFunction()">
+    </div>
+    <div class="form-group">
+      Heel X: [[footRollOutput.heelX]], Ball X: [[footRollOutput.ballX]], Toe X: [[footRollOutput.toeX]]
+    </div>
     <modal name="hello-world" height="auto" class="modal" id="modal-facebook">
       <div class="header-modal" v-if="facebookContent.name">
         [[ facebookContent.name ]]
