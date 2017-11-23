@@ -1,7 +1,7 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { PatternValidator } from './../../../validators/pattern.validators';
 import { AccountService } from './../account.service';
-import { MdDialogRef, MD_DIALOG_DATA, MdSnackBar, MdDialog } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar, MatDialog } from '@angular/material';
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 
 @Component({
@@ -26,8 +26,8 @@ export class AccountFormComponent implements OnInit {
 
   constructor(
     private accountService: AccountService,
-    private snackBar: MdSnackBar,
-    public dialog: MdDialog,
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog,
     private router: Router,
     private activeRoute: ActivatedRoute,
   ) {
@@ -37,9 +37,9 @@ export class AccountFormComponent implements OnInit {
           this.account = data.account;
           this.showAdd = false;
           this.id = params.id;
-        })
+        });
       }
-    })
+    });
   }
 
   ngOnInit() {
@@ -61,7 +61,7 @@ export class AccountFormComponent implements OnInit {
 
   onChangeForm(event, index) {
     this.account.list_account[index].validForm = event === 'VALID';
-    this.validFormEditAcc = this.account.list_account.reduce((sum, item) => sum = sum && item.validForm, true)
+    this.validFormEditAcc = this.account.list_account.reduce((sum, item) => sum = sum && item.validForm, true);
   }
 
   onDeleteAccount(index) {
@@ -77,20 +77,19 @@ export class AccountFormComponent implements OnInit {
         data: this.account
       }).subscribe(data => {
         this.router.navigate(['tai-khoan'], { queryParams: { page: 1, limit: 10 } });
-        let snackBarRef = this.snackBar.open('Thêm tài khoản thành công', 'Close', {
+        const snackBarRef = this.snackBar.open('Thêm tài khoản thành công', 'Close', {
           duration: 3000
         });
-      })
-    }
-    else {
+      });
+    } else {
       this.accountService.update({
         data: this.account
       }, this.id).subscribe(data => {
         this.router.navigate(['tai-khoan'], { queryParams: { page: 1, limit: 10 } });
-        let snackBarRef = this.snackBar.open('Sửa tài khoản thành công', 'Close', {
+        const snackBarRef = this.snackBar.open('Sửa tài khoản thành công', 'Close', {
           duration: 3000
         });
-      })
+      });
     }
   }
 }

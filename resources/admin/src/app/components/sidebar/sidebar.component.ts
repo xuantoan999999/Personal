@@ -34,7 +34,7 @@ export class SidebarComponent {
     ];
     constructor() {
         let count = 0;
-        var checkSideBar = setInterval(() => {
+        const checkSideBar = setInterval(() => {
             if ((<any>window).user) {
                 this.showSidebar = true;
                 clearInterval(checkSideBar);

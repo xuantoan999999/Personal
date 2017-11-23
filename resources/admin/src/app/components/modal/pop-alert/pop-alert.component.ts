@@ -1,4 +1,4 @@
-import { MdDialogRef, MD_DIALOG_DATA, MdSnackBar } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar  } from '@angular/material';
 import { Component, OnInit, Inject } from '@angular/core';
 
 @Component({
@@ -9,9 +9,9 @@ import { Component, OnInit, Inject } from '@angular/core';
 export class PopAlertComponent implements OnInit {
   content;
   constructor(
-    public dialogRef: MdDialogRef<PopAlertComponent>,
-    @Inject(MD_DIALOG_DATA) public data: any,
-    private snackBar: MdSnackBar,
+    public dialogRef: MatDialogRef<PopAlertComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private snackBar: MatSnackBar ,
   ) {
     this.content = data;
   }

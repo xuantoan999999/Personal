@@ -1,6 +1,6 @@
 <div class="box white" *ngIf="!showLoading">
   <div class="text-right">
-      <a md-raised-button color="primary" (click)="popAdd()">
+      <a mat-raised-button color="primary" (click)="popAdd()">
           <i class="material-icons">add</i>
           Add fanpage
       </a>
@@ -10,11 +10,11 @@
       <ngx-datatable-column name="Tên" prop="name" editable="false" frozenLeft="True" [sortable]="sortable"></ngx-datatable-column>
       <ngx-datatable-column name="Action" [sortable]="sortable">
           <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-website="row" let-group="group" let-rowHeight="rowHeight">
-              <a md-raised-button color="primary" (click)="popEdit(website._id)">
+              <a mat-raised-button color="primary" (click)="popEdit(website._id)">
                   <i class="material-icons">edit</i>
                   Edit
               </a>
-              <button md-raised-button color="warn" (click)="popDelete(website._id)">
+              <button mat-raised-button color="warn" (click)="popDelete(website._id)">
                   <i class="material-icons">delete_forever</i>
                   Delete
               </button>

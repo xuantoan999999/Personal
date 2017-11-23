@@ -13,7 +13,10 @@ import { NgModule } from '@angular/core';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { AppComponent } from './app.component';
-import { MdButtonModule, MdCheckboxModule, MdInputModule, MdSnackBarModule, MdSelectModule, MdOptionModule, MdDialogModule, MdMenuModule } from '@angular/material';
+import {
+    MatButtonModule, MatCheckboxModule, MatInputModule, MatSnackBarModule, MatSelectModule,
+    MatOptionModule, MatDialogModule, MatMenuModule
+} from '@angular/material';
 import { UserComponent } from './modules/user/user.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
@@ -64,14 +67,14 @@ import { FacebookFormComponent } from './modules/facebook/facebook-form/facebook
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
-        MdButtonModule,
-        MdCheckboxModule,
-        MdInputModule,
-        MdSnackBarModule,
-        MdSelectModule,
-        MdOptionModule,
-        MdDialogModule,
-        MdMenuModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatInputModule,
+        MatSnackBarModule,
+        MatSelectModule,
+        MatOptionModule,
+        MatDialogModule,
+        MatMenuModule,
         FormsModule,
         ReactiveFormsModule,
         HttpModule,

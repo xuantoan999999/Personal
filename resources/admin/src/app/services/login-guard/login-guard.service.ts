@@ -10,18 +10,18 @@ export class LoginGuardService implements CanActivate {
   canActivate(route, state: RouterStateSnapshot) {
     return this.authService.getUserLogin()
       .map(resp => {
-        let user = resp.user;
+        const user = resp.user;
         if (user) {
           this.router.navigate(['dash-board']);
           return false;
         }
-        if (user && user.roles.indexOf('admin') == -1) {
+        if (user && user.roles.indexOf('admin') === -1) {
           this.router.navigate(['dash-board']);
           return false;
         }
         (<any>window).user = user;
         return true;
-      })
+      });
   }
 
 }

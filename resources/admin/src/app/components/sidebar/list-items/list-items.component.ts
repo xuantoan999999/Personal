@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./list-items.component.scss']
 })
 export class ListItemsComponent implements OnInit {
-  @Input('list-menu') listMenu: string;
+  @Input('list') list: string;
   constructor() {
   }
   ngOnInit() {

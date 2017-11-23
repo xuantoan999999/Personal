@@ -1,5 +1,5 @@
 import { UserService } from './../../user.service';
-import { MdDialogRef, MD_DIALOG_DATA, MdSnackBar } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar  } from '@angular/material';
 import { PatternValidator } from './../../../../validators/pattern.validators';
 import { Component, OnInit, Inject } from '@angular/core';
 
@@ -11,15 +11,15 @@ import { Component, OnInit, Inject } from '@angular/core';
 export class UserChangePasswordComponent implements OnInit {
   pattern = {
     email: PatternValidator.EMAIL_REGEXP
-  }
+  };
   id: string;
   user: object = {};
 
   constructor(
-    public dialogRef: MdDialogRef<UserChangePasswordComponent>,
+    public dialogRef: MatDialogRef<UserChangePasswordComponent>,
     private userService: UserService,
-    @Inject(MD_DIALOG_DATA) public data: any,
-    private snackBar: MdSnackBar,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private snackBar: MatSnackBar ,
   ) { }
 
   ngOnInit() {
@@ -33,9 +33,9 @@ export class UserChangePasswordComponent implements OnInit {
       this.dialogRef.close({
         reload: true
       });
-      let snackBarRef = this.snackBar.open('Đổi password thành công', 'Close', {
+      const snackBarRef = this.snackBar.open('Đổi password thành công', 'Close', {
         duration: 3000
       });
-    })
+    });
   }
 }

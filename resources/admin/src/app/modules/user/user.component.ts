@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UserFormComponent } from './modal/user-form/user-form.component';
 import { UserService } from './user.service';
 import { Component } from '@angular/core';
-import { MdDialog, MdSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar  } from '@angular/material';
 
 @Component({
   selector: 'app-user',
@@ -29,8 +29,8 @@ export class UserComponent {
     private userService: UserService,
     private router: Router,
     private activeRoute: ActivatedRoute,
-    public dialog: MdDialog,
-    private snackBar: MdSnackBar,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar ,
   ) {
     this.getData();
   }
@@ -51,18 +51,18 @@ export class UserComponent {
         this.currentPage = this.usersList.currentPage - 1;
         this.totalPage = this.usersList.totalPage;
         this.showLoading = false;
-      })
+      });
   }
 
   setPage(pageInfo) {
-    this.router.navigate(['nguoi-dung'], { queryParams: { page: pageInfo.offset + 1, limit: this.itemsPerPage } })
+    this.router.navigate(['nguoi-dung'], { queryParams: { page: pageInfo.offset + 1, limit: this.itemsPerPage } });
     this.activeRoute.queryParams.subscribe(data => {
       this.getData();
-    })
+    });
   }
 
   popAdd(): void {
-    let dialogRef = this.dialog.open(UserFormComponent, {
+    const dialogRef = this.dialog.open(UserFormComponent, {
       width: '750px',
       data: {}
     });
@@ -73,7 +73,7 @@ export class UserComponent {
   }
 
   popEdit(id): void {
-    let dialogRef = this.dialog.open(UserFormComponent, {
+    const dialogRef = this.dialog.open(UserFormComponent, {
       width: '750px',
       data: { id }
     });
@@ -84,7 +84,7 @@ export class UserComponent {
   }
 
   popChangePassword(id): void {
-    let dialogRef = this.dialog.open(UserChangePasswordComponent, {
+    const dialogRef = this.dialog.open(UserChangePasswordComponent, {
       width: '750px',
       data: { id }
     });
@@ -94,7 +94,7 @@ export class UserComponent {
   }
 
   popDeleteUser(id): void {
-    let dialogRef = this.dialog.open(PopAlertComponent, {
+    const dialogRef = this.dialog.open(PopAlertComponent, {
       width: '400px',
       data: {
         message: 'Do you want to delete this user'
@@ -104,11 +104,11 @@ export class UserComponent {
     dialogRef.afterClosed().subscribe(ok => {
       if (ok) {
         this.userService.remove(id).subscribe(data => {
-          let snackBarRef = this.snackBar.open('Xóa user thành công', 'Close', {
+          const snackBarRef = this.snackBar.open('Xóa user thành công', 'Close', {
             duration: 3000
           });
           this.setPage({ offset: 0 });
-        })
+        });
       }
     });
   }

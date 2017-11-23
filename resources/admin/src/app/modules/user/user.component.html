@@ -1,5 +1,5 @@
 <div class="box white" *ngIf="!showLoading">
-    <button md-raised-button color="primary" (click)="popAdd()">
+    <button mat-raised-button color="primary" (click)="popAdd()">
         <i class="material-icons">add</i>
         Add user
     </button>
@@ -14,15 +14,15 @@
         </ngx-datatable-column>
         <ngx-datatable-column name="Action" [sortable]="sortable">
             <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-user="row" let-group="group" let-rowHeight="rowHeight">
-                <button md-raised-button color="primary" (click)="popEdit(user._id)">
+                <button mat-raised-button color="primary" (click)="popEdit(user._id)">
                     <i class="material-icons">edit</i>
                     Edit
                 </button>
-                <button md-raised-button color="accent" (click)="popChangePassword(user._id)">
+                <button mat-raised-button color="accent" (click)="popChangePassword(user._id)">
                     <i class="material-icons">lock</i>
                     Change Password
                 </button>
-                <button md-raised-button color="warn" (click)="popDeleteUser(user._id)">
+                <button mat-raised-button color="warn" (click)="popDeleteUser(user._id)">
                     <i class="material-icons">delete_forever</i>
                     Delete
                 </button>

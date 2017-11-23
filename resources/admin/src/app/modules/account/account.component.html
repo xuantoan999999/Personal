@@ -2,16 +2,16 @@
     <form #formFilter="ngForm" (ngSubmit)="filterForm(formFilter)">
         <div class="row">
             <div class="col-4">
-                <md-form-field class="form-control">
-                    <input mdInput placeholder="Tìm kiếm" [(ngModel)]="filter.search" #nameControl="ngModel" name="name">
-                </md-form-field>
+                <mat-form-field class="form-control">
+                    <input matInput placeholder="Tìm kiếm" [(ngModel)]="filter.search" #nameControl="ngModel" name="name">
+                </mat-form-field>
             </div>
             <div class="col-4">
-                <button md-raised-button color="primary" type="submit">
+                <button mat-raised-button color="primary" type="submit">
                     <i class="material-icons">search</i>
                     <span>Filter</span>
                 </button>
-                <a md-button (click)="resetForm()">
+                <a mat-button (click)="resetForm()">
                     <i class="material-icons">refresh</i>
                     <span>Clear</span>
                 </a>
@@ -19,7 +19,7 @@
         </div>
     </form>
     <div class="text-right">
-        <a md-raised-button color="primary" [routerLink]="['them']">
+        <a mat-raised-button color="primary" [routerLink]="['them']">
             <i class="material-icons">add</i>
             Add account
         </a>
@@ -30,11 +30,11 @@
         <ngx-datatable-column name="Website" prop="website" editable="false" frozenLeft="True" [sortable]="sortable"></ngx-datatable-column>
         <ngx-datatable-column name="Action" [sortable]="sortable">
             <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-user="row" let-group="group" let-rowHeight="rowHeight">
-                <a md-raised-button color="primary" [routerLink]="[user._id]">
+                <a mat-raised-button color="primary" [routerLink]="[user._id]">
                     <i class="material-icons">edit</i>
                     Edit
                 </a>
-                <button md-raised-button color="warn" (click)="popDeleteUser(user._id)">
+                <button mat-raised-button color="warn" (click)="popDeleteUser(user._id)">
                     <i class="material-icons">delete_forever</i>
                     Delete
                 </button>

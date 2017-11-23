@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { MdSnackBar } from '@angular/material';
+import { MatSnackBar  } from '@angular/material';
 import { Component } from '@angular/core';
 import { DashboardService } from './dashboard.service';
 
@@ -25,6 +25,6 @@ export class DashboardComponent {
         this.countWebsite = data.countWebsite;
         this.countAccount = data.countAccount;
         this.allAccount = data.allAccount;
-      })
+      });
   }
 }

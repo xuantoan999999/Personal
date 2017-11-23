@@ -1,6 +1,6 @@
 import { PopAlertComponent } from './../../components/modal/pop-alert/pop-alert.component';
 import { AccountFormComponent } from './account-form/account-form.component';
-import { MdDialog, MdSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AccountService } from './account.service';
 import { Component, OnInit } from '@angular/core';
@@ -31,8 +31,8 @@ export class AccountComponent implements OnInit {
     private accountService: AccountService,
     private router: Router,
     private activeRoute: ActivatedRoute,
-    public dialog: MdDialog,
-    private snackBar: MdSnackBar,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar,
   ) {
     this.getData();
   }
@@ -51,18 +51,18 @@ export class AccountComponent implements OnInit {
         this.totalPage = this.accountList.totalPage;
         this.showLoading = false;
         this.filter.search = this.activeRoute.snapshot.queryParams.search;
-      })
+      });
   }
 
   setPage(pageInfo) {
-    this.router.navigate(['tai-khoan'], { queryParams: { page: pageInfo.offset + 1, limit: this.itemsPerPage } })
+    this.router.navigate(['tai-khoan'], { queryParams: { page: pageInfo.offset + 1, limit: this.itemsPerPage } });
     this.activeRoute.queryParams.subscribe(data => {
       this.getData();
-    })
+    });
   }
 
   popAdd(): void {
-    let dialogRef = this.dialog.open(AccountFormComponent, {
+    const dialogRef = this.dialog.open(AccountFormComponent, {
       width: '750px',
       data: {}
     });
@@ -73,7 +73,7 @@ export class AccountComponent implements OnInit {
   }
 
   popDeleteUser(id): void {
-    let dialogRef = this.dialog.open(PopAlertComponent, {
+    const dialogRef = this.dialog.open(PopAlertComponent, {
       width: '400px',
       data: {
         message: 'Do you want to delete this user'
@@ -83,11 +83,11 @@ export class AccountComponent implements OnInit {
     dialogRef.afterClosed().subscribe(ok => {
       if (ok === true) {
         this.accountService.remove(id).subscribe(data => {
-          let snackBarRef = this.snackBar.open('Xóa user thành công', 'Close', {
+          const snackBarRef = this.snackBar.open('Xóa user thành công', 'Close', {
             duration: 3000
           });
           this.setPage({ offset: 0 });
-        })
+        });
       }
     });
   }
@@ -96,22 +96,24 @@ export class AccountComponent implements OnInit {
     if (!form.valid) {
       return;
     }
-    let queryParams = { page: 1, limit: this.itemsPerPage };
+    const queryParams = { page: 1, limit: this.itemsPerPage, search: null };
 
-    if (this.filter.search) (<any>queryParams).search = this.filter.search;
+    if (this.filter.search) {
+      queryParams.search = this.filter.search;
+    }
     this.router.navigate(['tai-khoan'], { queryParams });
     this.activeRoute.queryParams.subscribe(data => {
       this.getData();
-    })
+    });
   }
 
   resetForm() {
-    let queryParams = { page: 1, limit: this.itemsPerPage };
+    const queryParams = { page: 1, limit: this.itemsPerPage };
 
     this.router.navigate(['tai-khoan'], { queryParams });
     this.activeRoute.queryParams.subscribe(data => {
       this.getData();
-    })
+    });
   }
 
   reloadDataFromPop(result) {

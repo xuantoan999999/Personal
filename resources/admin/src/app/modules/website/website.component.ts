@@ -1,6 +1,6 @@
 import { PopAlertComponent } from './../../components/modal/pop-alert/pop-alert.component';
 import { WebsiteFormComponent } from './website-form/website-form.component';
-import { MdDialog, MdSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { WebsiteService } from './website.service';
@@ -29,8 +29,8 @@ export class WebsiteComponent implements OnInit {
   constructor(
     private router: Router,
     private activeRoute: ActivatedRoute,
-    public dialog: MdDialog,
-    private snackBar: MdSnackBar,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar,
     private websiteService: WebsiteService
   ) {
     this.getData();
@@ -50,18 +50,18 @@ export class WebsiteComponent implements OnInit {
         this.totalPage = this.websiteList.totalPage;
         this.showLoading = false;
         this.filter.search = this.activeRoute.snapshot.queryParams.search;
-      })
+      });
   }
 
   setPage(pageInfo) {
-    this.router.navigate(['website'], { queryParams: { page: pageInfo.offset + 1, limit: this.itemsPerPage } })
+    this.router.navigate(['website'], { queryParams: { page: pageInfo.offset + 1, limit: this.itemsPerPage } });
     this.activeRoute.queryParams.subscribe(data => {
       this.getData();
-    })
+    });
   }
 
   popAdd() {
-    let dialogRef = this.dialog.open(WebsiteFormComponent, {
+    const dialogRef = this.dialog.open(WebsiteFormComponent, {
       width: '750px',
       data: {}
     });
@@ -71,7 +71,7 @@ export class WebsiteComponent implements OnInit {
     });
   }
   popEdit(id) {
-    let dialogRef = this.dialog.open(WebsiteFormComponent, {
+    const dialogRef = this.dialog.open(WebsiteFormComponent, {
       width: '750px',
       data: { id }
     });
@@ -82,7 +82,7 @@ export class WebsiteComponent implements OnInit {
   }
 
   popDelete(id): void {
-    let dialogRef = this.dialog.open(PopAlertComponent, {
+    const dialogRef = this.dialog.open(PopAlertComponent, {
       width: '400px',
       data: {
         message: 'Do you want to delete this website'
@@ -92,11 +92,11 @@ export class WebsiteComponent implements OnInit {
     dialogRef.afterClosed().subscribe(ok => {
       if (ok === true) {
         this.websiteService.remove(id).subscribe(data => {
-          let snackBarRef = this.snackBar.open('Xóa thành công', 'Close', {
+          const snackBarRef = this.snackBar.open('Xóa thành công', 'Close', {
             duration: 3000
           });
           this.setPage({ offset: 0 });
-        })
+        });
       }
     });
   }
@@ -105,21 +105,23 @@ export class WebsiteComponent implements OnInit {
     if (!form.valid) {
       return;
     }
-    let queryParams = { page: 1, limit: this.itemsPerPage };
+    const queryParams = { page: 1, limit: this.itemsPerPage };
 
-    if (this.filter.search) (<any>queryParams).search = this.filter.search;
+    if (this.filter.search) {
+      (<any>queryParams).search = this.filter.search;
+    }
     this.router.navigate(['website'], { queryParams });
     this.activeRoute.queryParams.subscribe(data => {
       this.getData();
-    })
+    });
   }
 
   resetForm() {
-    let queryParams = { page: 1, limit: this.itemsPerPage };
+    const queryParams = { page: 1, limit: this.itemsPerPage };
 
     this.router.navigate(['website'], { queryParams });
     this.activeRoute.queryParams.subscribe(data => {
       this.getData();
-    })
+    });
   }
 }

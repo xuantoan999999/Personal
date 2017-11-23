@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { PopAlertComponent } from './../modal/pop-alert/pop-alert.component';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 import Config from '../../boostrap/config';
 
@@ -12,7 +12,7 @@ import Config from '../../boostrap/config';
 export class MenuComponent implements OnInit {
   config;
   constructor(
-    public dialog: MdDialog,
+    public dialog: MatDialog,
     private router: Router
   ) {
     this.config = Config.getConfigs();
@@ -22,7 +22,7 @@ export class MenuComponent implements OnInit {
   }
 
   logOut() {
-    let dialogRef = this.dialog.open(PopAlertComponent, {
+    const dialogRef = this.dialog.open(PopAlertComponent, {
       width: '300px',
       data: {
         message: 'Are you sure you want to log out'

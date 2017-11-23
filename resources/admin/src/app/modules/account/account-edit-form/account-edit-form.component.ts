@@ -14,7 +14,7 @@ export class AccountEditFormComponent implements OnInit {
   @Output() onRemoveAccount = new EventEmitter();
   pattern = {
     email: PatternValidator.EMAIL_REGEXP
-  }
+  };
   constructor() { }
 
   ngOnInit() {

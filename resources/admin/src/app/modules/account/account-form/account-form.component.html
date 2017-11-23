@@ -1,15 +1,15 @@
 <div id="mod-account-form" class="box white">
     <form #formAccount="ngForm" (ngSubmit)="submit(formAccount)">
-        <md-form-field class="form-control">
-            <input mdInput placeholder="Tên" [(ngModel)]="account.name" #nameControl="ngModel" name="name">
-            <md-error *ngIf="(nameControl.touched || formAccount.submitted) && !nameControl.valid">
+        <mat-form-field class="form-control">
+            <input matInput placeholder="Tên" [(ngModel)]="account.name" #nameControl="ngModel" name="name">
+            <mat-error *ngIf="(nameControl.touched || formAccount.submitted) && !nameControl.valid">
                 <span *ngIf="nameControl.errors.required">Chưa nhập tên</span>
-            </md-error>
-        </md-form-field>
+            </mat-error>
+        </mat-form-field>
 
-        <md-form-field class="form-control">
-            <input mdInput placeholder="Tên website" [(ngModel)]="account.website" #websiteControl="ngModel" name="website" required>
-        </md-form-field>
+        <mat-form-field class="form-control">
+            <input matInput placeholder="Tên website" [(ngModel)]="account.website" #websiteControl="ngModel" name="website" required>
+        </mat-form-field>
         <div class="list-account">
             <div class="item-account form-group" *ngFor="let item_account of account.list_account; let i = index;">
                 <app-account-edit-form [account]="item_account" [formAccount]="formAccount" (onChangeForm)="onChangeForm($event, i)" (onRemoveAccount)="onDeleteAccount(i)"></app-account-edit-form>
@@ -18,51 +18,51 @@
                 <form #formAddAccount="ngForm" (ngSubmit)="submitAddAccount(formAddAccount)">
                     <div class="row">
                         <div class="col-4">
-                            <md-form-field class="form-control">
-                                <input mdInput placeholder="Username" [(ngModel)]="account_add.user_name" #usernameAddControl="ngModel" name="username">
-                            </md-form-field>
+                            <mat-form-field class="form-control">
+                                <input matInput placeholder="Username" [(ngModel)]="account_add.user_name" #usernameAddControl="ngModel" name="username">
+                            </mat-form-field>
                         </div>
                         <div class="col-4">
-                            <md-form-field class="form-control">
-                                <input mdInput placeholder="Email" [(ngModel)]="account_add.email" #emailAddControl="ngModel" name="email" [pattern]="pattern.email"
+                            <mat-form-field class="form-control">
+                                <input matInput placeholder="Email" [(ngModel)]="account_add.email" #emailAddControl="ngModel" name="email" [pattern]="pattern.email"
                                     required>
-                                <md-error *ngIf="(emailAddControl.touched || formAddAccount.submitted) && !emailAddControl.valid">
+                                <mat-error *ngIf="(emailAddControl.touched || formAddAccount.submitted) && !emailAddControl.valid">
                                     <span *ngIf="emailAddControl.errors.pattern">Email không đúng dạng</span>
                                     <span *ngIf="emailAddControl.errors.required">Chưa nhập email</span>
-                                </md-error>
-                            </md-form-field>
+                                </mat-error>
+                            </mat-form-field>
                         </div>
                         <div class="col-4">
-                            <md-form-field class="form-control">
-                                <input mdInput placeholder="Password" [(ngModel)]="account_add.password" #passwordAddControl="ngModel" name="password" required>
-                                <md-error *ngIf="(passwordAddControl.touched || formAddAccount.submitted) && !passwordAddControl.valid">
+                            <mat-form-field class="form-control">
+                                <input matInput placeholder="Password" [(ngModel)]="account_add.password" #passwordAddControl="ngModel" name="password" required>
+                                <mat-error *ngIf="(passwordAddControl.touched || formAddAccount.submitted) && !passwordAddControl.valid">
                                     <span *ngIf="passwordAddControl.errors.required">Chưa nhập mật khẩu</span>
-                                </md-error>
-                            </md-form-field>
+                                </mat-error>
+                            </mat-form-field>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <md-form-field class="form-control">
-                                <textarea mdInput placeholder="Extra" [(ngModel)]="account_add.extra" #extraAddControl="ngModel" rows="4" name="extra"></textarea>
-                            </md-form-field>
+                            <mat-form-field class="form-control">
+                                <textarea matInput placeholder="Extra" [(ngModel)]="account_add.extra" #extraAddControl="ngModel" rows="4" name="extra"></textarea>
+                            </mat-form-field>
                         </div>
                     </div>
                     <div class="form-group">
-                        <button md-raised-button type="submit" color="primary" [disabled]="!formAddAccount.valid && formAddAccount.submitted">Thêm</button>
-                        <button md-button type="button" (click)="toggleAddForm()">Cancel</button>
+                        <button mat-raised-button type="submit" color="primary" [disabled]="!formAddAccount.valid && formAddAccount.submitted">Thêm</button>
+                        <button mat-button type="button" (click)="toggleAddForm()">Cancel</button>
                     </div>
                 </form>
             </div>
             <div class="form-group" *ngIf="!addAccount">
-                <button md-raised-button type="button" color="primary" (click)="toggleAddForm()">Thêm Account</button>
+                <button mat-raised-button type="button" color="primary" (click)="toggleAddForm()">Thêm Account</button>
             </div>
         </div>
 
         <div class="form-group text-right">
-            <button md-raised-button color="primary" type="submit" [disabled]="(!formAccount.valid || !validFormEditAcc) && formAccount.submitted" *ngIf="showAdd">Thêm</button>
-            <button md-raised-button color="primary" type="submit" [disabled]="(!formAccount.valid || !validFormEditAcc) && formAccount.submitted" *ngIf="!showAdd">Sửa</button>
-            <a md-button [routerLink]="['/tai-khoan']" [queryParams]="{ limit: 10}">Cancel</a>
+            <button mat-raised-button color="primary" type="submit" [disabled]="(!formAccount.valid || !validFormEditAcc) && formAccount.submitted" *ngIf="showAdd">Thêm</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="(!formAccount.valid || !validFormEditAcc) && formAccount.submitted" *ngIf="!showAdd">Sửa</button>
+            <a mat-button [routerLink]="['/tai-khoan']" [queryParams]="{ limit: 10}">Cancel</a>
         </div>
     </form>
 </div>

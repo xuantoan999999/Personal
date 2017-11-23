@@ -1,5 +1,5 @@
 import { FacebookService } from './../facebook.service';
-import { MdDialogRef, MD_DIALOG_DATA, MdSnackBar } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { Component, OnInit, Inject } from '@angular/core';
 
 @Component({
@@ -13,17 +13,17 @@ export class FacebookFormComponent implements OnInit {
   showAdd: boolean = true;
 
   constructor(
-    public dialogRef: MdDialogRef<FacebookFormComponent>,
+    public dialogRef: MatDialogRef<FacebookFormComponent>,
     private facebookService: FacebookService,
-    @Inject(MD_DIALOG_DATA) public data: any,
-    private snackBar: MdSnackBar,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private snackBar: MatSnackBar,
   ) {
     if (data.id) {
       this.facebookService.info(data.id).subscribe(resp => {
         this.facebook = resp.facebook;
         this.showAdd = false;
         this.id = data.id;
-      })
+      });
     }
   }
 
@@ -31,28 +31,31 @@ export class FacebookFormComponent implements OnInit {
   }
 
   submit(form) {
-    if (!form.valid) return;
-    if (!this.id)
+    if (!form.valid) {
+      return;
+    }
+    if (!this.id) {
       this.facebookService.add({
         data: this.facebook
       }).subscribe(data => {
         this.dialogRef.close({
           reload: true
         });
-        let snackBarRef = this.snackBar.open('Thêm fanpage thành công', 'Close', {
+        const snackBarRef = this.snackBar.open('Thêm fanpage thành công', 'Close', {
           duration: 3000
         });
-      })
-    else this.facebookService.update({
-      data: this.facebook
-    }, this.id).subscribe(data => {
-      this.dialogRef.close({
-        reload: true
       });
-      let snackBarRef = this.snackBar.open('Sửa fanpage thành công', 'Close', {
-        duration: 3000
+    } else {
+      this.facebookService.update({
+        data: this.facebook
+      }, this.id).subscribe(data => {
+        this.dialogRef.close({
+          reload: true
+        });
+        const snackBarRef = this.snackBar.open('Sửa fanpage thành công', 'Close', {
+          duration: 3000
+        });
       });
-    });
+    }
   }
-
 }

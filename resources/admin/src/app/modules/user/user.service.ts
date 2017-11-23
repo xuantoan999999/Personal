@@ -32,7 +32,7 @@ export class UserService extends HttpService {
   }
 
   remove(id) {
-    return this.deleteAdmin(`${this.method}`, { id })
+    return this.deleteAdmin(`${this.method}`, { id });
   }
 
   allRole() {
@@ -40,6 +40,6 @@ export class UserService extends HttpService {
   }
 
   searchRole(value) {
-    return this.allRoles.find(role => value == role.value);
+    return this.allRoles.find(role => value === role.value);
   }
 }

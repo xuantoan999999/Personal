@@ -25,6 +25,6 @@ export class FacebookService extends HttpService {
   }
 
   remove(id) {
-    return this.deleteAdmin(`${this.method}`, { id })
+    return this.deleteAdmin(`${this.method}`, { id });
   }
 }
