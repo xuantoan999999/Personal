@@ -1,11 +1,11 @@
 @layout('web/layout/master.edge')
 @section('content')
   <div class="container" id="mod-home">
-    <div class="form-group">
-    <div class="form-group">
-      <label for="">Foot Roll</label>
-      <input type="number" class="form-control" step="1" v-model="footRollInput.footRoll" :change="footRollFunction()" :max="footRollInput.toeStraightAngle">
-    </div>
+    <!--<div class="form-group">
+      <div class="form-group">
+        <label for="">Foot Roll</label>
+        <input type="number" class="form-control" step="1" v-model="footRollInput.footRoll" :change="footRollFunction()" :max="footRollInput.toeStraightAngle">
+      </div>
       <label for="">Bend Limit Angle</label>
       <input type="number" class="form-control" step="1" v-model="footRollInput.bendLimitAngle" :change="footRollFunction()">
     </div>
@@ -15,13 +15,13 @@
     </div>
     <div class="form-group">
       Heel X: [[footRollOutput.heelX]], Ball X: [[footRollOutput.ballX]], Toe X: [[footRollOutput.toeX]]
-    </div>
-    <modal name="hello-world" height="auto" class="modal" id="modal-facebook">
+    </div>-->
+    <modal name="modal-facebook" height="auto" class="modal" id="modal-facebook">
       <div class="header-modal" v-if="facebookContent.name">
-        [[ facebookContent.name ]]
+        [[facebookContent.name]]
       </div>
       <div class="content-modal">
-        <p>[[ facebookContent.message ]]</p>
+        <p>[[facebookContent.message]]</p>
         <a :href="facebookContent.permalink_url" target="_blank">
           <img :src="facebookContent.full_picture" class="img-responsive">
         </a>

@@ -19,10 +19,10 @@ const Route = use('Route')
 Route.get('/', 'Web/IndexController.index')
 Route.get('/youtube', 'Web/IndexController.youtube')
 Route.get('/convert-image', 'Web/IndexController.convert')
-Route.get('/test-youtube', 'Web/IndexController.testYoutube')
 Route.get('/facebook/:fanpage', 'Web/IndexController.getNewsFacebook')
 Route.get('learn/:slug', 'Web/IndexController.learn')
 Route.get('/facebook-post/:id', 'Web/IndexController.getDetailPostFacebook')
+Route.get('/test-optimize', 'Web/IndexController.testOptimize')
 
 //endregion
 

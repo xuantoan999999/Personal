@@ -51,11 +51,12 @@
                 })
             },
             show(item) {
+                console.log("fsa f");
                 storeHome.commit('mutateFacebook',item)
-                this.$modal.show('hello-world');
+                this.$modal.show('modal-facebook');
             },
             hide() {
-                this.$modal.hide('hello-world');
+                this.$modal.hide('modal-facebook');
             }
         }
     }

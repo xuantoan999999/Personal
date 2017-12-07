@@ -46,6 +46,7 @@
     "mongoose": "^4.13.2",
     "mongoose-pagination": "^1.0.0",
     "sweet-modal-vue": "^2.0.0",
+    "tinify": "^1.5.0",
     "toastr": "^2.1.2",
     "vue": "^2.5.3",
     "vue-awesome-swiper": "^2.6.7",
